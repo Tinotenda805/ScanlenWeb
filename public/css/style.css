@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Scanlen & Holderness</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Scanlen & Holderness</h1>
+    </header>
+
+    <section>
+        <h2>Welcome</h2>
+        <p>This is the home page of your Laravel website.</p>
+    </section>
+</body>
+</html>
