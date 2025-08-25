@@ -1,3 +1,11 @@
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
 html, body {
     height: 100%;
     margin: 0;
@@ -22,7 +30,7 @@ main {
     left: 0;
     width: 100%;
     z-index: 1030;
-    background: linear-gradient(90deg, #80005a 60%, #808080 100%);
+    background: linear-gradient(90deg, #3c0008 60%, #555555 100%);
     box-shadow: 0 2px 8px rgba(128,0,0,0.08);
     border-radius: 0;
 }
@@ -54,9 +62,9 @@ main {
     left: 0;
     width: 100%;
     z-index: 1030;
-    background: linear-gradient(90deg, #808080 20%, #80005a 100%);
+    background: linear-gradient(90deg, #555555 20%, #3c0008 100%);
     color: #fff;
-    border-top: 1px solid #80005a;
+    border-top: 1px solid #3c0008;
 }
 
 
@@ -64,8 +72,7 @@ main {
 /* HERO SECTION */
 .hero-section {
     min-height: 100vh;
-    background: linear-gradient(to right, rgba(84, 0, 46, 0.831), rgba(253, 253, 253, 0.6));
-                /* url('/images/law.jpg') center/cover no-repeat; */
+        background: linear-gradient(to right, rgba(33, 22, 28, 0.831), rgba(253, 253, 253, 0.6)), url('/images/law.jpg') center/cover no-repeat;
     color: #fff;
     padding: 4rem 0;
 }
@@ -83,6 +90,25 @@ main {
 }
 
 /* Circular carousel layout */
+.firm-milestones-center-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: #3c0008;
+    font-size: 1.4rem;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #fff 80%, #f7e6ee 100%);
+    border-radius: 1.5rem;
+    padding: 0.75rem 2.5rem;
+    box-shadow: 0 4px 16px rgba(60,0,8,0.12);
+    border: 2px solid #3c0008;
+    text-shadow: 0 1px 0 #fff, 0 2px 8px rgba(60,0,8,0.08);
+    pointer-events: none;
+}
 #circular-carousel {
     width: 400px;
     height: 400px;

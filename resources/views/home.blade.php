@@ -7,7 +7,7 @@
         <div class="d-sm-flex align-items-center">
             <!-- Left content -->
             <div class="col-lg-7 col-md-12 mb-4 mb-lg-0 text-start">
-                <h1 class="fw-bold">Welcome to Scanlen and Holderness</h1>
+                <h1 class="fw-bold">Welcome to Scanlen and Holdernesss</h1>
                 <p class="lead">
                     A premier Zimbabwean law firm offering you a full 
                     circle of legal services whether you are a local, regional or international 
@@ -17,8 +17,12 @@
             </div>
 
             <!-- Right circular carousel -->
-            <div class="col-lg-5 col-md-12 text-center">
-                <div id="circular-carousel" class="position-relative">
+            <div class="col-lg-5 col-md-12 text-center d-flex flex-column align-items-center justify-content-center">
+                <div class="position-relative" style="width:400px; height:400px;">
+                    <div class="firm-milestones-center-label fw-bold text-center">
+                        Firm Milestones
+                    </div>
+                    <div id="circular-carousel" class="position-relative">
                     <a href="#period1" class="carousel-img" style="--i:0;" title="1894-1920">
                         <img src="{{ asset('images/period1.jpg') }}" alt="1894-1920" class="rounded-circle">
                     </a>
@@ -31,6 +35,8 @@
                     <a href="#period4" class="carousel-img" style="--i:3;" title="2001-Present">
                         <img src="{{ asset('images/law.jpg') }}" alt="2001-Present" class="rounded-circle">
                     </a>
+                    </div>
+                </div>
                 </div>
 
             </div>

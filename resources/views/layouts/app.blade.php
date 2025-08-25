@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    @vite(['resources/sass/app/scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         
     </style>
@@ -23,10 +23,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-2">
-                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="{{ route('homePage') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="#">About Us</a></li>
-                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="#">Our People</a></li>
-                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="#">Expertise</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="/about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="/people">Our People</a></li>
+                <li class="nav-item"><a class="nav-link text-white px-3 rounded" href="/expertise">Expertise</a></li>
             </ul>
             <!-- Search Icon -->
             <form class="d-flex ms-3" role="search">
@@ -60,5 +60,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/navbar-fix.js') }}"></script>
 </body>
 </html>
