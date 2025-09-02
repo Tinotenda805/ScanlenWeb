@@ -115,21 +115,19 @@ main {
     border-radius: 50%;
     position: relative;
     margin: auto;
-    border: 1px solid #f1f1f1;
-    animation: spin 20s linear infinite; /* rotate the whole circle */
+    border: none;
+    background: transparent;
 }
 
 #circular-carousel .carousel-img {
     position: absolute;
-    top: 40%;
-    left: 40%;
-    transform: rotate(calc(90deg * var(--i))) translate(200px) rotate(calc(-90deg * var(--i)));
+    /* Top/left will be set by JS */
     transform-origin: center;
 }
 
 #circular-carousel img {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     border: 3px solid #fff;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
