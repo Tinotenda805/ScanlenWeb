@@ -1,0 +1,23 @@
+#lawyer-network-hero {
+    background: linear-gradient(135deg, #0e153a 0%, #1d2671 100%);
+}
+
+.lawyer-node {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Gold glow */
+    cursor: pointer;
+    transform: translate(-50%, -50%); /* Centers the node on its coordinates */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10;
+}
+.lawyer-node:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    z-index: 100; /* Ensure it pops above others on hover */
+}
