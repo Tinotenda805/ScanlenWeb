@@ -33,19 +33,50 @@
             left: 0;
             width: 100%;
             z-index: 1030;
-            background: #3c0008;
+            background: linear-gradient(90deg, #3c0008 0%, #555555 100%) !important;
             box-shadow: 0 2px 8px rgba(128,0,0,0.08);
         }
         
         .navbar-brand, .nav-link {
             color: #fff !important;
             font-weight: 500;
+            font-size: 1.08rem;
+            letter-spacing: 1px;
+            transition: color 0.2s, background 0.2s;
         }
         
         .nav-link.active, .nav-link:hover {
-            color: #f8f9fa !important;
-            text-decoration: underline;
-            background: rgba(128,0,0,0.15);
+            color: #d2c59cff !important;
+            text-decoration: none;
+            border-bottom: 2.5px solid #d4af37;
+            background: rgba(128,0,0,0.10);
+        /* Dropdown menu styling */
+        .dropdown-menu {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(60,0,8,0.12);
+            padding: 0.5rem 0.2rem;
+            min-width: 220px;
+            border: none;
+        }
+        .dropdown-item {
+            font-size: 1rem;
+            color: #3c0008;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: background 0.18s, color 0.18s;
+        }
+        .dropdown-item:hover, .dropdown-item:focus {
+            background: #f7e6ee;
+            color: #d4af37;
+        }
+        .nav-link.dropdown-toggle {
+            padding-right: 1.5em;
+        }
+        .navbar-nav .nav-item {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
         }
         
         
@@ -287,19 +318,53 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link active" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">Our History</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourPeopleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our People
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourPeopleDropdown">
+                            <li><a class="dropdown-item" href="#">Partners</a></li>
+                            <li><a class="dropdown-item" href="#">Associates</a></li>
+                            <li><a class="dropdown-item" href="#">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="expertiseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Expertise
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="expertiseDropdown">
+                            <li><a class="dropdown-item" href="#">Corporate and commercial law</a></li>
+                            <li><a class="dropdown-item" href="#">Dispute resolution and litigation</a></li>
+                            <li><a class="dropdown-item" href="#">Constitutional and administrative law</a></li>
+                            <li><a class="dropdown-item" href="#">Employment law</a></li>
+                            <li><a class="dropdown-item" href="#">Conveyancing and property law</a></li>
+                            <li><a class="dropdown-item" href="#">Insolvency law and debt</a></li>
+                            <li><a class="dropdown-item" href="#">Restructuring</a></li>
+                            <li><a class="dropdown-item" href="#">Criminal law</a></li>
+                            <li><a class="dropdown-item" href="#">Immigration law</a></li>
+                            <li><a class="dropdown-item" href="#">Family law</a></li>
+                            <li><a class="dropdown-item" href="#">Estate planning and administration</a></li>
+                            <li><a class="dropdown-item" href="#">Intellectual property</a></li>
+                            <li><a class="dropdown-item" href="#">Licensing</a></li>
+                            <li><a class="dropdown-item" href="#">Compliance and regulatory law</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="briefcaseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Briefcase
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="briefcaseDropdown">
+                            <li><a class="dropdown-item" href="#">Articles</a></li>
+                            <li><a class="dropdown-item" href="#">Judgements</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Attorneys</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
                 </ul>
             </div>
