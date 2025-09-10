@@ -119,3 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 </script>
+
+
+
+
+
+
+
+{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
