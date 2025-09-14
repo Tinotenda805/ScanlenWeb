@@ -4,7 +4,12 @@
 
 <section class="py-5">
     <div class="container">
-        <h3 class="page-heading">Our Expertise</h3>
+        <h1 class="page-heading">Our Expertise</h1>
+        <p class="intro-text mb-3">
+            We specialize in providing comprehensive legal solutions across various practice areas. 
+            Our team of experienced attorneys is dedicated to delivering exceptional service and 
+            achieving the best possible outcomes for our clients. Explore our areas of expertise below.
+        </p>
         <div class="d-flex justify-content-sm-between d-grid gap-3">
             <div class="card expertise-card shadow border-0 col-sm bg-light d-flex flex-column">
                 <a href="" class="links">

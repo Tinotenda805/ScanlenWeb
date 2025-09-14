@@ -15,4 +15,19 @@ class MainController extends Controller
     {
         return view('expertise');
     }
+
+    public function contactUs()
+    {
+        return view('contact-us');
+    }
+
+    public function ourHistory()
+    {
+        return view('our-history');
+    }
+
+    public function ourPartners()
+    {
+        return view('our-partners');
+    }
 }

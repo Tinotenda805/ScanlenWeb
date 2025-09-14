@@ -53,4 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         centerY = carousel.offsetHeight / 2;
         positionImages();
     });
+
+
+
 });
