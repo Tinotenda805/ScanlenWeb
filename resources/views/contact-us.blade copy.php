@@ -31,7 +31,7 @@
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Us</h3>
-                  <p>+263 (0) 242 799636-42 || +263 (0) 242 702561-8</p>
+                  <p>+263 (0) 242 799636-42 <br> +263 (0) 242 702561-8</p>
                 </div>
               </div><!-- End Info Item -->
   
@@ -47,7 +47,7 @@
                 <i class="bi bi-printer-fill flex-shrink-0"></i>
                 <div>
                   <h3>Fax</h3>
-                  <p>+263 (0) 242 702569 || +263 (0) 242 700826</p>
+                  <p>+263 (0) 242 702569 <br> +263 (0) 242 700826</p>
                 </div>
               </div><!-- End Info Item -->
   

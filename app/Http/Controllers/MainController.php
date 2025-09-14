@@ -30,4 +30,14 @@ class MainController extends Controller
     {
         return view('our-partners');
     }
+
+    public function articles()
+    {
+        return view('articles');
+    }
+
+    public function article()
+    {
+        return view('article');
+    }
 }

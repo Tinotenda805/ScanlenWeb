@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scanlen & Holderness - Law Firm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style2.css')}}">
     <link href="{{ asset('images/avitar.png')}}" rel="shortcut icon">
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     
@@ -49,7 +51,7 @@
                             Briefcase
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="briefcaseDropdown">
-                            <li><a class="dropdown-item {{ Request::is('articles') ? 'active' : '' }}" href="{{ url('/articles') }}">Articles</a></li>
+                            <li><a class="dropdown-item {{ Request::is('articles') ? 'active' : '' }}" href="{{ route('articles') }}">Articles</a></li>
                             <li><a class="dropdown-item {{ Request::is('judgements') ? 'active' : '' }}" href="{{ url('/judgements') }}">Judgements</a></li>
                         </ul>
                     </li>
