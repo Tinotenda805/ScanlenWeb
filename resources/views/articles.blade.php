@@ -146,34 +146,32 @@
               <div class="post-item">
                 <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
                 <div>
-                  <h4><a href="{{route('article')}}">Nihil blanditiis at in nihil autem</a></h4>
+                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+              <div class="post-item">
+                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+              <div class="post-item">
+                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+              <div class="post-item">
+                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
               </div><!-- End recent post item-->
 
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">Quidem autem et impedit</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">Id quia et et ut maxime similique occaecati ut</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">Laborum corporis quo dara net para</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
 
 
             </div><!--/Recent Posts Widget -->

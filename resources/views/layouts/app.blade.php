@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="{{asset('css/style2.css')}}">
     <link href="{{ asset('images/avitar.png')}}" rel="shortcut icon">
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     
 </head>
 <body>
@@ -20,9 +25,7 @@
             <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="{{ url('/') }}" style="letter-spacing:2px;">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:55px; width:auto; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff;">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -32,13 +35,13 @@
                         <a class="nav-link {{ Request::is('our-history') ? 'active' : '' }}" href="{{route('ourHistory')}}">Our History</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('our-partners*') || Request::is('associates*') || Request::is('gallery*') ? 'active' : '' }}" 
+                        <a class="nav-link dropdown-toggle {{ Request::is('our-partners*') || Request::is('our-associates*') || Request::is('gallery*') ? 'active' : '' }}" 
                         href="#" id="ourPeopleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Our People
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ourPeopleDropdown">
                             <li><a class="dropdown-item {{ Request::is('partners') ? 'active' : '' }}" href="{{ route('ourPartners') }}">Partners</a></li>
-                            <li><a class="dropdown-item {{ Request::is('associates') ? 'active' : '' }}" href="{{ url('/associates') }}">Associates</a></li>
+                            <li><a class="dropdown-item {{ Request::is('associates') ? 'active' : '' }}" href="{{ route('ourAssociates') }}">Associates</a></li>
                             <li><a class="dropdown-item {{ Request::is('gallery') ? 'active' : '' }}" href="{{ url('/gallery') }}">Gallery</a></li>
                         </ul>
                     </li>
@@ -52,6 +55,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="briefcaseDropdown">
                             <li><a class="dropdown-item {{ Request::is('articles') ? 'active' : '' }}" href="{{ route('articles') }}">Articles</a></li>
+                            <li><a class="dropdown-item {{ Request::is('blogs') ? 'active' : '' }}" href="">Blogs</a></li>
                             <li><a class="dropdown-item {{ Request::is('judgements') ? 'active' : '' }}" href="{{ url('/judgements') }}">Judgements</a></li>
                         </ul>
                     </li>
@@ -59,29 +63,32 @@
                         <a class="nav-link {{ Route::is('contactUs') ? 'active' : '' }}" href="{{ route('contactUs') }}">Contact Us</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav flex-row">
-                    <li class="nav-item">
-                        <a class="nav-link px-1" href="#!">
-                        <i class="fab fa-facebook-square"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-1" href="#!">
-                        <i class="fab fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-1" href="#!">
-                        <i class="fab fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-1" href="#!">
-                        <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </li>
-                </ul>
             </div>
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link px-1" href="#!">
+                    <i class="fab fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-1" href="#!">
+                    <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-1" href="#!">
+                    <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-1" href="#!">
+                    <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
 
@@ -119,7 +126,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-1" href="#!">
-                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-youtube"></i>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -190,6 +197,9 @@
     <!-- Bootstrap & JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('js/script.js')}}"></script>
+
+    
+    
     
 </body>
 </html>

@@ -2,64 +2,112 @@
 
 @section('content')
 
-<section class="py-5">
-    <div class="container">
-        <h1 class="page-heading">Our Expertise</h1>
-        <p class="intro-text mb-3">
-            
-        </p>
-        <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="section-title">Leadership Team</h2>
+@include('layouts.page-header')
+
+    
+
+<!-- Team Start -->
+<div class="container-fluid team py-5">
+    <div class="container py-5">
+        <div class="mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <h1 class="display-5 mb-4 text-center ">Meet Our Partners</h1>
+            <p class="mb-0" style="text-align: justify">
+                At the heart of our firm is a dedicated team of partners whose combined experience spans decades of legal practice. 
+                Each partner brings unique expertise in areas such as corporate law, litigation, property, family law, and advisory services. 
+                Together, they uphold the firm’s values of integrity, professionalism, and client-focused solutions — guiding both individuals 
+                and businesses with clarity and confidence.
+            </p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="{{asset('images/law.jpg')}}" class="img-fluid" alt="">
+                    </div>
+                    <div class="team-title">
+                        <h4 class="mb-0">David James</h4>
+                        <p class="mb-0">Profession</p>
+                    </div>
+                    <div class="team-icon">
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="team-btn mt-3">
+                        <a href="{{route('partner')}}" class="btn read-more-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="{{asset('images/2.jpeg')}}" class="img-fluid" alt="">
+                    </div>
+                    <div class="team-title">
+                        <h4 class="mb-0">David James</h4>
+                        <p class="mb-0">Profession</p>
+                    </div>
+                    <div class="team-icon">
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="team-btn mt-3">
+                        <a href="{{route('partner')}}" class="btn btn-sm read-more-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="{{asset('images/3.jpeg')}}" class="img-fluid" alt="">
+                    </div>
+                    <div class="team-title">
+                        <h4 class="mb-0">David James</h4>
+                        <p class="mb-0">Profession</p>
+                    </div>
+                    <div class="team-icon">
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="team-btn mt-3">
+                        <a href="#" class="btn btn-sm read-more-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="{{asset('images/4.jpeg')}}" class="img-fluid" alt="">
+                    </div>
+                    <div class="team-title">
+                        <h4 class="mb-0">David James</h4>
+                        <p class="mb-0">Profession</p>
+                    </div>
+                    <div class="team-icon">
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="team-btn mt-3">
+                        <a href="#" class="btn btn-sm read-more-btn">Read More</a>
+                    </div>
+                </div>
             </div>
         </div>
-        
+    </div>
+</div>
+<!-- Team End -->
+    <div class="container" style="display: none">      
+        <div class="section-title align-items-center text-center">
+            <h3>Meet Our Partners</h3>
+        </div>
         <div class="row g-4">
-            <!-- Partner 1 -->
-            {{-- <div class="col-md-6 col-lg-4">
-                <div class="card partner-card shadow">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="partner-img" alt="Partner 1">
-                    <div class="card-body text-center">
-                        <h3 class="partner-name">Robert Johnson</h3>
-                        <p class="partner-position">Senior Partner, Corporate Law</p>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
-                        <p class="card-text">Specializing in corporate governance and M&A transactions with over 20 years of experience.</p>
-                        <button type="button" class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#partnerModal1">
-                            Read More
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Partner 2 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card partner-card shadow">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="partner-img" alt="Partner 2">
-                    <div class="card-body text-center">
-                        <h3 class="partner-name">Sarah Williams</h3>
-                        <p class="partner-position">Partner, Intellectual Property</p>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
-                        <p class="card-text">Expert in patent law and intellectual property disputes with a background in technology.</p>
-                        <button type="button" class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#partnerModal2">
-                            Read More
-                        </button>
-                    </div>
-                </div>
-            </div> --}}
-            
-            <!-- Partner 3 -->
-            
-            
-            <!-- Partner 4 -->
             <div class="col-md-6 col-lg-4">
                 <div class="card partner-card shadow">
                     <div class="partner-img-container">
@@ -160,7 +208,6 @@
         
 
     </div>
-</section>
 
 
     

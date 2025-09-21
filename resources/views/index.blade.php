@@ -4,19 +4,26 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="hero-partners-bg" >
+        {{-- <div class="hero-partners-bg" >
             @for ($i = 0; $i < 60; $i++)
                 <img src="{{ asset(['images/period3.jpg','images/period1.jpg','images/period2.jpg'][$i%3]) }}" alt="Old Partner {{ $i+1 }}" style="width:100%;height:100%;object-fit:cover;">
             @endfor
-        </div>
-        {{-- <div class="firm-name">
-            <h2>Scanlen & Holderness</h2>
-            <p>Legal Excellence Since 1894</p>
         </div> --}}
+        <div class="hero-partners-bg">
+            <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="partner founder">
+
+            <!-- Other partners placed randomly -->
+
+            <img src="{{ asset('images/oldpartners/op1.jpeg') }}" alt="Old Partner" class="partner random">
+            <img src="{{ asset('images/oldpartners/op2.jpeg') }}" alt="Old Partner" class="partner random">
+            <img src="{{ asset('images/oldpartners/op3.jpeg') }}" alt="Old Partner" class="partner random">
+            <img src="{{ asset('images/oldpartners/op4.jpeg') }}" alt="Old Partner" class="partner random">
+            <img src="{{ asset('images/oldpartners/op5.jpeg') }}" alt="Old Partner" class="partner random">
+        </div>
         
         <!-- Circular carousel -->
         <div class="c-partners-container">
-            <span class="cpartners-text">Current Partners</span>
+            <span class="cpartners-text" style="display: ">Current Partners</span>
             <div id="circular-carousel" class="position-relative">
                 <!-- Partner 1 -->
                 <a href="#partner1" class="carousel-img" style="--i:0;" title="Partner 1">
@@ -97,42 +104,96 @@
             
             <!-- Right Column - Association Memberships -->
             <div class="col-lg-6 ps-lg-4">
-                <h2 class="mb-4">Professional Memberships</h2>
-                <p class="text-muted mb-4">Scanlen & Holderness is proud to be associated with these esteemed legal organizations:</p>
-                
-                <div class="row align-items-center">
-                    <!-- Association 1 -->
-                    <div class="col-6 col-md-4 mb-4 text-center assocoation-container">
-                        <div class="association-logo-container p-3">
-                            <a href="https://www.meritas.org/">
-                                <img src="{{asset('images/meritas_logo.png')}}" alt="" class="img-fluid" title="Meritas">
-                            </a>
-                        </div>
-                        {{-- <p class="small mt-2 mb-0">American Bar Association</p> --}}
-                    </div>
-                    <div class="col-6 col-md-4 mb-4 text-center assocoation-container">
-                        <div class="association-logo-container p-3">
-                            <a href="https://lexafrica.com/">
-                                <img src="{{asset('images/lexafrica.png')}}" alt="American Bar Association" class="img-fluid">
-                            </a>
-                        </div>
-                        {{-- <p class="small mt-2 mb-0">American Bar Association</p> --}}
-                    </div>
-                    <div class="col-6 col-md-4 mb-4 text-center assocoation-container">
-                        <div class="association-logo-container p-3">
-                            <a href="">
-                                <img src="{{asset('images/champers.jpg')}}" alt="American Bar Association" class="img-fluid">
-                            </a>
-                        </div>
-                        {{-- <p class="small mt-2 mb-0">American Bar Association</p> --}}
-                    </div>
-                    
-                    
-                </div>
+                {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
+                <video class="w-100 rounded" autoplay loop muted>
+                    <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />
+                </video>
             </div>
         </div>
     </div>
 </section>
+
+<section class="find-lawyer p-5 bg-danger-subtle text-center">
+    <h3 class="fw-bold text-maroon ">Find A Lawyer</h3>
+    <form action="">
+        
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" name="name" class="form-control" placeholder="Search By Name" id="">
+            </div>
+            OR
+            <div class="col-sm">
+                <select name="service" id="" class="form-select">
+                    <option value="" selected>SERVICES</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <select name="service" id="" class="form-select">
+                    <option value="" selected>SECTORS</option>
+                </select>
+            </div>
+        </div>
+
+    </form>
+</section>
+
+<!-- Faq Section -->
+    <section id="faq" class="faq section bg-white">
+
+      <div class="container-fluid">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
+
+            <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+              <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              </p>
+            </div>
+
+            <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="faq-item faq-active">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                <div class="faq-content">
+                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                <div class="faq-content">
+                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                <div class="faq-content">
+                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 order-1 order-lg-2">
+            <img src="assets/img/faq.jpg" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
 
 
     
