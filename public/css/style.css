@@ -441,7 +441,7 @@ body {
 .btn-maroon:hover{
     background-color: black;
     color: var(--white);
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 /* .page-heading{
@@ -665,6 +665,10 @@ body {
 
 
 
+
+
+
+
 /* TEAM START */
 .team-item {
     position: relative;
@@ -788,6 +792,8 @@ body {
     background: var(--gold);
     color: var(--white);
 }
+
+
 
 
 

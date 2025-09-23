@@ -282,6 +282,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             padding: 10px;
             margin-bottom: 10px;
+            border-radius:20px 0px 20px 0;
         }
 
         .insights-flex:hover{
@@ -308,10 +309,10 @@
         }
 
         .insights-flex .insight-info .insight-date{
-            color: var(--light-maroon)
+            color: var(--dark-gray)
         }
         .insights-flex .insight-info .insight-title{
-            color: var(--maroon);
+            color: black;
             padding-top:5px;
             font-weight: 400;
         }
@@ -412,8 +413,14 @@
                         <i class="bi bi-geo-alt me-2"></i> Harare, ZW
                     </div>
                 </div>
+                <div class="team-icons mt-3 ">
+                    <a class="rounded btn btn-maroon me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="rounded btn btn-maroon me-3" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="rounded btn btn-maroon me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="rounded btn btn-maroon me-0" href=""><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
-            <img src="{{asset('images/champers.jpg')}}" alt="Sarah Mitchell" class="profile-image">
+            <img src="{{asset('images/9.jpeg')}}" alt="Sarah Mitchell" class="profile-image">
         </div>
     </div>
     <div class="container">

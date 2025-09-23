@@ -42,7 +42,7 @@
                         <ul class="dropdown-menu" aria-labelledby="ourPeopleDropdown">
                             <li><a class="dropdown-item {{ Request::is('partners') ? 'active' : '' }}" href="{{ route('ourPartners') }}">Partners</a></li>
                             <li><a class="dropdown-item {{ Request::is('associates') ? 'active' : '' }}" href="{{ route('ourAssociates') }}">Associates</a></li>
-                            <li><a class="dropdown-item {{ Request::is('gallery') ? 'active' : '' }}" href="{{ url('/gallery') }}">Gallery</a></li>
+                            <li><a class="dropdown-item {{ Request::is('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">Gallery</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -100,16 +100,16 @@
     <!-- Footer -->
     <footer class="footer">
         
-        <div class="p-2">
-            <div class="d-flex d-grid gap-3 footer-top border-bottom border-secondary pb-2">
-                <div class="first-dev">
-                    <a class="navbar-brand fw-bold text-white d-flex " href="{{ url('/') }}" style="letter-spacing:2px;">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:55px; width:auto; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff; margin-right:14px;">
+        <div class="p-3">
+            <div class="row gy-4 footer-top border-bottom border-secondary pb-2">
+                <div class="first-dev col-lg-3 col-md-3">
+                    <a class="navbar-brand fw-bold text-white d-flex " href="{{ url('/') }}" >
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:55px; width:auto; border-radius:8px; ">
                     </a>
                     
                 </div>
 
-                <div class="our-location col-sm d-flex flex-column ">
+                <div class="our-location col-lg-3 col-md-3 ">
                     <h5 class="footer-heading border-start border-5 border-secondary ps-2 bold">WHERE TO FIND US</h5>
                     <p>
                         Address: 13th Floor, CABS Centre,
@@ -151,7 +151,7 @@
                     </iframe> --}}
                 </div>
 
-                <div class="diclaimer col-sm d-flex flex-column">
+                <div class="diclaimer col-lg-3 col-md-3">
                     <h5 class="footer-heading border-start border-5 border-secondary ps-2">DISCLAIMER</h5>
                     {{-- <p>Feel free to leave your email address so that we keep you informed on all our activities.</p>
                     <div class="input-group mb-3">
@@ -164,7 +164,7 @@
                     based on this information without consulting a legal practitioner. This site is
                      not intended to create a legal practitioner – client relationship.
                 </div>
-                <div class="col-sm d-flex flex-column">
+                <div class="col-lg-3 col-md-3">
                     <h5 class="footer-heading border-start border-5 border-secondary ps-2 bold">USEFUL LINKS</h5>
                     <div class="useful-links">
                         <ul class="nav flex-column">
@@ -188,9 +188,9 @@
                 </div>
 
             </div>
-            <div class="footer-bottom centre pt-3">
-                &copy; {{ date('Y') }} Scanlen & Holderness. All rights reserved.
-            </div>
+        </div>
+        <div class="footer-bottom centre pt-3">
+            &copy; {{ date('Y') }} Scanlen & Holderness. All rights reserved.
         </div>
     </footer>
 

@@ -13,7 +13,9 @@ class MainController extends Controller
 
     public function expertise()
     {
-        return view('expertise');
+        $title = "Our Expertise";
+        $subtitle = "Explore our areas of legal specialization.";
+        return view('expertise', compact('title', 'subtitle'));
     }
 
     public function contactUs()
@@ -55,9 +57,16 @@ class MainController extends Controller
         $subtitle = "-";
         return view('article', compact('title', 'subtitle'));
     }
-
+    
     public function partner()
     {
         return view('partner');
+    }
+
+    public function gallery()
+    {
+        $title = "Our Gallery";
+        $subtitle = "-";
+        return view('gallery', compact('title', 'subtitle'));
     }
 }

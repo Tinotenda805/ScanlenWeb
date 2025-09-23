@@ -4,10 +4,18 @@
 
 
     <style>
+        :root {
+            --maroon: #3c0008;
+            --light-maroon: #50010b;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --gold: #d4af37;
+        }
         /* Main Content Layout */
         .maincontent {
             display: flex;
-            max-width: 1400px;
+            /* max-width: 1400px; */
             margin: 0 auto;
             min-height: 100vh;
             gap: 0;
@@ -15,8 +23,9 @@
 
         /* Who We Are Sidebar */
         .sidebar {
-            width: 20%;
-            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            /* width: 20%; */
+            max-width: 500px;
+            background: linear-gradient(180deg, #3c0008 0%, #50010b 100%);
             color: white;
             padding: 60px 5px;
             position: sticky;
@@ -29,7 +38,7 @@
             font-size: 2rem;
             margin-bottom: 30px;
             color: #ecf0f1;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid var(--light-gray);
             padding-bottom: 15px;
             font-weight: 400;
         }
@@ -43,7 +52,7 @@
 
         .values-section h3 {
             font-size: 1.4rem;
-            color: #3498db;
+            color: var(--light-gray);
             margin-bottom: 20px;
             font-weight: 600;
         }
@@ -65,7 +74,7 @@
             content: '▸';
             position: absolute;
             left: 0;
-            color: #3498db;
+            color: var(--gold);
             font-weight: bold;
         }
 
@@ -83,7 +92,7 @@
 
         .timeline-header h2 {
             font-size: 3rem;
-            color: #1e3c72;
+            color: #000;
             margin-bottom: 20px;
             font-weight: 300;
         }
@@ -97,7 +106,7 @@
 
         .timeline {
             position: relative;
-            max-width: 900px;
+            /* max-width: 900px; */
             margin: 0 auto;
         }
 
@@ -108,7 +117,7 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(180deg, #1e3c72, #2a5298);
+            background: linear-gradient(180deg, #3c0008, #3c0008);
             border-radius: 2px;
             box-shadow: 0 0 20px rgba(30, 60, 114, 0.3);
         }
@@ -117,6 +126,7 @@
             position: relative;
             margin-bottom: 80px;
             padding-left: 100px;
+            padding-right: 50px;
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -133,7 +143,7 @@
             top: 30px;
             width: 30px;
             height: 30px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #3c0008, #343a40);
             border: 5px solid white;
             border-radius: 50%;
             transform: translateX(-50%);
@@ -169,7 +179,7 @@
 
         .decade-year {
             font-size: 2.5rem;
-            color: #1e3c72;
+            color: var(--maroon);
             font-weight: bold;
             margin-bottom: 20px;
             letter-spacing: 2px;
@@ -177,7 +187,7 @@
 
         .decade-title {
             font-size: 1.8rem;
-            color: #2c3e50;
+            color: var(--light-maroon);
             margin-bottom: 20px;
             font-weight: 600;
         }
@@ -241,7 +251,7 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #1e3c72;
+            color: var(--maroon);
             margin-bottom: 10px;
         }
 
@@ -261,12 +271,31 @@
                 width: 100%;
                 height: auto;
                 position: relative;
-                padding: 40px 30px;
+                padding: 10px;
             }
             
             .timeline-section {
                 width: 100%;
-                padding: 60px 30px;
+                padding: 10px 2px;
+            }
+            .decade-marker {
+                left: 10px;
+                top: 30px;
+                width: 20px;
+                height: 20px;
+            }
+            .decade-content {
+                padding: 10px;
+                border-radius: 15px;
+            }
+            .decade-content::after {
+                left: -10px;
+                border: 10px solid transparent;
+            }
+            .decade {
+                margin-bottom: 20px;
+                padding-left: 10px;
+                padding-right: 10px;
             }
         }
 
@@ -306,7 +335,7 @@
 
     <div class="maincontent">
         <!-- Who We Are Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar px-5">
             <h2>Who We Are</h2>
             
             <div class="firm-description">

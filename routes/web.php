@@ -13,4 +13,5 @@ Route::get('/our-associates', [MainController::class, 'ourAssociates'])->name('o
 Route::get('/articles', [MainController::class, 'articles'])->name('articles');
 Route::get('/article', [MainController::class, 'article'])->name('article');
 Route::get('/partner', [MainController::class, 'partner'])->name('partner');
+Route::get('/gallery', [MainController::class, 'gallery'])->name('gallery');
 
