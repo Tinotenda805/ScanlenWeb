@@ -414,10 +414,10 @@
                     </div>
                 </div>
                 <div class="team-icons mt-3 ">
-                    <a class="rounded btn btn-maroon me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="rounded btn btn-maroon me-3" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="rounded btn btn-maroon me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="rounded btn btn-maroon me-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="rounded btn btn-maroon me-3" href="mailto:sarah.mitchell@lawfirm.com"><i class="fas fa-envelope"></i></a>
+                    <a class="rounded btn btn-maroon me-3" href="https://www.linkedin.com/in/sarahmitchell" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="rounded btn btn-maroon me-3" href="https://wa.me/15551234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a class="rounded btn btn-maroon me-0" href="tel:+15551234567"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
             <img src="{{asset('images/9.jpeg')}}" alt="Sarah Mitchell" class="profile-image">

@@ -339,7 +339,7 @@
             <h2>Who We Are</h2>
             
             <div class="firm-description">
-                Sterling & Associates is a premier law firm dedicated to delivering exceptional legal services with integrity, innovation, and unwavering commitment to our clients' success.
+                Scanlen and Holderness is a premier law firm dedicated to delivering exceptional legal services with integrity, innovation, and unwavering commitment to our clients' success.
             </div>
             
             <div class="values-section">

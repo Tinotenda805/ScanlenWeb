@@ -29,10 +29,10 @@
                         <p class="mb-0">Profession</p>
                     </div>
                     <div class="team-icon">
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="rounded-circle btn me-3" href="mailto:someone@email.com"><i class="fas fa-envelope"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://www.linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a class="rounded-circle btn me-0" href="tel:+1234567890"><i class="fas fa-phone"></i></a>
                     </div>
                     <div class="team-btn mt-3">
                         <a href="{{route('partner')}}" class="btn read-more-btn">Read More</a>
@@ -49,10 +49,10 @@
                         <p class="mb-0">Profession</p>
                     </div>
                     <div class="team-icon">
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="rounded-circle btn me-3" href="mailto:someone@email.com"><i class="fas fa-envelope"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://www.linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a class="rounded-circle btn me-0" href="tel:+1234567890"><i class="fas fa-phone"></i></a>
                     </div>
                     <div class="team-btn mt-3">
                         <a href="{{route('partner')}}" class="btn btn-sm read-more-btn">Read More</a>
@@ -69,10 +69,10 @@
                         <p class="mb-0">Profession</p>
                     </div>
                     <div class="team-icon">
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="rounded-circle btn me-3" href="mailto:someone@email.com"><i class="fas fa-envelope"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://www.linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a class="rounded-circle btn me-0" href="tel:+1234567890"><i class="fas fa-phone"></i></a>
                     </div>
                     <div class="team-btn mt-3">
                         <a href="#" class="btn btn-sm read-more-btn">Read More</a>
@@ -89,10 +89,10 @@
                         <p class="mb-0">Profession</p>
                     </div>
                     <div class="team-icon">
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="rounded-circle btn me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a class="rounded-circle btn me-0" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="rounded-circle btn me-3" href="mailto:someone@email.com"><i class="fas fa-envelope"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://www.linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="rounded-circle btn me-3" href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a class="rounded-circle btn me-0" href="tel:+1234567890"><i class="fas fa-phone"></i></a>
                     </div>
                     <div class="team-btn mt-3">
                         <a href="#" class="btn btn-sm read-more-btn">Read More</a>
@@ -215,4 +215,3 @@
 
 
 
-   
