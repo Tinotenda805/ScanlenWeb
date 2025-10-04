@@ -34,28 +34,28 @@ class MainController extends Controller
     {
         $title = "Our Parteners";
         $subtitle = "-";
-        return view('our-partners', compact('title', 'subtitle'));
+        return view('our-people.partners', compact('title', 'subtitle'));
     }
 
     public function ourAssociates()
     {
         $title = "Our Associates";
         $subtitle = "-";
-        return view('our-associates', compact('title', 'subtitle'));
+        return view('our-people.associates', compact('title', 'subtitle'));
     }
 
     public function articles()
     {
         $title = "Our Articles";
         $subtitle = "-";
-        return view('articles', compact('title', 'subtitle'));
+        return view('articles.articles', compact('title', 'subtitle'));
     }
 
     public function article()
     {
         $title = "Artcle Heading Goes Here";
         $subtitle = "-";
-        return view('article', compact('title', 'subtitle'));
+        return view('articles.article', compact('title', 'subtitle'));
     }
     
     public function partner()

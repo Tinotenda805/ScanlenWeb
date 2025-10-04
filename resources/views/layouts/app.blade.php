@@ -40,9 +40,9 @@
                             Our People
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ourPeopleDropdown">
-                            <li><a class="dropdown-item {{ Request::is('partners') ? 'active' : '' }}" href="{{ route('ourPartners') }}">Partners</a></li>
-                            <li><a class="dropdown-item {{ Request::is('associates') ? 'active' : '' }}" href="{{ route('ourAssociates') }}">Associates</a></li>
-                            <li><a class="dropdown-item {{ Request::is('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">Gallery</a></li>
+                            <li><a class="dropdown-item {{ Request::is('partners') ? 'active' : '' }}" href="{{ route('our-people.partners') }}">Partners</a></li>
+                            <li><a class="dropdown-item {{ Request::is('associates') ? 'active' : '' }}" href="{{ route('our-people.associates') }}">Associates</a></li>
+                            <li><a class="dropdown-item {{ Request::is('gallery') ? 'active' : '' }}" href="{{ route('our-people.gallery') }}">Gallery</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -54,7 +54,7 @@
                             Briefcase
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="briefcaseDropdown">
-                            <li><a class="dropdown-item {{ Request::is('articles') ? 'active' : '' }}" href="{{ route('articles') }}">Articles</a></li>
+                            <li><a class="dropdown-item {{ Request::is('articles') ? 'active' : '' }}" href="{{ route('articles.index') }}">Articles</a></li>
                             <li><a class="dropdown-item {{ Request::is('blogs') ? 'active' : '' }}" href="">Blogs</a></li>
                             <li><a class="dropdown-item {{ Request::is('judgements') ? 'active' : '' }}" href="{{ url('/judgements') }}">Judgements</a></li>
                         </ul>

@@ -2,7 +2,13 @@
 <header class="header bg-breadcrumb" id="heroHeader">
     <div class="header-content">
         <h1>{{$title ?? 'Title Goes Here'}}</h1>
-        <p class="subtitle">{{$subtitle ?? 'Subtitle Goes Here'}}</p>
+        {{-- <p class="subtitle">{{$subtitle ?? 'Subtitle Goes Here'}}</p> --}}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/" class="text-white">Home</a></li>
+                <li class="breadcrumb-item active text-white">{{ $breadcrumb ?? 'Page' }}</li>
+            </ol>
+        </nav>
     </div>
 </header>
 
