@@ -1,212 +1,169 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-header')
+@include('layouts.page-header', ['title' => 'Articles', 'breadcrumb' => 'Articles'])
 
-  <section class="py-5">
+<!-- Featured Articles Section -->
+@if($featuredArticles->count() > 0)
+<section class="py-5 bg-light">
     <div class="container">
-
-      <h1 class="page-heading">Articles</h1>
-        <p class="intro-text mb-3">
-            Knowledge is power in navigating complex legal landscapes. Our attorneys regularly share their 
-            expertise through these articles, breaking down complicated legal concepts into actionable insights. 
-            Discover valuable information that can help you make informed decisions.
-        </p>
-
-      <div class="row">
-
-        <div class="col-lg-8">
-
-          <!-- Blog Posts Section -->
-          <section id="blog-posts" class="blog-posts section">
-
-            <div class="container">
-              <div class="row gy-4">
-
-                <div class="col-lg-6">
-                  <article class="position-relative h-100">
-
-                    <div class="post-img position-relative overflow-hidden">
-                      <img src="{{asset('images/law.jpg')}}" class="img-fluid" alt="">
-                      <span class="post-date">June 24</span>
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold">Featured Articles</h2>
+                <p class="text-muted">Handpicked articles worth your time</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            @foreach($featuredArticles as $featured)
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    @if($featured->featured_image)
+                    <img src="{{ asset('storage/' . $featured->featured_image) }}" class="card-img-top" alt="{{ $featured->title }}" style="height: 220px; object-fit: cover;">
+                    @else
+                    <div class="bg-gradient bg-primary text-white d-flex align-items-center justify-content-center" style="height: 220px;">
+                        <i class="bi bi-newspaper fs-1"></i>
                     </div>
-
-                    <div class="post-content d-flex flex-column">
-
-                      <h3 class="post-title">AI in Law Firms: Training Tool, Not a Threat</h3>
-
-                      <div class="meta d-flex align-items-center">
-                        <div class="d-flex align-items-center">
-                          <i class="bi bi-person"></i> <span class="ps-2">Sjr Dlomo</span>
+                    @endif
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="badge bg-primary me-2">{{ $featured->category->name }}</span>
+                            <small class="text-muted"><i class="bi bi-clock me-1"></i>{{ $featured->reading_time }}</small>
                         </div>
-                        <span class="px-3 text-black-50">/</span>
-                        <div class="d-flex align-items-center">
-                          <i class="bi bi-folder2"></i> <span class="ps-2">IT</span>
+                        <h5 class="card-title fw-bold mb-2">{{ Str::limit($featured->title, 60) }}</h5>
+                        <p class="card-text text-muted small">{{ Str::limit($featured->excerpt, 100) }}</p>
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <div class="d-flex align-items-center">
+                                @foreach($featured->authors->take(2) as $author)
+                                <img src="{{ $author->avatar ? asset('storage/' . $author->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($author->name) }}" 
+                                     class="rounded-circle me-2" width="30" height="30" alt="{{ $author->name }}">
+                                @endforeach
+                                <small class="text-muted">{{ $featured->authors->first()->name }}</small>
+                            </div>
+                            <a href="{{ route('articles.show', $featured->slug) }}" class="btn btn-sm btn-outline-primary">Read More</a>
                         </div>
-                      </div>
-
-                      <p>
-                        A recent Canadian Lawyer article explores how artificial intelligence is reshaping associate training and development in law firms. 
-                        While some worry that AI reduces opportunities for learning, the article highlights how firms are using technology to accelerate—not replace—professional growth.
-                      </p>
-
-                      <hr>
-
-                      <a href="{{route('article')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
                     </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
 
-                  </article>
-                </div><!-- End post list item -->
-                <div class="col-lg-6">
-                  <article class="position-relative h-100">
+<!-- Main Articles Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Articles Grid -->
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-bold mb-0">All Articles</h3>
+                    <form action="{{ route('articles.index') }}" method="GET" class="d-flex">
+                        <input type="search" name="search" class="form-control me-2" placeholder="Search articles..." value="{{ request('search') }}" style="max-width: 300px;">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
 
-                    <div class="post-img position-relative overflow-hidden">
-                      <img src="{{asset('images/law.jpg')}}" class="img-fluid" alt="">
-                      <span class="post-date">June 24</span>
-                    </div>
+                <div class="row g-4">
+                    @forelse($articles as $article)
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            @if($article->featured_image)
+                            <img src="{{ asset('storage/' . $article->featured_image) }}" class="card-img-top" alt="{{ $article->title }}" style="height: 200px; object-fit: cover;">
+                            @else
+                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="bi bi-file-text fs-1"></i>
+                            </div>
+                            @endif
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-secondary me-2">{{ $article->category->name }}</span>
+                                    <small class="text-muted"><i class="bi bi-clock me-1"></i>{{ $article->reading_time }}</small>
+                                </div>
+                                <h5 class="card-title fw-bold">{{ Str::limit($article->title, 70) }}</h5>
+                                <p class="card-text text-muted small">{{ Str::limit($article->excerpt, 120) }}</p>
+                                
+                                @if($article->tags->count() > 0)
+                                <div class="mb-3">
+                                    @foreach($article->tags->take(3) as $tag)
+                                    <a href="{{ route('articles.index', ['tag' => $tag->slug]) }}" class="badge bg-light text-dark text-decoration-none me-1">#{{ $tag->name }}</a>
+                                    @endforeach
+                                </div>
+                                @endif
 
-                    <div class="post-content d-flex flex-column">
-
-                      <h3 class="post-title">AI in Law Firms: Training Tool, Not a Threat</h3>
-
-                      <div class="meta d-flex align-items-center">
-                        <div class="d-flex align-items-center">
-                          <i class="bi bi-person"></i> <span class="ps-2">Sjr Dlomo</span>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ $article->authors->first()->avatar ? asset('storage/' . $article->authors->first()->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($article->authors->first()->name) }}" 
+                                             class="rounded-circle me-2" width="32" height="32" alt="{{ $article->authors->first()->name }}">
+                                        <div>
+                                            <small class="d-block fw-semibold">{{ $article->authors->first()->name }}</small>
+                                            <small class="text-muted">{{ $article->published_at->format('M d, Y') }}</small>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-primary">Read More</a>
+                                </div>
+                            </div>
                         </div>
-                        <span class="px-3 text-black-50">/</span>
-                        <div class="d-flex align-items-center">
-                          <i class="bi bi-folder2"></i> <span class="ps-2">IT</span>
-                        </div>
-                      </div>
-
-                      <p>
-                        A recent Canadian Lawyer article explores how artificial intelligence is reshaping associate training and development in law firms. 
-                        While some worry that AI reduces opportunities for learning, the article highlights how firms are using technology to accelerate—not replace—professional growth.
-                      </p>
-
-                      <hr>
-
-                      <a href="{{route('article')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
                     </div>
+                    @empty
+                    <div class="col-12">
+                        <div class="alert alert-info">No articles found.</div>
+                    </div>
+                    @endforelse
+                </div>
 
-                  </article>
-                </div><!-- End post list item -->
-
-                
-
-              </div>
+                <!-- Pagination -->
+                <div class="mt-5">
+                    {{ $articles->links() }}
+                </div>
             </div>
 
-          </section><!-- /Blog Posts Section -->
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 100px;">
+                    <!-- Categories Widget -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-3">Categories</h5>
+                            <ul class="list-unstyled mb-0">
+                                @foreach($categories as $category)
+                                <li class="mb-2">
+                                    <a href="{{ route('articles.index', ['category' => $category->slug]) }}" 
+                                       class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+                                        <span>{{ $category->name }}</span>
+                                        <span class="badge bg-light text-dark">{{ $category->articles_count }}</span>
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
 
-
+                    <!-- Popular Tags -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-3">Popular Tags</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                @foreach($popularTags as $tag)
+                                <a href="{{ route('articles.index', ['tag' => $tag->slug]) }}" 
+                                   class="badge bg-primary text-decoration-none">#{{ $tag->name }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="col-lg-4 sidebar">
-
-          <div class="widgets-container">
-
-            <!-- Blog Author Widget 2 -->
-            <div class="blog-author-widget-2 widget-item">
-
-              <div class="d-flex flex-column align-items-center">
-                <img src="{{asset('images/9.jpeg')}}" class="rounded-circle flex-shrink-0" alt="">
-                <h4>Sjr Dlomo</h4>
-                <div class="social-links">
-                  <a href="https://x.com/#"><i class="bi bi-twitter-x"></i></a>
-                  <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
-                  <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
-                  <a href="https://instagram.com/#"><i class="biu bi-linkedin"></i></a>
-                </div>
-
-                <p>
-                  Demystifying the law one article at a time. I believe that legal knowledge shouldn't be confined to the courtroom but should empower people in their daily lives and business decisions.
-                </p>
-
-              </div>
-            </div><!--/Blog Author Widget 2 -->
-
-            <!-- Search Widget -->
-            <div class="search-widget widget-item">
-
-              <h3 class="widget-title">Search</h3>
-              <form action="">
-                <input type="text">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-              </form>
-
-            </div><!--/Search Widget -->
-
-            <!-- Recent Posts Widget -->
-            <div class="recent-posts-widget widget-item">
-
-              <h3 class="widget-title">Recent Posts</h3>
-
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-              <div class="post-item">
-                <img src="{{asset('images/law.jpg')}}" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="{{route('article')}}">OpenAI's Screenless Future</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-
-
-
-            </div><!--/Recent Posts Widget -->
-
-            <!-- Tags Widget -->
-            <div class="tags-widget widget-item">
-
-              <h3 class="widget-title">Tags</h3>
-              <ul>
-                <li><a href="#">App</a></li>
-                <li><a href="#">IT</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Mac</a></li>
-                <li><a href="#">Design</a></li>
-                <li><a href="#">Office</a></li>
-                <li><a href="#">Creative</a></li>
-                <li><a href="#">Studio</a></li>
-                <li><a href="#">Smart</a></li>
-                <li><a href="#">Tips</a></li>
-                <li><a href="#">Marketing</a></li>
-              </ul>
-
-            </div><!--/Tags Widget -->
-
-          </div>
-
-        </div>
-
-      </div>
     </div>
+</section>
 
-  </section>
-
+<style>
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+}
+</style>
 @endsection
-
- 
- 

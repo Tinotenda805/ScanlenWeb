@@ -25,35 +25,41 @@
             <div class="col-md-3 col-lg-2 sidebar d-md-block">
                 <div class="text-start mb-4">
                     <h4>Scanlen & Holderness</h4>
-                    <p class="text-muted">Admin Panel</p>
+                    <p class="text-white-50">Admin Panel</p>
                 </div>
                 
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}" href="">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('clients.index') ? 'active' : '' }}" href="">
-                            <i class="fas fa-users"></i> Our People
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('systems.index') ? 'active' : '' }}" href="">
-                            <i class="fas fa-cube"></i> Our History
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('licenses.index') ? 'active' : '' }}" href="">
-                            <i class="fas fa-certificate"></i> Articles
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="fas fa-money-bill-wave"></i> Blogs
-                        </a>
-                    </li>
+                    <a class="nav-link {{ Route::is('admin.index') ? 'active' : '' }}" href="{{ route('admin.index') }}">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.people.*') ? 'active' : '' }}" href="{{ route('admin.people.index') }}">
+                        <i class="fas fa-users"></i> Our People
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.articles.*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">
+                        <i class="fas fa-newspaper"></i> Articles
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.blogs.*') ? 'active' : '' }}" href="{{ route('admin.blogs.index') }}">
+                        <i class="fas fa-blog"></i> Blogs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
+                        <i class="fas fa-folder"></i> Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.tags.*') ? 'active' : '' }}" href="{{ route('admin.tags.index') }}">
+                        <i class="fas fa-tags"></i> Tags
+                    </a>
+                </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="fas fa-bell"></i> Judgements
@@ -70,37 +76,7 @@
             <!-- Main Content -->
             <div class="col-md-9 col-lg-10 main-content">
                 <!-- Header -->
-                <div class="header ps-4" style="display: ">
-                    <h2 class="mb-0">Admin Manager</h2>
-                    <div class="ms-3 " >
-                        <button class="btn btn-outline-danger" type="button"  data-bs-toggle="modal" data-bs-target="#logout">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-
-                        <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog ">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form action="{{route('logout')}}" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="modal-body">
-                                            Are you sure you want to logout of the system?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-danger">Logout</button>
-                                        </div>
-
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    
-                </div>
+                @yield('header')
                 {{-- ALERTS --}}
                 <div aria-live="polite" aria-atomic="true" class="position-relative">
                     <div class="toast-container top-0 end-0 p-3">
@@ -159,9 +135,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Simple JavaScript for interactive elements
         document.addEventListener('DOMContentLoaded', function() {
-            // Add active class to clicked nav links
             const navLinks = document.querySelectorAll('.sidebar .nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -170,31 +144,6 @@
                 });
             });
             
-            // Example of showing a toast notification (you can implement this for actions)
-            function showToast(message, type = 'info') {
-                // You can implement a toast notification system here
-                console.log(`${type.toUpperCase()}: ${message}`);
-            }
-            
-            // Example button actions
-            // document.querySelectorAll('.action-btn').forEach(button => {
-            //     button.addEventListener('click', function() {
-            //         const action = this.querySelector('i').className;
-            //         if (action.includes('eye')) {
-            //             showToast('Viewing license details', 'info');
-            //         } else if (action.includes('edit')) {
-            //             showToast('Editing license', 'warning');
-            //         } else if (action.includes('trash')) {
-            //             if (confirm('Are you sure you want to delete this license?')) {
-            //                 showToast('License deleted', 'danger');
-            //             }
-            //         } else if (action.includes('sync')) {
-            //             showToast('Renewing license', 'success');
-            //         } else if (action.includes('envelope')) {
-            //             showToast('Sending notification to client', 'info');
-            //         }
-            //     });
-            // });
         });
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -209,7 +158,6 @@
         });
     </script>
 
-    {{-- @stack('scripts') --}}
     @yield('scripts')
 </body>
 </html>

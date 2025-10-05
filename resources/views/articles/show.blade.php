@@ -52,7 +52,7 @@
                     @endif
 
                     <!-- Article Content -->
-                    <div class="article-content fs-5 lh-lg">
+                    <div class="article-content fs-5 lh-base">
                         {!! nl2br(e($article->content)) !!}
                     </div>
 

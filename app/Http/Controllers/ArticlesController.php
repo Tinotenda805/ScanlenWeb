@@ -66,7 +66,7 @@ class ArticlesController extends Controller
             ->take(10)
             ->get();
 
-        return view('articles.articles', compact(
+        return view('articles.index', compact(
             'articles',
             'featuredArticles',
             'categories',

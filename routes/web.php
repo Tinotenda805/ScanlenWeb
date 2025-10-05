@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArticleAdminController;
+use App\Http\Controllers\Admin\BlogAdminController;
+use App\Http\Controllers\Admin\CategoryAdminController;
+use App\Http\Controllers\Admin\OurPeopleAdminController;
+use App\Http\Controllers\Admin\TagAdminController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MainController;
@@ -42,5 +47,24 @@ Route::prefix('blogs')->name('blogs.')->group(function () {
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
+
+        // Our People Management
+        Route::resource('people', OurPeopleAdminController::class);
+        
+        // Articles Management
+        Route::resource('articles', ArticleAdminController::class);
+        Route::post('articles/{article}/toggle-featured', [ArticleAdminController::class, 'toggleFeatured'])->name('articles.toggle-featured');
+        Route::post('articles/{article}/toggle-published', [ArticleAdminController::class, 'togglePublished'])->name('articles.toggle-published');
+        
+        // Blogs Management
+        Route::resource('blogs', BlogAdminController::class);
+        Route::post('blogs/{blog}/toggle-featured', [BlogAdminController::class, 'toggleFeatured'])->name('blogs.toggle-featured');
+        Route::post('blogs/{blog}/toggle-published', [BlogAdminController::class, 'togglePublished'])->name('blogs.toggle-published');
+        
+        // Categories Management
+        Route::resource('categories', CategoryAdminController::class)->except(['show']);
+        
+        // Tags Management
+        Route::resource('tags', TagAdminController::class)->except(['show']);
     });
 });
