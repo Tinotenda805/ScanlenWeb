@@ -35,7 +35,7 @@
                         <a class="rounded-circle btn me-0" href="tel:+1234567890"><i class="fas fa-phone"></i></a>
                     </div>
                     <div class="team-btn mt-3">
-                        <a href="{{route('partner')}}" class="btn read-more-btn">Read More</a>
+                        <a href="{{route('our-people.partner')}}" class="btn read-more-btn">Read More</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         <a class="rounded-circle btn me-0" href="tel:+1234567890"><i class="fas fa-phone"></i></a>
                     </div>
                     <div class="team-btn mt-3">
-                        <a href="{{route('partner')}}" class="btn btn-sm read-more-btn">Read More</a>
+                        <a href="{{route('our-people.partner')}}" class="btn btn-sm read-more-btn">Read More</a>
                     </div>
                 </div>
             </div>
