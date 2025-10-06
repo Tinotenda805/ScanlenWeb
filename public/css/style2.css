@@ -888,6 +888,7 @@
 @media (max-width: 468px) {
   .team .team-member .social {
     justify-content: center;
+    /* margin-top: 8px; */
   }
 }
 

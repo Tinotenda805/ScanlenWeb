@@ -11,7 +11,7 @@
                 <article class="mb-5">
                     <!-- Blog Header -->
                     <div class="mb-4">
-                        <span class="badge bg-success mb-3">{{ $blog->category->name }}</span>
+                        <span class="badge bg-maroon mb-3">{{ $blog->category->name }}</span>
                         <h1 class="display-5 fw-bold mb-3">{{ $blog->title }}</h1>
                         <p class="lead text-muted">{{ $blog->excerpt }}</p>
                     </div>
@@ -20,7 +20,7 @@
                     <div class="d-flex flex-wrap align-items-center justify-content-between border-top border-bottom py-3 mb-4">
                         <div class="d-flex align-items-center mb-2 mb-md-0">
                             @if($blog->author_name)
-                            <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px; font-size: 18px;">
+                            <div class="rounded-circle bg-maroon text-white d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px; font-size: 18px;">
                                 {{ strtoupper(substr($blog->author_name, 0, 2)) }}
                             </div>
                             <div>
@@ -48,7 +48,7 @@
                     @endif
 
                     <!-- Blog Content -->
-                    <div class="blog-content fs-5 lh-lg">
+                    <div class="blog-content fs-5 lh-base">
                         {!! nl2br(e($blog->content)) !!}
                     </div>
 
@@ -70,22 +70,22 @@
                         <h6 class="fw-bold mb-3">Share this post:</h6>
                         <div class="d-flex flex-wrap gap-2">
                             <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('blogs.show', $blog->slug)) }}&text={{ urlencode($blog->title) }}" 
-                               class="btn btn-outline-success" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-twitter me-1"></i> Twitter
                             </a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('blogs.show', $blog->slug)) }}" 
-                               class="btn btn-outline-success" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-facebook me-1"></i> Facebook
                             </a>
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('blogs.show', $blog->slug)) }}" 
-                               class="btn btn-outline-success" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-linkedin me-1"></i> LinkedIn
                             </a>
                             <a href="https://wa.me/?text={{ urlencode($blog->title . ' ' . route('blogs.show', $blog->slug)) }}" 
-                               class="btn btn-outline-success" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-whatsapp me-1"></i> WhatsApp
                             </a>
-                            <button class="btn btn-outline-success" onclick="copyToClipboard()">
+                            <button class="btn btn-maroon-outline" onclick="copyToClipboard()">
                                 <i class="bi bi-link-45deg me-1"></i> Copy Link
                             </button>
                         </div>
@@ -102,7 +102,7 @@
                                         <input type="email" class="form-control" placeholder="Enter your email" required>
                                     </div>
                                     <div class="col-auto">
-                                        <button type="submit" class="btn btn-success">Subscribe</button>
+                                        <button type="submit" class="btn btn-maroon-new">Subscribe</button>
                                     </div>
                                 </form>
                             </div>
@@ -129,12 +129,12 @@
                                 </div>
                                 @endif
                                 <div class="card-body">
-                                    <span class="badge bg-success mb-2">{{ $related->category->name }}</span>
+                                    <span class="badge bg-maroon mb-2">{{ $related->category->name }}</span>
                                     <h6 class="card-title fw-bold">{{ Str::limit($related->title, 60) }}</h6>
                                     <p class="card-text text-muted small">{{ Str::limit($related->excerpt, 80) }}</p>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <small class="text-muted">{{ $related->published_at->format('M d, Y') }}</small>
-                                        <a href="{{ route('blogs.show', $related->slug) }}" class="btn btn-sm btn-outline-success">Read</a>
+                                        <a href="{{ route('blogs.show', $related->slug) }}" class="btn btn-sm btn-maroon-outline">Read</a>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                             <label for="commentMessage" class="form-label">Comment *</label>
                             <textarea class="form-control" id="commentMessage" rows="5" placeholder="Your Comment" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success">Post Comment</button>
+                        <button type="submit" class="btn btn-maroon-new">Post Comment</button>
                     </form>
 
                     <!-- Sample Comments (Optional) -->
@@ -180,7 +180,7 @@
 
 <style>
 .blog-content {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; */
 }
 .blog-content p {
     margin-bottom: 1.5rem;

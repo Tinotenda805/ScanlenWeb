@@ -20,13 +20,13 @@
                     @if($featured->featured_image)
                     <img src="{{ asset('storage/' . $featured->featured_image) }}" class="card-img-top" alt="{{ $featured->title }}" style="height: 220px; object-fit: cover;">
                     @else
-                    <div class="bg-gradient bg-primary text-white d-flex align-items-center justify-content-center" style="height: 220px;">
+                    <div class="bg-gradient bg-maroon text-white d-flex align-items-center justify-content-center" style="height: 220px;">
                         <i class="bi bi-newspaper fs-1"></i>
                     </div>
                     @endif
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">
-                            <span class="badge bg-primary me-2">{{ $featured->category->name }}</span>
+                            <span class="badge bg-maroon me-2">{{ $featured->category->name }}</span>
                             <small class="text-muted"><i class="bi bi-clock me-1"></i>{{ $featured->reading_time }}</small>
                         </div>
                         <h5 class="card-title fw-bold mb-2">{{ Str::limit($featured->title, 60) }}</h5>
@@ -39,7 +39,7 @@
                                 @endforeach
                                 <small class="text-muted">{{ $featured->authors->first()->name }}</small>
                             </div>
-                            <a href="{{ route('articles.show', $featured->slug) }}" class="btn btn-sm btn-outline-primary">Read More</a>
+                            <a href="{{ route('articles.show', $featured->slug) }}" class="btn btn-sm btn-maroon-outline">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <h3 class="fw-bold mb-0">All Articles</h3>
                     <form action="{{ route('articles.index') }}" method="GET" class="d-flex">
                         <input type="search" name="search" class="form-control me-2" placeholder="Search articles..." value="{{ request('search') }}" style="max-width: 300px;">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-maroon-new">Search</button>
                     </form>
                 </div>
 
@@ -100,7 +100,7 @@
                                             <small class="text-muted">{{ $article->published_at->format('M d, Y') }}</small>
                                         </div>
                                     </div>
-                                    <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-primary">Read More</a>
+                                    <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-maroon-new">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                             <div class="d-flex flex-wrap gap-2">
                                 @foreach($popularTags as $tag)
                                 <a href="{{ route('articles.index', ['tag' => $tag->slug]) }}" 
-                                   class="badge bg-primary text-decoration-none">#{{ $tag->name }}</a>
+                                   class="badge bg-maroon text-decoration-none">#{{ $tag->name }}</a>
                                 @endforeach
                             </div>
                         </div>

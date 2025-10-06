@@ -11,7 +11,7 @@
                 <!-- Article Header -->
                 <article class="mb-5">
                     <div class="mb-4">
-                        <span class="badge bg-primary mb-3">{{ $article->category->name }}</span>
+                        <span class="badge badge-maroon mb-3">{{ $article->category->name }}</span>
                         <h1 class="display-5 fw-bold mb-3">{{ $article->title }}</h1>
                         <p class="lead text-muted">{{ $article->excerpt }}</p>
                     </div>
@@ -52,12 +52,13 @@
                     @endif
 
                     <!-- Article Content -->
-                    <div class="article-content fs-5 lh-base">
-                        {!! nl2br(e($article->content)) !!}
+                    <div class="article-content fs-5 lh-base justify-info">
+                        {{-- {!! nl2br(e($article->content)) !!} --}}
+                        {!! $article->content !!}
                     </div>
 
                     <!-- Tags -->
-                    @if($article->tags->count() > 0)
+                    {{-- @if($article->tags->count() > 0)
                     <div class="mt-5 pt-4 border-top">
                         <h6 class="fw-bold mb-3">Tags:</h6>
                         <div class="d-flex flex-wrap gap-2">
@@ -67,10 +68,10 @@
                             @endforeach
                         </div>
                     </div>
-                    @endif
+                    @endif --}}
 
                     <!-- Author Bio Section -->
-                    <div class="mt-5 pt-4 border-top">
+                    {{-- <div class="mt-5 pt-4 border-top">
                         <h5 class="fw-bold mb-4">About the Author{{ $article->authors->count() > 1 ? 's' : '' }}</h5>
                         @foreach($article->authors as $author)
                         <div class="card border-0 bg-light mb-3">
@@ -89,17 +90,17 @@
                                         @endif
                                         <div class="d-flex gap-2">
                                             @if($author->twitter)
-                                            <a href="{{ $author->twitter }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                            <a href="{{ $author->twitter }}" class="btn btn-sm btn-maroon-outline" target="_blank">
                                                 <i class="bi bi-twitter"></i>
                                             </a>
                                             @endif
                                             @if($author->linkedin)
-                                            <a href="{{ $author->linkedin }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                            <a href="{{ $author->linkedin }}" class="btn btn-sm btn-maroon-outline" target="_blank">
                                                 <i class="bi bi-linkedin"></i>
                                             </a>
                                             @endif
                                             @if($author->email)
-                                            <a href="mailto:{{ $author->email }}" class="btn btn-sm btn-outline-primary">
+                                            <a href="mailto:{{ $author->email }}" class="btn btn-sm btn-maroon-outline">
                                                 <i class="bi bi-envelope"></i>
                                             </a>
                                             @endif
@@ -109,25 +110,25 @@
                             </div>
                         </div>
                         @endforeach
-                    </div>
+                    </div> --}}
 
                     <!-- Share Buttons -->
                     <div class="mt-4 pt-4 border-top">
                         <h6 class="fw-bold mb-3">Share this article:</h6>
                         <div class="d-flex gap-2">
                             <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('articles.show', $article->slug)) }}&text={{ urlencode($article->title) }}" 
-                               class="btn btn-outline-primary" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-twitter me-1"></i> Twitter
                             </a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article->slug)) }}" 
-                               class="btn btn-outline-primary" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-facebook me-1"></i> Facebook
                             </a>
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('articles.show', $article->slug)) }}" 
-                               class="btn btn-outline-primary" target="_blank">
+                               class="btn btn-maroon-outline" target="_blank">
                                 <i class="bi bi-linkedin me-1"></i> LinkedIn
                             </a>
-                            <button class="btn btn-outline-primary" onclick="copyToClipboard()">
+                            <button class="btn btn-maroon-outline" onclick="copyToClipboard()">
                                 <i class="bi bi-link-45deg me-1"></i> Copy Link
                             </button>
                         </div>
@@ -156,7 +157,7 @@
                                     <span class="badge bg-secondary mb-2">{{ $related->category->name }}</span>
                                     <h6 class="card-title fw-bold">{{ Str::limit($related->title, 60) }}</h6>
                                     <p class="card-text text-muted small">{{ Str::limit($related->excerpt, 80) }}</p>
-                                    <a href="{{ route('articles.show', $related->slug) }}" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    <a href="{{ route('articles.show', $related->slug) }}" class="btn btn-sm btn-maroon-outline">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -165,14 +166,74 @@
                 </div>
                 @endif
             </div>
+
+            <div class="col-lg-3" >
+                <div class="sticky-top" style="top: 100px;">
+                    <!-- Author Bio Section -->
+                    <div class="mt-4 pt-4 "  >
+                        <h5 class="fw-bold mb-4">About the Author{{ $article->authors->count() > 1 ? 's' : '' }}</h5>
+                        @foreach($article->authors as $author)
+                        <div class="card border-0 bg-light mb-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <img src="{{ $author->avatar ? asset('storage/' . $author->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($author->name) . '&size=100' }}" 
+                                                class="rounded-circle" 
+                                                width="80" height="80" 
+                                                alt="{{ $author->name }}">
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="fw-bold mb-1">{{ $author->name }}</h6>
+                                        @if($author->bio)
+                                        <p class="text-muted mb-2 small">{{ $author->bio }}</p>
+                                        @endif
+                                        <div class="d-flex gap-2">
+                                            @if($author->twitter)
+                                            <a href="{{ $author->twitter }}" class="btn btn-sm btn-maroon-outline" target="_blank">
+                                                <i class="bi bi-twitter"></i>
+                                            </a>
+                                            @endif
+                                            @if($author->linkedin)
+                                            <a href="{{ $author->linkedin }}" class="btn btn-sm btn-maroon-outline" target="_blank">
+                                                <i class="bi bi-linkedin"></i>
+                                            </a>
+                                            @endif
+                                            @if($author->email)
+                                            <a href="mailto:{{ $author->email }}" class="btn btn-sm btn-maroon-outline">
+                                                <i class="bi bi-envelope"></i>
+                                            </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+    
+                    <!-- Tags -->
+                    @if($article->tags->count() > 0)
+                    <div class="mt-5 pt-4 border-top">
+                        <h6 class="fw-bold mb-3">Tags:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            @foreach($article->tags as $tag)
+                            <a href="{{ route('articles.index', ['tag' => $tag->slug]) }}" 
+                                class="badge bg-light text-dark text-decoration-none px-3 py-2">#{{ $tag->name }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
-.article-content {
+/* .article-content h1, h2, h3{
     font-family: Georgia, 'Times New Roman', serif;
-}
+} */
 .article-content p {
     margin-bottom: 1.5rem;
 }

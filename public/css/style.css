@@ -5,11 +5,17 @@
     --light-gray: #f8f9fa;
     --dark-gray: #343a40;
     --gold: #d4af37;
+
+    --new-maroon:#861043;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    /* color: var(--white); */
+    font-family: "Poppins", sans-serif;
+    /* font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100; */
     line-height: 1.6;
     padding-top: 80px;
     /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9)), 
@@ -28,8 +34,43 @@ body {
     text-justify: inter-word;
 }
 .bg-maroon{
-    background-color: var(--maroon);
+    background-color: var(--new-maroon);
 }
+.btn-maroon-outline{
+    border: 1px solid var(--new-maroon);
+    color: var(--new-maroon);
+    background: var(--white);
+}
+.btn-maroon-outline:hover{
+    border: 1px solid var(--new-maroon);
+    color: var(--white);
+    background: var(--new-maroon);
+}
+.badge-maroon{
+    background-color: var(--new-maroon);
+}
+
+.btn-maroon{
+    background-color: var(--maroon);
+    color: var(--white);
+    border: 2px solid var(--maroon);
+}
+.btn-maroon:hover{
+    background-color: black;
+    color: var(--white);
+    /* border: 2px solid black; */
+}
+.btn-maroon-new{
+    background-color: var(--new-maroon);
+    color: var(--white);
+    border: 2px solid var(--new-maroon);
+}
+.btn-maroon-new:hover{
+    background-color: var(--maroon);
+    color: var(--white);
+    /* border: 2px solid black; */
+}
+
 
 /* Navigation */
 .navbar {
@@ -38,7 +79,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 1030;
-    background: linear-gradient(90deg, #3c0008 0%, #555555 100%) !important;
+    background: linear-gradient(90deg, #861043 0%, #470127 100%) !important;
     box-shadow: 0 2px 8px rgba(128,0,0,0.08);
 }
 
@@ -201,9 +242,9 @@ body {
     left: 0;
     width: 100%;
     z-index: 1030;
-    background: #3c0008;
+    background: var(--new-maroon);
     color: #fff;
-    border-top: 1px solid #3c0008;
+    border-top: 1px solid var(--new-maroon);
     /* padding: 1.5rem 0; */
     /* text-align: center; */
     margin-top: auto;
@@ -433,16 +474,7 @@ body {
     transform: translateY(-5px);
 }
 
-.btn-maroon{
-    background-color: var(--maroon);
-    color: var(--white);
-    border: 2px solid var(--maroon);
-}
-.btn-maroon:hover{
-    background-color: black;
-    color: var(--white);
-    /* border: 2px solid black; */
-}
+
 
 /* .page-heading{
     text-decoration: underline;
