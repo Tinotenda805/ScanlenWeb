@@ -2,13 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Expertise;
+use App\Models\Faq;
+use App\Models\OurPeople;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function home()
     {
-        return view('index');
+        $faqs = Faq::all();
+
+        $partners = OurPeople::where(function($query) {
+            $query->where('type', 'partner');
+                // ->orWhere('role', 'partner');
+            })
+            ->where('status', 'active')
+            ->orderBy('name', 'asc')
+            ->get();
+        
+        $allExpertise = Expertise::active()
+            ->ordered()
+            ->get();
+        
+        $sectors = Category::where('type', 'sector')
+            ->where('status', 'active')
+            ->orderBy('name', 'asc')
+            ->get();
+        return view('index', compact('faqs', 'partners', 'allExpertise', 'sectors'));
     }
 
     public function expertise()
@@ -30,43 +52,5 @@ class MainController extends Controller
         return view('our-history', compact('title', 'subtitle'));
     }
 
-    public function ourPartners()
-    {
-        $title = "Our Parteners";
-        $subtitle = "-";
-        return view('our-people.partners', compact('title', 'subtitle'));
-    }
-
-    public function ourAssociates()
-    {
-        $title = "Our Associates";
-        $subtitle = "-";
-        return view('our-people.associates', compact('title', 'subtitle'));
-    }
-
-    public function articles()
-    {
-        $title = "Our Articles";
-        $subtitle = "-";
-        return view('articles.articles', compact('title', 'subtitle'));
-    }
-
-    public function article()
-    {
-        $title = "Artcle Heading Goes Here";
-        $subtitle = "-";
-        return view('articles.article', compact('title', 'subtitle'));
-    }
     
-    public function partner()
-    {
-        return view('partner');
-    }
-
-    public function gallery()
-    {
-        $title = "Our Gallery";
-        $subtitle = "-";
-        return view('gallery', compact('title', 'subtitle'));
-    }
 }

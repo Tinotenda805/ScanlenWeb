@@ -365,8 +365,50 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        @media (max-width: 768px) {
+        /* 468 */
+        @media (max-width: 468px) {
             .header-content {
+                /* grid-template-columns: 1fr; */
+                text-align: center;
+                /* gap: 2rem; */
+                display: inline;
+                padding-top: 10px;
+            }
+
+            .team-icons .btn{
+                padding: 4px;
+                width: 40px;
+                /* height: 40px; */
+            }
+            .team-icons .btn i{
+                /* color: red; */
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 2rem;
+            }
+
+            .header-info h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info{
+                display: inline;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* 780 px */
+        @media (max-width: 768px) {
+            .header-content .header-info{
                 /* grid-template-columns: 1fr; */
                 text-align: start;
                 /* gap: 2rem; */
@@ -398,7 +440,7 @@
 
     <!-- Header Section -->
     <div class="header">
-        <div class="header-content">
+        <div class="header-content"> 
             <div class="header-info">
                 <h1 class="text-uppercase bolder">Sarah Mitchell</h1>
                 <div class="position">Senior Partner & Head of Corporate Law</div>
@@ -529,30 +571,7 @@
             <!-- Recent Insights -->
             <div class="section">
                 <h2>Recent Insights & Publications</h2>
-                <ol type="1">
-                    <li>
-                    <div class="insights-flex">
-                        <div class="insight-img">
-                            <img src="{{asset('images/8.jpeg')}}" class="fluid-img" alt="">
-                        </div>
-                        <div class="insight-info">
-                            <span class="insight-date"> <i class="bi bi-calendar-check-fill me-2"></i> August 2023</span>
-                            <h3 class="insight-title">Navigating ESG Compliance in M&A Transactions</h3>
-                        </div>
-                    </div>
-                    </li>
-                    <li>
-                    <div class="insights-flex">
-                        <div class="insight-img">
-                            <img src="{{asset('images/5.jpeg')}}" class="fluid-img" alt="">
-                        </div>
-                        <div class="insight-info">
-                            <span class="insight-date"> <i class="bi bi-calendar-check-fill me-2"></i> September 2025</span>
-                            <h3 class="insight-title">Legal Frameworks for Digital Assets and Blockchain</h3>
-                        </div>
-                    </div>
-                    </li>
-                </ol>
+                {{-- Articles and Blogs goes here --}}
             </div>
         </div>
 

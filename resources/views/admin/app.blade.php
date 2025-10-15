@@ -41,6 +41,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.expertise.*') ? 'active' : '' }}" href="{{ route('admin.expertise.index') }}">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i> Our Expertise
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ Route::is('admin.articles.*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">
                         <i class="fas fa-newspaper"></i> Articles
                     </a>

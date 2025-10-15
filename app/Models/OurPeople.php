@@ -40,6 +40,23 @@ class OurPeople extends Model
             ->withTimestamps();
     }
 
+    public function expertise()
+    {
+        return $this->belongsToMany(
+            Expertise::class,
+            'expertise_people',
+            'person_id',
+            'expertise_id'
+        )
+        ->withPivot('order')
+        ->withTimestamps();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     /**
      * Scope for partners only
      */

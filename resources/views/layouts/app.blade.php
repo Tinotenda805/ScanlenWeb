@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('expertise') ? 'active' : '' }}" href="{{ route('expertise') }}">Expertise</a>
+                        <a class="nav-link {{ Request::is('expertise*') ? 'active' : '' }}" href="{{ route('expertise.index') }}">Expertise</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ Request::is('articles*') || Request::is('judgements*') ? 'active' : '' }}" 
@@ -63,7 +63,7 @@
                         <ul class="dropdown-menu" aria-labelledby="briefcaseDropdown">
                             <li><a class="dropdown-item {{ Request::is('articles') ? 'active' : '' }}" href="{{ route('articles.index') }}">Articles</a></li>
                             <li><a class="dropdown-item {{ Request::is('blogs') ? 'active' : '' }}" href="{{route('blogs.index')}}">Blogs</a></li>
-                            <li><a class="dropdown-item {{ Request::is('judgements') ? 'active' : '' }}" href="{{ url('/judgements') }}">Judgements</a></li>
+                            <li><a class="dropdown-item {{ Request::is('judgements') ? 'active' : '' }}" href="{{ route('judgements.index') }}">Judgements</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

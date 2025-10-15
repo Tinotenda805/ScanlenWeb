@@ -4,14 +4,9 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        {{-- <div class="hero-partners-bg" >
-            @for ($i = 0; $i < 60; $i++)
-                <img src="{{ asset(['images/period3.jpg','images/period1.jpg','images/period2.jpg'][$i%3]) }}" alt="Old Partner {{ $i+1 }}" style="width:100%;height:100%;object-fit:cover;">
-            @endfor
-        </div> --}}
         <div class="hero-partners-bg">
+            {{-- founder image on the centre --}}
             <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="partner founder">
-
             <!-- Other partners placed randomly -->
 
             <img src="{{ asset('images/oldpartners/op1.jpeg') }}" alt="Old Partner" class="partner random">
@@ -21,69 +16,34 @@
             <img src="{{ asset('images/oldpartners/op5.jpeg') }}" alt="Old Partner" class="partner random">
         </div>
         
-        <!-- Circular carousel -->
+        {{-- Circular carousel for current partners --}}
         <div class="c-partners-container">
-            <span class="cpartners-text" style="display: ">Current Partners</span>
+            <span class="cpartners-text">Current Partners</span>
             <div id="circular-carousel" class="position-relative">
-                <!-- Partner 1 -->
-                <a href="#partner1" class="carousel-img" style="--i:0;" title="Partner 1">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 1" class="rounded-circle">
-                    <div class="partner-info">Robert Scanlen - Senior Partner</div>
-                </a>
-                
-                <!-- Partner 2 -->
-                <a href="#partner2" class="carousel-img" style="--i:1;" title="Partner 2">
-                    <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 2" class="rounded-circle">
-                    <div class="partner-info">Sarah Holderness - Managing Partner</div>
-                </a>
-                
-                <!-- Partner 3 -->
-                <a href="#partner3" class="carousel-img" style="--i:2;" title="Partner 3">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 3" class="rounded-circle">
-                    <div class="partner-info">Emily Chen - Litigation Partner</div>
-                </a>
-                
-                <!-- Partner 4 -->
-                <a href="#partner4" class="carousel-img" style="--i:3;" title="Partner 4">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 4" class="rounded-circle">
-                    <div class="partner-info">Michael Rodriguez - Corporate Partner</div>
-                </a>
-                
-                <!-- Partner 5 -->
-                <a href="#partner5" class="carousel-img" style="--i:4;" title="Partner 5">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 5" class="rounded-circle">
-                    <div class="partner-info">David Williams - Real Estate Partner</div>
-                </a>
-                
-                <!-- Partner 6 -->
-                <a href="#partner6" class="carousel-img" style="--i:5;" title="Partner 6">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 6" class="rounded-circle">
-                    <div class="partner-info">James Brown - Intellectual Property</div>
-                </a>
-                
-                <!-- Partner 7 -->
-                <a href="#partner7" class="carousel-img" style="--i:6;" title="Partner 7">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 7" class="rounded-circle">
-                    <div class="partner-info">Jennifer Wilson - Family Law</div>
-                </a>
-                
-                <!-- Partner 8 -->
-                <a href="#partner8" class="carousel-img" style="--i:7;" title="Partner 8">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 8" class="rounded-circle">
-                    <div class="partner-info">Maria Garcia - Criminal Defense</div>
-                </a>
-                
-                <!-- Partner 9 -->
-                <a href="#partner9" class="carousel-img" style="--i:8;" title="Partner 9">
-                    <img src="https://images.unsplash.com/photo-1542178243-bc20204b769f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Partner 9" class="rounded-circle">
-                    <div class="partner-info">Thomas Moore - Tax Law</div>
-                </a>
+                @if(isset($partners) && $partners->count() > 0)
+                    @foreach($partners as $index => $partner)
+                        <a href="{{ route('our-people.partners') }}#partner-{{ $partner->id }}" 
+                        class="carousel-img" 
+                        style="--i:{{ $index }};" 
+                        title="{{ $partner->name }}">
+                            <img src="{{ $partner->avatar ? asset('storage/' . $partner->avatar) : asset('images/default-avatar.png') }}" 
+                                alt="{{ $partner->name }}" 
+                                class="rounded-circle">
+                            <div class="partner-info">
+                                {{ $partner->name }} - {{ $partner->designation ?? 'Partner' }}
+                            </div>
+                        </a>
+                    @endforeach
+                @else
+                    {{-- Fallback if no partners found --}}
+                    <div class="no-partners-message">
+                        <p class="text-muted">Partner information coming soon</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
 
-    <!-- Company Overview & Membership Section -->
-    <!-- Additional Section Below Landing Page -->
 <section class="company-overview-section py-5">
     <div class="container">
         <div class="row align-items-stretch">
@@ -114,26 +74,43 @@
 </section>
 
 <section class="find-lawyer p-5 bg-primary-subtle text-center">
-    <h3 class="fw-bold text-maroon ">Find A Lawyer</h3>
-    <form action="">
-        
-        <div class="row py-2">
-            <div class="col-sm">
-                <input type="text" name="name" class="form-control" placeholder="Search By Name" id="">
+    <h3 class="fw-bold text-maroon mb-4">Find A Lawyer</h3>
+    <form action="{{ route('our-people.find-lawyer') }}" method="GET">
+        <div class="row g-3 justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <input type="text" name="name" class="form-control" placeholder="Search By Name" value="{{ request('name') }}">
             </div>
-            OR
-            <div class="col-sm">
-                <select name="service" id="" class="form-select">
-                    <option value="" selected>SERVICES</option>
+            <div class="col-lg-1 col-12 d-flex align-items-center justify-content-center">
+                <span class="fw-bold">OR</span>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <select name="expertise" class="form-select">
+                    <option value="">EXPERTISE</option>
+                    @if(isset($allExpertise))
+                        @foreach($allExpertise as $expertise)
+                            <option value="{{ $expertise->id }}" {{ request('expertise') == $expertise->id ? 'selected' : '' }}>
+                                {{ $expertise->name }}
+                            </option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
-            <div class="col-sm">
-                <select name="service" id="" class="form-select">
-                    <option value="" selected>SECTORS</option>
+            <div class="col-lg-3 col-md-6">
+                <select name="sector" class="form-select">
+                    <option value="">SECTORS</option>
+                    @if(isset($sectors))
+                        @foreach($sectors as $sector)
+                            <option value="{{ $sector->id }}" {{ request('sector') == $sector->id ? 'selected' : '' }}>
+                                {{ $sector->name }}
+                            </option>
+                        @endforeach
+                    @endif
                 </select>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <button type="submit" class="btn btn-danger w-100">Search</button>
             </div>
         </div>
-
     </form>
 </section>
 
@@ -152,32 +129,27 @@
 
         <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
 
-            <div class="faq-item faq-active">
-            <i class="faq-icon bi bi-question-circle"></i>
-            <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-            <div class="faq-content">
-                <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-            </div><!-- End Faq item-->
-
-            <div class="faq-item">
-            <i class="faq-icon bi bi-question-circle"></i>
-            <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
-            <div class="faq-content">
-                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-            </div><!-- End Faq item-->
-
-            <div class="faq-item">
-            <i class="faq-icon bi bi-question-circle"></i>
-            <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-            <div class="faq-content">
-                <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-            </div><!-- End Faq item-->
+            @if ($faqs->isNotEmpty())
+                @foreach ($faqs as $item)
+                    <div class="faq-item ">
+                        <i class="faq-icon bi bi-question-circle"></i>
+                        <h3>
+                            {{$item->question ?? ''}}
+                        </h3>
+                        <div class="faq-content">
+                            <p>{{$item->answer ?? ''}} </p>
+                        </div>
+                        <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div><!-- End Faq item-->
+                    
+                @endforeach
+            @else
+                <div class="faq-item ">
+                    <i class="faq-icon bi bi-question-circle"></i>
+                    <h3>There are no FAQs yet.</h3>
+                </div><!-- End Faq item-->
+                
+            @endif
 
         </div>
 
@@ -190,11 +162,34 @@
 </section>
 <!-- /Faq Section -->
 
+<style>
+    /* * Find Lawyer Section */
+    /* Find Lawyer Section */
+.find-lawyer {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
 
+.find-lawyer h3 {
+    margin-bottom: 2rem;
+}
+
+.find-lawyer .form-control,
+.find-lawyer .form-select {
+    border: 2px solid #dee2e6;
+    padding: 0.75rem;
+}
+
+.find-lawyer .form-control:focus,
+.find-lawyer .form-select:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+
+</style>
     
 @endsection
 
 
-{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
    

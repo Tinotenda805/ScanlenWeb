@@ -4,7 +4,7 @@
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-0">Our People</h1>
-        <a href="{{ route('admin.people.create') }}" class="btn btn-info">
+        <a href="{{ route('admin.people.create') }}" class="btn btn-primary">
             <i class="fas fa-plus me-2"></i>Add Person
         </a>
     </div>
