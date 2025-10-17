@@ -88,7 +88,7 @@
                     <option value="">EXPERTISE</option>
                     @if(isset($allExpertise))
                         @foreach($allExpertise as $expertise)
-                            <option value="{{ $expertise->id }}" {{ request('expertise') == $expertise->id ? 'selected' : '' }}>
+                            <option value="{{ $expertise->id }}" >
                                 {{ $expertise->name }}
                             </option>
                         @endforeach

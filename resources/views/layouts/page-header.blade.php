@@ -2,6 +2,7 @@
 <header class="header bg-breadcrumb" id="heroHeader">
     <div class="header-content">
         <h1>{{$title ?? 'Title Goes Here'}}</h1>
+        {{-- <h1>{{$subtitle ?? '-'}}</h1> --}}
     </div>
 </header>
 

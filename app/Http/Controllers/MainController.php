@@ -22,12 +22,12 @@ class MainController extends Controller
             ->orderBy('name', 'asc')
             ->get();
         
-        $allExpertise = Expertise::active()
-            ->ordered()
+        $allExpertise = Expertise::where('status', 'active')
+            ->orderBy('name', 'asc')
             ->get();
-        
-        $sectors = Category::where('type', 'sector')
-            ->where('status', 'active')
+
+        // $sectors = Category::where('type', 'sector')
+        $sectors = Category::where('status', 'active')
             ->orderBy('name', 'asc')
             ->get();
         return view('index', compact('faqs', 'partners', 'allExpertise', 'sectors'));
