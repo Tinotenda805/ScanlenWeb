@@ -73,6 +73,51 @@
     </div>
 </section>
 
+{{-- PROFESSIONAL MEMBERSHIP --}}
+<!-- Client 2 - Bootstrap Brain Component -->
+<section class="membership-section bg-white p-5">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                    <h2 class="section-title mb-2 text-uppercase text-center">Professional Memberships</h2>
+                    <p class="section-description mb-5 text-center">Our clients are our top priority, and we are committed to providing them with the highest level of service.</p>
+                    <hr class="divider mb-5 mb-xl-9">
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Original Logos -->
+                    <div class="logo-container">
+                        <img src="{{asset('images/champers.jpg')}}" class="membership-logo" alt="Google">
+                    </div>
+                    <div class="logo-container">
+                        <img src="{{asset('images/lexafrica.png')}}" class="membership-logo" alt="Apple">
+                    </div>
+                    <div class="logo-container">
+                        <img src="{{asset('images/meritas_logo.png')}}" class="membership-logo" alt="Amazon">
+                    </div>
+                    
+                    
+                    <!-- Duplicate Logos for Seamless Loop -->
+                    <div class="logo-container">
+                        <img src="{{asset('images/champers.jpg')}}" class="membership-logo" alt="Google">
+                    </div>
+                    <div class="logo-container">
+                        <img src="{{asset('images/lexafrica.png')}}" class="membership-logo" alt="Apple">
+                    </div>
+                    <div class="logo-container">
+                        <img src="{{asset('images/meritas_logo.png')}}" class="membership-logo" alt="Amazon">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+{{-- FIND A LAWYER --}}
 <section class="find-lawyer p-5 bg-primary-subtle text-center">
     <h3 class="fw-bold text-maroon mb-4">Find A Lawyer</h3>
     <form action="{{ route('our-people.find-lawyer') }}" method="GET">
@@ -88,7 +133,7 @@
                     <option value="">EXPERTISE</option>
                     @if(isset($allExpertise))
                         @foreach($allExpertise as $expertise)
-                            <option value="{{ $expertise->id }}" >
+                            <option value="{{ $expertise->id }}" {{ request('expertise') == $expertise->id ? 'selected' : '' }}>
                                 {{ $expertise->name }}
                             </option>
                         @endforeach
@@ -184,6 +229,106 @@
     border-color: #dc3545;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
+
+.membership-logo {
+  width: 250px;       /* adjust as needed */
+  height: 250px;
+  object-fit: contain; /* keeps image ratio without stretching */
+  background-color: #fff;
+}
+
+/* membership */
+    .membership-section {
+            /* background-color: #fff; */
+            padding: 3rem 0;
+        }
+        
+        .logo-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-shrink: 0;
+            width: 200px;
+        }
+        
+        .logo-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .membership-logo {
+            max-width: 100%;
+            max-height: 100px;
+            object-fit: contain;
+        }
+        
+        .carousel-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+        
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+        
+        .carousel-container::before,
+        .carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+        }
+        
+        .carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .section-title {
+            color: #6c757d;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .section-description {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .divider {
+            border-color: #dee2e6;
+            width: 50%;
+            margin: 0 auto;
+        }
+
 
 
 </style>

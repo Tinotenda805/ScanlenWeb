@@ -25,13 +25,13 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="input-group">
-                            <select name="action" class="form-select" required>
+                            {{-- <select name="action" class="form-select" required>
                                 <option value="">-- Bulk Actions --</option>
                                 <option value="activate">Activate</option>
                                 <option value="deactivate">Deactivate</option>
                                 <option value="delete">Delete</option>
                             </select>
-                            <button type="submit" class="btn btn-secondary">Apply</button>
+                            <button type="submit" class="btn btn-secondary">Apply</button> --}}
                         </div>
                     </div>
                     <div class="col-md-6 text-end">

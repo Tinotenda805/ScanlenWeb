@@ -45,12 +45,12 @@ class MainController extends Controller
         return view('contact-us');
     }
 
-    public function ourHistory()
-    {
-        $title = "Our Legacy";
-        $subtitle = "Decades of Excellence in Legal Service";
-        return view('our-history', compact('title', 'subtitle'));
-    }
+    // public function ourHistory()
+    // {
+    //     $title = "Our Legacy";
+    //     $subtitle = "Decades of Excellence in Legal Service";
+    //     return view('our-history', compact('title', 'subtitle'));
+    // }
 
     
 }

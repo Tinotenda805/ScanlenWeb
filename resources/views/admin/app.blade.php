@@ -66,16 +66,21 @@
                     </a>
                 </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-bell"></i> Judgements
-                        </a>
-                    </li>
-                    <li class="nav-item mt-4">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user"></i> User Management
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.judgements.*') ? 'active' : '' }}" href="{{ route('admin.judgements.index') }}">
+                        <i class="fas fa-bell"></i> Judgements
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}">
+                        <i class="fas fa-history"></i> History
+                    </a>
+                </li>
+                <li class="nav-item mt-4">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-user"></i> User Management
+                    </a>
+                </li>
                 </ul>
             </div>
             

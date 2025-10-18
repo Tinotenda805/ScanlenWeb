@@ -59,25 +59,40 @@
                     <h3 class="mb-4">Key Contacts</h3>
                     
                     @forelse($expertise->people as $person)
-                    <div class="contact-card mb-3">
-                        <div class="contact-image">
-                            <img src="{{ $person->avatar ? asset('storage/' . $person->avatar) : asset('images/default-avatar.png') }}" 
-                                 alt="{{ $person->name }}" 
-                                 class="rounded-circle">
+                    <div class="card border-0 bg-white mb-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <img src="{{ $person->avatar ? asset('storage/' . $person->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($person->name) . '&size=100' }}" 
+                                                class="rounded-circle" 
+                                                width="80" height="80" 
+                                                alt="{{ $person->name }}">
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="fw-bold mb-1">{{ $person->name }}</h6>
+                                        <div class="d-flex gap-2">
+                                            @if($person->twitter)
+                                            <a href="{{ $person->twitter }}" class="btn btn-sm btn-maroon-outline" target="_blank">
+                                                <i class="bi bi-twitter"></i>
+                                            </a>
+                                            @endif
+                                            @if($person->linkedin)
+                                            <a href="{{ $person->linkedin }}" class="btn btn-sm btn-maroon-outline" target="_blank">
+                                                <i class="bi bi-linkedin"></i>
+                                            </a>
+                                            @endif
+                                            @if($person->email)
+                                            <a href="mailto:{{ $person->email }}" class="btn btn-sm btn-maroon-outline">
+                                                <i class="bi bi-envelope"></i>
+                                            </a>
+                                            @endif
+                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="bi bi-person"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="contact-info">
-                            <h5>{{ $person->name }}</h5>
-                            <p class="designation">{{ $person->designation ?? 'Partner' }}</p>
-                            @if($person->email)
-                            <a href="mailto:{{ $person->email }}" class="contact-link">
-                                <i class="bi bi-envelope"></i> Email
-                            </a>
-                            @endif
-                            {{-- <a href="{{ route('our-people.partners') }}#person-{{ $person->id }}" class="contact-link">
-                                <i class="bi bi-person"></i> View Profile
-                            </a> --}}
-                        </div>
-                    </div>
                     @empty
                     <p class="text-muted">No key contacts assigned yet.</p>
                     @endforelse
@@ -177,57 +192,7 @@
     border-radius: 12px;
 }
 
-.contact-card {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
 
-.contact-image {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.contact-image img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border: 3px solid var(--maroon, #dc3545);
-}
-
-.contact-info h5 {
-    color: #2c3e50;
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-    text-align: center;
-}
-
-.contact-info .designation {
-    color: #6c757d;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.contact-link {
-    display: block;
-    color: var(--maroon, #dc3545);
-    text-decoration: none;
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.contact-link:hover {
-    color: #a71d2a;
-    padding-left: 0.5rem;
-}
-
-.contact-link i {
-    margin-right: 0.5rem;
-}
 
 /* Responsive Design */
 @media (max-width: 991px) {

@@ -559,42 +559,42 @@ body {
 
 /* Other partners positioned randomly */
 .hero-partners-bg img:nth-child(2) {
-    top: 20%;
+    top: 15%;
     left: 15%;
-    width: 180px;
-    height: 220px;
+    width: 160px;
+    height: 200px;
     transform: rotate(-5deg);
 }
 
 .hero-partners-bg img:nth-child(3) {
     top: 20%;
     right: 5%;
-    width: 200px;
-    height: 240px;
+    width: 180px;
+    height: 220px;
     transform: rotate(3deg);
 }
 
 .hero-partners-bg img:nth-child(4) {
     bottom: 20%;
     left: 20%;
-    width: 190px;
-    height: 230px;
+    width: 170px;
+    height: 210px;
     transform: rotate(2deg);
 }
 
 .hero-partners-bg img:nth-child(5) {
     bottom: 25%;
     right: 20%;
-    width: 170px;
-    height: 210px;
+    width: 150px;
+    height: 190px;
     transform: rotate(-4deg);
 }
 
 .hero-partners-bg img:nth-child(6) {
     top: 60%;
     left: 5%;
-    width: 160px;
-    height: 200px;
+    width: 140px;
+    height: 180px;
     transform: rotate(-2deg);
 }
 

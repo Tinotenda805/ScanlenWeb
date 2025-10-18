@@ -81,8 +81,9 @@ class ExpertiseAdminController extends Controller
             ->with('success', 'Expertise created successfully.');
     }
 
-    public function edit(Expertise $expertise)
+    public function edit($id)
     {
+        $expertise = Expertise::find($id);
         $allExpertise = Expertise::where('id', '!=', $expertise->id)
             ->active()
             ->ordered()
@@ -95,8 +96,10 @@ class ExpertiseAdminController extends Controller
         return view('admin.expertise.edit', compact('expertise', 'allExpertise', 'people'));
     }
 
-    public function update(Request $request, Expertise $expertise)
+    public function update(Request $request, $id)
     {
+        $expertise = Expertise::find($id);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'nullable|string|unique:expertise,slug,' . $expertise->id,
@@ -169,6 +172,11 @@ class ExpertiseAdminController extends Controller
 
         return redirect()->route('admin.expertise.index')
             ->with('success', 'Expertise deleted successfully.');
+    }
+
+    public function show($id)
+    {
+
     }
 
     // Toggle featured status
