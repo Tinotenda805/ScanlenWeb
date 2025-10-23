@@ -41,7 +41,7 @@
                                     <i class="bi bi-eye"></i> View
                                 </a>
                                 <a href="{{ route('judgements.download', $judgement) }}" 
-                                   class="btn btn-danger btn-sm">
+                                   class="btn btn-maroon-new btn-sm">
                                     <i class="bi bi-download"></i> Download
                                 </a>
                             </div>
@@ -84,7 +84,7 @@
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-danger w-100">
+                            <button type="submit" class="btn btn-maroon-new w-100">
                                 <i class="bi bi-search"></i> Search
                             </button>
                         </div>
@@ -147,7 +147,7 @@
                         <i class="bi bi-eye"></i> View
                     </a>
                     <a href="{{ route('judgements.download', $judgement) }}" 
-                       class="btn btn-danger">
+                       class="btn btn-maroon-new">
                         <i class="bi bi-download"></i> Download
                     </a>
                     <small class="text-muted mt-2">{{ $judgement->formatted_file_size }}</small>
@@ -172,6 +172,16 @@
 </section>
 
 <style>
+:root {
+    --maroon: #3c0008;
+    --light-maroon: #50010b;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --dark-gray: #343a40;
+    --gold: #d4af37;
+
+    --new-maroon:#861043;
+}
 .judgements-section {
     background: #f8f9fa;
     min-height: 60vh;
@@ -232,7 +242,7 @@
     flex-shrink: 0;
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    background: linear-gradient(135deg, var(--new-maroon) 0%, var(--light-maroon) 100%);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -268,7 +278,7 @@
 }
 
 .case-number {
-    color: #dc3545;
+    color: var(--new-maroon);
     font-weight: 600;
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
@@ -296,7 +306,7 @@
 }
 
 .judgement-meta i {
-    color: #dc3545;
+    color: var(--new-maroon);
 }
 
 .tags {

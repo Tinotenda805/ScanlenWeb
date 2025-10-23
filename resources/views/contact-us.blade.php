@@ -21,7 +21,9 @@
   
             <div class="col-lg-4">
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div class="mr-2">
+                  <i class="bi bi-geo-alt flex-shrink-0 btn btn-maroon rounded-circle"></i>
+                </div>
                 <div>
                   <h3>Address</h3>
                   <p>13th Floor, CABS Centre, 74 Jason Moyo Avenue, Harare, Zimbabwe.</p>
@@ -29,7 +31,10 @@
               </div><!-- End Info Item -->
   
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div class="mr-2">
+                  <i class="bi bi-telephone flex-shrink-0 btn btn-maroon rounded-circle"></i>
+
+                </div>
                 <div>
                   <h3>Call Us</h3>
                   <p>+263 (0) 242 799636-42 || +263 (0) 242 702561-8</p>
@@ -37,7 +42,10 @@
               </div><!-- End Info Item -->
   
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div class="mr-2">
+                  <i class="bi bi-envelope flex-shrink-0 btn btn-maroon rounded-circle"></i>
+
+                </div>
                 <div>
                   <h3>Email Us</h3>
                   <p>info@scanlen.co.zw</p>
@@ -45,7 +53,10 @@
               </div><!-- End Info Item -->
 
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                <i class="bi bi-printer-fill flex-shrink-0"></i>
+                <div class="mr-2">
+                  <i class="bi bi-printer-fill flex-shrink-0 btn btn-maroon rounded-circle"></i>
+
+                </div>
                 <div>
                   <h3>Fax</h3>
                   <p>+263 (0) 242 702569 || +263 (0) 242 700826</p>
@@ -79,7 +90,7 @@
                     <div class="error-message"></div>
                     <div class="sent-message">Your message has been sent. Thank you!</div>
   
-                    <button type="submit">Send Message</button>
+                    <button type="submit" class="btn btn-maroon">Send Message</button>
                   </div>
   
                 </div>

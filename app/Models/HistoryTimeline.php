@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HistoryTimeline extends Model
 {
+
     use HasFactory, SoftDeletes;
 
-    protected $table = 'history_timeline';
+    // protected $table = 'history_timelines';
 
     protected $fillable = [
         'decade',

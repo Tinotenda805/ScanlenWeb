@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0">Expertise Management</h1>
         <a href="{{ route('admin.expertise.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Add New Expertise
+            <i class="fa fa-plus-circle"></i> Add New Expertise
         </a>
     </div>
 
@@ -89,7 +89,7 @@
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="btn btn-sm btn-link p-0" title="Toggle Featured">
-                                        <i class="bi bi-star{{ $item->is_featured ? '-fill text-warning' : '' }}" style="font-size: 1.2rem;"></i>
+                                        <i class="fa fa-star {{ $item->is_featured ? '-fill text-warning' : '' }}" style="font-size: 1.2rem;"></i>
                                     </button>
                                 </form>
                             </td>
@@ -126,7 +126,7 @@
                         @empty
                         <tr>
                             <td colspan="9" class="text-center py-5">
-                                <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc;"></i>
+                                <i class="fa fa-inbox" style="font-size: 3rem; color: #ccc;"></i>
                                 <p class="text-muted mt-3">No expertise found. Create your first one!</p>
                             </td>
                         </tr>

@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid px-4 py-4">
     <div class="row mb-4">
         <div class="col">
             <h1 class="h3">Create Timeline Entry</h1>
@@ -79,7 +79,7 @@
                                                value="{{ $highlight }}"
                                                placeholder="Enter highlight point">
                                         <button type="button" class="btn btn-outline-danger remove-highlight">
-                                            <i class="bi bi-trash"></i>
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
                                     @endforeach
@@ -90,13 +90,13 @@
                                                name="highlights[]" 
                                                placeholder="Enter highlight point">
                                         <button type="button" class="btn btn-outline-danger remove-highlight">
-                                            <i class="bi bi-trash"></i>
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
                                 @endif
                             </div>
                             <button type="button" class="btn btn-sm btn-outline-primary" id="add-highlight">
-                                <i class="bi bi-plus"></i> Add Highlight
+                                <i class="fa fa-plus"></i> Add Highlight
                             </button>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary w-100">
-                            <i class="bi bi-save"></i> Create Timeline Entry
+                            <i class="fa fa-save"></i> Create Timeline Entry
                         </button>
                         <a href="{{ route('admin.history.index') }}" class="btn btn-secondary w-100 mt-2">
                             Cancel
@@ -189,7 +189,7 @@ document.getElementById('add-highlight').addEventListener('click', function() {
                name="highlights[]" 
                placeholder="Enter highlight point">
         <button type="button" class="btn btn-outline-danger remove-highlight">
-            <i class="bi bi-trash"></i>
+            <i class="fa fa-trash"></i>
         </button>
     `;
     container.appendChild(newItem);

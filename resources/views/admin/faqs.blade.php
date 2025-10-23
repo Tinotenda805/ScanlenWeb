@@ -62,7 +62,7 @@
                                 <td>{{$item->question ?? ''}}</td>
                                 <td>{{$item->answer ?? ''}}</td>
                                 {{-- <td>{{$item->status_text  ?? ''}}</td> --}}
-                                <td>
+                                <td style="width: 100px">
                                     <button class="btn btn-sm btn-outline-warning action-btn" type="button"  data-bs-toggle="modal" data-bs-target="#updateFaq{{$item->id}}">
                                         <i class="fas fa-edit"></i>
                                     </button>

@@ -21,7 +21,7 @@
                                    value="{{ request('name') }}">
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <select name="expertise" class="form-select">
+                            <select name="" class="form-select">
                                 <option value="">All Expertise</option>
                                 @foreach($allExpertise as $expertise)
                                     <option value="{{ $expertise->id }}" 
@@ -104,7 +104,7 @@
                             @endif
                         </div>
 
-                        <a href="{{ route('our-people.partners') }}#person-{{ $person->id }}" 
+                        <a href="{{ route('our-people.partner', $person->id) }}" 
                            class="btn btn-outline-danger w-100">
                             View Profile
                         </a>

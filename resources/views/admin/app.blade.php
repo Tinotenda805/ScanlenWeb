@@ -76,6 +76,11 @@
                         <i class="fas fa-history"></i> History
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.faqs.*') ? 'active' : '' }}" href="{{ route('admin.faqs') }}">
+                        <i class="fas fa-question-circle"></i> FAQs
+                    </a>
+                </li>
                 <li class="nav-item mt-4">
                     <a class="nav-link" href="#">
                         <i class="fas fa-user"></i> User Management

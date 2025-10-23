@@ -141,7 +141,7 @@
                 </select>
             </div>
             <div class="col-lg-3 col-md-6">
-                <select name="sector" class="form-select">
+                <select name="" class="form-select">
                     <option value="">SECTORS</option>
                     @if(isset($sectors))
                         @foreach($sectors as $sector)
@@ -270,7 +270,7 @@
         
         .carousel-track {
             display: flex;
-            animation: scroll 30s linear infinite;
+            animation: scroll 20s linear infinite;
         }
         
         .carousel-container {
@@ -324,7 +324,7 @@
         }
         
         .divider {
-            border-color: #dee2e6;
+            border-color: #969696;
             width: 50%;
             margin: 0 auto;
         }

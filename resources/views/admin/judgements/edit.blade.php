@@ -1,7 +1,7 @@
-@extends('admin.layouts.app')
+@extends('admin.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid px-4 py-4">
     <div class="row mb-4">
         <div class="col">
             <h1 class="h3">Edit Judgement</h1>

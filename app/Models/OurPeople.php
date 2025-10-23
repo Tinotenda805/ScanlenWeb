@@ -5,19 +5,47 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OurPeople extends Model
 {
     use HasFactory;
 
+    protected $table = 'our_people';
+
     protected $fillable = [
         'name',
-        'slug',
+        'designation',
         'email',
+        'phone',
         'bio',
+        'profile_overview',
         'avatar',
-        'twitter',
-        'linkedin',
+        'banner_image',
+        'years_of_experience',
+        'deals_completed',
+        'languages',
+        'linkedin_url',
+        'whatsapp_number',
+        'location',
+        'areas_of_expertise',
+        'professional_experience',
+        'qualifications',
+        'specializations',
+        'type', // 'partner' or 'associate'
+        'role',
+        'category_id',
+        'order',
+        'status',
+    ];
+
+    protected $casts = [
+        'areas_of_expertise' => 'array',
+        'professional_experience' => 'array',
+        'qualifications' => 'array',
+        'years_of_experience' => 'integer',
+        'deals_completed' => 'integer',
+        'order' => 'integer',
     ];
 
     protected static function boot()
@@ -29,17 +57,21 @@ class OurPeople extends Model
                 $person->slug = Str::slug($person->name);
             }
         });
+
+        static::updating(function ($person) {
+            if (empty($person->slug)) {
+                $person->slug = Str::slug($person->name);
+            }
+        });
     }
 
-    /**
-     * Many-to-Many: One person can write multiple articles
-     */
-    public function articles()
+    // Relationship: Category (Sector)
+    public function category()
     {
-        return $this->belongsToMany(Article::class, 'article_authors', 'author_id', 'article_id')
-            ->withTimestamps();
+        return $this->belongsTo(Category::class);
     }
 
+    // Relationship: Expertise
     public function expertise()
     {
         return $this->belongsToMany(
@@ -49,27 +81,84 @@ class OurPeople extends Model
             'expertise_id'
         )
         ->withPivot('order')
-        ->withTimestamps();
+        ->withTimestamps()
+        ->orderBy('expertise_people.order', 'asc');
     }
 
-    public function category()
+    // Relationship: Articles
+    // public function articles()
+    // {
+    //     return $this->hasMany(Article::class, 'author_id');
+    // }
+    public function articles()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Article::class, 'article_authors', 'author_id', 'article_id');
     }
 
-    /**
-     * Scope for partners only
-     */
+
+    // Relationship: Blogs
+    // public function blogs()
+    // {
+    //     return $this->hasMany(Blog::class, 'author_id');
+    // }
+
+    // Scopes
     public function scopePartners($query)
     {
         return $query->where('type', 'partner');
     }
 
-    /**
-     * Scope for associates only
-     */
     public function scopeAssociates($query)
     {
         return $query->where('type', 'associate');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
+
+    // public function scopeOrdered($query)
+    // {
+    //     return $query->orderBy('order', 'asc')->orderBy('name', 'asc');
+    // }
+
+    // Helper: Get avatar URL
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar) {
+            return asset('storage/' . $this->avatar);
+        }
+        return asset('images/person.svg');
+    }
+
+    // Helper: Get banner URL
+    public function getBannerUrlAttribute()
+    {
+        if ($this->banner_image) {
+            return asset('storage/' . $this->banner_image);
+        }
+        return asset('images/person.svg');
+    }
+
+    // Helper: Get WhatsApp link
+    public function getWhatsappLinkAttribute()
+    {
+        if ($this->whatsapp) {
+            // Remove all non-numeric characters
+            $number = preg_replace('/[^0-9]/', '', $this->whatsapp);
+            return "https://wa.me/{$number}";
+        }
+        return null;
+    }
+
+    // Helper: Get recent insights (articles + blogs)
+    public function getRecentInsightsAttribute()
+    {
+        $articles = $this->articles()->where('is_published', '1')->latest()->take(3)->get();
+        // $blogs = $this->blogs()->where('is_published', '1')->latest()->take(3)->get();
+        
+        // return $articles->merge($blogs)->sortByDesc('created_at')->take(5);
+        return $articles->sortByDesc('created_at')->take(5);
     }
 }

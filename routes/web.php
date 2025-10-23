@@ -50,11 +50,11 @@ Route::prefix('expertise')->name('expertise.')->group(function () {
 
 // OUR PEOPLE
 Route::prefix('our-people')->name('our-people.')->group(function () {
-    Route::get('/partners', [OurPeopleController::class, 'ourPartners'])->name('partners');
-    Route::get('/partner', [OurPeopleController::class, 'partner'])->name('partner');
-    Route::get('/associates', [OurPeopleController::class, 'ourAssociates'])->name('associates');
+    Route::get('/partners', [OurPeopleController::class, 'partners'])->name('partners');
+    Route::get('/profile/{id}', [OurPeopleController::class, 'show'])->name('partner');
+    Route::get('/associates', [OurPeopleController::class, 'associates'])->name('associates');
     Route::get('/gallery', [OurPeopleController::class, 'gallery'])->name('gallery');
-    Route::get('/find-lawyer', [OurPeopleController::class, 'search'])->name('find-lawyer');
+    Route::get('/find-lawyer', [OurPeopleController::class, 'findLawyer'])->name('find-lawyer');
 });
 
 // BLOGS

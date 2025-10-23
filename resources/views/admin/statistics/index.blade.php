@@ -3,16 +3,10 @@
 @section('content')
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">History Timeline Management</h1>
-        <div>
-            <a href="{{ route('admin.statistics.index') }}" class="btn btn-outline-primary">
-                <i class="fa fa-clock"></i> Statistics
-            </a>
-            <a href="{{ route('admin.history.create') }}" class="btn btn-primary">
-                <i class="fa fa-plus-circle"></i> Add Timeline Entry
-            </a>
-
-        </div>
+        <h1 class="h3 mb-0">Statistics Management</h1>
+        <a href="{{ route('admin.statistics.create') }}" class="btn btn-primary">
+            <i class="fa fa-plus-circle"></i> Add Statistic
+        </a>
     </div>
 
     {{-- @if(session('success'))
@@ -27,52 +21,49 @@
             <table class="table table-hover align-middle mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th width="80">Image</th>
-                        <th>Decade</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th width="100">Highlights</th>
+                        <th width="80">Icon</th>
+                        <th>Label</th>
+                        <th>Value</th>
                         <th width="80">Order</th>
                         <th width="100">Status</th>
                         <th width="150">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($timelines as $item)
+                    @forelse($statistics as $stat)
                     <tr>
-                        <td>
-                            <img src="{{ $item->image_url }}" alt="{{ $item->decade }}" 
-                                 class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
-                        </td>
-                        <td><strong>{{ $item->decade }}</strong></td>
-                        <td>{{ $item->title }}</td>
-                        <td>{{ Str::limit($item->description, 80) }}</td>
                         <td class="text-center">
-                            <span class="badge bg-info">{{ count($item->highlights ?? []) }}</span>
+                            @if($stat->icon)
+                                <i class="{{ $stat->icon }}" style="font-size: 1.5rem; color: #dc3545;"></i>
+                            @else
+                                <span class="text-muted">-</span>
+                            @endif
                         </td>
-                        <td class="text-center">{{ $item->order }}</td>
+                        <td><strong>{{ $stat->label }}</strong></td>
+                        <td><span class="badge bg-primary fs-6">{{ $stat->value }}</span></td>
+                        <td class="text-center">{{ $stat->order }}</td>
                         <td>
-                            <span class="badge bg-{{ $item->status === 'active' ? 'success' : 'secondary' }}">
-                                {{ ucfirst($item->status) }}
+                            <span class="badge bg-{{ $stat->status === 'active' ? 'success' : 'secondary' }}">
+                                {{ ucfirst($stat->status) }}
                             </span>
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
-                                <a href="{{ route('admin.history.edit', $item) }}" 
+                                <a href="{{ route('admin.statistics.edit', $stat) }}" 
                                    class="btn btn-outline-primary" 
                                    title="Edit">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 <button type="button" 
                                         class="btn btn-outline-danger" 
-                                        onclick="deleteItem({{ $item->id }})"
+                                        onclick="deleteStat({{ $stat->id }})"
                                         title="Delete">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </div>
 
-                            <form id="delete-form-{{ $item->id }}" 
-                                  action="{{ route('admin.history.destroy', $item) }}" 
+                            <form id="delete-form-{{ $stat->id }}" 
+                                  action="{{ route('admin.statistics.destroy', $stat) }}" 
                                   method="POST" 
                                   class="d-none">
                                 @csrf
@@ -82,9 +73,9 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="text-center py-5">
-                            <i class="fa fa-clock-history" style="font-size: 3rem; color: #ccc;"></i>
-                            <p class="text-muted mt-3">No timeline entries found. Create your first one!</p>
+                        <td colspan="6" class="text-center py-5">
+                            <i class="fa fa-file" style="font-size: 3rem; color: #ccc;"></i>
+                            <p class="text-muted mt-3">No statistics found. Create your first one!</p>
                         </td>
                     </tr>
                     @endforelse
@@ -92,10 +83,10 @@
             </table>
         </div>
 
-        @if($timelines->hasPages())
+        @if($statistics->hasPages())
         <div class="card-footer">
             <div class="d-flex justify-content-center">
-                {{ $timelines->links() }}
+                {{ $statistics->links() }}
             </div>
         </div>
         @endif
@@ -103,8 +94,8 @@
 </div>
 
 <script>
-function deleteItem(id) {
-    if (confirm('Are you sure you want to delete this timeline entry?')) {
+function deleteStat(id) {
+    if (confirm('Are you sure you want to delete this statistic?')) {
         document.getElementById('delete-form-' + id).submit();
     }
 }

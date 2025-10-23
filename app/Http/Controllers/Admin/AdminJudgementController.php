@@ -166,7 +166,7 @@ class AdminJudgementController extends Controller
     {
         $request->validate([
             'action' => 'required|in:delete,activate,deactivate,feature,unfeature',
-            'selected' => 'required|array',
+            'selected' => 'required|array|min:1',
             'selected.*' => 'exists:judgements,id',
         ]);
 
@@ -204,7 +204,7 @@ class AdminJudgementController extends Controller
                 break;
         }
 
-        return back()->with('success', $message);
+        return redirect()->route('admin.judgements.index')->with('success', $message);
     }
 
     // View download statistics
