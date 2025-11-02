@@ -43,7 +43,7 @@ class BlogController extends Controller
         }
 
         // Paginate blogs (9 per page)
-        $blogs = $query->paginate(9);
+        $blogs = $query->paginate(5);
 
         // Get featured blogs for the top section
         $featuredBlogs = Blog::with('category')

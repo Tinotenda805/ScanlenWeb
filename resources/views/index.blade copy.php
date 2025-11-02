@@ -44,22 +44,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
 <section class="company-overview-section py-5">
     <div class="container">
         <div class="row align-items-stretch">
@@ -81,14 +65,14 @@
             <!-- Right Column - Association Memberships -->
             <div class="col-lg-6 ps-lg-4 bg-body-secondary p-2">
                 {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
-                <video class="w-100 rounded" autoplay loop muted>
+                {{-- <video class="w-100 rounded" autoplay loop muted>
                     <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />
-                </video>
+                </video> --}}
 
                 {{-- Awards Section --}}
                 {{-- Awards Carousel --}}
                 {{-- Awards Badge Wall --}}
-                {{-- <div class="card border-0 shadow-sm">
+                <div class="card border-0 shadow-sm">
                     <div class="card-header bg-maroon text-white">
                         <h5 class="card-title mb-0 fw-bold">
                             <i class="fas fa-certificate me-2"></i>Recognitions & Certifications
@@ -96,6 +80,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row text-center g-4">
+                            {{-- Badge 1 --}}
                             <div class="col-6 col-md-3">
                                 <div class="award-badge">
                                     <div class="badge-icon bg-maroon text-white rounded-circle mx-auto mb-2">
@@ -106,6 +91,7 @@
                                 </div>
                             </div>
 
+                            {{-- Badge 2 --}}
                             <div class="col-6 col-md-3">
                                 <div class="award-badge">
                                     <div class="badge-icon bg-warning text-dark rounded-circle mx-auto mb-2">
@@ -116,6 +102,7 @@
                                 </div>
                             </div>
 
+                            {{-- Badge 3 --}}
                             <div class="col-6 col-md-3">
                                 <div class="award-badge">
                                     <div class="badge-icon bg-success text-white rounded-circle mx-auto mb-2">
@@ -126,6 +113,7 @@
                                 </div>
                             </div>
 
+                            {{-- Badge 4 --}}
                             <div class="col-6 col-md-3">
                                 <div class="award-badge">
                                     <div class="badge-icon bg-info text-white rounded-circle mx-auto mb-2">
@@ -137,9 +125,9 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
-                {{-- <style>
+                <style>
                 .badge-icon {
                     width: 80px;
                     height: 80px;
@@ -152,7 +140,7 @@
                     transform: translateY(-5px);
                     transition: transform 0.3s ease;
                 }
-                </style> --}}
+                </style>
             </div>
         </div>
     </div>

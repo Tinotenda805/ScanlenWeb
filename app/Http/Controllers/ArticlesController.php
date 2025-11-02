@@ -43,7 +43,7 @@ class ArticlesController extends Controller
         }
 
         // Paginate articles (9 per page)
-        $articles = $query->paginate(9);
+        $articles = $query->paginate(8);
 
         // Get featured articles for the top section
         $featuredArticles = Article::with(['authors', 'category'])
@@ -57,7 +57,7 @@ class ArticlesController extends Controller
         $categories = Category::withCount('articles')
             ->has('articles')
             ->orderBy('name')
-            ->get();
+            ->get(); 
 
         // Get popular tags
         $popularTags = Tag::withCount('articles')

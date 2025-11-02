@@ -79,4 +79,9 @@ class Article extends Model
     {
         return $value . ' min read';
     }
+
+    public function getReadingTimeRawAttribute()
+    {
+        return $this->attributes['reading_time']; // Raw value from database
+    }
 }

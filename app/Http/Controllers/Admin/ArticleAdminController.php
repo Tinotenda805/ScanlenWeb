@@ -41,7 +41,7 @@ class ArticleAdminController extends Controller
             'authors' => 'required|array|min:1',
             'authors.*' => 'exists:our_people,id',
             'tags' => 'nullable|array',
-            'tags.*' => 'exists:tags,id',
+            'tags.*' => 'exists:tags,id', 
             'featured_image' => 'nullable|image|max:2048',
             'reading_time' => 'required|integer|min:1',
             'is_featured' => 'boolean',

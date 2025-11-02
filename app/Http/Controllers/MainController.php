@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\Expertise;
 use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\OurPeople;
 use Illuminate\Http\Request;
 
@@ -33,24 +35,50 @@ class MainController extends Controller
         return view('index', compact('faqs', 'partners', 'allExpertise', 'sectors'));
     }
 
-    public function expertise()
-    {
-        $title = "Our Expertise";
-        $subtitle = "Explore our areas of legal specialization.";
-        return view('expertise', compact('title', 'subtitle'));
-    }
-
     public function contactUs()
     {
         return view('contact-us');
     }
 
-    // public function ourHistory()
-    // {
-    //     $title = "Our Legacy";
-    //     $subtitle = "Decades of Excellence in Legal Service";
-    //     return view('our-history', compact('title', 'subtitle'));
-    // }
+    public function storeMessage(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Add IP address
+        $validated['ip_address'] = $request->ip();
+        $validated['status'] = 'unread';
+
+        // Create message
+        ContactMessage::create($validated);
+
+        // Optional: Send email notification to admin
+        // Mail::to('admin@scanlen.co.zw')->send(new ContactMessageReceived($validated));
+
+        return back()->with('success', 'Your message has been sent successfully!');
+    }
+
+   
+    public function gallery()
+    {
+        $gallery = Gallery::active()->ordered()->get();
+
+        // Group by category for easier filtering
+        $categories = [
+            'our-team' => $gallery->where('category', 'our-team'),
+            'practice-areas' => $gallery->where('category', 'practice-areas'),
+            'achievements' => $gallery->where('category', 'achievements'),
+            'resources' => $gallery->where('category', 'resources'),
+            'events' => $gallery->where('category', 'events'),
+            'awards' => $gallery->where('category', 'awards'),
+        ];
+
+        return view('gallery', compact('gallery', 'categories'));
+    }
 
     
 }

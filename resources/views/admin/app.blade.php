@@ -56,6 +56,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.gallery.*') ? 'active' : '' }}" href="{{ route('admin.gallery.index') }}">
+                        <i class="fa fa-file-image" aria-hidden="true"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('admin.contact-messages.*') ? 'active' : '' }}" href="{{ route('admin.contact-messages.index') }}">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Messages
+                        @if($unreadCount = App\Models\ContactMessage::unread()->count())
+                        <span class="badge bg-warning">{{ $unreadCount }}</span>
+                        @endif
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ Route::is('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
                         <i class="fas fa-folder"></i> Categories
                     </a>

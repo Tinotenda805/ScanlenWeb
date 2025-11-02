@@ -129,7 +129,7 @@
 
                 <!-- Pagination -->
                 <div class="mt-5">
-                    {{ $blogs->links() }}
+                    {{ $blogs->links('pagination::bootstrap-5') }}
                 </div>
             </div>
 
@@ -155,6 +155,12 @@
                         <div class="card-body">
                             <h5 class="card-title fw-bold mb-3">Categories</h5>
                             <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                   <a href="{{route('blogs.index')}}" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+                                        <span>ALL</span>
+                                        <span class="badge bg-light text-dark">{{ $blogs->count() }}</span>
+                                    </a> 
+                                </li>
                                 @foreach($categories as $category)
                                 <li class="mb-2">
                                     <a href="{{ route('blogs.index', ['category' => $category->slug]) }}" 

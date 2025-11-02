@@ -53,7 +53,6 @@
   display: inline-flex;
   justify-content: center;
   width: auto;
-  flex-wrap: wrap;
 }
 
 .gallery .gallery-filters li {
@@ -62,7 +61,7 @@
   padding: 12px 25px;
   font-size: 16px;
   font-weight: 600;
-  margin: 5px;
+  margin: 0 5px;
   border-radius: 25px;
   transition: all 0.3s ease;
   color: #64748b;
@@ -74,7 +73,7 @@
   color: white;
   background: linear-gradient(135deg, #3c0008, #50010b);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(60, 0, 8, 0.3);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -242,9 +241,9 @@
 <section id="gallery" class="gallery">
   <div class="container">
     <div class="section-title" data-aos="fade-up">
-        <h2>Our Legal Showcase</h2>
+        <h2>Our Legal Team & Expertise</h2>
         <p>
-            Explore our team, areas of practice, achievements, and resources.
+            Meet our distinguished attorneys and explore our areas of legal specialization. 
         </p>
     </div>
 
@@ -252,12 +251,10 @@
       <div class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">
         <ul class="gallery-filters isotope-filters">
           <li data-filter="*" class="filter-active">All</li>
-          <li data-filter=".filter-our-team">Our Team</li>
+          <li data-filter=".filter-attorneys">Our People</li>
           <li data-filter=".filter-practice-areas">Practice Areas</li>
           <li data-filter=".filter-achievements">Achievements</li>
           <li data-filter=".filter-resources">Resources</li>
-          <li data-filter=".filter-events">Events</li>
-          <li data-filter=".filter-awards">Awards</li>
         </ul>
       </div>
 

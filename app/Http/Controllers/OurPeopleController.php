@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Expertise;
+use App\Models\Gallery;
 use App\Models\OurPeople;
 use Illuminate\Http\Request;
 
@@ -70,8 +71,10 @@ class OurPeopleController extends Controller
         }
 
         // Filter by sector (category)
-        if ($request->filled('sector')) {
-            $query->where('category_id', $request->sector);
+        if ($request->filled('category')) {
+            $query->whereHas('category', function($q) use ($request) {
+                $q->where('categories.id', $request->category);
+            });
         }
 
         $people = $query->with(['expertise'])
@@ -80,11 +83,12 @@ class OurPeopleController extends Controller
 
         // Get all expertise and sectors for the filter form
         $allExpertise = Expertise::active()->get();
-        $sectors = Category::where('type', 'sector')
-                          ->where('status', 'active')
+        $sectors = Category::where('status', 'active')
                           ->orderBy('name', 'asc')
                           ->get();
 
         return view('our-people.find-lawyer', compact('people', 'allExpertise', 'sectors'));
     }
+
+    
 }

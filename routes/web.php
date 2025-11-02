@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\AdminStatisticsController;
 use App\Http\Controllers\Admin\ArticleAdminController;
 use App\Http\Controllers\Admin\BlogAdminController;
 use App\Http\Controllers\Admin\CategoryAdminController;
+use App\Http\Controllers\Admin\ContactMessageAdminController;
 use App\Http\Controllers\Admin\ExpertiseAdminController;
+use App\Http\Controllers\Admin\GalleryAdminController;
 use App\Http\Controllers\Admin\OurPeopleAdminController;
 use App\Http\Controllers\Admin\TagAdminController;
 use App\Http\Controllers\ArticlesController;
@@ -22,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'home'])->name('homePage');
 Route::get('/contact-us', [MainController::class, 'contactUs'])->name('contactUs');
+Route::post('/contact-us/send', [MainController::class, 'storeMessage'])->name('storeMessage');
+
 // Route::get('/our-history', [MainController::class, 'ourHistory'])->name('ourHistory');
 // Route::get('/our-partners', [MainController::class, 'ourPartners'])->name('ourPartners');
 // Route::get('/our-associates', [MainController::class, 'ourAssociates'])->name('ourAssociates');
@@ -53,8 +57,8 @@ Route::prefix('our-people')->name('our-people.')->group(function () {
     Route::get('/partners', [OurPeopleController::class, 'partners'])->name('partners');
     Route::get('/profile/{id}', [OurPeopleController::class, 'show'])->name('partner');
     Route::get('/associates', [OurPeopleController::class, 'associates'])->name('associates');
-    Route::get('/gallery', [OurPeopleController::class, 'gallery'])->name('gallery');
     Route::get('/find-lawyer', [OurPeopleController::class, 'findLawyer'])->name('find-lawyer');
+    Route::get('/gallery', [MainController::class, 'gallery'])->name('gallery');
 });
 
 // BLOGS
@@ -129,5 +133,22 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         // Download statistics
         Route::get('judgements/{judgement}/download-stats', [AdminJudgementController::class, 'downloadStats'])
             ->name('judgements.download-stats');
-    });
+
+        // Gallery Management
+        Route::resource('gallery', GalleryAdminController::class);
+        Route::post('gallery/bulk-action', [GalleryAdminController::class, 'bulkAction'])
+            ->name('gallery.bulk-action');
+        
+        // Contact Messages Management
+        Route::get('contact-messages', [ContactMessageAdminController::class, 'index'])
+            ->name('contact-messages.index');
+        Route::get('contact-messages/{contactMessage}', [ContactMessageAdminController::class, 'show'])
+            ->name('contact-messages.show');
+        Route::put('contact-messages/{contactMessage}/status', [ContactMessageAdminController::class, 'updateStatus'])
+            ->name('contact-messages.update-status');
+        Route::delete('contact-messages/{contactMessage}', [ContactMessageAdminController::class, 'destroy'])
+            ->name('contact-messages.destroy');
+        Route::post('contact-messages/bulk-action', [ContactMessageAdminController::class, 'bulkAction'])
+            ->name('contact-messages.bulk-action');
+        });
 });
