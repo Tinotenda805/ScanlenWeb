@@ -6,8 +6,13 @@
     <div class="main-content">
         <div class="hero-partners-bg" >
             {{-- founder image on the centre --}}
-            <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="partner founder">
+            {{-- <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="partner founder"> --}}
             <!-- Other partners placed randomly -->
+            {{-- Founder image in center --}}
+            <div class="founder-center">
+                <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="founder-img">
+                <div class="founder-label">Founder</div>
+            </div>
 
             <img src="{{ asset('images/oldpartners/op1.jpeg') }}" alt="Old Partner" class="partner random">
             <img src="{{ asset('images/oldpartners/op2.jpeg') }}" alt="Old Partner" class="partner random">
@@ -17,43 +22,30 @@
         </div>
         
         {{-- Circular carousel for current partners --}}
-        <div class="c-partners-container">
-            <span class="cpartners-text">Current Partners</span>
-            <div id="circular-carousel" class="position-relative">
-                @if(isset($partners) && $partners->count() > 0)
-                    @foreach($partners as $index => $partner)
-                        <a href="{{ route('our-people.partner', $partner->id) }}" 
-                        class="carousel-img" 
-                        style="--i:{{ $index }};" 
-                        title="{{ $partner->name }}">
-                            <img src="{{ $partner->avatar ? asset('storage/' . $partner->avatar) : asset('images/default-avatar.png') }}" 
-                                alt="{{ $partner->name }}" 
-                                class="rounded-circle">
-                            <div class="partner-info">
-                                {{ $partner->name }} - {{ $partner->designation ?? 'Partner' }}
-                            </div>
-                        </a>
-                    @endforeach
-                @else
-                    {{-- Fallback if no partners found --}}
-                    <div class="no-partners-message">
-                        <p class="text-muted">Partner information coming soon</p>
-                    </div>
-                @endif
-            </div>
+         {{-- 3D Carousel for current partners --}}
+        <div id="circular-carousel" class="position-relative">
+            @if(isset($partners) && $partners->count() > 0)
+                @foreach($partners as $index => $partner)
+                    <a href="{{ route('our-people.partner', $partner->id) }}" 
+                    class="carousel-img" 
+                    style="--i:{{ $index }};" 
+                    title="{{ $partner->name }}">
+                        <img src="{{ $partner->avatar ? asset('storage/' . $partner->avatar) : asset('images/default-avatar.png') }}" 
+                            alt="{{ $partner->name }}" 
+                            class="rounded-circle">
+                        <div class="partner-info">
+                            {{ $partner->name }} - {{ $partner->designation ?? 'Partner' }}
+                        </div>
+                    </a>
+                @endforeach
+            @else
+                {{-- Fallback if no partners found --}}
+                <div class="no-partners-message">
+                    <p class="text-muted">Partner information coming soon</p>
+                </div>
+            @endif
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -79,7 +71,7 @@
             </div>
             
             <!-- Right Column - Association Memberships -->
-            <div class="col-lg-6 ps-lg-4 bg-body-secondary p-2">
+            <div class="col-lg-6 ps-lg-4 p-2">
                 {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
                 <video class="w-100 rounded" autoplay loop muted>
                     <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />

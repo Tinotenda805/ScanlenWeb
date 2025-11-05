@@ -140,9 +140,15 @@ body {
     align-items: center;
     min-height: 80vh;
     padding: 2rem 0;
-    background: linear-gradient(rgba(38, 0, 16, 0.4), rgba(38, 0, 16, 0.4));
+    background: linear-gradient(rgba(38, 0, 16, 0.3), rgba(38, 0, 16, 0.3));
+    /* background: url('../images/law.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; */
 }
 
+/* Partner Carousel Container - Desktop */
 /* Partner Carousel Container - Desktop */
 .c-partners-container {
     width: 500px; 
@@ -152,49 +158,62 @@ body {
     justify-content: center;
     margin: 0 auto;
     position: relative;
+    perspective: 1200px;
 }
 
-/* Center Text */
-.cpartners-text {
+/* Founder Center Image */
+.founder-center {
     position: absolute;
-    top: 48%;
-    left: 48%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.rem;
-    color: var(--maroon);
-    background: linear-gradient(135deg, #fff 70%, #f7e6ee 100%);
-    border-radius: 50%;
-    padding: 1rem .5rem;
-    border: 2px solid var(--maroon);
-    font-family: 'Segoe UI', 'Arial', sans-serif;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    z-index: 2;
-    width: 90px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 100; /* Stay on top of everything */
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Carousel Circle */
+.founder-center .founder-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    /* border: 5px solid var(--maroon); */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    background: white;
+    padding: 5px;
+}
+
+.founder-center .founder-label {
+    margin-top: 10px;
+    background: var(--maroon);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* Carousel Circle - MODIFIED FOR 3D */
 #circular-carousel {
     width: 500px;
     height: 500px;
-    border-radius: 50%;
     position: relative;
     margin: auto;
     border: none;
     background: transparent;
+    transform-style: preserve-3d;
 }
 
+/* Carousel Images - MODIFIED FOR 3D */
 #circular-carousel .carousel-img {
     position: absolute;
-    transform-origin: center;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
     transition: all 0.3s ease;
-    z-index: 1;
 }
 
 #circular-carousel img {
@@ -211,6 +230,12 @@ body {
     transform: scale(1.15);
     border-color: var(--maroon);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Hide partners when they go behind (negative Z) */
+#circular-carousel .carousel-img.behind {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Partner Info on Hover */
@@ -236,28 +261,41 @@ body {
     opacity: 1;
 }
 
+/* Don't show partner info when behind */
+.carousel-img.behind .partner-info {
+    opacity: 0 !important;
+}
+
+/* No partners message */
+.no-partners-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
 /* ========================================
    RESPONSIVE STYLES
    ======================================== */
 
 /* Large Tablets (768px - 991px) */
 @media (max-width: 991px) {
-    .main-content {
-        min-height: 70vh;
-        padding: 1.5rem 0;
-    }
-
     .c-partners-container {
         width: 450px;
         height: 450px;
+        perspective: 1000px;
     }
 
-    .cpartners-text {
-        font-size: 1.3rem;
+    .founder-center .founder-img {
         width: 130px;
         height: 130px;
-        padding: 1.5rem 0.8rem;
-        letter-spacing: 1px;
+        border-width: 4px;
+    }
+
+    .founder-center .founder-label {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
     }
 
     #circular-carousel {
@@ -279,22 +317,23 @@ body {
 
 /* Tablets (577px - 767px) */
 @media (max-width: 767px) {
-    .main-content {
-        min-height: 60vh;
-        padding: 1rem 0;
-    }
-
     .c-partners-container {
         width: 380px;
         height: 380px;
+        perspective: 900px;
     }
 
-    .cpartners-text {
-        font-size: 1.1rem;
+    .founder-center .founder-img {
         width: 110px;
         height: 110px;
-        padding: 1.2rem 0.6rem;
-        letter-spacing: 0.8px;
+        border-width: 4px;
+        padding: 4px;
+    }
+
+    .founder-center .founder-label {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+        margin-top: 8px;
     }
 
     #circular-carousel {
@@ -321,23 +360,23 @@ body {
 
 /* Mobile Landscape & Small Tablets (481px - 576px) */
 @media (max-width: 576px) {
-    .main-content {
-        min-height: 50vh;
-        padding: 1rem 0.5rem;
-    }
-
     .c-partners-container {
         width: 320px;
         height: 320px;
+        perspective: 800px;
     }
 
-    .cpartners-text {
-        font-size: 0.95rem;
+    .founder-center .founder-img {
         width: 95px;
         height: 95px;
-        padding: 1rem 0.5rem;
-        letter-spacing: 0.5px;
-        border-width: 2px;
+        border-width: 3px;
+        padding: 3px;
+    }
+
+    .founder-center .founder-label {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.7rem;
+        margin-top: 6px;
     }
 
     #circular-carousel {
@@ -368,22 +407,23 @@ body {
 
 /* Mobile Portrait (320px - 480px) */
 @media (max-width: 480px) {
-    /* .main-content {
-        min-height: 45vh;
-        padding: 0.8rem 0.5rem;
-    } */
-
     .c-partners-container {
         width: 280px;
         height: 280px;
+        perspective: 700px;
     }
 
-    .cpartners-text {
-        font-size: 0.85rem;
+    .founder-center .founder-img {
         width: 85px;
         height: 85px;
-        padding: 0.8rem 0.4rem;
-        letter-spacing: 0.3px;
+        border-width: 3px;
+        padding: 3px;
+    }
+
+    .founder-center .founder-label {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+        margin-top: 5px;
     }
 
     #circular-carousel {
@@ -410,13 +450,20 @@ body {
     .c-partners-container {
         width: 250px;
         height: 250px;
+        perspective: 600px;
     }
 
-    .cpartners-text {
-        font-size: 0.75rem;
+    .founder-center .founder-img {
         width: 75px;
         height: 75px;
-        padding: 0.7rem 0.3rem;
+        border-width: 2px;
+        padding: 2px;
+    }
+
+    .founder-center .founder-label {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+        margin-top: 4px;
     }
 
     #circular-carousel {
@@ -451,7 +498,6 @@ body {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-    /* Show partner info on tap for touch devices */
     .carousel-img.touched .partner-info {
         opacity: 1;
     }
@@ -459,6 +505,10 @@ body {
     #circular-carousel .carousel-img:active img {
         transform: scale(1.1);
         border-color: var(--maroon);
+    }
+    
+    .carousel-img.behind.touched .partner-info {
+        opacity: 0 !important;
     }
 }
 
@@ -520,16 +570,15 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    
-    /* Use Laravel asset() path if inline styling not used */
-    background-image: url('../images/glossy.png');
-    background-size: contain; /* 👈 this prevents zooming */
-    background-repeat: repeat; /* allow pattern to tile */
+
+    /* background-image: url('');
+    background-size: contain;
+    background-repeat:no-repeat; 
     background-position: center;
     
     filter: brightness(0.95) contrast(1.05) saturate(1.1);
     opacity: 0.9;
-    overflow: hidden;
+    overflow: hidden; */
 }
 
 /* optional glassy overlay */
@@ -537,11 +586,11 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
+    /* background: linear-gradient(
         145deg,
         rgba(255, 255, 255, 0.15) 0%,
         rgba(255, 255, 255, 0) 70%
-    );
+    ); */
     mix-blend-mode: screen;
     pointer-events: none;
 }

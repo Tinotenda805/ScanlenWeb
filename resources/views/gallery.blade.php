@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('layouts.page-header', ['title' => 'Our Gallery'])
+@include('layouts.page-Currentheader', ['title' => 'Our Gallery'])
 
 <style>
 :root {

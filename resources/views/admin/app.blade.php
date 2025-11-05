@@ -29,76 +29,76 @@
                     <p class="text-white-50">Admin Panel</p>
                 </div>
                 
-                <ul class="nav flex-column">
+                <ul class="nav overflow-scroll overflow-x-hidden" style="height: 80vh">
+                        <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.index') ? 'active' : '' }}" href="{{ route('admin.index') }}">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
                     <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.index') ? 'active' : '' }}" href="{{ route('admin.index') }}">
-                        <i class="fas fa-tachometer-alt"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.people.*') ? 'active' : '' }}" href="{{ route('admin.people.index') }}">
-                        <i class="fas fa-users"></i> Our People
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.expertise.*') ? 'active' : '' }}" href="{{ route('admin.expertise.index') }}">
-                        <i class="fa fa-briefcase" aria-hidden="true"></i> Our Expertise
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.articles.*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">
-                        <i class="fas fa-newspaper"></i> Articles
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.blogs.*') ? 'active' : '' }}" href="{{ route('admin.blogs.index') }}">
-                        <i class="fas fa-blog"></i> Blogs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.gallery.*') ? 'active' : '' }}" href="{{ route('admin.gallery.index') }}">
-                        <i class="fa fa-file-image" aria-hidden="true"></i> Gallery
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.contact-messages.*') ? 'active' : '' }}" href="{{ route('admin.contact-messages.index') }}">
-                        <i class="fa fa-envelope" aria-hidden="true"></i> Messages
-                        @if($unreadCount = App\Models\ContactMessage::unread()->count())
-                        <span class="badge bg-warning">{{ $unreadCount }}</span>
-                        @endif
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
-                        <i class="fas fa-folder"></i> Categories
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.tags.*') ? 'active' : '' }}" href="{{ route('admin.tags.index') }}">
-                        <i class="fas fa-tags"></i> Tags
-                    </a>
-                </li>
+                        <a class="nav-link {{ Route::is('admin.people.*') ? 'active' : '' }}" href="{{ route('admin.people.index') }}">
+                            <i class="fas fa-users"></i> Our People
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.expertise.*') ? 'active' : '' }}" href="{{ route('admin.expertise.index') }}">
+                            <i class="fa fa-briefcase" aria-hidden="true"></i> Our Expertise
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.articles.*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">
+                            <i class="fas fa-newspaper"></i> Articles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.blogs.*') ? 'active' : '' }}" href="{{ route('admin.blogs.index') }}">
+                            <i class="fas fa-blog"></i> Blogs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.gallery.*') ? 'active' : '' }}" href="{{ route('admin.gallery.index') }}">
+                            <i class="fa fa-file-image" aria-hidden="true"></i> Gallery
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.contact-messages.*') ? 'active' : '' }}" href="{{ route('admin.contact-messages.index') }}">
+                            <i class="fa fa-envelope" aria-hidden="true"></i> Messages
+                            @if($unreadCount = App\Models\ContactMessage::unread()->count())
+                            <span class="badge bg-warning">{{ $unreadCount }}</span>
+                            @endif
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
+                            <i class="fas fa-folder"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.tags.*') ? 'active' : '' }}" href="{{ route('admin.tags.index') }}">
+                            <i class="fas fa-tags"></i> Tags
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.judgements.*') ? 'active' : '' }}" href="{{ route('admin.judgements.index') }}">
-                        <i class="fas fa-bell"></i> Judgements
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}">
-                        <i class="fas fa-history"></i> History
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('admin.faqs.*') ? 'active' : '' }}" href="{{ route('admin.faqs') }}">
-                        <i class="fas fa-question-circle"></i> FAQs
-                    </a>
-                </li>
-                <li class="nav-item mt-4">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user"></i> User Management
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.judgements.*') ? 'active' : '' }}" href="{{ route('admin.judgements.index') }}">
+                            <i class="fas fa-bell"></i> Judgements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}">
+                            <i class="fas fa-history"></i> Our History
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.faqs.*') ? 'active' : '' }}" href="{{ route('admin.faqs') }}">
+                            <i class="fas fa-question-circle"></i> FAQs
+                        </a>
+                    </li> --}}
+                    <li class="nav-item mt-4">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user"></i> User Management
+                        </a>
+                    </li>
                 </ul>
             </div>
             

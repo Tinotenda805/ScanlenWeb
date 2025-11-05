@@ -182,19 +182,19 @@
                     <div class="useful-links">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link"  href="#">Home</a>
+                                <a class="nav-link"  href="{{route('homePage')}}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Our History</a>
+                                <a class="nav-link" href="{{route('history.index')}}">Our History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Our People</a>
+                                <a class="nav-link" href="{{route('our-people.partners')}}">Our Partners</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Expertise</a>
+                                <a class="nav-link" href="{{route('expertise.index')}}">Expertise</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Contact Us</a>
+                                <a class="nav-link" href="{{route('contactUs')}}">Contact Us</a>
                             </li>
                         </ul>
                     </div>
