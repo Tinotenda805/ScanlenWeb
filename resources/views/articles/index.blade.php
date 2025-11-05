@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-header', ['title' => 'Articles', 'breadcrumb' => 'Articles'])
+@include('layouts.page-Currentheader', ['title' => 'Articles', 'breadcrumb' => 'Articles'])
 
 <!-- Featured Articles Section -->
 @if($featuredArticles->count() > 0)

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-header', ['title'=>'Contact Us'])
+@include('layouts.page-Currentheader', ['title'=>'Contact Us'])
 
 <section class="py-5">
   

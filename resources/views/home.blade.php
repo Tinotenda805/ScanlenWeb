@@ -5,6 +5,7 @@
 <div id="hero" class="hero-section d-flex align-items-center justify-content-center position-relative">
     <!-- Blurry old partners background grid -->
     <div class="hero-partners-bg" >
+        <section class="partners-section">
         @for ($i = 0; $i < 60; $i++)
             <img src="{{ asset(['images/period3.jpg','images/period1.jpg','images/period2.jpg'][$i%3]) }}" alt="Old Partner {{ $i+1 }}" style="width:100%;height:100%;object-fit:cover;">
         @endfor

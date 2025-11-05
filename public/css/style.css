@@ -514,13 +514,36 @@ body {
 } */
 
 .hero-partners-bg {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
+    
+    /* Use Laravel asset() path if inline styling not used */
+    background-image: url('../images/glossy.png');
+    background-size: contain; /* 👈 this prevents zooming */
+    background-repeat: repeat; /* allow pattern to tile */
+    background-position: center;
+    
+    filter: brightness(0.95) contrast(1.05) saturate(1.1);
+    opacity: 0.9;
     overflow: hidden;
+}
+
+/* optional glassy overlay */
+.hero-partners-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
 }
 
 .hero-partners-bg::before {
