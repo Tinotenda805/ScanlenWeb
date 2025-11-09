@@ -23,12 +23,14 @@ class Blog extends Model
         'is_featured',
         'is_published',
         'published_at',
+        'comments_enabled',
     ];
 
     protected $casts = [
         'is_featured' => 'boolean',
         'is_published' => 'boolean',
         'published_at' => 'datetime',
+        'comments_enabled' => 'boolean',
     ];
 
     protected static function boot()
@@ -54,6 +56,17 @@ class Blog extends Model
     {
         return $this->belongsToMany(Tag::class, 'blog_tags');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(BlogComment::class);
+    }
+
+    public function approvedComments()
+    {
+        return $this->hasMany(BlogComment::class)->where('is_approved', true)->latest();
+    }
+
 
     public function incrementViews()
     {

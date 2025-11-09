@@ -96,6 +96,19 @@
                         </div>
 
                         <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input type="hidden" name="comments_enabled" value="0">
+                                <input class="form-check-input" 
+                                       type="checkbox" 
+                                       id="comments_enabled" 
+                                       name="comments_enabled" 
+                                       value="1" 
+                                       {{ old('comments_enabled', true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="comments_enabled">Enable Comments</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="published_at" class="form-label">Publish Date</label>
                             <input type="datetime-local" 
                                    class="form-control @error('published_at') is-invalid @enderror" 

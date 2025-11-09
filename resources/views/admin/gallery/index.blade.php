@@ -113,8 +113,8 @@
                 </div>
             </form>
 
-            <div class="d-flex justify-content-center mt-4">
-                {{ $gallery->links() }}
+            <div class="d-flex justify-content-end mt-4">
+                {{ $gallery->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

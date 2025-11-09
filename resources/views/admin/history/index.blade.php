@@ -94,8 +94,8 @@
 
         @if($timelines->hasPages())
         <div class="card-footer">
-            <div class="d-flex justify-content-center">
-                {{ $timelines->links() }}
+            <div class="d-flex justify-content-end">
+                {{ $timelines->links('pagination::bootstrap-5') }}
             </div>
         </div>
         @endif

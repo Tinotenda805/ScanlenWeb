@@ -4,13 +4,11 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="hero-partners-bg" >
-            {{-- founder image on the centre --}}
-            {{-- <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="partner founder"> --}}
-            <!-- Other partners placed randomly -->
+        <div class="hero-partners-bg " >
             {{-- Founder image in center --}}
             <div class="founder-center">
-                <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="founder-img">
+                <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" alt="Sir Thomas Scanlen" class="founder-img" 
+                >
                 <div class="founder-label">Founder</div>
             </div>
 
@@ -52,10 +50,9 @@
 
     
 
-<section class="company-overview-section py-5">
+<section class="company-overview-section py-5" >
     <div class="container">
-        <div class="row align-items-stretch">
-        <!-- Left Column - Company Overview -->
+        <div class="row ">
             <div class="col-lg-6 mb-4 mb-lg-0 pe-lg-4">
                 <h2 class="mb-4">About Scanlen & Holderness</h2>
                 <p class="lead">Legal Excellence Since 1894</p>
@@ -68,91 +65,222 @@
                     Throughout history Team Scanlen has proudly influenced jurisprudential development in Zimbabwe. 
                     Our continued involvement in landmark cases sets precedent in many areas of law.
                 </p>
+
+                @if($statistics->count() > 0)
+                    <section class="stats-section container">
+                        <div class="stats-container">
+                            @foreach($statistics as $stat)
+                            <div class="stat-item">
+                                @if($stat->icon)
+                                    <div class="stat-icon">
+                                        <i class="{{ $stat->icon }}"></i>
+                                    </div>
+                                @endif
+                                <div class="stat-number">{{ $stat->value }}</div>
+                                <div class="stat-label">{{ $stat->label }}</div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </section>
+                @endif
             </div>
             
             <!-- Right Column - Association Memberships -->
             <div class="col-lg-6 ps-lg-4 p-2">
                 {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
-                <video class="w-100 rounded" autoplay loop muted>
+                {{-- <video class="w-100 rounded" autoplay loop muted>
                     <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />
-                </video>
+                </video> --}}
 
-                {{-- Awards Section --}}
-                {{-- Awards Carousel --}}
-                {{-- Awards Badge Wall --}}
-                {{-- <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-maroon text-white">
-                        <h5 class="card-title mb-0 fw-bold">
-                            <i class="fas fa-certificate me-2"></i>Recognitions & Certifications
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row text-center g-4">
-                            <div class="col-6 col-md-3">
-                                <div class="award-badge">
-                                    <div class="badge-icon bg-maroon text-white rounded-circle mx-auto mb-2">
-                                        <i class="fas fa-gavel fa-2x"></i>
-                                    </div>
-                                    <h6 class="fw-bold mb-1">AV Preeminent</h6>
-                                    <small class="text-muted">Martindale-Hubbell</small>
-                                </div>
-                            </div>
+                <h2 class="fw-bold mb-4">Our Story in Motion</h2>
+                <p class="text-muted mb-4">Watch our firm overview to learn more about our history and values</p>
+                
+                {{-- YouTube Video Embed --}}
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/Z4Mpu5Ansl0" 
+                            title="About Scanlen & Holderness" class="rounded"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                
+            </div>
+        </div>
 
-                            <div class="col-6 col-md-3">
-                                <div class="award-badge">
-                                    <div class="badge-icon bg-warning text-dark rounded-circle mx-auto mb-2">
-                                        <i class="fas fa-star fa-2x"></i>
-                                    </div>
-                                    <h6 class="fw-bold mb-1">Super Lawyers</h6>
-                                    <small class="text-muted">Rated 2024</small>
-                                </div>
-                            </div>
+    </div>
+</section>
 
-                            <div class="col-6 col-md-3">
-                                <div class="award-badge">
-                                    <div class="badge-icon bg-success text-white rounded-circle mx-auto mb-2">
-                                        <i class="fas fa-balance-scale fa-2x"></i>
-                                    </div>
-                                    <h6 class="fw-bold mb-1">Best Lawyers</h6>
-                                    <small class="text-muted">2024 Edition</small>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-md-3">
-                                <div class="award-badge">
-                                    <div class="badge-icon bg-info text-white rounded-circle mx-auto mb-2">
-                                        <i class="fas fa-shield-alt fa-2x"></i>
-                                    </div>
-                                    <h6 class="fw-bold mb-1">Top Law Firm</h6>
-                                    <small class="text-muted">US News & World Report</small>
-                                </div>
-                            </div>
+{{-- Awards & Recognition Section --}}
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Awards & Recognition</h2>
+        
+        {{-- @php
+            $awards = App\Models\Award::active()->ordered()->recent()->get();
+        @endphp --}}
+        
+        @if($awards->count() > 0)
+            <div class="row g-4 justify-content-center">
+                @foreach($awards as $award)
+                    <div class="col-md-6 col-lg-3">
+                        <div class="text-center p-4 bg-white rounded shadow-sm h-100">
+                            @if($award->image_url)
+                                <img src="{{ $award->image_url }}" alt="{{ $award->title }}" 
+                                     class="img-fluid mb-3 rounded-circle" style="max-height: 100px;">
+                            @else
+                                <i class="fas fa-trophy fa-3x text-maroon mb-3"></i>
+                            @endif
+                            <h5 class="fw-bold mb-2">{{ $award->title }}</h5>
+                            <p class="small text-muted mb-0">
+                                {{ $award->issuing_organization }}<br>
+                                {{ $award->year }}
+                            </p>
+                            @if($award->description)
+                                <p class="small mt-2">{{ $award->description }}</p>
+                            @endif
                         </div>
                     </div>
-                </div> --}}
+                @endforeach
+            </div>
+        @else
+            <div class="text-center py-4">
+                <i class="fas fa-trophy fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Awards information coming soon.</p>
+            </div>
+        @endif
+    </div>
+</section>
 
-                {{-- <style>
-                .badge-icon {
-                    width: 80px;
-                    height: 80px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                }
-                .award-badge:hover .badge-icon {
-                    transform: translateY(-5px);
-                    transition: transform 0.3s ease;
-                }
-                </style> --}}
+
+
+{{-- Mission & Vision Cards --}}
+<section class="py-5 bg-light" style="display: none">
+    <div class="container">
+        <div class="row g-4">
+            {{-- Mission --}}
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-bullseye fa-3x text-maroon mb-3"></i>
+                        <h3 class="h4 fw-bold mb-3">Our Mission</h3>
+                        <p class="text-muted">
+                            To provide exceptional legal services that exceed client expectations through 
+                            innovative solutions, deep industry knowledge, and unwavering ethical standards. 
+                            We are committed to advancing justice while building lasting relationships 
+                            with our clients and communities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Vision --}}
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-eye fa-3x text-maroon mb-3"></i>
+                        <h3 class="h4 fw-bold mb-3">Our Vision</h3>
+                        <p class="text-muted">
+                            To be Zimbabwe's most trusted and innovative law firm, recognized for our 
+                            legal expertise, client-centric approach, and positive impact on the 
+                            development of law and business in Southern Africa.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
+{{-- How We Work Section --}}
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">How We Work</h2>
+        <div class="row g-4">
+            {{-- Process 1 --}}
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-maroon text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="fas fa-handshake fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Client-Centric Approach</h4>
+                    <p class="text-muted">
+                        We listen first, then develop tailored legal strategies that align with your 
+                        business objectives and personal goals.
+                    </p>
+                </div>
+            </div>
+
+            {{-- Process 2 --}}
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-maroon text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Collaborative Teams</h4>
+                    <p class="text-muted">
+                        Multi-disciplinary teams work together to provide comprehensive solutions 
+                        across all legal practice areas.
+                    </p>
+                </div>
+            </div>
+
+            {{-- Process 3 --}}
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-maroon text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="fas fa-chart-line fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Strategic Innovation</h4>
+                    <p class="text-muted">
+                        We leverage technology and innovative thinking to deliver efficient, 
+                        cost-effective legal services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Core Values --}}
+<section class="py-5 bg-white text-dark border-top">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Core Values</h2>
+        <div class="row g-4">
+            <div class="col-md-3 text-center">
+                <i class="fas fa-scale-balanced fa-2x mb-3"></i>
+                <h5 class="fw-bold">Integrity</h5>
+                <p class="small">Uncompromising ethical standards in all we do</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <i class="fas fa-gem fa-2x mb-3"></i>
+                <h5 class="fw-bold">Excellence</h5>
+                <p class="small">Commitment to the highest quality legal services</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <i class="fas fa-heart fa-2x mb-3"></i>
+                <h5 class="fw-bold">Respect</h5>
+                <p class="small">Valuing diverse perspectives and treating all with dignity</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <i class="fas fa-lightbulb fa-2x mb-3"></i>
+                <h5 class="fw-bold">Innovation</h5>
+                <p class="small">Embracing new ideas and technologies</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
 {{-- PROFESSIONAL MEMBERSHIP --}}
 <!-- Client 2 - Bootstrap Brain Component -->
-<section class="membership-section bg-white p-5">
+<section class="membership-section bg-white p-5 border-top">
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
@@ -236,7 +364,7 @@
                     <option value="">SECTORS</option>
                     @if(isset($sectors))
                         @foreach($sectors as $sector)
-                            <option value="{{ $sector->id }}" {{ request('sector') == $sector->id ? 'selected' : '' }}>
+                            <option value="{{ $sector->id }}" {{ request('category') == $sector->id ? 'selected' : '' }}>
                                 {{ $sector->name }}
                             </option>
                         @endforeach
@@ -249,6 +377,14 @@
         </div>
     </form>
 </section>
+{{-- Call to Action --}}
+{{-- <section class="py-5 bg-maroon text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Ready to Work With Us?</h2>
+        <p class="lead mb-4">Contact our team to discuss how we can assist with your legal needs.</p>
+        <a href="/contact" class="btn btn-light btn-lg">Get In Touch</a>
+    </div>
+</section> --}}
 
 <!-- Faq Section -->
 {{-- <section id="faq" class="faq bg-white py-5">
@@ -418,6 +554,56 @@
             border-color: #969696;
             width: 50%;
             margin: 0 auto;
+        }
+
+
+
+        /* Statistics Section */
+        .stats-section {
+            /* background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%); */
+            padding: 10px;
+            /* margin-top: 10px; */
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            /* max-width: 700px; */
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.009);
+            padding: 10px 8px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--maroon);
+            /* margin-bottom: 10px; */
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #5a6c7d;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            /* margin-bottom: 1rem; */
+            color: var(--new-maroon);
         }
 
 

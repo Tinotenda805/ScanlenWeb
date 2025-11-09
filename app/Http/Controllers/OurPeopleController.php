@@ -52,43 +52,44 @@ class OurPeopleController extends Controller
     }
 
     /**
-     * Find a lawyer search
-     */
-    public function findLawyer(Request $request)
-    {
-        $query = OurPeople::where('status', 'active');
+ * Find a lawyer search
+ */
+public function findLawyer(Request $request)
+{
+    $query = OurPeople::where('status', 'active');
 
-        // Search by name
-        if ($request->filled('name')) {
-            $query->where('name', 'like', "%{$request->name}%");
-        }
-
-        // Filter by expertise
-        if ($request->filled('expertise')) {
-            $query->whereHas('expertise', function($q) use ($request) {
-                $q->where('expertise.id', $request->expertise);
-            });
-        }
-
-        // Filter by sector (category)
-        if ($request->filled('category')) {
-            $query->whereHas('category', function($q) use ($request) {
-                $q->where('categories.id', $request->category);
-            });
-        }
-
-        $people = $query->with(['expertise'])
-                        // ->ordered()
-                        ->paginate(12);
-
-        // Get all expertise and sectors for the filter form
-        $allExpertise = Expertise::active()->get();
-        $sectors = Category::where('status', 'active')
-                          ->orderBy('name', 'asc')
-                          ->get();
-
-        return view('our-people.find-lawyer', compact('people', 'allExpertise', 'sectors'));
+    // Search by name
+    if ($request->filled('name')) {
+        $query->where('name', 'like', "%{$request->name}%");
     }
+
+    // Filter by expertise (many-to-many)
+    if ($request->filled('expertise')) {
+        $query->whereHas('expertise', function($q) use ($request) {
+            $q->where('expertise.id', $request->expertise);
+        });
+    }
+
+    // Filter by sector/category (many-to-many)
+    if ($request->filled('category')) {
+        $query->whereHas('categories', function($q) use ($request) {
+            $q->where('categories.id', $request->category);
+        });
+    }
+
+    $people = $query->with(['expertise', 'categories'])
+        // ->orderBy('order', 'asc')
+        ->orderBy('name', 'asc')
+        ->paginate(12);
+
+    // Get all expertise and sectors for the filter form
+    $allExpertise = Expertise::active()->get();
+    $sectors = Category::where('status', 'active')
+        ->orderBy('name', 'asc')
+        ->get();
+
+    return view('our-people.find-lawyer', compact('people', 'allExpertise', 'sectors'));
+}
 
     
 }

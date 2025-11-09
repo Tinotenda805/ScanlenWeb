@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Award;
 use App\Models\Category;
 use App\Models\ContactMessage;
 use App\Models\Expertise;
 use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\OurPeople;
+use App\Models\Statistic;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -32,7 +34,18 @@ class MainController extends Controller
         $sectors = Category::where('status', 'active')
             ->orderBy('name', 'asc')
             ->get();
-        return view('index', compact('faqs', 'partners', 'allExpertise', 'sectors'));
+
+        $statistics = Statistic::active()
+            ->ordered()
+            ->take(3)
+            ->get();
+
+        $awards = Award::where('is_active',1)
+            ->ordered()
+            ->take(4)
+            ->get();
+            
+        return view('index', compact('faqs', 'partners', 'allExpertise', 'sectors', 'statistics', 'awards'));
     }
 
     public function contactUs()

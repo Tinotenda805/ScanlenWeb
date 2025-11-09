@@ -72,29 +72,29 @@
                         <a class="nav-link {{ Route::is('contactUs') ? 'active' : '' }}" href="{{ route('contactUs') }}">Contact Us</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link px-1" href="#!">
+                        <i class="fab fa-facebook-square"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-1" href="#!">
+                        <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-1" href="#!">
+                        <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-1" href="#!">
+                        <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <ul class="navbar-nav flex-row">
-                <li class="nav-item">
-                    <a class="nav-link px-1" href="#!">
-                    <i class="fab fa-facebook-square"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-1" href="#!">
-                    <i class="fab fa-youtube"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-1" href="#!">
-                    <i class="fab fa-linkedin"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-1" href="#!">
-                    <i class="fab fa-whatsapp"></i>
-                    </a>
-                </li>
-            </ul>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -130,22 +130,22 @@
                     </p>
                     <ul class="navbar-nav flex-row">
                         <li class="nav-item">
-                            <a class="nav-link px-1" href="#!">
+                            <a class="social-icon px-1" href="#!">
                             <i class="fab fa-facebook-square"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-1" href="#!">
+                            <a class="social-icon px-1" href="#!">
                             <i class="fab fa-youtube"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-1" href="#!">
+                            <a class="social-icon px-1" href="#!">
                             <i class="fab fa-linkedin"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-1" href="#!">
+                            <a class="social-icon px-1" href="#!">
                             <i class="fab fa-whatsapp"></i>
                             </a>
                         </li>

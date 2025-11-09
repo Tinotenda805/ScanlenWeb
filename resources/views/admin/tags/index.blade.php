@@ -30,14 +30,51 @@
                                 <span class="badge bg-secondary">#{{ $tag->name }}</span>
                             </td>
                             <td><code>{{ $tag->slug }}</code></td>
+                            <td>{{ $tag->articles_count ?? 0 }}</td>
+                            <td>{{ $tag->blogs_count ?? 0 }}</td>
+                            <td>
+                                <strong>{{ ($tag->articles_count ?? 0) + ($tag->blogs_count ?? 0) }}</strong>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="{{ route('admin.tags.edit', $tag) }}" 
+                                       class="btn btn-outline-primary" 
+                                       title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.tags.destroy', $tag) }}" 
+                                          method="POST" 
+                                          class="d-inline"
+                                          onsubmit="return confirm('Are you sure you want to delete this tag?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="btn btn-outline-danger" 
+                                                title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                         @empty
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">
+                                <i class="fas fa-tags fa-2x mb-3 d-block"></i>
+                                <p class="mb-0">No tags found. Create your first tag to get started!</p>
+                            </td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
+            
+            @if($tags->hasPages())
+            <div class="d-flex justify-content-end mt-4">
+                {{ $tags->links('pagination::bootstrap-5') }}
+            </div>
+            @endif
         </div>
     </div>
 </div>
 @endsection
-                

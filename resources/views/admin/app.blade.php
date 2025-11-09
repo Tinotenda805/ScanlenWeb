@@ -56,6 +56,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.judgements.*') ? 'active' : '' }}" href="{{ route('admin.judgements.index') }}">
+                            <i class="fas fa-bell"></i> Judgements
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ Route::is('admin.gallery.*') ? 'active' : '' }}" href="{{ route('admin.gallery.index') }}">
                             <i class="fa fa-file-image" aria-hidden="true"></i> Gallery
                         </a>
@@ -66,6 +71,11 @@
                             @if($unreadCount = App\Models\ContactMessage::unread()->count())
                             <span class="badge bg-warning">{{ $unreadCount }}</span>
                             @endif
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.awards.*') ? 'active' : '' }}" href="{{ route('admin.awards.index') }}">
+                            <i class="fas fa-award"></i> Awards
                         </a>
                     </li>
                     <li class="nav-item">
@@ -80,11 +90,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('admin.judgements.*') ? 'active' : '' }}" href="{{ route('admin.judgements.index') }}">
-                            <i class="fas fa-bell"></i> Judgements
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ Route::is('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}">
                             <i class="fas fa-history"></i> Our History
                         </a>
@@ -95,8 +100,8 @@
                         </a>
                     </li> --}}
                     <li class="nav-item mt-4">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user"></i> User Management
+                        <a class="nav-link {{ Route::is('admin.users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+                            <i class="fas fa-users"></i> User Management
                         </a>
                     </li>
                 </ul>

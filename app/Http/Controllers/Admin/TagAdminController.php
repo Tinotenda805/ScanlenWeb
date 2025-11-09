@@ -13,7 +13,7 @@ class TagAdminController extends Controller
     {
         $tags = Tag::withCount(['articles', 'blogs'])
             ->latest()
-            ->paginate(20);
+            ->paginate(10);
 
         return view('admin.tags.index', compact('tags'));
     }

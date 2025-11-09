@@ -15,6 +15,7 @@ class BlogAdminController extends Controller
     public function index()
     {
         $blogs = Blog::with(['category', 'tags'])
+            ->withCount('comments')
             ->latest()
             ->paginate(15);
 
@@ -43,6 +44,7 @@ class BlogAdminController extends Controller
             'reading_time' => 'required|integer|min:1',
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
+            'comments_enabled' => 'boolean',
             'published_at' => 'nullable|date',
         ]);
 
@@ -87,6 +89,7 @@ class BlogAdminController extends Controller
             'reading_time' => 'required|integer|min:1',
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
+            'comments_enabled' => 'boolean',
             'published_at' => 'nullable|date',
         ]);
 
@@ -135,5 +138,12 @@ class BlogAdminController extends Controller
         $blog->update(['is_published' => !$blog->is_published]);
 
         return back()->with('success', 'Published status updated!');
+    }
+
+    public function toggleComments(Blog $blog)
+    {
+        $blog->update(['comments_enabled' => !$blog->comments_enabled]);
+
+        return back()->with('success', 'Comments status updated!');
     }
 }

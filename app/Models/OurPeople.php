@@ -34,7 +34,7 @@ class OurPeople extends Model
         'specializations',
         'type', // 'partner' or 'associate'
         'role',
-        'category_id',
+        // 'category_id',
         'order',
         'status',
     ];
@@ -66,9 +66,20 @@ class OurPeople extends Model
     }
 
     // Relationship: Category (Sector)
-    public function category()
+    // public function category()
+    // {
+    //     return $this->belongsTo(Category::class);
+    // }
+
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(
+            Category::class,
+            'category_people', // pivot table name
+            'person_id',
+            'category_id'
+        )
+        ->withTimestamps();
     }
 
     // Relationship: Expertise

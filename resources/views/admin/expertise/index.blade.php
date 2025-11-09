@@ -137,8 +137,8 @@
 
             @if($expertise->hasPages())
             <div class="card-footer">
-                <div class="d-flex justify-content-center">
-                    {{ $expertise->links() }}
+                <div class="d-flex justify-content-end">
+                    {{ $expertise->links('pagination::bootstrap-5') }}
                 </div>
             </div>
             @endif

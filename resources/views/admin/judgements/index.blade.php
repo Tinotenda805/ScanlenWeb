@@ -186,8 +186,8 @@
 
             @if($judgements->hasPages())
             <div class="card-footer">
-                <div class="d-flex justify-content-center">
-                    {{ $judgements->appends(request()->query())->links() }}
+                <div class="d-flex justify-content-end">
+                    {{ $judgements->appends(request()->query())->links('pagination::bootstrap-5') }}
                 </div>
             </div>
             @endif

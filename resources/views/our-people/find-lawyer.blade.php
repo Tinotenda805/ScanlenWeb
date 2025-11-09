@@ -21,7 +21,7 @@
                                    value="{{ request('name') }}">
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <select name="" class="form-select">
+                            <select name="expertise" class="form-select">
                                 <option value="">All Expertise</option>
                                 @foreach($allExpertise as $expertise)
                                     <option value="{{ $expertise->id }}" 
@@ -116,7 +116,7 @@
                 <i class="bi bi-search" style="font-size: 4rem; color: #ccc;"></i>
                 <h4 class="mt-3 text-muted">No lawyers found</h4>
                 <p class="text-muted">Try adjusting your search criteria</p>
-                <a href="{{ route('find-lawyer') }}" class="btn btn-primary mt-3">
+                <a href="{{ route('our-people.find-lawyer') }}" class="btn btn-primary mt-3">
                     Clear Filters
                 </a>
             </div>

@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\AdminHistoryController;
 use App\Http\Controllers\Admin\AdminJudgementController;
 use App\Http\Controllers\Admin\AdminStatisticsController;
 use App\Http\Controllers\Admin\ArticleAdminController;
+use App\Http\Controllers\Admin\AwardAdminController;
 use App\Http\Controllers\Admin\BlogAdminController;
+use App\Http\Controllers\Admin\BlogCommentAdminController;
 use App\Http\Controllers\Admin\CategoryAdminController;
 use App\Http\Controllers\Admin\ContactMessageAdminController;
 use App\Http\Controllers\Admin\ExpertiseAdminController;
@@ -13,6 +15,7 @@ use App\Http\Controllers\Admin\GalleryAdminController;
 use App\Http\Controllers\Admin\OurPeopleAdminController;
 use App\Http\Controllers\Admin\TagAdminController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExpertiseController;
 use App\Http\Controllers\HistoryController;
@@ -65,6 +68,7 @@ Route::prefix('our-people')->name('our-people.')->group(function () {
 Route::prefix('blogs')->name('blogs.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::get('/{slug}', [BlogController::class, 'show'])->name('show');
+    Route::post('/{blog:slug}/comments', [BlogCommentController::class, 'store'])->name('comments.store');
 });
 
 // JUDGEMENTS
@@ -88,9 +92,19 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::post('articles/{article}/toggle-published', [ArticleAdminController::class, 'togglePublished'])->name('articles.toggle-published');
         
         // Blogs Management
-        Route::resource('blogs', BlogAdminController::class);
+        // Bulk actions
+        Route::post('blogs/comments/bulk-approve', [BlogCommentAdminController::class, 'bulkApprove'])->name('comments.bulk-approve');
+        Route::post('blogs/comments/bulk-delete', [BlogCommentAdminController::class, 'bulkDelete'])->name('comments.bulk-delete');
+
         Route::post('blogs/{blog}/toggle-featured', [BlogAdminController::class, 'toggleFeatured'])->name('blogs.toggle-featured');
         Route::post('blogs/{blog}/toggle-published', [BlogAdminController::class, 'togglePublished'])->name('blogs.toggle-published');
+        Route::post('/blogs/{blog}/toggle-comments', [BlogAdminController::class, 'toggleComments'])->name('blogs.toggle-comments');
+        // blog comments
+        Route::get('blogs/comments/{comment}/approve', [BlogCommentAdminController::class, 'approve'])->name('comments.approve');
+        Route::get('blogs/comments/{comment}/unapprove', [BlogCommentAdminController::class, 'unapprove'])->name('comments.unapprove');
+        Route::delete('blogs/comments/{comment}/delete', [BlogCommentAdminController::class, 'destroy'])->name('comments.destroy');
+        Route::resource('blogs', BlogAdminController::class)->except('show');
+        Route::get('blogs/comments', [BlogCommentAdminController::class, 'index'])->name('blogs.comments.index');
         
         // Categories Management
         Route::resource('categories', CategoryAdminController::class)->except(['show']);
@@ -150,5 +164,21 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
             ->name('contact-messages.destroy');
         Route::post('contact-messages/bulk-action', [ContactMessageAdminController::class, 'bulkAction'])
             ->name('contact-messages.bulk-action');
+
+
+        // Awards management
+        Route::resource('awards', AwardAdminController::class);
+        Route::put('/awards/{award}/toggle-status', [AwardAdminController::class, 'toggleStatus'])
+            ->name('awards.toggle-status');
+
+        // user management
+        Route::middleware('can:manage-users')->group(function () {
+            Route::get('user-management', [AdminController::class, 'users'])->name('users.index');
+            Route::delete('user-management/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
+            Route::post('user-management/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+            Route::post('user-management/store', [AdminController::class, 'storeUser'])->name('users.store');
         });
+    });
+
+
 });

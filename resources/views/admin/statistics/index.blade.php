@@ -85,8 +85,8 @@
 
         @if($statistics->hasPages())
         <div class="card-footer">
-            <div class="d-flex justify-content-center">
-                {{ $statistics->links() }}
+            <div class="d-flex justify-content-end ">
+                {{ $statistics->links('pagination::bootstrap-5') }}
             </div>
         </div>
         @endif
