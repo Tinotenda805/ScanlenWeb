@@ -152,7 +152,7 @@ body {
 
 
 /* Main Content */
-.main-content {
+/* .main-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -161,15 +161,9 @@ body {
     padding: 2rem 0;
     background: linear-gradient(rgba(211, 210, 210, 0.418), rgba(176, 173, 173, 0.3));
     z-index: -10;
-    /* background: url('../images/law.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1; */
+    
 }
 
-/* Partner Carousel Container - Desktop */
-/* Partner Carousel Container - Desktop */
 .c-partners-container {
     width: 500px; 
     height: 500px; 
@@ -181,13 +175,13 @@ body {
     perspective: 1200px;
 }
 
-/* Founder Center Image */
+
 .founder-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100; /* Stay on top of everything */
+    z-index: 100; 
     text-align: center;
 }
 
@@ -195,7 +189,6 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 10px;
-    /* border: 5px solid var(--maroon); */
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     object-fit: cover;
     background: white;
@@ -216,7 +209,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Carousel Circle - MODIFIED FOR 3D */
 #circular-carousel {
     width: 500px;
     height: 500px;
@@ -227,7 +219,6 @@ body {
     transform-style: preserve-3d;
 }
 
-/* Carousel Images - MODIFIED FOR 3D */
 #circular-carousel .carousel-img {
     position: absolute;
     left: 50%;
@@ -252,13 +243,11 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Hide partners when they go behind (negative Z) */
 #circular-carousel .carousel-img.behind {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Partner Info on Hover */
 .partner-info {
     position: absolute;
     bottom: -50px;
@@ -281,26 +270,24 @@ body {
     opacity: 1;
 }
 
-/* Don't show partner info when behind */
 .carousel-img.behind .partner-info {
     opacity: 0 !important;
 }
 
-/* No partners message */
 .no-partners-message {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-}
+} */
 
 /* ========================================
    RESPONSIVE STYLES
    ======================================== */
 
 /* Large Tablets (768px - 991px) */
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
     .c-partners-container {
         width: 450px;
         height: 450px;
@@ -333,7 +320,7 @@ body {
         font-size: 13px;
         padding: 8px 12px;
     }
-}
+} */
 
 /* Tablets (577px - 767px) */
 @media (max-width: 767px) {
@@ -569,49 +556,20 @@ body {
     font-style: italic;
 }
 
-/* .hero-partners-bg{
-    position:absolute;
-    top:0;left:0;
-    width:100%;
-    height:100%;
-    display:grid;
-    grid-template-columns:repeat(12,1fr);
-    grid-auto-rows:120px;
-    gap:10px;
-    opacity:0.45;
-    filter:blur(2px) grayscale(100%);
-    z-index:1;
-} */
 
-.hero-partners-bg {
+/* .hero-partners-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    /* opacity: 5; */
-
-    /* background-image: url('');
-    background-size: contain;
-    background-repeat:no-repeat; 
-    background-position: center;
-    
-    filter: brightness(0.95) contrast(1.05) saturate(1.1);
-    opacity: 0.9;
-    overflow: hidden; */
 }
 
-/* optional glassy overlay */
 .hero-partners-bg::after {
     content: '';
     position: absolute;
     inset: 0;
-    /* background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0) 70%
-    ); */
     mix-blend-mode: screen;
     pointer-events: none;
 }
@@ -639,7 +597,6 @@ body {
     z-index: 10;
 }
 
-/* Founder in the center */
 .hero-partners-bg img:nth-child(1) {
     top: 50%;
     left: 50%;
@@ -650,7 +607,6 @@ body {
     border: 4px solid var(--maroon);
 }
 
-/* Other partners positioned randomly */
 .hero-partners-bg img:nth-child(2) {
     top: 15%;
     left: 15%;
@@ -689,10 +645,10 @@ body {
     width: 140px;
     height: 180px;
     transform: rotate(-2deg);
-}
+} */
 
  /* Responsive adjustments */
-    @media (max-width: 1200px) {
+    /* @media (max-width: 1200px) {
         .hero-partners-bg img.founder {
             width: 280px;
             height: 330px;
@@ -718,16 +674,13 @@ body {
             width: 200px;
             height: 250px;
         }
-    }
+    } */
 
-    /* Other partners positioned randomly */
-    .hero-partners-bg img.random {
-        /* Default positioning for larger screens */
+    /* .hero-partners-bg img.random {
         width: 180px;
         height: 220px;
     }
 
-    /* Responsive adjustments for random images */
     @media (max-width: 1200px) {
         .hero-partners-bg img.random {
             width: 160px;
@@ -754,7 +707,7 @@ body {
             width: 100px;
             height: 140px;
         }
-    }
+    } */
 
 
 

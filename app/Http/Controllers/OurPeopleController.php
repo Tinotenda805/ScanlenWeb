@@ -17,7 +17,7 @@ class OurPeopleController extends Controller
     {
         $partners = OurPeople::partners()
             ->active()
-            ->with('expertise', 'category')
+            ->with('expertise', 'categories')
             // ->ordered()
             ->get();
 
@@ -31,7 +31,7 @@ class OurPeopleController extends Controller
     {
         $associates = OurPeople::associates()
             ->active()
-            ->with('expertise', 'category')
+            ->with('expertise', 'categories')
             // ->ordered()
             ->get();
 
@@ -45,7 +45,7 @@ class OurPeopleController extends Controller
     {
         $person = OurPeople::where('id', $id)
             ->where('status', 'active')
-            ->with(['expertise', 'category', 'articles'])
+            ->with(['expertise', 'categories', 'articles'])
             ->firstOrFail();
 
         return view('our-people.partner', compact('person'));
