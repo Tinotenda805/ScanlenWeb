@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('layouts.page-Currentheader', [
+@include('layouts.page-associatesheader', [
     'title' => 'Our associates',
 ])
 
