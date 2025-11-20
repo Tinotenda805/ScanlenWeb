@@ -15,12 +15,12 @@
         </div>
     </div>
 
-    {{-- @if(session('success'))
+    @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
-    @endif --}}
+    @endif
 
     <div class="card border-0 shadow-sm">
         <div class="card-body">
@@ -31,8 +31,6 @@
                             <th>Title</th>
                             <th>Author</th>
                             <th>Category</th>
-                            <th>SEO</th>
-                            <th>Readability</th>
                             <th>Status</th>
                             <th>Comments</th>
                             <th>Views</th>
@@ -64,18 +62,6 @@
                             </td>
                             <td>
                                 <span class="badge bg-secondary">{{ $blog->category->name }}</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-{{ $blog->getSeoStatusColor() }}" 
-                                      title="SEO Score: {{ $blog->seo_score }}%">
-                                    {{ $blog->seo_score }}%
-                                </span>
-                            </td>
-                            <td>
-                                <span class="badge bg-{{ $blog->getReadabilityStatusColor() }}" 
-                                      title="Readability Score: {{ $blog->readability_score }}%">
-                                    {{ $blog->readability_score }}%
-                                </span>
                             </td>
                             <td>
                                 @if($blog->is_published)
@@ -161,7 +147,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="10" class="text-center py-4">
+                            <td colspan="8" class="text-center py-4">
                                 <p class="text-muted mb-0">No blog posts found</p>
                             </td>
                         </tr>

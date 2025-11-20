@@ -5,7 +5,7 @@
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h5 class="mb-0"></h5>
-        <a data-bs-toggle="modal" data-bs-target="#addNewUser"  class="btn btn-success">
+        <a data-bs-toggle="modal" data-bs-target="#addNewUser" class="btn btn-success">
             <i class="fas fa-plus me-1"></i> Add New user
         </a>
 

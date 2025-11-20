@@ -19,6 +19,8 @@
                             <th>Authors</th>
                             <th>Category</th>
                             <th>Status</th>
+                            <th>SEO</th>
+                            <th>Readability</th>
                             <th>Views</th>
                             <th>Published</th>
                             <th style="width: 150px;">Actions</th>
@@ -49,12 +51,25 @@
                             <td>
                                 <span class="badge bg-secondary">{{ $article->category->name }}</span>
                             </td>
+                            
                             <td>
                                 @if($article->is_published)
                                 <span class="badge bg-success">Published</span>
                                 @else
                                 <span class="badge bg-secondary">Draft</span>
                                 @endif
+                            </td>
+                            <td>
+                                <span class="badge bg-{{ $article->getSeoStatusColor() }}" 
+                                      title="SEO Score: {{ $article->seo_score }}%">
+                                    {{ $article->seo_score }}%
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-{{ $article->getReadabilityStatusColor() }}" 
+                                      title="Readability Score: {{ $article->readability_score }}%">
+                                    {{ $article->readability_score }}%
+                                </span>
                             </td>
                             <td>{{ number_format($article->views) }}</td>
                             <td>{{ $article->published_at->format('M d, Y') }}</td>

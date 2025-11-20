@@ -90,6 +90,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::resource('articles', ArticleAdminController::class);
         Route::post('articles/{article}/toggle-featured', [ArticleAdminController::class, 'toggleFeatured'])->name('articles.toggle-featured');
         Route::post('articles/{article}/toggle-published', [ArticleAdminController::class, 'togglePublished'])->name('articles.toggle-published');
+        Route::post('articles/analyze', [ArticleAdminController::class, 'analyzeContent'])->name('articles.analyze');
         
         // Blogs Management
         // Bulk actions
@@ -105,6 +106,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::delete('blogs/comments/{comment}/delete', [BlogCommentAdminController::class, 'destroy'])->name('comments.destroy');
         Route::resource('blogs', BlogAdminController::class)->except('show');
         Route::get('blogs/comments', [BlogCommentAdminController::class, 'index'])->name('blogs.comments.index');
+        Route::post('blogs/analyze', [BlogAdminController::class, 'analyzeContent'])->name('blogs.analyze');
         
         // Categories Management
         Route::resource('categories', CategoryAdminController::class)->except(['show']);
@@ -121,9 +123,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
         // EXPERTISE
         Route::resource('expertise', ExpertiseAdminController::class);
-        // Route::post('expertise/store', ExpertiseAdminController::class, 'store')->name('expertise.store');
-        // Route::post('expertise/edit', ExpertiseAdminController::class, 'edit')->name('expertise.edit');
-        // Route::post('expertise/update', ExpertiseAdminController::class, 'update')->name('expertise.update');
         Route::patch('expertise/{expertise}/toggle-featured', [ExpertiseAdminController::class, 'toggleFeatured'])->name('expertise.toggle-featured');
         Route::post('expertise/bulk-action', [ExpertiseAdminController::class, 'bulkAction'])->name('expertise.bulk-action');
 

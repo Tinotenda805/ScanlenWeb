@@ -36,20 +36,6 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="slug" class="form-label">Slug *</label>
-                            <input type="text" 
-                                   class="form-control @error('slug') is-invalid @enderror" 
-                                   id="slug" 
-                                   name="slug" 
-                                   value="{{ old('slug') }}" 
-                                   readonly>
-                            <small class="text-muted">Auto-generated from title</small>
-                            @error('slug')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
                             <label for="excerpt" class="form-label">Excerpt *</label>
                             <textarea class="form-control @error('excerpt') is-invalid @enderror" 
                                       id="excerpt" 
@@ -64,10 +50,11 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
-                            {{-- Quill editor container --}}
-                            <input type="hidden" name="content" id="content">
-                            <div id="editor" style="height: 600px;"></div>
-
+                            <textarea class="form-control @error('content') is-invalid @enderror" 
+                                      id="content" 
+                                      name="content" 
+                                      rows="15" 
+                                      required>{{ old('content') }}</textarea>
                             @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -77,9 +64,6 @@
             </div>
 
             <div class="col-lg-4">
-                <!-- SEO & Readability Panel -->
-                @include('admin.blogs.seo-panel')
-
                 <!-- Publish Settings -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">

@@ -50,14 +50,7 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
-                            <textarea class="form-control @error('content') is-invalid @enderror" 
-                                    id="content" 
-                                    name="content" 
-                                    style="display: none;"
-                                    required>{{ old('content', $article->content ?? '') }}</textarea>
-                            
-                            {{-- Quill editor container --}}
-                            <div id="editor" style="height: 400px;"></div>
+                            <div id="editor" style="height: 600px;"></div>
                             
                             @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -68,6 +61,7 @@
             </div>
 
             <div class="col-lg-4">
+                @include('admin.articles.seo-panel')
                 <!-- Publish Settings -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
@@ -231,38 +225,5 @@
     </form>
 </div>
 
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var quill = new Quill('#editor', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline'],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                ['link'],
-                ['clean']
-            ]
-        },
-        placeholder: 'Start writing your content...'
-    });
-    
-    // Set initial content
-    quill.root.innerHTML = document.querySelector('#content').value;
-    
-    // Update textarea on content change
-    quill.on('text-change', function() {
-        document.querySelector('#content').value = quill.root.innerHTML;
-    });
-    
-    // Ensure content is updated before form submission
-    const form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', function() {
-            document.querySelector('#content').value = quill.root.innerHTML;
-        });
-    }
-});
-</script>
+
 @endsection

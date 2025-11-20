@@ -24,6 +24,10 @@ class Blog extends Model
         'is_published',
         'published_at',
         'comments_enabled',
+        'focus_keyword',
+        'meta_description',
+        'seo_score',
+        'readability_score',
     ];
 
     protected $casts = [
@@ -31,6 +35,9 @@ class Blog extends Model
         'is_published' => 'boolean',
         'published_at' => 'datetime',
         'comments_enabled' => 'boolean',
+        'views' => 'integer',
+        'seo_score' => 'integer',
+        'readability_score' => 'integer',
     ];
 
     protected static function boot()
@@ -73,6 +80,47 @@ class Blog extends Model
         $this->increment('views');
     }
 
+    // SEO Status Helper
+    public function getSeoStatus()
+    {
+        if ($this->seo_score >= 80) return 'good';
+        if ($this->seo_score >= 50) return 'ok';
+        return 'bad';
+    }
+
+    public function getSeoStatusColor()
+    {
+        $status = $this->getSeoStatus();
+        return match($status) {
+            'good' => 'success',
+            'ok' => 'warning',
+            'bad' => 'danger',
+            default => 'secondary'
+        };
+    }
+
+    // Readability Status Helper
+    public function getReadabilityStatus()
+    {
+        if ($this->readability_score >= 70) return 'good';
+        if ($this->readability_score >= 50) return 'ok';
+        return 'bad';
+    }
+
+    public function getReadabilityStatusColor()
+    {
+        $status = $this->getReadabilityStatus();
+        return match($status) {
+            'good' => 'success',
+            'ok' => 'warning',
+            'bad' => 'danger',
+            default => 'secondary'
+        };
+    }
+
+
+
+    // SCOPES
     public function scopePublished($query)
     {
         return $query->where('is_published', true)
@@ -83,4 +131,5 @@ class Blog extends Model
     {
         return $query->where('is_featured', true);
     }
+    
 }

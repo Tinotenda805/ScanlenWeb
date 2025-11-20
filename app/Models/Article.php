@@ -22,12 +22,20 @@ class Article extends Model
         'is_featured',
         'is_published',
         'published_at',
+        'focus_keyword',
+        'meta_description',
+        'seo_score',
+        'readability_score',
     ];
 
     protected $casts = [
         'is_featured' => 'boolean',
         'is_published' => 'boolean',
         'published_at' => 'datetime',
+        'views' => 'integer',
+        'reading_time' => 'integer',
+        'seo_score' => 'integer',
+        'readability_score' => 'integer',
     ];
 
     protected static function boot()
@@ -64,6 +72,44 @@ class Article extends Model
         $this->increment('views');
     }
 
+    // SEO Status Helper
+    public function getSeoStatus()
+    {
+        if ($this->seo_score >= 80) return 'good';
+        if ($this->seo_score >= 50) return 'ok';
+        return 'bad';
+    }
+
+    public function getSeoStatusColor()
+    {
+        $status = $this->getSeoStatus();
+        return match($status) {
+            'good' => 'success',
+            'ok' => 'warning',
+            'bad' => 'danger',
+            default => 'secondary'
+        };
+    }
+
+    // Readability Status Helper
+    public function getReadabilityStatus()
+    {
+        if ($this->readability_score >= 70) return 'good';
+        if ($this->readability_score >= 50) return 'ok';
+        return 'bad';
+    }
+
+    public function getReadabilityStatusColor()
+    {
+        $status = $this->getReadabilityStatus();
+        return match($status) {
+            'good' => 'success',
+            'ok' => 'warning',
+            'bad' => 'danger',
+            default => 'secondary'
+        };
+    }
+
     public function scopePublished($query)
     {
         return $query->where('is_published', true)
@@ -84,4 +130,6 @@ class Article extends Model
     {
         return $this->attributes['reading_time']; // Raw value from database
     }
+
+
 }

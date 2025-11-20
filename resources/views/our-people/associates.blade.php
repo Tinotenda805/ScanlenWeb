@@ -3,7 +3,7 @@
 @section('content')
 
 @include('layouts.page-associatesheader', [
-    'title' => 'Our associates',
+    'title' => 'Our Associates',
 ])
 
 <!-- Team Start -->

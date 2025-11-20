@@ -7,6 +7,8 @@ use App\Models\Article;
 use App\Models\OurPeople;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Services\ReadabilityAnalyzer;
+use App\Services\SeoAnalyzer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -47,9 +49,29 @@ class ArticleAdminController extends Controller
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
             'published_at' => 'nullable|date',
+            'focus_keyword' => 'nullable|string|max:100',
+            'meta_description' => 'nullable|string|max:160'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
+
+        // Analyze SEO
+        $seoAnalyzer = new SeoAnalyzer(
+            $validated['title'],
+            $validated['content'],
+            $validated['meta_description'] ?? '',
+            $validated['focus_keyword'] ?? '',
+            $validated['slug'],
+            $request->hasFile('featured_image')
+        );
+        $seoResult = $seoAnalyzer->analyze();
+
+        // Analyze Readability
+        $readabilityAnalyzer = new ReadabilityAnalyzer($validated['content']);
+        $readabilityResult = $readabilityAnalyzer->analyze();
+
+        $validated['seo_score'] = $seoResult['score'];
+        $validated['readability_score'] = $readabilityResult['score'];
 
         // Handle image upload
         if ($request->hasFile('featured_image')) {
@@ -96,9 +118,29 @@ class ArticleAdminController extends Controller
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
             'published_at' => 'nullable|date',
+            'focus_keyword' => 'nullable|string|max:100',
+            'meta_description' => 'nullable|string|max:160',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
+
+        // Analyze SEO
+        $seoAnalyzer = new SeoAnalyzer(
+            $validated['title'],
+            $validated['content'],
+            $validated['meta_description'] ?? '',
+            $validated['focus_keyword'] ?? '',
+            $validated['slug'],
+            $request->hasFile('featured_image') || $article->featured_image
+        );
+        $seoResult = $seoAnalyzer->analyze();
+
+        // Analyze Readability
+        $readabilityAnalyzer = new ReadabilityAnalyzer($validated['content']);
+        $readabilityResult = $readabilityAnalyzer->analyze();
+
+        $validated['seo_score'] = $seoResult['score'];
+        $validated['readability_score'] = $readabilityResult['score'];
 
         // Handle image upload
         if ($request->hasFile('featured_image')) {
@@ -146,5 +188,30 @@ class ArticleAdminController extends Controller
         $article->update(['is_published' => !$article->is_published]);
 
         return back()->with('success', 'Published status updated!');
+    }
+
+
+    /**
+     * AJAX endpoint for real-time SEO & Readability analysis
+     */
+    public function analyzeContent(Request $request)
+    {
+        $seoAnalyzer = new SeoAnalyzer(
+            $request->title ?? '',
+            $request->content ?? '',
+            $request->meta_description ?? '',
+            $request->focus_keyword ?? '',
+            $request->slug ?? Str::slug($request->title ?? ''),
+            $request->has_featured_image ?? false
+        );
+        $seoResult = $seoAnalyzer->analyze();
+
+        $readabilityAnalyzer = new ReadabilityAnalyzer($request->content ?? '');
+        $readabilityResult = $readabilityAnalyzer->analyze();
+
+        return response()->json([
+            'seo' => $seoResult,
+            'readability' => $readabilityResult,
+        ]);
     }
 }

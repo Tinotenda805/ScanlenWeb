@@ -1,6 +1,6 @@
 <header class="header bg-breadcrumb" id="heroHeader">
     <div class="header-content">
-        <h1>{{ $title ?? 'Title Goes Here' }}</h1>
+        <h1>{{ $title ?? 'Title' }}</h1>
     </div>
 </header>
 
@@ -23,16 +23,16 @@
             url("{{ asset('images/newpartners/br.png') }}") center/280px 330px no-repeat,
 
             /* Left Side Images */
-            url("{{ asset('images/associates/fs.jpg') }}") 12% 35%/160px 200px no-repeat,
+            url("{{ asset('images/associates/fs.jpg') }}") 11% 35%/160px 200px no-repeat,
             url("{{ asset('images/associates/in.png') }}") 33% 80%/140px 180px no-repeat,
             url("{{ asset('images/associates/km.jpg') }}") 1% 10%/140px 180px no-repeat,
             url("{{ asset('images/associates/mvm.jpg') }}") 22% 60%/150px 180px no-repeat,
 
             /* Right Side Images */
-            url("{{ asset('images/associates/oc.png') }}") 100% 10%/140px 180px no-repeat,
-            url("{{ asset('images/associates/ppm.png') }}") 89% 35%/160px 200px no-repeat,
-            url("{{ asset('images/associates/tk.png') }}") 67% 80%/140px 180px no-repeat,
-            url("{{ asset('images/associates/r.png') }}") 78% 60%/150px 180px no-repeat;
+            url("{{ asset('images/associates/oc.png') }}") 98% 10%/140px 180px no-repeat,
+            url("{{ asset('images/associates/ppm.png') }}") 83% 50%/160px 200px no-repeat,
+            url("{{ asset('images/associates/tk.png') }}") 67% 80%/140px 180px no-repeat;
+            /* url("{{ asset('images/associates/r.png') }}") 78% 60%/150px 180px no-repeat; */
 
         background-blend-mode: multiply;
         padding: 140px 0 60px 0;
