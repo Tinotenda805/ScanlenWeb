@@ -15,7 +15,6 @@ use Illuminate\Support\Str;
 
 class BlogAdminController extends Controller
 {
-    public $id;
 
     public function index()
     {
@@ -57,7 +56,6 @@ class BlogAdminController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        $validated['uuid'] = Blog::where('uuid', $this->id)->first();
 
         // Analyze SEO
         $seoAnalyzer = new SeoAnalyzer(
@@ -66,7 +64,7 @@ class BlogAdminController extends Controller
             $validated['meta_description'] ?? '',
             $validated['focus_keyword'] ?? '',
             $validated['slug'],
-            $request->hasFile('featured_image') ?? false
+            $request->hasFile('featured_image'),
         );
         $seoResult = $seoAnalyzer->analyze();
 

@@ -48,8 +48,9 @@
                     @endif
 
                     <!-- Blog Content -->
-                    <div class="blog-content fs-5 lh-base">
-                        {!! nl2br(e($blog->content)) !!}
+                    <div class="blog-content fs-5 lh-base " style="align-items:stretch">
+                        {{-- {!! nl2br(e($blog->content)) !!} --}}
+                        {!! $blog->content !!}
                     </div>
 
                     <!-- Tags -->

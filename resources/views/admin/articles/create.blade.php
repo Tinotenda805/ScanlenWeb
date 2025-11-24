@@ -45,11 +45,12 @@
                             <small class="text-muted">Brief description of the article</small>
                             @error('excerpt')
                             <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            @enderror 
                         </div>
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
+                            <input type="hidden" name="content" id="content">
                             <div id="editor" style="height: 600px;"></div>
                             
                             @error('content')

@@ -64,7 +64,6 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
-                            {{-- Quill editor container --}}
                             <input type="hidden" name="content" id="content">
                             <div id="editor" style="height: 600px;"></div>
 

@@ -5,10 +5,12 @@ namespace App\Services;
 class ReadabilityAnalyzer
 {
     protected $content;
+    protected $rawContent; // Keep original HTML
     
     public function __construct($content = '')
     {
-        $this->content = strip_tags($content);
+        $this->rawContent = $content; // Store original HTML
+        $this->content = strip_tags($content); // Stripped version for text analysis
     }
     
     /**
@@ -81,12 +83,29 @@ class ReadabilityAnalyzer
      */
     protected function checkParagraphLength()
     {
-        $htmlContent = $this->content; // Keep HTML for this check
-        $paragraphs = preg_split('/<\/p>|<br\s*\/?>/i', $htmlContent, -1, PREG_SPLIT_NO_EMPTY);
+        // USE RAW CONTENT (with HTML) for this check
+        $htmlContent = $this->rawContent;
+        
+        // First, remove empty paragraphs (like <p><br></p> or <p></p>)
+        $htmlContent = preg_replace('/<p>\s*<br\s*\/?>\s*<\/p>/i', '', $htmlContent);
+        $htmlContent = preg_replace('/<p>\s*<\/p>/i', '', $htmlContent);
+        
+        // Now split by closing paragraph tags
+        $paragraphs = preg_split('/<\/p>/i', $htmlContent, -1, PREG_SPLIT_NO_EMPTY);
+        
+        // Filter out empty paragraphs after splitting
+        $paragraphs = array_filter($paragraphs, function($para) {
+            $cleanPara = strip_tags($para);
+            return trim($cleanPara) !== '';
+        });
+        
         $longParagraphs = 0;
         
         foreach ($paragraphs as $para) {
-            $words = str_word_count(strip_tags($para));
+            // Strip HTML tags and count words
+            $cleanText = strip_tags($para);
+            $words = str_word_count($cleanText);
+            
             if ($words > 150) {
                 $longParagraphs++;
             }
@@ -95,26 +114,35 @@ class ReadabilityAnalyzer
         $totalParas = count($paragraphs);
         $percentage = $totalParas > 0 ? ($longParagraphs / $totalParas) * 100 : 0;
         
+        if ($totalParas == 0) {
+            return [
+                'status' => 'neutral',
+                'message' => 'No paragraphs found',
+                'score' => 5
+            ];
+        }
+        
         if ($percentage == 0) {
             return [
                 'status' => 'good',
-                'message' => 'All paragraphs are well-sized',
+                'message' => sprintf('All %d paragraphs are well-sized', $totalParas),
                 'score' => 10
             ];
         } elseif ($percentage <= 25) {
             return [
                 'status' => 'ok',
-                'message' => sprintf('%d%% of paragraphs are too long', round($percentage)),
+                'message' => sprintf('%d%% of paragraphs are too long (%d/%d)', round($percentage), $longParagraphs, $totalParas),
                 'score' => 7
             ];
         } else {
             return [
                 'status' => 'bad',
-                'message' => sprintf('%d%% of paragraphs are too long. Break them up.', round($percentage)),
+                'message' => sprintf('%d%% of paragraphs are too long (%d/%d). Break them up.', round($percentage), $longParagraphs, $totalParas),
                 'score' => 3
             ];
         }
     }
+
     
     /**
      * Check for transition words
@@ -297,7 +325,8 @@ class ReadabilityAnalyzer
      */
     protected function checkSubheadings()
     {
-        preg_match_all('/<h[2-6][^>]*>/i', $this->content, $headings);
+        // USE RAW CONTENT for HTML tag detection
+        preg_match_all('/<h[2-6][^>]*>/i', $this->rawContent, $headings);
         $headingCount = count($headings[0]);
         $words = str_word_count($this->content);
         

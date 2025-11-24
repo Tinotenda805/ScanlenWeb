@@ -184,9 +184,9 @@
                                     </div>
                                     <div class="col">
                                         <h6 class="fw-bold mb-1">{{ $author->name }}</h6>
-                                        @if($author->bio)
-                                        <p class="text-muted mb-2 small">{{ $author->bio }}</p>
-                                        @endif
+                                        {{-- @if($author->bio)
+                                        <p class="text-muted mb-2 small">{{ Str::words($author->bio, 10, '...') }}</p>
+                                        @endif --}}
                                         <div class="d-flex gap-2">
                                             @if($author->twitter)
                                             <a href="{{ $author->twitter }}" class="btn btn-sm btn-maroon-outline" target="_blank">

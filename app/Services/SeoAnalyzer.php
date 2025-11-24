@@ -290,7 +290,7 @@ class SeoAnalyzer
         } else {
             return [
                 'status' => 'bad',
-                'message' => 'No headings found. Add H2, H3 headings for better structure.',
+                'message' => 'No headings found. Add headings for better structure.',
                 'score' => 0
             ];
         }
@@ -304,9 +304,9 @@ class SeoAnalyzer
         // Check for featured image first
         if (!$this->hasFeaturedImage) {
             return [
-                'status' => 'bad',
-                'message' => 'No featured image uploaded. Featured images improve SEO and social sharing.',
-                'score' => 0
+                'status' => 'ok',
+                'message' => 'No featured image uploaded. Images improve SEO and social sharing.',
+                'score' => 6
             ];
         }
 
