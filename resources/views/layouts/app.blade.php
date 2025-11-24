@@ -8,14 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/style2.css')}}"> --}}
     <link href="{{ asset('images/avitar.png')}}" rel="shortcut icon">
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
-    <!-- Libraries Stylesheet -->
-    {{-- <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> --}}
 
     {{-- FONTS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,8 +26,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="{{ url('/') }}" style="letter-spacing:2px;">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:55px; width:auto; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff;">
+            <a class="navbar-brand fw-bold text-white d-flex align-items-center " href="{{ url('/') }}" style="letter-spacing:2px;">
+                <img src="{{ asset('images/logo.png') }}" class="rounded" alt="Logo" style="height:55px; width:auto; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff;">
             </a>
             
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -150,25 +145,11 @@
                             </a>
                         </li>
                     </ul>
-                    {{-- <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.181788370157!2d31.04833597384885!3d-17.830111076366077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a517c27efdef%3A0x2be3aeb168c64e6d!2sSCANLEN%20%26%20HOLDERNESS%20-%20LAW%20FIRM%20HARARE%20ZIMBABWE!5e0!3m2!1sen!2sza!4v1757508528678!5m2!1sen!2sza" 
-                        referrerpolicy="no-referrer-when-downgrade" 
-                        width="100%" 
-                        height="120" 
-                        style="border:0; border-radius: 8px;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe> --}}
+                    
                 </div>
 
                 <div class="diclaimer col-lg-3 col-md-3">
                     <h5 class="footer-heading border-start border-5 border-danger-subtle ps-2">DISCLAIMER</h5>
-                    {{-- <p>Feel free to leave your email address so that we keep you informed on all our activities.</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <button class="btn btn-outline-warning" type="button" id="button-addon1">Submit</button>
-                    </div> --}}
-                    {{-- <strong>Disclaimer:</strong>  --}}
                     <p class="justify-info">
                         The materials appearing on this website are for information 
                         purposes only and do not constitute legal advice. You should not take action 
@@ -215,7 +196,7 @@
     <script src="{{asset('js/script.js')}}"></script>
 
     
-    
+    @yield('scripts')
     
 </body>
 </html>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expertise;
 use App\Models\OurPeople;
+use App\Models\OurPeopleExpertise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +14,8 @@ use Illuminate\Support\Str;
 
 class OurPeopleAdminController extends Controller
 {
+    public $id;
+
     public function index()
     {
         $people = OurPeople::withCount('articles')
@@ -23,7 +27,9 @@ class OurPeopleAdminController extends Controller
 
     public function create()
     {
-        return view('admin.people.create');
+        $expertise = Expertise::all();
+
+        return view('admin.people.create', compact('expertise'));
     }
 
     public function storeOld(Request $request)
@@ -58,12 +64,7 @@ class OurPeopleAdminController extends Controller
     {
         // Validate the request
         $validated = $this->validateRequest($request);
-
-        // if ($validator->fails()) {
-        //     dd($validator->errors()->all());
-        // }
-
-        // $validated = $validator->validated();
+        // dd($validated);
 
         DB::beginTransaction();
 
@@ -93,10 +94,16 @@ class OurPeopleAdminController extends Controller
                 // 'order' => $validated['order'] ?? 0,
                 'avatar' => $avatarPath,
                 'banner_image' => $bannerPath,
-                'areas_of_expertise' => $this->formatArrayData($validated['areas_of_expertise'] ?? []),
+                // 'areas_of_expertise' => $this->formatArrayData($validated['areas_of_expertise'] ?? []),
                 'professional_experience' => $this->formatArrayData($validated['professional_experience'] ?? []),
                 'qualifications' => $this->formatArrayData($validated['qualifications'] ?? []),
             ]);
+
+            // $expertiseValidation =  $this->formatArrayData($validated['areas_of_expertise'] ?? []);
+            // // Attach expertise
+            // if (!empty($expertiseValidation)) {
+            //     $person->expertise()->attach($expertiseValidation);
+            // }
 
             DB::commit();
 
@@ -106,6 +113,8 @@ class OurPeopleAdminController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
+
+            dd($e->getMessage());
             
             return back()
                 ->withInput()
@@ -256,7 +265,7 @@ class OurPeopleAdminController extends Controller
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'areas_of_expertise' => 'nullable|array',
-            'areas_of_expertise.*.title' => 'nullable|string|max:255',
+            'areas_of_expertise.*.expertise_id' => 'nullable|int|exists:expertise,id',
             'areas_of_expertise.*.description' => 'nullable|string',
             'professional_experience' => 'nullable|array',
             'professional_experience.*.period' => 'nullable|string|max:255',
@@ -279,33 +288,6 @@ class OurPeopleAdminController extends Controller
         return $request->validate($rules);
     }
 
-    /**
-     * Generate a unique slug
-     */
-    // private function generateSlug($slug, $name, $person = null)
-    // {
-    //     // If slug is provided and not empty, use it
-    //     if (!empty(trim($slug))) {
-    //         return Str::slug($slug);
-    //     }
-
-    //     // Generate slug from name
-    //     $baseSlug = Str::slug($name);
-    //     $slug = $baseSlug;
-    //     $counter = 1;
-
-    //     // Check if slug already exists
-    //     while (OurPeople::where('slug', $slug)
-    //         ->when($person, function ($query) use ($person) {
-    //             return $query->where('id', '!=', $person->id);
-    //         })
-    //         ->exists()) {
-    //         $slug = $baseSlug . '-' . $counter;
-    //         $counter++;
-    //     }
-
-    //     return $slug;
-    // }
 
 
     /**

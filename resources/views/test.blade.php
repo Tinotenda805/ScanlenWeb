@@ -5,205 +5,78 @@
 <style>
 :root {
     --maroon: #3c0008;
+    --light-maroon: #50010b;
+    --light-gray: #f8f9fa;
     --gold: #d4af37;
-    --dark: #1a1a1a;
 }
 
-/* Main Landing Container */
-.landing-hero {
+/* Hero Section */
+.hero-landing {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a1a 0%, var(--maroon) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(60, 0, 8, 0.4) 100%),
+                url('../images/scales.jpg') center/cover;
     position: relative;
-    overflow: hidden;
     display: flex;
     align-items: center;
-    padding: 2rem 0;
+    padding: 4rem 0;
+    overflow: hidden;
 }
 
-/* Animated Background Shapes */
-.landing-hero::before {
-    content: '';
+/* Floating Historical Portraits */
+.floating-portraits {
     position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: float 20s ease-in-out infinite;
-}
-
-.landing-hero::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -15%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: float 15s ease-in-out infinite reverse;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-30px) translateX(20px); }
-}
-
-/* Container Layout */
-.landing-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.landing-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-/* Left Side - 3D Globe Carousel */
-.globe-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    height: 600px;
-    margin: 0 auto;
-    perspective: 1500px;
-}
-
-/* Center Founder Image */
-.founder-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    text-align: center;
-}
-
-.founder-img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    border: 6px solid var(--gold);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    object-fit: cover;
-    background: #fff;
-    padding: 6px;
-}
-
-.founder-label {
-    margin-top: 1rem;
-    background: var(--gold);
-    color: var(--dark);
-    padding: 0.7rem 1.5rem;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-}
-
-/* 3D Carousel Stage */
-.carousel-3d-stage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    transform: translate(-50%, -50%);
-    animation: rotate3d 30s linear infinite;
-}
-
-/* Pause on hover */
-.globe-container:hover .carousel-3d-stage {
-    animation-play-state: paused;
-}
-
-/* Partner Cards in 3D Space */
-.partner-card-3d {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 160px;
-    transform-style: preserve-3d;
-    transition: all 0.3s ease;
-}
-
-.partner-card-3d img {
-    width: 100%;
-    height: 120px;
-    border-radius: 15px;
-    border: 4px solid white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    object-fit: cover;
-    transition: all 0.3s ease;
-    filter: grayscale(30%);
-}
-
-.partner-card-3d:hover img {
-    transform: scale(1.15);
-    border-color: var(--gold);
-    filter: grayscale(0%);
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
-}
-
-.partner-label {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(60, 0, 8, 0.95);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.partner-card-3d:hover .partner-label {
-    opacity: 1;
-}
-
-/* Hide cards when behind center */
-.partner-card-3d.behind {
-    opacity: 0.3;
+    z-index: 1;
     pointer-events: none;
 }
 
-/* 3D Rotation Animation */
-@keyframes rotate3d {
-    from {
-        transform: translate(-50%, -50%) rotateY(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotateY(360deg);
-    }
+.floating-portrait {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    filter: blur(1px) grayscale(50%);
 }
 
-/* Right Side - Content */
-.landing-content {
-    color: white;
-    animation: fadeInRight 1s ease-out;
+.floating-portrait.active {
+    opacity: 0.5;
 }
 
-@keyframes fadeInRight {
+.floating-portrait img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    object-fit: cover;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+/* LEFT SIDE - Carousel & Heading */
+.carousel-content-section {
+    animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInLeft {
     from {
         opacity: 0;
-        transform: translateX(50px);
+        transform: translateX(-30px);
     }
     to {
         opacity: 1;
@@ -211,151 +84,292 @@
     }
 }
 
-.landing-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    animation: fadeIn 0.8s ease-out 0.2s both;
+/* Heading Above Carousel */
+.carousel-heading {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.landing-title {
+.carousel-badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    display: none;
+}
+
+.carousel-title .firm-name {
+    color: var(--gold);
+    display: block;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+/* 3D Carousel Below Heading */
+.c-partners-container {
+    width: 500px; 
+    height: 500px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    perspective: 1200px;
+}
+
+/* Founder Center Image - BEHIND carousel */
+.founder-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0; /* Middle layer */
+    text-align: center;
+}
+
+.founder-center .founder-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 5px solid var(--gold);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    object-fit: cover;
+    background: white;
+    padding: 5px;
+}
+
+.founder-center .founder-label {
+    margin-top: 0.8rem;
+    background: var(--gold);
+    color: var(--maroon);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* Carousel Circle */
+#circular-carousel {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin: auto;
+    border: none;
+    background: transparent;
+    transform-style: preserve-3d;
+}
+
+/* Carousel Images */
+#circular-carousel .carousel-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    z-index: 10; /* Front by default */
+}
+
+#circular-carousel img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+#circular-carousel .carousel-img:hover img {
+    transform: scale(1.2);
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+}
+
+/* When behind founder - hide completely */
+#circular-carousel .carousel-img.behind {
+    z-index: 1; /* Behind founder */
+    opacity: 0; /* Invisible */
+    pointer-events: none;
+}
+
+.partner-info {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--maroon);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.carousel-img:hover .partner-info {
+    opacity: 1;
+}
+
+.carousel-img.behind .partner-info {
+    opacity: 0 !important;
+}
+
+/* RIGHT SIDE - Main Content */
+.main-content-section {
+    color: white;
+    animation: fadeInRight 1s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.content-tagline {
+    font-size: 1rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.content-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 2rem;
-    animation: fadeIn 0.8s ease-out 0.4s both;
 }
 
-.landing-title .highlight {
-    color: var(--gold);
-}
-
-.landing-description {
-    font-size: 1.2rem;
+.content-description {
+    font-size: 1.15rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.85);
     margin-bottom: 3rem;
-    max-width: 600px;
-    animation: fadeIn 0.8s ease-out 0.6s both;
+    max-width: 550px;
 }
 
 /* Stats Grid */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
-    animation: fadeIn 0.8s ease-out 0.8s both;
 }
 
-.stat-box {
+.stat-item {
     text-align: left;
 }
 
 .stat-number {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
     color: var(--gold);
     line-height: 1;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 /* CTA Buttons */
-.cta-buttons {
+.content-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
-    animation: fadeIn 0.8s ease-out 1s both;
 }
 
-.btn-primary, .btn-secondary {
-    padding: 1.2rem 3rem;
+.btn-hero {
+    padding: 1rem 2.5rem;
     font-size: 1rem;
     font-weight: 600;
     border: none;
+    border-radius: 50px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50px;
+    letter-spacing: 0.5px;
 }
 
 .btn-primary {
     background: var(--gold);
-    color: var(--dark);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-}
-
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-}
-
-.btn-primary:hover::before {
-    left: 100%;
+    color: var(--maroon);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
 }
 
-.btn-secondary {
+.btn-outline {
     background: transparent;
     color: white;
-    border: 2px solid rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.btn-secondary:hover {
+.btn-outline:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--gold);
     color: var(--gold);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
+/* Scroll Hint */
+.scroll-hint {
     position: absolute;
-    bottom: 3rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
     text-align: center;
     cursor: pointer;
     animation: bounce 2s infinite;
 }
 
-.scroll-indicator i {
-    font-size: 2rem;
+.scroll-hint i {
     display: block;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
 }
 
 @keyframes bounce {
@@ -363,50 +377,49 @@
     50% { transform: translateX(-50%) translateY(-10px); }
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1200px) {
-    .landing-grid {
-        gap: 3rem;
+    .hero-grid {
+        gap: 4rem;
     }
     
-    .globe-container {
-        max-width: 500px;
-        height: 500px;
+    .c-partners-container {
+        width: 450px;
+        height: 450px;
     }
     
-    .founder-img {
-        width: 150px;
-        height: 150px;
+    #circular-carousel {
+        width: 450px;
+        height: 450px;
     }
     
-    .partner-card-3d {
-        width: 100px;
-        height: 140px;
+    .founder-center .founder-img {
+        width: 180px;
+        height: 180px;
     }
     
-    .partner-card-3d img {
-        height: 100px;
+    #circular-carousel img {
+        width: 65px;
+        height: 65px;
     }
 }
 
 @media (max-width: 991px) {
-    .landing-grid {
+    .hero-grid {
         grid-template-columns: 1fr;
-        gap: 4rem;
+        gap: 3rem;
     }
     
-    .globe-container {
-        max-width: 450px;
-        height: 450px;
-        order: 1;
-    }
-    
-    .landing-content {
+    .carousel-content-section {
         order: 2;
+    }
+    
+    .main-content-section {
+        order: 1;
         text-align: center;
     }
     
-    .landing-description {
+    .content-description {
         margin-left: auto;
         margin-right: auto;
     }
@@ -415,255 +428,403 @@
         justify-content: center;
     }
     
-    .stat-box {
+    .stat-item {
         text-align: center;
     }
     
-    .cta-buttons {
+    .content-buttons {
         justify-content: center;
+    }
+    
+    .c-partners-container {
+        width: 400px;
+        height: 400px;
+    }
+    
+    #circular-carousel {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .founder-center .founder-img {
+        width: 160px;
+        height: 160px;
     }
 }
 
 @media (max-width: 768px) {
-    .landing-hero {
+    .hero-landing {
         min-height: auto;
         padding: 3rem 0;
     }
     
-    .globe-container {
-        max-width: 380px;
-        height: 380px;
+    .c-partners-container {
+        width: 350px;
+        height: 350px;
     }
     
-    .founder-img {
-        width: 120px;
-        height: 120px;
+    #circular-carousel {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .founder-center .founder-img {
+        width: 140px;
+        height: 140px;
         border-width: 4px;
     }
     
-    .founder-label {
-        font-size: 0.85rem;
-        padding: 0.5rem 1.2rem;
+    .founder-center .founder-label {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
     }
     
-    .partner-card-3d {
-        width: 85px;
-        height: 115px;
+    #circular-carousel img {
+        width: 55px;
+        height: 55px;
+        border-width: 2px;
     }
     
-    .partner-card-3d img {
-        height: 85px;
-        border-width: 3px;
-    }
-    
-    .landing-title {
-        font-size: 2.5rem;
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
     }
     
     .stat-number {
         font-size: 2.5rem;
     }
     
-    .stats-grid {
-        gap: 1.5rem;
+    .floating-portrait img {
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
     }
 }
 
-@media (max-width: 480px) {
-    .globe-container {
-        max-width: 320px;
-        height: 320px;
+@media (max-width: 576px) {
+    .c-partners-container {
+        width: 300px;
+        height: 300px;
     }
     
-    .founder-img {
-        width: 100px;
-        height: 100px;
+    #circular-carousel {
+        width: 300px;
+        height: 300px;
     }
     
-    .partner-card-3d {
-        width: 70px;
-        height: 95px;
+    .founder-center .founder-img {
+        width: 120px;
+        height: 120px;
     }
     
-    .partner-card-3d img {
-        height: 70px;
-        border-width: 2px;
+    #circular-carousel img {
+        width: 50px;
+        height: 50px;
     }
     
-    .landing-title {
-        font-size: 2rem;
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
     }
     
-    .btn-primary, .btn-secondary {
+    .btn-hero {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
+    }
+    
+    .floating-portrait img {
+        width: 80px;
+        height: 80px;
     }
 }
 </style>
 
-<section class="landing-hero">
-    <div class="landing-container">
-        <div class="landing-grid">
-            <!-- Left Side - 3D Globe with Partners -->
-            <div class="globe-container">
-                <!-- Center Founder -->
-                <div class="founder-center">
-                    <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" 
-                         alt="Sir Thomas Scanlen" 
-                         class="founder-img">
-                    <div class="founder-label">Est. 1895</div>
+<section class="hero-landing">
+    <!-- Floating Historical Portraits Background -->
+    <div class="floating-portraits" id="floatingPortraits">
+        <!-- These will be populated dynamically via JavaScript -->
+    </div>
+
+    <div class="hero-container">
+        <div class="hero-grid">
+            <!-- LEFT SIDE - Heading + 3D Carousel -->
+            <div class="carousel-content-section">
+                <!-- Heading Above Carousel -->
+                <div class="carousel-heading">
+                    <div class="carousel-badge">Since 1895</div>
+                    <h2 class="carousel-title">
+                        Legal Excellence
+                        <span class="firm-name">Scanlen & Holderness</span>
+                    </h2>
                 </div>
 
-                <!-- 3D Rotating Globe -->
-                <div class="carousel-3d-stage" id="globe3d">
-                    <!-- Old partners will be positioned here by JavaScript -->
+                <!-- 3D Carousel -->
+                <div class="c-partners-container">
+                    <!-- Founder Center (BEHIND) -->
+                    <div class="founder-center">
+                        <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" 
+                             alt="Sir Thomas Scanlen" 
+                             class="founder-img">
+                        <div class="founder-label">Founder</div>
+                    </div>
+
+                    <!-- 3D Carousel (FRONT) -->
+                    <div id="circular-carousel" >
+                        @if(isset($partners) && $partners->count() > 0)
+                            @foreach($partners as $index => $partner)
+                                <a href="{{ route('our-people.partner', $partner->id) }}" 
+                                   class="carousel-img" 
+                                   title="{{ $partner->name }}">
+                                    <img src="{{ $partner->avatar ? asset('storage/' . $partner->avatar) : asset('images/default-avatar.png') }}" 
+                                         alt="{{ $partner->name }}">
+                                    <div class="partner-info">
+                                        {{ $partner->name }}
+                                    </div>
+                                </a>
+                            @endforeach
+                        @else
+                            <!-- Fallback -->
+                            <a href="#" class="carousel-img">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Partner">
+                                <div class="partner-info">Current Partner</div>
+                            </a>
+                            <a href="#" class="carousel-img">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Partner">
+                                <div class="partner-info">Current Partner</div>
+                            </a>
+                            <a href="#" class="carousel-img">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Partner">
+                                <div class="partner-info">Current Partner</div>
+                            </a>
+                            <a href="#" class="carousel-img">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Partner">
+                                <div class="partner-info">Current Partner</div>
+                            </a>
+                            <a href="#" class="carousel-img">
+                                <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="Partner">
+                                <div class="partner-info">Current Partner</div>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Side - Content -->
-            <div class="landing-content">
-                <div class="landing-subtitle">Excellence Since 1895</div>
+            <!-- RIGHT SIDE - Main Content -->
+            <div class="main-content-section">
+                <div class="content-tagline">Heritage • Excellence • Trust</div>
                 
-                <h1 class="landing-title">
-                    Legacy Meets<br>
-                    <span class="highlight">Legal Excellence</span>
+                <h1 class="content-title">
+                    Building On<br>
+                    A Legacy Of Trust
                 </h1>
 
-                <p class="landing-description">
-                    For over a century, we've been building on the foundation laid by 
-                    distinguished legal minds. Today, our current partners continue this 
-                    tradition of excellence in legal practice.
+                <p class="content-description">
+                    For over a century, we've been delivering exceptional legal counsel 
+                    to clients who demand excellence. Our heritage of distinguished service 
+                    continues with today's leading attorneys.
                 </p>
 
                 <!-- Stats -->
-                <div class="stats-grid">
-                    <div class="stat-box">
+                <div class="stats-grid" style="display: none">
+                    <div class="stat-item">
                         <span class="stat-number">129+</span>
-                        <span class="stat-label">Years Excellence</span>
+                        <span class="stat-label">Years</span>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-item">
                         <span class="stat-number">50+</span>
-                        <span class="stat-label">Expert Attorneys</span>
+                        <span class="stat-label">Attorneys</span>
                     </div>
-                    <div class="stat-box">
-                        <span class="stat-number">5,000+</span>
-                        <span class="stat-label">Cases Won</span>
-                    </div>
-                    <div class="stat-box">
+                    <div class="stat-item">
                         <span class="stat-number">98%</span>
-                        <span class="stat-label">Success Rate</span>
+                        <span class="stat-label">Success</span>
                     </div>
                 </div>
 
                 <!-- CTA Buttons -->
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn-primary">Schedule Consultation</a>
-                    <a href="#about" class="btn-secondary">Our Legacy</a>
+                <div class="content-buttons">
+                    <a href="#contact" class="btn-hero btn-primary">Schedule Consultation</a>
+                    <a href="#about" class="btn-hero btn-outline">Learn More</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+    <!-- Scroll Hint -->
+    <div class="scroll-hint" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
         <i class="fas fa-chevron-down"></i>
-        <small>Scroll to explore</small>
+        <span>Scroll</span>
     </div>
 </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Old Partners Data
+    // ===== FLOATING HISTORICAL PORTRAITS =====
+    const floatingContainer = document.getElementById('floatingPortraits');
+    
+    // List of old partner images - ADD YOUR IMAGE PATHS HERE
     const oldPartners = [
-        { img: '{{ asset("images/oldpartners/op1.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op2.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op3.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op4.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op5.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op6.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op7.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op8.jpeg") }}', name: 'Legacy Partner' },
-        { img: '{{ asset("images/oldpartners/op9.jpeg") }}', name: 'Legacy Partner' }
+        '{{ asset("images/oldpartners/op1.jpeg") }}',
+        '{{ asset("images/oldpartners/op2.jpeg") }}',
+        '{{ asset("images/oldpartners/op3.jpeg") }}',
+        '{{ asset("images/oldpartners/op4.jpeg") }}',
+        '{{ asset("images/oldpartners/op5.jpeg") }}',
+        '{{ asset("images/oldpartners/op6.jpeg") }}',
+        '{{ asset("images/oldpartners/op7.jpeg") }}',
+        '{{ asset("images/oldpartners/op8.jpeg") }}',
+        '{{ asset("images/oldpartners/op8.jpeg") }}',
+        // Add more paths as needed
     ];
-
-    const stage = document.getElementById('globe3d');
-    let radius = 250;
-
-    // Get responsive radius
-    function getRadius() {
-        const width = window.innerWidth;
-        if (width <= 480) return 130;
-        if (width <= 768) return 170;
-        if (width <= 991) return 200;
-        if (width <= 1200) return 220;
-        return 250;
+    
+    const maxVisiblePortraits = 4; // Number of portraits visible at once
+    const fadeInterval = 8000; // How long each portrait stays (8 seconds)
+    
+    let activePortraits = [];
+    
+    function getRandomPosition() {
+        // Generate random positions, avoiding center where main content is
+        const side = Math.random() > 0.5 ? 'left' : 'right';
+        const x = side === 'left' 
+            ? Math.random() * 30  // Left 25% of screen
+            : 75 + Math.random() * 25; // Right 25% of screen
+        const y = Math.random() * 100; // Any vertical position
+        
+        return { x, y };
     }
-
-    // Initialize 3D Globe
-    function initGlobe() {
-        radius = getRadius();
-        stage.innerHTML = '';
-
-        const total = oldPartners.length;
-        const angleStep = 360 / total;
-
-        oldPartners.forEach((partner, index) => {
-            const card = document.createElement('div');
-            card.className = 'partner-card-3d';
-            
-            const angle = angleStep * index;
-            const rotateY = angle;
-            const translateZ = radius;
-            
-            // Position in 3D space
-            card.style.transform = `
-                translate(-50%, -50%)
-                rotateY(${rotateY}deg)
-                translateZ(${translateZ}px)
-                rotateY(-${rotateY}deg)
-            `;
-
-            card.innerHTML = `
-                <img src="${partner.img}" alt="${partner.name}">
-                <div class="partner-label">${partner.name}</div>
-            `;
-
-            stage.appendChild(card);
-        });
-
-        // Update visibility based on Z position
-        updateCardVisibility();
+    
+    function createFloatingPortrait(imageSrc) {
+        const portrait = document.createElement('div');
+        portrait.className = 'floating-portrait';
+        
+        const pos = getRandomPosition();
+        portrait.style.left = pos.x + '%';
+        portrait.style.top = pos.y + '%';
+        
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.alt = 'Historical Partner';
+        
+        portrait.appendChild(img);
+        floatingContainer.appendChild(portrait);
+        
+        // Fade in after a brief delay
+        setTimeout(() => portrait.classList.add('active'), 100);
+        
+        return portrait;
     }
-
-    // Update which cards are behind
-    function updateCardVisibility() {
-        const cards = stage.querySelectorAll('.partner-card-3d');
-        cards.forEach((card, index) => {
-            const angleStep = 360 / oldPartners.length;
-            const currentRotation = parseFloat(getComputedStyle(stage).transform.split(',')[4]) || 0;
-            const angle = (angleStep * index + currentRotation) % 360;
-            
-            // Cards between 90° and 270° are "behind"
-            if (angle > 90 && angle < 270) {
-                card.classList.add('behind');
-            } else {
-                card.classList.remove('behind');
+    
+    function removePortrait(portrait) {
+        portrait.classList.remove('active');
+        setTimeout(() => {
+            if (portrait.parentNode) {
+                portrait.parentNode.removeChild(portrait);
             }
-        });
+        }, 2000); // Wait for fade out transition
+    }
+    
+    function cyclePortraits() {
+        // Remove oldest portrait if we're at max
+        if (activePortraits.length >= maxVisiblePortraits) {
+            const oldestPortrait = activePortraits.shift();
+            removePortrait(oldestPortrait);
+        }
+        
+        // Add new random portrait
+        const randomImage = oldPartners[Math.floor(Math.random() * oldPartners.length)];
+        const newPortrait = createFloatingPortrait(randomImage);
+        activePortraits.push(newPortrait);
+    }
+    
+    // Initialize with some portraits
+    for (let i = 0; i < maxVisiblePortraits; i++) {
+        setTimeout(() => cyclePortraits(), i * 2000);
+    }
+    
+    // Continue cycling
+    setInterval(cyclePortraits, fadeInterval);
+    
+    
+    // ===== 3D CAROUSEL =====
+    const carousel = document.getElementById('circular-carousel');
+    if (!carousel) return;
+    
+    const images = carousel.querySelectorAll('.carousel-img');
+    const total = images.length;
+    
+    if (total === 0) return;
+    
+    let radius = 180;
+    let angle = 0;
+    let animationId;
+    const rotationSpeed = 0.25;
+
+    function getResponsiveValues() {
+        const width = window.innerWidth;
+        
+        if (width <= 576) {
+            radius = 115;
+        } else if (width <= 768) {
+            radius = 135;
+        } else if (width <= 991) {
+            radius = 155;
+        } else if (width <= 1200) {
+            radius = 170;
+        } else {
+            radius = 180;
+        }
     }
 
-    // Initialize
-    initGlobe();
+    function positionImages() {
+        const angleStep = (2 * Math.PI) / total;
+        
+        for (let i = 0; i < total; i++) {
+            const currentAngle = (angle * Math.PI / 180) + (angleStep * i);
+            const x = Math.sin(currentAngle) * radius;
+            const z = Math.cos(currentAngle) * radius;
+            const scale = (z + radius) / (radius * 2) * 0.4 + 0.6;
+            
+            images[i].style.transform = `
+                translate(-50%, -50%)
+                translateX(${x}px)
+                translateZ(${z}px)
+                scale(${scale})
+            `;
+            
+            // Images behind founder (negative Z) are hidden
+            if (z < 0) {
+                images[i].classList.add('behind');
+                images[i].style.zIndex = 1;
+            } else {
+                images[i].classList.remove('behind');
+                images[i].style.zIndex = 10;
+            }
+        }
+    }
 
-    // Update visibility periodically
-    setInterval(updateCardVisibility, 100);
+    function animate() {
+        angle += rotationSpeed;
+        if (angle >= 360) angle = 0;
+        positionImages();
+        animationId = requestAnimationFrame(animate);
+    }
 
-    // Handle window resize
+    function initialize() {
+        getResponsiveValues();
+        positionImages();
+    }
+
+    initialize();
+    animate();
+    
+    carousel.addEventListener('mouseenter', () => cancelAnimationFrame(animationId));
+    carousel.addEventListener('mouseleave', () => animationId = requestAnimationFrame(animate));
+    
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            initGlobe();
+            cancelAnimationFrame(animationId);
+            initialize();
+            animationId = requestAnimationFrame(animate);
         }, 250);
     });
 });

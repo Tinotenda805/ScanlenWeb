@@ -47,6 +47,7 @@ class OurPeopleController extends Controller
             ->where('status', 'active')
             ->with(['expertise', 'categories', 'articles'])
             ->firstOrFail();
+        // dd($person);
 
         return view('our-people.partner', compact('person'));
     }

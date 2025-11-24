@@ -114,7 +114,7 @@
                                     <form action="{{ route('admin.blogs.toggle-comments', $blog) }}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" 
-                                                class="btn {{ $blog->comments_enabled ? 'btn-outline-success' : 'btn-outline-secondary' }}" 
+                                                class="btn btn-sm {{ $blog->comments_enabled ? 'btn-outline-success' : 'btn-outline-secondary' }}" 
                                                 title="{{ $blog->comments_enabled ? 'Disable Comments' : 'Enable Comments' }}">
                                             <i class="fas fa-comment{{ $blog->comments_enabled ? '-dots' : '-slash' }}"></i>
                                         </button>

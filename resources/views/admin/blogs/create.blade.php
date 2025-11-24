@@ -141,17 +141,39 @@
                 <!-- Author -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">Author</h5>
-                        <input type="text" 
-                               class="form-control @error('author_name') is-invalid @enderror" 
-                               name="author_name" 
-                               placeholder="Author Name" 
-                               value="{{ old('author_name') }}">
-                        <small class="text-muted">Optional: Leave empty if anonymous</small>
-                        @error('author_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <h5 class="card-title mb-3">Authors</h5>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            @foreach($people as $person)
+                            <div class="form-check mb-2">
+                                <input class="form-check-input @error('authors') is-invalid @enderror" 
+                                       type="checkbox" 
+                                       name="authors[]" 
+                                       value="{{ $person->id }}" 
+                                       id="author{{ $person->id }}"
+                                       {{ in_array($person->id, old('authors', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="author{{ $person->id }}">
+                                    {{ $person->name }}
+                                    <small class="text-muted">({{ ucfirst($person->type) }})</small>
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
+                        @error('authors')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
+                        <div class="bg-light p-2">
+                            <small class="text-muted">If Author is not in 'our-people'</small>
+                            <input type="text" 
+                                class="form-control mt-2 @error('author_name') is-invalid @enderror" 
+                                name="author_name" 
+                                placeholder="Author Name" 
+                                value="{{ old('author_name') }}">
+                            @error('author_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
+                    <small class="text-muted p-1">Optional: Leave empty if anonymous</small>
                 </div>
 
                 <!-- Category -->

@@ -45,7 +45,7 @@ class MainController extends Controller
             ->take(4)
             ->get();
             
-        return view('indexxx', compact('faqs', 'partners', 'allExpertise', 'sectors', 'statistics', 'awards'));
+        return view('test', compact('faqs', 'partners', 'allExpertise', 'sectors', 'statistics', 'awards'));
     }
 
     public function contactUs()

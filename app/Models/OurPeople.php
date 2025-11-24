@@ -83,6 +83,17 @@ class OurPeople extends Model
     }
 
     // Relationship: Expertise
+    // public function expertise()
+    // {
+    //     return $this->belongsToMany(
+    //         Expertise::class,
+    //         'our_people_expertises',
+    //         'person_id',
+    //         'expertise_id'
+    //     )
+    //     ->withTimestamps()
+    //     ->orderBy('expertise.order', 'asc');
+    // }
     public function expertise()
     {
         return $this->belongsToMany(
@@ -91,7 +102,6 @@ class OurPeople extends Model
             'person_id',
             'expertise_id'
         )
-        ->withPivot('order')
         ->withTimestamps()
         ->orderBy('expertise_people.order', 'asc');
     }

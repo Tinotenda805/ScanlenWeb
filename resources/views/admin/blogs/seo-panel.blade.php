@@ -78,7 +78,7 @@
                     <i class="fas fa-chart-line me-2"></i>SEO & Readability Analysis
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+            </div> 
             <div class="modal-body" id="seo-analysis-results">
                 <!-- Initial State -->
                 <div class="text-center py-5" id="analysis-initial">
@@ -295,6 +295,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class="fas fa-exclamation-circle text-warning"></i> ${result.seo.summary.ok} ok &nbsp;
                             <i class="fas fa-times-circle text-danger"></i> ${result.seo.summary.bad} issues
                         </small>
+                        <hr>
+                        <!-- SEO Checks -->
+                        <div class="mb-4">
+                            <h5 class="mb-3">
+                                <i class="fas fa-search me-2"></i>SEO Analysis
+                            </h5>
+                            ${generateCheckList(result.seo.checks)}
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -307,27 +315,22 @@ document.addEventListener('DOMContentLoaded', function() {
                             <strong>${getStatusLabel(result.readability.status)}</strong>
                         </p>
                         <small class="text-muted">${result.readability.reading_level}</small>
+
+                        <hr>
+
+                        <!-- Readability Checks -->
+                        <div class="mb-4">
+                            <h5 class="mb-3">
+                                <i class="fas fa-book-open me-2"></i>Readability Analysis
+                            </h5>
+                            ${generateCheckList(result.readability.checks)}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SEO Checks -->
-            <div class="mb-4">
-                <h5 class="mb-3">
-                    <i class="fas fa-search me-2"></i>SEO Analysis
-                </h5>
-                ${generateCheckList(result.seo.checks)}
-            </div>
+            
 
-            <hr>
-
-            <!-- Readability Checks -->
-            <div class="mb-4">
-                <h5 class="mb-3">
-                    <i class="fas fa-book-open me-2"></i>Readability Analysis
-                </h5>
-                ${generateCheckList(result.readability.checks)}
-            </div>
         `;
 
         container.innerHTML = html;

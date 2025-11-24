@@ -103,7 +103,7 @@ class Expertise extends Model
         if ($this->image) {
             return asset('storage/' . $this->image);
         }
-        return asset('images/default-expertise.jpg');
+        return asset('images/justice.png');
     }
 
     // Helper: Get banner URL

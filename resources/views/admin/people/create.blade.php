@@ -89,7 +89,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" 
+                                <input type="number" 
                                        class="form-control @error('phone') is-invalid @enderror" 
                                        id="phone" 
                                        name="phone" 
@@ -116,7 +116,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="whatsapp" class="form-label">WhatsApp Number</label>
-                                <input type="text" 
+                                <input type="number" 
                                        class="form-control @error('whatsapp') is-invalid @enderror" 
                                        id="whatsapp" 
                                        name="whatsapp" 
@@ -218,9 +218,10 @@
                 </div>
 
                 {{-- Areas of Expertise --}}
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mb-4" style="display: none">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Areas of Expertise</h5>
+                        
                         <button type="button" class="btn btn-sm btn-primary" onclick="addExpertiseArea()">
                             <i class="fa fa-plus"></i> Add Area
                         </button>
@@ -228,24 +229,20 @@
                     <div class="card-body">
                         <div id="expertise-areas-container">
                             @php
-                                $areasOfExpertise = old('areas_of_expertise', $person->areas_of_expertise ?? []);
+                                $areasOfExpertise = old('areas_of_expertise', $person->expertise_id ?? []);
                             @endphp
                             @if(count($areasOfExpertise) > 0)
                                 @foreach($areasOfExpertise as $index => $area)
                                     <div class="expertise-area-item mb-3 p-3 border rounded">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" 
-                                                       class="form-control" 
-                                                       name="areas_of_expertise[{{ $index }}][title]" 
-                                                       value="{{ $area['title'] ?? '' }}"
-                                                       placeholder="Title">
-                                            </div>
-                                            <div class="col-md-7">
-                                                <textarea class="form-control" 
-                                                          name="areas_of_expertise[{{ $index }}][description]" 
-                                                          rows="2"
-                                                          placeholder="Description">{{ $area['description'] ?? '' }}</textarea>
+                                            <div class="col-md-9">
+                                                <select name="areas_of_expertise[{{ $index }}][expertise_id]" class="form-select">
+                                                    @if ($expertise->count() > 0)
+                                                        @foreach ($expertise as $item)
+                                                            <option value="{{$item->id}}" {{ $area == $item->id ? 'selected':''}}>{{$item->name ?? ''}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
                                             </div>
                                             <div class="col-md-1">
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.expertise-area-item').remove()">
@@ -514,7 +511,7 @@
 </div>
 
 <script>
-let expertiseIndex = {{ count(old('areas_of_expertise', $person->areas_of_expertise ?? [])) }};
+let expertiseIndex = {{ count(old('areas_of_expertise', $person->expertise ?? [])) }};
 let experienceIndex = {{ count(old('professional_experience', $person->professional_experience ?? [])) }};
 let qualificationIndex = {{ count(old('qualifications', $person->qualifications ?? [])) }};
 
@@ -524,18 +521,16 @@ function addExpertiseArea() {
     const html = `
         <div class="expertise-area-item mb-3 p-3 border rounded">
             <div class="row">
-                <div class="col-md-4">
-                    <input type="text" 
-                           class="form-control" 
-                           name="areas_of_expertise[${expertiseIndex}][title]" 
-                           placeholder="Title">
+                <div class="col-md-9">
+                    <select name="areas_of_expertise[${expertiseIndex}][expertise_id]" class="form-select">
+                        @if ($expertise->count() > 0)
+                            @foreach ($expertise as $item)
+                                <option value="{{$item->id}}">{{$item->name ?? ''}}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
-                <div class="col-md-7">
-                    <textarea class="form-control" 
-                              name="areas_of_expertise[${expertiseIndex}][description]" 
-                              rows="2"
-                              placeholder="Description"></textarea>
-                </div>
+                
                 <div class="col-md-1">
                     <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.expertise-area-item').remove()">
                         <i class="fa fa-trash"></i>
@@ -647,16 +642,6 @@ function previewImage(input, previewId) {
     }
 }
 
-// Auto-generate slug from name
-// document.getElementById('name')?.addEventListener('blur', function() {
-//     const slugInput = document.getElementById('slug');
-//     if (!slugInput.value) {
-//         slugInput.value = this.value
-//             .toLowerCase()
-//             .replace(/[^a-z0-9]+/g, '-')
-//             .replace(/^-+|-+$/g, '');
-//     }
-// });
 </script>
 
 <style>

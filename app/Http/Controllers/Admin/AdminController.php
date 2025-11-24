@@ -11,7 +11,9 @@ use App\Models\OurPeople;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class AdminController extends Controller
 {
@@ -83,54 +85,136 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'FAQ deleted successfully.');
     }
 
+    // ==================== USER MANAGEMENT ====================
+
+    /**
+     * Display all users
+     */
     public function users()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->get();
         return view('admin.users.index', compact('users'));
     }
 
-    public function deleteUser(User $user)
-    {
-        $user->delete();
-        return redirect()->back()->with('success', 'User deleted successfully');
-    }
-
     /**
-     * Store a newly created user.
+     * Store a newly created user
      */
     public function storeUser(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'role' => 'required|in:user,admin',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'role' => ['required', 'in:user,admin'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'role' => $validated['role'],
-            'password' => Hash::make($validated['password']),
-        ]);
+        DB::beginTransaction();
 
-        return redirect()->back()->with('success', 'User created successfully!');
+        try {
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'role' => $validated['role'],
+                'password' => Hash::make($validated['password']),
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()
+                ->with('success', 'User created successfully!');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error', 'Failed to create user: ' . $th->getMessage());
+        }
     }
 
+    /**
+     * Update existing user
+     */
     public function updateUser(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'role' => 'required|in:admin,user', // adjust if more roles
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'role' => ['required', 'in:admin,user'],
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => $request->role,
+        DB::beginTransaction();
+        
+        try {
+            $user->update([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'role' => $validated['role'],
+            ]);
+
+            DB::commit();
+            
+            return redirect()->back()
+                ->with('success', 'User updated successfully!');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error', 'Failed to update user: ' . $th->getMessage());
+        }
+    }
+
+    /**
+     * Reset user password
+     */
+    public function resetPassword(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+        DB::beginTransaction();
+
+        try {
+            $user->update([
+                'password' => Hash::make($validated['password']),
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()
+                ->with('success', 'Password reset successfully!');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error', 'Failed to reset password: ' . $th->getMessage());
+        }
+    }
+
+    /**
+     * Delete user
+     */
+    public function deleteUser(User $user)
+    {
+        // Prevent deleting yourself
+        if ($user->id === auth()->id()) {
+            return redirect()->back()
+                ->with('error', 'You cannot delete your own account!');
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $user->delete();
+            
+            DB::commit();
+            
+            return redirect()->back()
+                ->with('success', 'User deleted successfully!');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error', 'Failed to delete user: ' . $th->getMessage());
+        }
     }
 }

@@ -50,107 +50,107 @@
 
     
 
-<section class="company-overview-section py-5" >
-    <div class="container">
-        <div class="row ">
-            <div class="col-lg-6 mb-4 mb-lg-0 pe-lg-4">
-                <h2 class="mb-4">About Scanlen & Holderness</h2>
-                <p class="lead">Legal Excellence Since 1894</p>
-                <p>
-                    Scanlen & Holderness is a premier Zimbabwean law firm offering you a full circle of legal services 
-                    whether you are a local, regional or international client. Our quality of expertise consistently earns 
-                    us and our lawyers a top ranking in both local and international legal surveys. 
-                </p>
-                <p>
-                    Throughout history Team Scanlen has proudly influenced jurisprudential development in Zimbabwe. 
-                    Our continued involvement in landmark cases sets precedent in many areas of law.
-                </p>
+    <section class="company-overview-section py-5" id="about">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-6 mb-4 mb-lg-0 pe-lg-4">
+                    <h2 class="mb-4">About Scanlen & Holderness</h2>
+                    <p class="lead">Legal Excellence Since 1894</p>
+                    <p>
+                        Scanlen & Holderness is a premier Zimbabwean law firm offering you a full circle of legal services 
+                        whether you are a local, regional or international client. Our quality of expertise consistently earns 
+                        us and our lawyers a top ranking in both local and international legal surveys. 
+                    </p>
+                    <p>
+                        Throughout history Team Scanlen has proudly influenced jurisprudential development in Zimbabwe. 
+                        Our continued involvement in landmark cases sets precedent in many areas of law.
+                    </p>
 
-                @if($statistics->count() > 0)
-                    <section class="stats-section container">
-                        <div class="stats-container">
-                            @foreach($statistics as $stat)
-                            <div class="stat-item">
-                                @if($stat->icon)
-                                    <div class="stat-icon">
-                                        <i class="{{ $stat->icon }}"></i>
-                                    </div>
-                                @endif
-                                <div class="stat-number">{{ $stat->value }}</div>
-                                <div class="stat-label">{{ $stat->label }}</div>
+                    @if($statistics->count() > 0)
+                        <section class="stats-section container">
+                            <div class="stats-container">
+                                @foreach($statistics as $stat)
+                                <div class="stat-item">
+                                    @if($stat->icon)
+                                        <div class="stat-icon">
+                                            <i class="{{ $stat->icon }}"></i>
+                                        </div>
+                                    @endif
+                                    <div class="stat-number">{{ $stat->value }}</div>
+                                    <div class="stat-label">{{ $stat->label }}</div>
+                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
-                    </section>
-                @endif
-            </div>
-            
-            <!-- Right Column - Association Memberships -->
-            <div class="col-lg-6 ps-lg-4 p-2">
-                {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
-                {{-- <video class="w-100 rounded" autoplay loop muted>
-                    <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />
-                </video> --}}
-
-                <h2 class="fw-bold mb-4">Our Story in Motion</h2>
-                <p class="text-muted mb-4">Watch our firm overview to learn more about our history and values</p>
-                
-                {{-- YouTube Video Embed --}}
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/Z4Mpu5Ansl0" 
-                            title="About Scanlen & Holderness" class="rounded"
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                    </iframe>
+                        </section>
+                    @endif
                 </div>
                 
-            </div>
-        </div>
+                <!-- Right Column - Association Memberships -->
+                <div class="col-lg-6 ps-lg-4 p-2">
+                    {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
+                    {{-- <video class="w-100 rounded" autoplay loop muted>
+                        <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />
+                    </video> --}}
 
-    </div>
-</section>
-
-{{-- Awards & Recognition Section --}}
-<section class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center fw-bold mb-5">Awards & Recognition</h2>
-        
-        {{-- @php
-            $awards = App\Models\Award::active()->ordered()->recent()->get();
-        @endphp --}}
-        
-        @if($awards->count() > 0)
-            <div class="row g-4 justify-content-center">
-                @foreach($awards as $award)
-                    <div class="col-md-6 col-lg-3">
-                        <div class="text-center p-4 bg-white rounded shadow-sm h-100">
-                            @if($award->image_url)
-                                <img src="{{ $award->image_url }}" alt="{{ $award->title }}" 
-                                     class="img-fluid mb-3 rounded-circle" style="max-height: 100px;">
-                            @else
-                                <i class="fas fa-trophy fa-3x text-maroon mb-3"></i>
-                            @endif
-                            <h5 class="fw-bold mb-2">{{ $award->title }}</h5>
-                            <p class="small text-muted mb-0">
-                                {{ $award->issuing_organization }}<br>
-                                {{ $award->year }}
-                            </p>
-                            @if($award->description)
-                                <p class="small mt-2">{{ $award->description }}</p>
-                            @endif
-                        </div>
+                    <h2 class="fw-bold mb-4">Our Story in Motion</h2>
+                    <p class="text-muted mb-4">Watch our firm overview to learn more about our history and values</p>
+                    
+                    {{-- YouTube Video Embed --}}
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/Z4Mpu5Ansl0" 
+                                title="About Scanlen & Holderness" class="rounded"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
-                @endforeach
+                    
+                </div>
             </div>
-        @else
-            <div class="text-center py-4">
-                <i class="fas fa-trophy fa-3x text-muted mb-3"></i>
-                <p class="text-muted">Awards information coming soon.</p>
-            </div>
-        @endif
-    </div>
-</section>
+
+        </div>
+    </section>
+
+    {{-- Awards & Recognition Section --}}
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Awards & Recognition</h2>
+            
+            {{-- @php
+                $awards = App\Models\Award::active()->ordered()->recent()->get();
+            @endphp --}}
+            
+            @if($awards->count() > 0)
+                <div class="row g-4 justify-content-center">
+                    @foreach($awards as $award)
+                        <div class="col-md-6 col-lg-3">
+                            <div class="text-center p-4 bg-white rounded shadow-sm h-100">
+                                @if($award->image_url)
+                                    <img src="{{ $award->image_url }}" alt="{{ $award->title }}" 
+                                        class="img-fluid mb-3 rounded-circle" style="max-height: 100px;">
+                                @else
+                                    <i class="fas fa-trophy fa-3x text-maroon mb-3"></i>
+                                @endif
+                                <h5 class="fw-bold mb-2">{{ $award->title }}</h5>
+                                <p class="small text-muted mb-0">
+                                    {{ $award->issuing_organization }}<br>
+                                    {{ $award->year }}
+                                </p>
+                                @if($award->description)
+                                    <p class="small mt-2">{{ $award->description }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="text-center py-4">
+                    <i class="fas fa-trophy fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">Awards information coming soon.</p>
+                </div>
+            @endif
+        </div>
+    </section>
 
 
 

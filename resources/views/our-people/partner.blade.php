@@ -190,7 +190,7 @@
 
     .expertise-item {
         background: white;
-        padding: 1.5rem;
+        padding: 0.5rem;
         border-radius: 10px;
         border: 1px solid #ccc9ca;
         transition: all 0.3s ease;
@@ -364,7 +364,7 @@
 
         .profile-image {
             margin: 0 auto 20px;
-            transform: translateY(0);
+            /* transform: translateY(0); */
         }
 
         .overview-grid {
@@ -375,8 +375,13 @@
             padding: 2rem;
         }
 
+        .header-info{
+            justify-content: start;
+            text-align: start;
+        }
         .header-info h1 {
-            font-size: 2rem;
+            font-size: 1.5rem;
+            
         }
 
         .contact-info {
@@ -470,14 +475,17 @@
         @endif
 
         <!-- Areas of Expertise -->
-        @if($person->areas_of_expertise && count($person->areas_of_expertise) > 0)
+        @if($person->expertise && count($person->expertise) > 0)
         <div class="section">
             <h2>Areas of Expertise</h2>
             <div class="expertise-grid">
-                @foreach($person->areas_of_expertise as $expertise)
+                @foreach($person->expertise as $expertise)
                 <div class="expertise-item">
-                    <h4>{{ $expertise['title'] ?? '' }}</h4>
-                    <p>{{ $expertise['description'] ?? '' }}</p>
+                    <div class="d-flex">
+                        <img src="{{ $expertise->image_url }}" alt="{{ $expertise->name }}" class="image-fluid rounded-circle me-2 mb-2" width="60">
+                        <h4>{{ $expertise->name ?? '' }}</h4>
+                    </div>
+                    <p>{{ $expertise->short_description ?? '' }}</p>
                 </div>
                 @endforeach
             </div>

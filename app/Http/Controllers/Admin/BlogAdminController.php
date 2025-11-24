@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\OurPeople;
 use App\Models\Tag;
 use App\Services\SeoAnalyzer;
 use App\Services\ReadabilityAnalyzer;
@@ -14,6 +15,8 @@ use Illuminate\Support\Str;
 
 class BlogAdminController extends Controller
 {
+    public $id;
+
     public function index()
     {
         $blogs = Blog::with(['category', 'tags'])
@@ -28,8 +31,9 @@ class BlogAdminController extends Controller
     {
         $categories = Category::orderBy('name')->get();
         $tags = Tag::orderBy('name')->get();
+        $people = OurPeople::orderBy('name')->get();
 
-        return view('admin.blogs.create', compact('categories', 'tags'));
+        return view('admin.blogs.create', compact('categories', 'tags', 'people'));
     }
 
     public function store(Request $request)
@@ -37,7 +41,7 @@ class BlogAdminController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'required|string',
-            'content' => 'required|string',
+            'content' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'author_name' => 'nullable|string|max:255',
             'tags' => 'nullable|array',
@@ -53,6 +57,7 @@ class BlogAdminController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
+        $validated['uuid'] = Blog::where('uuid', $this->id)->first();
 
         // Analyze SEO
         $seoAnalyzer = new SeoAnalyzer(

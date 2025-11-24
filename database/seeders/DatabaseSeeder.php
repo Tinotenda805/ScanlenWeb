@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@scanlen.com',
             'role' => 'admin',
-            'password' => Hash::make('password'), 
+            'password' => Hash::make('12345678'), 
         ]);
     }
 }

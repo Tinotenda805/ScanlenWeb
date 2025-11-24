@@ -43,19 +43,7 @@ class ContentSeeder extends Seeder
                 'twitter' => 'https://twitter.com/johnsmith',
                 'linkedin' => 'https://linkedin.com/in/johnsmith',
             ],
-            [
-                'name' => 'Sarah Johnson',
-                'email' => 'sarah@example.com',
-                'bio' => 'Business strategist and entrepreneur passionate about innovation.',
-                'twitter' => 'https://twitter.com/sarahjohnson',
-                'linkedin' => 'https://linkedin.com/in/sarahjohnson',
-            ],
-            [
-                'name' => 'Michael Chen',
-                'email' => 'michael@example.com',
-                'bio' => 'Full-stack developer and tech writer.',
-                'linkedin' => 'https://linkedin.com/in/michaelchen',
-            ],
+            
         ];
 
         foreach ($authors as $author) {
@@ -139,24 +127,7 @@ class ContentSeeder extends Seeder
                 'reading_time' => 4,
                 'is_featured' => false,
             ],
-            [
-                'title' => 'Budget Travel Tips: Explore the World Without Breaking the Bank',
-                'excerpt' => 'Travel more and spend less with these money-saving strategies.',
-                'content' => "Traveling doesn't have to be expensive. With smart planning and a few clever strategies, you can explore amazing destinations on a budget.\n\nBe flexible with your travel dates. Flying midweek or during off-peak seasons can save you hundreds of dollars. Use fare comparison tools to find the best deals.\n\nConsider alternative accommodations. Hostels, homestays, and vacation rentals often cost less than hotels and provide more authentic experiences.\n\nEat like a local. Skip touristy restaurants and eat where locals eat. Street food and local markets offer delicious meals at fraction of restaurant prices.\n\nUse public transportation. It's not only cheaper than taxis but also gives you a better feel for the destination.\n\nLook for free activities. Many cities offer free walking tours, museums have free admission days, and nature is always free to explore.",
-                'category_id' => 5,
-                'author_name' => 'Mark Thompson',
-                'reading_time' => 6,
-                'is_featured' => true,
-            ],
-            [
-                'title' => 'Building Better Habits: A Scientific Approach',
-                'excerpt' => 'Use behavioral science to create lasting positive changes in your life.',
-                'content' => "Forming new habits is challenging, but understanding the science behind habit formation makes it easier. Habits are the compound interest of self-improvement.\n\nStart small. The key to lasting change is starting with habits so easy you can't say no. Want to exercise more? Start with just two minutes a day.\n\nStack your habits. Link new habits to existing ones. After I pour my morning coffee, I will meditate for one minute. This technique leverages established routines.\n\nMake it obvious. Design your environment to make good habits easier. Put your running shoes by the door, keep healthy snacks visible.\n\nTrack your progress. Marking an X on a calendar for each day you complete your habit provides visual motivation and accountability.\n\nBe patient. Research suggests it takes an average of 66 days for a habit to become automatic. Stick with it.",
-                'category_id' => 3,
-                'author_name' => 'Rachel Green',
-                'reading_time' => 5,
-                'is_featured' => false,
-            ],
+            
         ];
 
         foreach ($blogData as $data) {
@@ -164,7 +135,9 @@ class ContentSeeder extends Seeder
             
             // Attach random tags (2-5 tags per blog)
             $tagIds = Tag::inRandomOrder()->take(rand(2, 5))->pluck('id');
+            $authorIds = OurPeople::inRandomOrder()->take(rand(1, 5))->pluck('id');
             $blog->tags()->attach($tagIds);
+            $blog->authors()->attach($authorIds);
         }
     }
 }

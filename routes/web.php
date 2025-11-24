@@ -172,10 +172,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
         // user management
         Route::middleware('can:manage-users')->group(function () {
-            Route::get('user-management', [AdminController::class, 'users'])->name('users.index');
-            Route::delete('user-management/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
-            Route::post('user-management/{user}', [AdminController::class, 'updateUser'])->name('users.update');
-            Route::post('user-management/store', [AdminController::class, 'storeUser'])->name('users.store');
+            Route::get('users', [AdminController::class, 'users'])->name('users.index');
+            Route::post('users/store', [AdminController::class, 'storeUser'])->name('users.store');
+            Route::post('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+            Route::post('users/{user}/reset-password', [AdminController::class, 'resetPassword'])->name('users.reset-password');
+            Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
         });
     });
 

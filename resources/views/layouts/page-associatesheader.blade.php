@@ -20,7 +20,7 @@
         background:
             linear-gradient(135deg, #848484 0%, #848484 100%),
             /* Center Image */
-            url("{{ asset('images/newpartners/br.png') }}") center/280px 330px no-repeat,
+            url("{{ asset('images/gavel3.png') }}") center/300px 200px no-repeat,
 
             /* Left Side Images */
             url("{{ asset('images/associates/fs.jpg') }}") 11% 35%/160px 200px no-repeat,

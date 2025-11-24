@@ -63,13 +63,13 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-                                        <img src="{{ $person->avatar ? asset('storage/' . $person->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($person->name) . '&size=100' }}" 
-                                                class="rounded-circle" 
-                                                width="80" height="80" 
+                                        <img src="{{ $person->avatar_url ?? ''}}" 
+                                                class="rounded-circle border" 
+                                                width="50" height="50" 
                                                 alt="{{ $person->name }}">
                                     </div>
                                     <div class="col">
-                                        <h6 class="fw-bold mb-1">{{ $person->name }}</h6>
+                                        <h6 class="fw-bold mb-3"><a href="{{route('expertise.show', $person->id)}}" class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ $person->name }}</a></h6>
                                         <div class="d-flex gap-2">
                                             @if($person->twitter)
                                             <a href="{{ $person->twitter }}" class="btn btn-sm btn-maroon-outline" target="_blank">
@@ -86,7 +86,7 @@
                                                 <i class="bi bi-envelope"></i>
                                             </a>
                                             @endif
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="bi bi-person"></i></a>
+                                            {{-- <a href="#" class="btn btn-sm btn-outline-info"><i class="bi bi-person"></i></a> --}}
                                         </div>
 
                                     </div>

@@ -2,25 +2,19 @@
 @extends('admin.app')
 
 @section('content')
+@include('admin.header', ['title' => 'Expertise Management'])
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">Expertise Management</h1>
+        <h1 class="h3 mb-0"></h1>
         <a href="{{ route('admin.expertise.create') }}" class="btn btn-primary">
             <i class="fa fa-plus-circle"></i> Add New Expertise
         </a>
     </div>
 
-    @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    @endif
-
     {{-- Bulk Actions --}}
-    <form action="{{ route('admin.expertise.bulk-action') }}" method="POST" id="bulkActionForm">
+    <form action="{{ route('admin.expertise.bulk-action') }}" method="POST" id="bulkActionForm" >
         @csrf
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm mb-4" style="display: none">
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -47,25 +41,25 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th width="50">
+                            {{-- <th width="50">
                                 <input type="checkbox" id="selectAll" class="form-check-input">
-                            </th>
+                            </th> --}}
                             <th width="80">Image</th>
                             <th>Name</th>
                             <th>Short Description</th>
                             <th width="120">Key Contacts</th>
                             <th width="80">Order</th>
                             <th width="100">Status</th>
-                            <th width="80">Featured</th>
+                            {{-- <th width="80">Featured</th> --}}
                             <th width="150">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($expertise as $item)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <input type="checkbox" name="selected[]" value="{{ $item->id }}" class="form-check-input select-item">
-                            </td>
+                            </td> --}}
                             <td>
                                 <img src="{{ $item->image_url }}" alt="{{ $item->name }}" 
                                      class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
@@ -84,7 +78,7 @@
                                     {{ ucfirst($item->status) }}
                                 </span>
                             </td>
-                            <td class="text-center">
+                            {{-- <td class="text-center">
                                 <form action="{{ route('admin.expertise.toggle-featured', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('PATCH')
@@ -92,7 +86,7 @@
                                         <i class="fa fa-star {{ $item->is_featured ? '-fill text-warning' : '' }}" style="font-size: 1.2rem;"></i>
                                     </button>
                                 </form>
-                            </td>
+                            </td> --}}
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <a href="{{ route('expertise.show', $item->slug) }}" 

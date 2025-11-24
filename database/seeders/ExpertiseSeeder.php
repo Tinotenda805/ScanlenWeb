@@ -28,62 +28,6 @@ class ExpertiseSeeder extends Seeder
                 'is_featured' => false,
                 'order' => 4,
             ],
-            [
-                'name' => 'Employment & Labour Law',
-                'short_description' => 'Strategic advice on employment contracts, labor disputes, and workplace compliance.',
-                'overview' => 'Our employment practice advises employers and employees on all aspects of employment law, including contracts, terminations, workplace policies, and labor disputes. We assist clients in navigating Zimbabwe\'s complex labor regulatory environment.',
-                'is_featured' => false,
-                'order' => 5,
-            ],
-            [
-                'name' => 'Intellectual Property',
-                'short_description' => 'Protection and enforcement of trademarks, patents, copyrights, and trade secrets.',
-                'overview' => 'We provide comprehensive intellectual property services including trademark and patent registration, copyright protection, licensing agreements, and IP dispute resolution. Our team helps clients protect their valuable intellectual assets.',
-                'is_featured' => true,
-                'order' => 6,
-            ],
-            [
-                'name' => 'Mining & Natural Resources',
-                'short_description' => 'Specialized legal services for mining operations, permits, and regulatory compliance.',
-                'overview' => 'Our mining practice provides legal advice on mining licenses, joint ventures, compliance with mining regulations, environmental law, and dispute resolution in the natural resources sector.',
-                'is_featured' => false,
-                'order' => 7,
-            ],
-            [
-                'name' => 'Tax Law',
-                'short_description' => 'Expert tax planning, compliance, and dispute resolution services.',
-                'overview' => 'We advise clients on all aspects of taxation including corporate tax, VAT, customs duties, tax planning, and representing clients in tax disputes with revenue authorities.',
-                'is_featured' => false,
-                'order' => 8,
-            ],
-            [
-                'name' => 'Competition & Antitrust',
-                'short_description' => 'Guidance on competition law compliance and merger control.',
-                'overview' => 'Our competition law practice assists clients with merger notifications, competition compliance, and defending against anti-competitive conduct allegations before regulatory authorities.',
-                'is_featured' => false,
-                'order' => 9,
-            ],
-            [
-                'name' => 'Family Law',
-                'short_description' => 'Compassionate legal support for divorce, custody, and family matters.',
-                'overview' => 'We provide sensitive and professional legal services in family law matters including divorce, child custody, maintenance, matrimonial property disputes, and estate planning.',
-                'is_featured' => false,
-                'order' => 10,
-            ],
-            [
-                'name' => 'Immigration Law',
-                'short_description' => 'Comprehensive immigration and work permit services.',
-                'overview' => 'Our immigration practice assists individuals and corporations with work permits, residence permits, visa applications, and immigration compliance for foreign nationals working in Zimbabwe.',
-                'is_featured' => false,
-                'order' => 11,
-            ],
-            [
-                'name' => 'Cybersecurity & Data Protection',
-                'short_description' => 'Legal advice on data privacy, cybersecurity compliance, and digital law.',
-                'overview' => 'We advise clients on data protection compliance, cybersecurity regulations, privacy policies, and handling data breaches in accordance with local and international standards.',
-                'is_featured' => true,
-                'order' => 12,
-            ],
         ];
 
         foreach ($expertiseData as $data) {
