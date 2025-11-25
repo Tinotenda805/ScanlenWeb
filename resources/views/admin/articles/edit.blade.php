@@ -51,7 +51,7 @@
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
                             <div id="editor" style="height: 600px;"></div>
-                            <input type="hidden" id="content" name="content" value="{{ old('content', $article->content ?? '') }}">
+                            <input type="hidden" id="content" name="content" value="{{ old('content', $article->content) ?? '' }}">
                             {{-- <textarea class="form-control @error('content') is-invalid @enderror" 
                                       id="content" 
                                       name="content" 
@@ -66,6 +66,8 @@
             </div>
 
             <div class="col-lg-4">
+                <!-- SEO & Readability Panel -->
+                @include('admin.articles.seo-panel')
                 <!-- Publish Settings -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
@@ -191,7 +193,7 @@
                         @endif
                         <input type="file" 
                                class="form-control @error('featured_image') is-invalid @enderror" 
-                               name="featured_image" 
+                               name="featured_image" id="featured_image"
                                accept="image/*">
                         <small class="text-muted">Leave empty to keep current image</small>
                         @error('featured_image')

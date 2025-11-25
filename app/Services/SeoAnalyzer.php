@@ -304,9 +304,9 @@ class SeoAnalyzer
         // Check for featured image first
         if (!$this->hasFeaturedImage) {
             return [
-                'status' => 'ok',
+                'status' => 'bad',
                 'message' => 'No featured image uploaded. Images improve SEO and social sharing.',
-                'score' => 6
+                'score' => 0
             ];
         }
 

@@ -57,61 +57,6 @@
                         {!! $article->content !!}
                     </div>
 
-                    <!-- Tags -->
-                    {{-- @if($article->tags->count() > 0)
-                    <div class="mt-5 pt-4 border-top">
-                        <h6 class="fw-bold mb-3">Tags:</h6>
-                        <div class="d-flex flex-wrap gap-2">
-                            @foreach($article->tags as $tag)
-                            <a href="{{ route('articles.index', ['tag' => $tag->slug]) }}" 
-                               class="badge bg-light text-dark text-decoration-none px-3 py-2">#{{ $tag->name }}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif --}}
-
-                    <!-- Author Bio Section -->
-                    {{-- <div class="mt-5 pt-4 border-top">
-                        <h5 class="fw-bold mb-4">About the Author{{ $article->authors->count() > 1 ? 's' : '' }}</h5>
-                        @foreach($article->authors as $author)
-                        <div class="card border-0 bg-light mb-3">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <img src="{{ $author->avatar ? asset('storage/' . $author->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($author->name) . '&size=100' }}" 
-                                             class="rounded-circle" 
-                                             width="80" height="80" 
-                                             alt="{{ $author->name }}">
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="fw-bold mb-1">{{ $author->name }}</h6>
-                                        @if($author->bio)
-                                        <p class="text-muted mb-2 small">{{ $author->bio }}</p>
-                                        @endif
-                                        <div class="d-flex gap-2">
-                                            @if($author->twitter)
-                                            <a href="{{ $author->twitter }}" class="btn btn-sm btn-maroon-outline" target="_blank">
-                                                <i class="bi bi-twitter"></i>
-                                            </a>
-                                            @endif
-                                            @if($author->linkedin)
-                                            <a href="{{ $author->linkedin }}" class="btn btn-sm btn-maroon-outline" target="_blank">
-                                                <i class="bi bi-linkedin"></i>
-                                            </a>
-                                            @endif
-                                            @if($author->email)
-                                            <a href="mailto:{{ $author->email }}" class="btn btn-sm btn-maroon-outline">
-                                                <i class="bi bi-envelope"></i>
-                                            </a>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div> --}}
-
                     <!-- Share Buttons -->
                     <div class="mt-4 pt-4 border-top">
                         <h6 class="fw-bold mb-3">Share this article:</h6>

@@ -50,11 +50,8 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
-                            <textarea class="form-control @error('content') is-invalid @enderror" 
-                                      id="content" 
-                                      name="content" 
-                                      rows="15" 
-                                      required>{{ old('content', $blog->content) }}</textarea>
+                            <input type="hidden" name="content" id="content" value="{{ old('content', $blog->content) ?? ''}}">
+                            <div id="editor" style="height: 600px;"></div>
                             @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -64,6 +61,9 @@
             </div>
 
             <div class="col-lg-4">
+                <!-- SEO & Readability Panel -->
+                @include('admin.blogs.seo-panel')
+
                 <!-- Publish Settings -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
@@ -112,16 +112,39 @@
                 <!-- Author -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">Author</h5>
-                        <input type="text" 
-                               class="form-control @error('author_name') is-invalid @enderror" 
-                               name="author_name" 
-                               placeholder="Author Name" 
-                               value="{{ old('author_name', $blog->author_name) }}">
-                        @error('author_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <h5 class="card-title mb-3">Authors</h5>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            @foreach($people as $person)
+                            <div class="form-check mb-2">
+                                <input class="form-check-input @error('authors') is-invalid @enderror" 
+                                    type="checkbox" 
+                                    name="authors[]" 
+                                    value="{{ $person->id }}" 
+                                    id="author{{ $person->id }}"
+                                    {{ in_array($person->id, old('authors', $blog->authors->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="author{{ $person->id }}">
+                                    {{ $person->name }}
+                                    <small class="text-muted">({{ ucfirst($person->type) }})</small>
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
+                        @error('authors')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
+                        <div class="bg-light p-2 mt-2">
+                            <small class="text-muted">If Author is not in 'our-people'</small>
+                            <input type="text" 
+                                class="form-control mt-2 @error('author_name') is-invalid @enderror" 
+                                name="author_name" 
+                                placeholder="Author Name" 
+                                value="{{ old('author_name', $blog->author_name) }}">
+                            @error('author_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
+                    <small class="text-muted p-1">Optional: Leave empty if anonymous</small>
                 </div>
 
                 <!-- Category -->
@@ -178,7 +201,7 @@
                         @endif
                         <input type="file" 
                                class="form-control @error('featured_image') is-invalid @enderror" 
-                               name="featured_image" 
+                               name="featured_image" id="featured_image"
                                accept="image/*">
                         <small class="text-muted">Leave empty to keep current image</small>
                         @error('featured_image')

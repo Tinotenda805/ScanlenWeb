@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Services\ReadabilityAnalyzer;
 use App\Services\SeoAnalyzer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -73,23 +74,31 @@ class ArticleAdminController extends Controller
         $validated['seo_score'] = $seoResult['score'];
         $validated['readability_score'] = $readabilityResult['score'];
 
+        DB::beginTransaction();
+
+        try {
+            if ($request->hasFile('featured_image')) {
+                $validated['featured_image'] = $request->file('featured_image')->store('articles', 'public');
+            }
+    
+            $article = Article::create($validated);
+    
+            $article->authors()->attach($validated['authors']);
+    
+            if (!empty($validated['tags'])) {
+                $article->tags()->attach($validated['tags']);
+            }
+    
+            DB::commit();
+            return redirect()->route('admin.articles.index')
+                ->with('success', 'Article created successfully!');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to save, error: '.$th->getMessage())->withInput();
+        }
+
         // Handle image upload
-        if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')->store('articles', 'public');
-        }
-
-        $article = Article::create($validated);
-
-        // Attach authors
-        $article->authors()->attach($validated['authors']);
-
-        // Attach tags
-        if (!empty($validated['tags'])) {
-            $article->tags()->attach($validated['tags']);
-        }
-
-        return redirect()->route('admin.articles.index')
-            ->with('success', 'Article created successfully!');
     }
 
     public function edit(Article $article)
@@ -142,25 +151,34 @@ class ArticleAdminController extends Controller
         $validated['seo_score'] = $seoResult['score'];
         $validated['readability_score'] = $readabilityResult['score'];
 
-        // Handle image upload
-        if ($request->hasFile('featured_image')) {
-            // Delete old image
-            if ($article->featured_image) {
-                Storage::disk('public')->delete($article->featured_image);
+        DB::beginTransaction();
+
+        try {
+            // Handle image upload
+            if ($request->hasFile('featured_image')) {
+                if ($article->featured_image) {
+                    Storage::disk('public')->delete($article->featured_image);
+                }
+                $validated['featured_image'] = $request->file('featured_image')->store('articles', 'public');
             }
-            $validated['featured_image'] = $request->file('featured_image')->store('articles', 'public');
+    
+            $article->update($validated);
+    
+            // Sync authors
+            $article->authors()->sync($validated['authors']);
+    
+            // Sync tags
+            $article->tags()->sync($validated['tags'] ?? []);
+
+            DB::commit();
+    
+            return redirect()->route('admin.articles.index')
+                ->with('success', 'Article updated successfully!');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error', 'Failed to update: '.$th->getMessage());
         }
-
-        $article->update($validated);
-
-        // Sync authors
-        $article->authors()->sync($validated['authors']);
-
-        // Sync tags
-        $article->tags()->sync($validated['tags'] ?? []);
-
-        return redirect()->route('admin.articles.index')
-            ->with('success', 'Article updated successfully!');
     }
 
     public function destroy(Article $article)

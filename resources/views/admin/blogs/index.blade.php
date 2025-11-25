@@ -15,13 +15,6 @@
         </div>
     </div>
 
-    {{-- @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    @endif --}}
-
     <div class="card border-0 shadow-sm">
         <div class="card-body">
             <div class="table-responsive">
@@ -29,7 +22,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Author</th>
+                            <th>Author(s)</th>
                             <th>Category</th>
                             <th>SEO</th>
                             <th>Readability</th>
@@ -60,7 +53,19 @@
                                 </div>
                             </td>
                             <td>
-                                <small>{{ $blog->author_name ?? 'N/A' }}</small>
+                                {{-- <small>{{ $blog->author_name ?? 'N/A' }}</small> --}}
+                                <div class="authors">
+                                    @if($blog->authors->count() > 0)
+                                        @foreach($blog->authors as $author)
+                                            {{ $author->name }}
+                                            @if(!$loop->last), @endif
+                                        @endforeach
+                                    @elseif($blog->author_name)
+                                        {{ $blog->author_name }}
+                                    @else
+                                        <span class="text-warning">Anonymous</span> 
+                                    @endif
+                                </div>
                             </td>
                             <td>
                                 <span class="badge bg-secondary">{{ $blog->category->name }}</span>

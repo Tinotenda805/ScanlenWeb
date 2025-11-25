@@ -82,18 +82,6 @@ class OurPeople extends Model
         ->withTimestamps();
     }
 
-    // Relationship: Expertise
-    // public function expertise()
-    // {
-    //     return $this->belongsToMany(
-    //         Expertise::class,
-    //         'our_people_expertises',
-    //         'person_id',
-    //         'expertise_id'
-    //     )
-    //     ->withTimestamps()
-    //     ->orderBy('expertise.order', 'asc');
-    // }
     public function expertise()
     {
         return $this->belongsToMany(
@@ -106,22 +94,17 @@ class OurPeople extends Model
         ->orderBy('expertise_people.order', 'asc');
     }
 
-    // Relationship: Articles
-    // public function articles()
-    // {
-    //     return $this->hasMany(Article::class, 'author_id');
-    // }
     public function articles()
     {
         return $this->belongsToMany(Article::class, 'article_authors', 'author_id', 'article_id');
     }
 
+    public function blogs()
+    {
+        return $this->belongsToMany(Blog::class, 'blog_our_people');
+    }
 
-    // Relationship: Blogs
-    // public function blogs()
-    // {
-    //     return $this->hasMany(Blog::class, 'author_id');
-    // }
+
 
     // Scopes
     public function scopePartners($query)

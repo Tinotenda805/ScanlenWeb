@@ -17,7 +17,7 @@
             @error('focus_keyword')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
+        </div> 
 
         <!-- Meta Description -->
         <div class="mb-3">
@@ -241,9 +241,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('analysis-results-container').classList.add('d-none');
         reanalyzeBtn.style.display = 'none';
 
+        const titleValue = document.getElementById('title')?.value || '';
+        const slugValue = titleValue.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
         const data = {
-            title: document.getElementById('title')?.value || '',
-            slug: document.getElementById('slug')?.value || '',
+            title: titleValue,
+            slug: slugValue,
             content: document.getElementById('content')?.value || '',
             focus_keyword: document.getElementById('focus_keyword')?.value || '',
             meta_description: document.getElementById('meta_description')?.value || '',

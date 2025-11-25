@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Services\SeoAnalyzer;
 use App\Services\ReadabilityAnalyzer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,7 @@ class BlogAdminController extends Controller
 
     public function index()
     {
-        $blogs = Blog::with(['category', 'tags'])
+        $blogs = Blog::with(['category', 'tags', 'authors'])
             ->withCount('comments')
             ->latest()
             ->paginate(15);
@@ -43,6 +44,8 @@ class BlogAdminController extends Controller
             'content' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'author_name' => 'nullable|string|max:255',
+            'authors' => 'nullable|array',
+            'authors.*' => 'exists:our_people,id',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
             'featured_image' => 'nullable|image|max:2048',
@@ -78,26 +81,41 @@ class BlogAdminController extends Controller
         // Handle image upload
         if ($request->hasFile('featured_image')) {
             $validated['featured_image'] = $request->file('featured_image')->store('blogs', 'public');
+        } 
+
+        DB::beginTransaction();
+
+        try {
+            $blog = Blog::create($validated);
+    
+            if (!empty($validated['authors'])) {
+                $blog->authors()->attach($validated['authors']);
+            }
+    
+            if (!empty($validated['tags'])) {
+                $blog->tags()->attach($validated['tags']);
+            }
+    
+            DB::commit();
+
+            return redirect()->route('admin.blogs.index')
+                ->with('success', 'Blog post created successfully!');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to save, error: '.$th->getMessage())->withInput();
         }
 
-        $blog = Blog::create($validated);
-
-        // Attach tags
-        if (!empty($validated['tags'])) {
-            $blog->tags()->attach($validated['tags']);
-        }
-
-        return redirect()->route('admin.blogs.index')
-            ->with('success', 'Blog post created successfully!');
     }
 
     public function edit(Blog $blog)
     {
-        $blog->load('tags');
+        $blog->load(['tags', 'authors']);
         $categories = Category::orderBy('name')->get();
         $tags = Tag::orderBy('name')->get();
+        $people = OurPeople::orderBy('name')->get();
 
-        return view('admin.blogs.edit', compact('blog', 'categories', 'tags'));
+        return view('admin.blogs.edit', compact('blog', 'categories', 'tags', 'people'));
     }
 
     public function update(Request $request, Blog $blog)
@@ -108,6 +126,8 @@ class BlogAdminController extends Controller
             'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'author_name' => 'nullable|string|max:255',
+            'authors' => 'nullable|array',
+            'authors.*' => 'exists:our_people,id',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
             'featured_image' => 'nullable|image|max:2048',
@@ -149,13 +169,23 @@ class BlogAdminController extends Controller
             $validated['featured_image'] = $request->file('featured_image')->store('blogs', 'public');
         }
 
-        $blog->update($validated);
+        try {
+            $blog->update($validated);
+    
+            $blog->authors()->sync($validated['authors'] ?? []);
+    
+            $blog->tags()->sync($validated['tags'] ?? []);
 
-        // Sync tags
-        $blog->tags()->sync($validated['tags'] ?? []);
+            DB::commit();
+    
+            return redirect()->route('admin.blogs.index')
+                ->with('success', 'Blog post updated successfully!');
 
-        return redirect()->route('admin.blogs.index')
-            ->with('success', 'Blog post updated successfully!');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to update, error: '.$th->getMessage())->withInput();
+        }
+
     }
 
     public function destroy(Blog $blog)

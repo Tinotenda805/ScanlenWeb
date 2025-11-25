@@ -183,7 +183,7 @@
                         <h5 class="card-title mb-3">Featured Image</h5>
                         <input type="file" 
                                class="form-control @error('featured_image') is-invalid @enderror" 
-                               name="featured_image" 
+                               name="featured_image" id="featured_image"
                                accept="image/*">
                         @error('featured_image')
                         <div class="invalid-feedback">{{ $message }}</div>

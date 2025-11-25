@@ -64,9 +64,13 @@ class Blog extends Model
         return $this->belongsToMany(Tag::class, 'blog_tags');
     }
 
+    // public function authors()
+    // {
+    //     return $this->belongsToMany(OurPeople::class, 'author_id');
+    // }
     public function authors()
     {
-        return $this->belongsToMany(OurPeople::class, 'author_id');
+        return $this->belongsToMany(OurPeople::class, 'blog_our_people');
     }
 
     public function comments()
