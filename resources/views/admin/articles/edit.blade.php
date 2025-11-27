@@ -50,13 +50,8 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
-                            <div id="editor" style="height: 600px;"></div>
+                            <div id="editor" data-quill data-target="content" style="height:600px"></div>
                             <input type="hidden" id="content" name="content" value="{{ old('content', $article->content) ?? '' }}">
-                            {{-- <textarea class="form-control @error('content') is-invalid @enderror" 
-                                      id="content" 
-                                      name="content" 
-                                      rows="15" 
-                                      required>{{ old('content', $article->content) }}</textarea> --}}
                             @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

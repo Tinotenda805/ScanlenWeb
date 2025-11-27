@@ -127,7 +127,7 @@
         }
     }
 
-    .section h2 {
+    .section .overview {
         font-size: 1.8rem;
         color: var(--maroon);
         margin-bottom: 1rem;
@@ -135,7 +135,12 @@
         padding-bottom: 0.5rem;
     }
 
-    .section h2::after {
+    .section h2, h3 {
+        font-size: 1.2rem;
+        color: #000;
+    }
+
+    .section .overview::after {
         content: '';
         position: absolute;
         bottom: 0;
@@ -444,10 +449,11 @@
         <!-- Profile Overview -->
         @if($person->profile_overview)
         <div class="section">
-            <h2>Profile Overview</h2>
+            <h2 class="overview">Profile Overview</h2>
             <div class="overview-grid">
                 <div class="overview-text">
-                    {!! nl2br(e($person->profile_overview)) !!}
+                    {!! $person->profile_overview !!}
+                    {{-- {!! nl2br(e($person->profile_overview)) !!} --}}
                 </div>
                 <div class="quick-facts">
                     <h3>Quick Facts</h3>

@@ -15,6 +15,7 @@ class OurPeople extends Model
 
     protected $fillable = [
         'name',
+        'employee_type_id',
         'designation',
         'email',
         'phone',
@@ -25,8 +26,8 @@ class OurPeople extends Model
         'years_of_experience',
         'deals_completed',
         'languages',
-        'linkedin_url',
-        'whatsapp_number',
+        'linkedin',
+        'whatsapp',
         'location',
         'areas_of_expertise',
         'professional_experience',
@@ -102,6 +103,11 @@ class OurPeople extends Model
     public function blogs()
     {
         return $this->belongsToMany(Blog::class, 'blog_our_people');
+    }
+
+    public function employeeType()
+    {
+        return $this->belongsTo(EmployeeType::class, 'employee_type_id');
     }
 
 

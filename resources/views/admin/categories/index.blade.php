@@ -3,9 +3,9 @@
 @section('content')
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">Categories</h1>
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-warning">
-            <i class="fas fa-plus me-2"></i>New Category
+        <h1 class="mb-0 h3">Categories</h1>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i>New Category
         </a>
     </div>
 

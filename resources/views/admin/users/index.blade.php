@@ -1,14 +1,13 @@
 @extends('admin.app')
 
 @section('content')
-@include('admin.header', ['title' => 'Users'])
 <div class="container-fluid px-4 py-4">
     
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="mb-0">User Management</h5>
+        <h5 class="mb-0 h3">User Management</h5>
         <button data-bs-toggle="modal" data-bs-target="#addNewUser" class="btn btn-success">
-            <i class="fas fa-plus me-1"></i> Add New User
+            <i class="fas fa-plus-circle me-2"></i> Add New User
         </button>
     </div>
 

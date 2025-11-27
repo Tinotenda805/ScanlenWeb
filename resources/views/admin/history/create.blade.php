@@ -56,11 +56,13 @@
                         {{-- Description --}}
                         <div class="mb-3">
                             <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" 
+                            {{-- <textarea class="form-control @error('description') is-invalid @enderror" 
                                       id="description" 
                                       name="description" 
                                       rows="5"
-                                      required>{{ old('description') }}</textarea>
+                                      required>{{ old('description') }}</textarea> --}}
+                            <input type="hidden" name="description" id="description">
+                            <div id="editor" data-quill data-target="description" style="height:200px"></div>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

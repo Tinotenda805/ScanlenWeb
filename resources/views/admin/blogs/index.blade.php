@@ -1,16 +1,15 @@
 @extends('admin.app')
 
 @section('content')
-@include('admin.header', ['title' => 'Blogs Manager'])
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0"></h1>
+        <h1 class="h3 mb-0">Blogs</h1>
         <div class="d-flex gap-2">
             <a href="{{ route('admin.blogs.comments.index') }}" class="btn btn-info">
                 <i class="fas fa-comments me-2"></i>Manage Comments
             </a>
-            <a href="{{ route('admin.blogs.create') }}" class="btn btn-success">
-                <i class="fas fa-plus me-2"></i>New Blog Post
+            <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>New Blog Post
             </a>
         </div>
     </div>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">Gallery Management</h1>
+        <h1 class="h3 mb-0">Gallery</h1>
         <a href="{{ route('admin.gallery.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Add New Item
+            <i class="fa fa-plus-circle"></i> Add New Item
         </a>
     </div>
 

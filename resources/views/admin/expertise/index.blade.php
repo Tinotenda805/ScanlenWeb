@@ -2,10 +2,9 @@
 @extends('admin.app')
 
 @section('content')
-@include('admin.header', ['title' => 'Expertise Management'])
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0"></h1>
+        <h1 class="h3 mb-0">Expertise</h1>
         <a href="{{ route('admin.expertise.create') }}" class="btn btn-primary">
             <i class="fa fa-plus-circle"></i> Add New Expertise
         </a>

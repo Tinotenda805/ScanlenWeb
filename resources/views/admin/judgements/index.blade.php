@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">Judgements Management</h1>
+        <h1 class="h3 mb-0">Judgements</h1>
         <a href="{{ route('admin.judgements.create') }}" class="btn btn-primary">
             <i class="fa fa-plus-circle"></i> Upload Judgement
         </a>

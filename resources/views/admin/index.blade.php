@@ -1,9 +1,7 @@
 @extends('admin.app')
 
 @section('content')
-@include('admin.header', ['title' => 'Dashboard'])
 <div class="container-fluid px-4 py-4">
-    {{-- <h1 class="mb-4">Dashboard</h1> --}}
 
     <!-- Statistics Cards -->
     <div class="row g-4 mb-4">

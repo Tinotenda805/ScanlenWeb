@@ -21,7 +21,7 @@
         @if(isset($person))
             @method('PUT')
         @endif
-
+ 
         <div class="row">
             {{-- Main Content --}}
             <div class="col-lg-8">
@@ -59,20 +59,6 @@
                                 @enderror
                             </div>
                         </div>
-
-                        {{-- <div class="mb-3">
-                            <label for="slug" class="form-label">Slug</label>
-                            <input type="text" 
-                                   class="form-control @error('slug') is-invalid @enderror" 
-                                   id="slug" 
-                                   name="slug" 
-                                   value="{{ old('slug', $person->slug ?? '') }}"
-                                   placeholder="Leave blank to auto-generate">
-                            <small class="text-muted">URL-friendly version of the name</small>
-                            @error('slug')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -169,10 +155,12 @@
 
                         <div class="mb-3">
                             <label for="profile_overview" class="form-label">Profile Overview</label>
-                            <textarea class="form-control @error('profile_overview') is-invalid @enderror" 
+                            {{-- <textarea class="form-control @error('profile_overview') is-invalid @enderror" 
                                       id="profile_overview" 
                                       name="profile_overview" 
-                                      rows="6">{{ old('profile_overview', $person->profile_overview ?? '') }}</textarea>
+                                      rows="6">{{ old('profile_overview', $person->profile_overview ?? '') }}</textarea> --}}
+                            <input type="hidden" name="profile_overview" id="profile_overview" value="{{old('profile_overview', $person->profile_overview ?? '')}}">
+                            <div id="editor" data-quill data-target="profile_overview" style="height:200px"></div>
                             <small class="text-muted">Detailed profile (for detail page)</small>
                             @error('profile_overview')
                                 <div class="invalid-feedback">{{ $message }}</div>

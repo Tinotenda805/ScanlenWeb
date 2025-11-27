@@ -399,8 +399,8 @@
                             </div>
                             @endif
 
-                            <p class="decade-description">
-                                {{ $timeline->description }}
+                            <p class="decade-description fs-5 lh-base justify-info">
+                                {!! $timeline->description !!}
                             </p>
 
                             @if($timeline->highlights && count($timeline->highlights) > 0)

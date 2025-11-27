@@ -65,7 +65,7 @@
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
                             <input type="hidden" name="content" id="content">
-                            <div id="editor" style="height: 600px;"></div>
+                            <div id="editor" data-quill data-target="content" style="height:600px"></div>
 
                             @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>

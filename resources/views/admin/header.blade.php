@@ -1,5 +1,14 @@
-<div class="header ps-4" style="display: ">
-    <h2 class="mb-0">{{$title ?? 'Admin Panel'}}</h2>
+<div class="header ps-4 " 
+style="
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    
+">
+    <h2 class="mb-0">{{$title ?? '-'}}</h2>
     <div class="ms-3 " >
         <button class="btn btn-outline-danger" type="button"  data-bs-toggle="modal" data-bs-target="#logout">
             <i class="fas fa-sign-out-alt"></i> Logout

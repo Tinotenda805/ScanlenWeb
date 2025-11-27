@@ -21,7 +21,8 @@
         top: 0; /* Changed from 2rem to 0 */
         left: 0;
         width: 100%;
-        height: 120px;
+        padding-top: 0.5rem;
+        height: 130px;
         z-index: 10; /* Increased to be above everything */
         overflow: hidden;
         pointer-events: none;
@@ -220,8 +221,8 @@
     }
 
     #circular-carousel img {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         border: 3px solid white;
         box-shadow: 0 5px 20px rgba(0,0,0,0.4);
@@ -419,6 +420,153 @@
         display: block;
         font-size: 1.5rem;
         margin-bottom: 0.3rem;
+    }
+
+/* Mission & Vision Carousel Styles */
+    .mission-vision-card {
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mission-vision-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .mission-indicators {
+        position: static;
+        margin-bottom: 0;
+    }
+
+    .mission-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid var(--new-maroon);
+        background: transparent;
+        margin: 0 4px;
+    }
+
+    .mission-indicators button.active {
+        background: var(--new-maroon);
+    }
+
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .carousel-item.active .icon-wrapper {
+        transform: scale(1.1);
+    }
+
+    .mission-vision-content {
+        /* padding: 1rem 0; */
+    }
+
+    .content-header {
+        border-bottom: 2px solid #f8f9fa;
+        /* padding-bottom: 1rem; */
+    }
+
+    .vision-list li {
+        /* padding: 0.5rem 0; */
+        border-bottom: 1px solid #f8f9fa;
+    }
+
+    .vision-list li:last-child {
+        border-bottom: none;
+    }
+
+    .carousel-controls .carousel-control-prev,
+    .carousel-controls .carousel-control-next {
+        width: 45px;
+        height: 45px;
+        border: 2px solid var(--new-maroon);
+        background: white;
+        opacity: 1;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-controls .carousel-control-prev:hover,
+    .carousel-controls .carousel-control-next:hover {
+        background: var(--new-maroon);
+    }
+
+    .carousel-controls .carousel-control-prev:hover .carousel-control-prev-icon,
+    .carousel-controls .carousel-control-next:hover .carousel-control-next-icon {
+        filter: invert(1);
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(0.3);
+    }
+
+    .slide-indicator {
+        font-size: 0.9rem;
+    }
+
+    /* Auto-slide animation enhancements */
+    .carousel-item {
+        transition: transform 0.8s ease-in-out;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .mission-vision-content {
+            padding: 0.5rem 0;
+        }
+        
+        .content-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem !important;
+        }
+        
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .carousel-controls {
+            flex-wrap: wrap;
+        }
+    }
+
+    .features li .icon {
+        /* display: block; */
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        background-color: var(--new-maroon);
+        color: var(--bs-white);
+
+    }
+
+    .features__v2 .icon {
+    width: 60px;
+    height: 60px;
+    /* line-height: 60px; */
+    border-radius: 50%;
+    background-color: var(--white);
+    color: var(--new-maroon);
+    }
+
+    .features__v2 .content {
+    background-color: rgba(var(--bs-secondary-rgb), 0.2);
+    }
+
+    .features__v2 .btn-play i {
+    width: 30px;
+    height: 30px;
+    /* line-height: 30px; */
+    border-radius: 50%;
+    background-color: var(--bs-white);
+    color: var(--bs-primary);
     }
 
     @keyframes bounce {
@@ -849,11 +997,6 @@
                 
                 <!-- Right Column - Association Memberships -->
                 <div class="col-lg-6 ps-lg-4 p-2">
-                    {{-- <h2 class="mb-4">Professional Memberships</h2> --}}
-                    {{-- <video class="w-100 rounded" autoplay loop muted>
-                        <source src="{{asset('videos/law-firm.mp4')}}" type="video/mp4" />
-                    </video> --}}
-
                     <h2 class="fw-bold mb-4">Our Story in Motion</h2>
                     <p class="text-muted mb-4">Watch our firm overview to learn more about our history and values</p>
                     
@@ -873,36 +1016,102 @@
 
         <div class="container mt-4">
             <div class="row g-4">
-                {{-- Mission --}}
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body text-center p-4">
-                            <i class="fas fa-bullseye fa-3x text-maroon mb-3"></i>
-                            <h3 class="h4 fw-bold mb-3">Our Mission</h3>
-                            <p class="text-muted">
-                                To provide exceptional legal services that exceed client expectations through 
-                                innovative solutions, deep industry knowledge, and unwavering ethical standards. 
-                                We are committed to advancing justice while building lasting relationships 
-                                with our clients and communities.
-                            </p>
+                <div id="missionVisionCarousel" class="carousel slide col-md-6" data-bs-ride="carousel">
+                    <div class="card border-0 shadow-lg h-100 mission-vision-card">
+                        <div class="card-header bg-transparent border-bottom-0">
+                            <div class="carousel-indicators mission-indicators">
+                                <button type="button" data-bs-target="#missionVisionCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Mission Statement"></button>
+                                <button type="button" data-bs-target="#missionVisionCarousel" data-bs-slide-to="1" aria-label="Vision Statement"></button>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body p-2">
+                            <div class="carousel-inner">
+                                <!-- Mission Statement Slide -->
+                                <div class="carousel-item active">
+                                    <div class="mission-vision-content" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="content-header d-flex align-items-center gap-3 mb-2 p-2">
+                                            <div class="icon-wrapper bg-maroon text-white rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-bullseye fs-4"></i>
+                                            </div>
+                                            <h3 class="text-uppercase fw-bold text-maroon mb-0">Our Mission</h3>
+                                        </div>
+                                        <div class="content-body">
+                                            <p class="fs-6 lh-lg mb-0 text-dark">
+                                                To continue to be the leading firm at all times offering the finest legal services timeously 
+                                                and efficiently in a friendly atmosphere to the corporate and business world, investors, property 
+                                                owners and those individuals with high impact cases. We are committed to upholding the integrity 
+                                                of our profession while making a real difference in the lives of our people.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Vision Statement Slide -->
+                                <div class="carousel-item">
+                                    <div class="mission-vision-content" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="content-header d-flex align-items-center gap-3 mb-2 p-2">
+                                            <div class="icon-wrapper bg-maroon text-white rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-eye fs-4"></i>
+                                            </div>
+                                            <h3 class="text-uppercase fw-bold text-maroon mb-0">Our Vision</h3>
+                                        </div>
+                                        <div class="content-body">
+                                            <ul class="vision-list list-unstyled fs-6 lh-lg mb-0 text-dark">
+                                                <li class="d-flex align-items-start gap-2">
+                                                    <i class="bi bi-check-circle-fill text-maroon"></i>
+                                                    <span>To become a one stop firm for all corporate and commercial legal matters and kindred services;</span>
+                                                </li>
+                                                <li class="d-flex align-items-start gap-2">
+                                                    <i class="bi bi-check-circle-fill text-maroon"></i>
+                                                    <span>To be the clear choice for potential clients consistently providing service in excellence with global recognition;</span>
+                                                </li>
+                                                <li class="d-flex align-items-start gap-2">
+                                                    <i class="bi bi-check-circle-fill text-maroon"></i>
+                                                    <span>To be influential in all matters of jurisprudence at all levels of society;</span>
+                                                </li>
+                                                <li class="d-flex align-items-start gap-2">
+                                                    <i class="bi bi-check-circle-fill text-maroon"></i>
+                                                    <span>To attain and maintain a certain living standard for our people.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer bg-transparent border-top-0 pb-4 px-4">
+                            <div class="carousel-controls d-flex justify-content-center gap-3">
+                                <button class="carousel-control-prev position-static rounded-circle" type="button" data-bs-target="#missionVisionCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                
+                                <div class="slide-indicator d-flex align-items-center gap-1">
+                                    <small class="text-muted">Mission & Vision</small>
+                                </div>
+                                
+                                <button class="carousel-control-next position-static rounded-circle" type="button" data-bs-target="#missionVisionCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- Vision --}}
                 <div class="col-md-6">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body text-center p-4">
-                            <i class="fas fa-eye fa-3x text-maroon mb-3"></i>
-                            <h3 class="h4 fw-bold mb-3">Our Vision</h3>
-                            <p class="text-muted">
-                                To be Zimbabwe's most trusted and innovative law firm, recognized for our 
-                                legal expertise, client-centric approach, and positive impact on the 
-                                development of law and business in Southern Africa.
-                            </p>
-                        </div>
-                    </div>
+                    <h4 class="small fw-bold mt-4 mb-3" data-aos="fade-up" data-aos-delay="300">Key Values </h4>
+                    <ul class="d-flex flex-row flex-wrap list-unstyled gap-3 features" data-aos="fade-up" data-aos-delay="400">
+                      <li class="d-flex align-items-center gap-2"><span class="icon rounded-circle text-center"><i class="bi bi-check"></i></span><span class="text">Integrity</span></li>
+                      <li class="d-flex align-items-center gap-2"><span class="icon rounded-circle text-center"><i class="bi bi-check"></i></span><span class="text">Excellence</span></li>
+                      <li class="d-flex align-items-center gap-2"><span class="icon rounded-circle text-center"><i class="bi bi-check"></i></span><span class="text">Respect </span></li>
+                      <li class="d-flex align-items-center gap-2"><span class="icon rounded-circle text-center"><i class="bi bi-check"></i></span><span class="text">Innovation</span></li>
+                    </ul>
                 </div>
+
+
             </div>
         </div>
     </section>
@@ -950,8 +1159,8 @@
 
 
     {{-- How We Work Section --}}
-    <section class="py-5 bg-light">
-        <div class="container">
+    <section class="py-5 bg-light" style="display: none">
+        <div class="container" >
             <h2 class="text-center fw-bold mb-5">How We Work</h2>
             <div class="row g-4">
                 {{-- Process 1 --}}
@@ -994,6 +1203,75 @@
                             cost-effective legal services.
                         </p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section features__v2 pb-4" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                <div class="d-lg-flex p-5 rounded-4 content" data-aos="fade-in" data-aos-delay="0">
+                    <div class="row">
+                    <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+                        <div class="row"> 
+                        <div class="col-lg-11">
+                            <div class="h-100 flex-column justify-content-between d-flex">
+                            <div>
+                                <h2 class="mb-4">How We Work</h2>
+                                <p class="mb-5">
+                                    We have a culture of collaborating with our client to ensure that we tailor advice 
+                                    that minimizes clients’ risk, propagating client objectives whatever they may be and mostly 
+                                    we aim to add true value to our client’s cause.
+                                    <br> <br>
+                                    We believe in long term relationships, relationships which can only be built if we are 
+                                    trustworthy, open and fair to our clients and to each other. Work in our teams is distributed 
+                                    according to the complexity of the matter and the ability of the practitioners handling the work. 
+                                    The engagement partner(s) will weigh the complexity of the matter, distribute the work to be done and 
+                                    monitor the quality of work produced.
+                                </p>
+                            </div>
+                            <div class="align-self-start">
+                                <a class="glightbox btn btn-play d-inline-flex align-items-center gap-2" href="" data-gallery="video"> </a></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row justify-content-end">
+                        <div class="col-lg-11">
+                            <div class="row">
+                            <div class="col-sm-6" data-aos="fade-up" data-aos-delay="0">
+                                <div class="icon text-center mb-4 p-3"><i class="fas fa-handshake fs-4"></i></div>
+                                <h3 class="fs-6 fw-bold mb-3">Client-Centric Approach</h3>
+                                <p>
+                                    We listen first, then develop tailored legal strategies that align with your 
+                                    business objectives and personal goals.
+                                </p>
+                            </div>
+                            <div class="col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                                <div class="icon text-center mb-4 p-3"><i class="fas fa-users fs-4"></i></div>
+                                <h3 class="fs-6 fw-bold mb-3">Collaborative Teams</h3>
+                                <p>
+                                    Multi-disciplinary teams work together to provide comprehensive solutions 
+                                    across all legal practice areas.
+                                </p>
+                            </div>
+                            <div class="col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                                <div class="icon text-center mb-4 p-3"><i class="fas fa-chart-line fs-4"></i></div>
+                                <h3 class="fs-6 fw-bold mb-3">Strategic Innovation</h3>
+                                <p>
+                                    We leverage technology and innovative thinking to deliver efficient, 
+                                    cost-effective legal services.
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

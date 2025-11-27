@@ -1,12 +1,11 @@
 @extends('admin.app')
 
 @section('content')
-@include('admin.header', ['title' => 'Manage Awards & Recognitions'])
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="mb-0"></h5>
+        <h1 class="h3 mb-0">Awards</h1>
         <a href="{{ route('admin.awards.create') }}" class="btn btn-success">
-            <i class="fas fa-plus me-1"></i> Add New Award
+            <i class="fas fa-plus-circle me-2"></i> Add New Award
         </a>
     </div>
     

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">Tags</h1>
-        <a href="{{ route('admin.tags.create') }}" class="btn btn-secondary">
-            <i class="fas fa-plus me-2"></i>New Tag
+        <h1 class="mb-0 h3">Tags</h1>
+        <a href="{{ route('admin.tags.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i>New Tag
         </a>
     </div>
 
@@ -38,7 +38,7 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a href="{{ route('admin.tags.edit', $tag) }}" 
-                                       class="btn btn-outline-primary" 
+                                       class="btn btn-sm btn-outline-primary" 
                                        title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -49,7 +49,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" 
-                                                class="btn btn-outline-danger" 
+                                                class="btn btn-sm btn-outline-danger" 
                                                 title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </button>

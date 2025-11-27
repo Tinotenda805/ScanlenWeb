@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminEmployeeTypeController;
 use App\Http\Controllers\Admin\AdminHistoryController;
 use App\Http\Controllers\Admin\AdminJudgementController;
 use App\Http\Controllers\Admin\AdminStatisticsController;
@@ -170,6 +171,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::put('/awards/{award}/toggle-status', [AwardAdminController::class, 'toggleStatus'])
             ->name('awards.toggle-status');
 
+        // Employee Types
+        Route::resource('employee-types', AdminEmployeeTypeController::class)->except(['show', 'create', 'edit']);
+
         // user management
         Route::middleware('can:manage-users')->group(function () {
             Route::get('users', [AdminController::class, 'users'])->name('users.index');
@@ -178,6 +182,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
             Route::post('users/{user}/reset-password', [AdminController::class, 'resetPassword'])->name('users.reset-password');
             Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
         });
+
+
     });
 
 

@@ -169,10 +169,12 @@
 
                         <div class="mb-3">
                             <label for="profile_overview" class="form-label">Profile Overview</label>
-                            <textarea class="form-control @error('profile_overview') is-invalid @enderror" 
+                            {{-- <textarea class="form-control @error('profile_overview') is-invalid @enderror" 
                                       id="profile_overview" 
                                       name="profile_overview" 
-                                      rows="6">{{ old('profile_overview', $person->profile_overview ?? '') }}</textarea>
+                                      rows="6">{{ old('profile_overview', $person->profile_overview ?? '') }}</textarea> --}}
+                            <input type="hidden" name="profile_overview" id="profile_overview" value="{{old('profile_overview', $person->profile_overview ?? '')}}">
+                            <div id="editor" data-quill data-target="profile_overview" style="height:200px"></div>
                             <small class="text-muted">Detailed profile (for detail page)</small>
                             @error('profile_overview')
                                 <div class="invalid-feedback">{{ $message }}</div>

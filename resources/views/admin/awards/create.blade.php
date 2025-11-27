@@ -2,7 +2,6 @@
 
 
 @section('content')
-@include('admin.header', ['title' => 'Manage Awards & Recognitions'])
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">

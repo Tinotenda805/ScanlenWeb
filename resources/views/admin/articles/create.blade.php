@@ -1,6 +1,7 @@
 @extends('admin.app')
 
 @section('content')
+
 <div class="container-fluid px-4 py-4">
     <div class="mb-4">
         <h1>Create New Article</h1>
@@ -51,7 +52,7 @@
                         <div class="mb-3">
                             <label for="content" class="form-label">Content *</label>
                             <input type="hidden" name="content" id="content">
-                            <div id="editor" style="height: 600px;"></div>
+                            <div id="editor" data-quill data-target="content" style="height:600px"></div>
                             
                             @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
