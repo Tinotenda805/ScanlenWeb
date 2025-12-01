@@ -9,11 +9,12 @@ use Illuminate\Support\Str;
 
 class Expertise extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'expertise';
 
     protected $fillable = [
+        'uuid',
         'name',
         'slug',
         'short_description',
@@ -36,6 +37,9 @@ class Expertise extends Model
         parent::boot();
 
         static::creating(function ($expertise) {
+            if (empty($expertise->uuid)) {
+                $expertise->uuid = Str::uuid();
+            }
             if (empty($expertise->slug)) {
                 $expertise->slug = Str::slug($expertise->name);
             }
@@ -94,7 +98,7 @@ class Expertise extends Model
     // Get route key for URLs
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'uuid';
     }
 
     // Helper: Get image URL
@@ -114,4 +118,6 @@ class Expertise extends Model
         }
         return asset('images/default-banner.jpg');
     }
+
+    
 }

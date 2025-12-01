@@ -63,14 +63,14 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'FAQ created successfully!');
     }
 
-    public function updateFaq(Request $request, $id)
+    public function updateFaq(Request $request, Faq $faq)
     {
         $validated = $request->validate([
             'question' => 'required|string|max:255',
             'answer' => 'required|string'
         ]);
 
-        $faq = Faq::findOrFail($id);
+        // $faq = Faq::findOrFail($id);
         $faq->question = $validated['question'];
         $faq->answer = $validated['answer'];
         $faq->save();
@@ -78,9 +78,9 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'FAQ updated successfully!');
     }
 
-    public function deleteFaq($id)
+    public function deleteFaq(Faq $faq)
     {
-        $faq = Faq::findOrFail($id);
+        // $faq = Faq::findOrFail($id);
         $faq->delete();
         return redirect()->back()->with('success', 'FAQ deleted successfully.');
     }

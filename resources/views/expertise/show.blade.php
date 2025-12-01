@@ -6,17 +6,6 @@
     'subtitle'=> $expertise->short_description ?? ''
 ])
 
-{{-- Banner Section --}}
-{{-- <section class="expertise-banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ $expertise->banner_url }}');">
-    <div class="container">
-        <div class="banner-content">
-            <h1>{{ $expertise->name }}</h1>
-            @if($expertise->short_description)
-            <p class="lead">{{ $expertise->short_description }}</p>
-            @endif
-        </div>
-    </div>
-</section> --}}
 
 <section class="expertise-detail py-5">
     <div class="container">
@@ -26,7 +15,8 @@
                 <div class="expertise-overview mb-5">
                     <h2 class="mb-4">Overview</h2>
                     <div class="content-text">
-                        {!! nl2br(e($expertise->overview)) !!}
+                        {!! $expertise->overview !!}
+                        {{-- {!! nl2br(e($expertise->overview)) !!} --}}
                     </div>
                 </div>
 

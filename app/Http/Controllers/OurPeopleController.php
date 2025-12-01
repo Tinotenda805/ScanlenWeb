@@ -18,7 +18,7 @@ class OurPeopleController extends Controller
         $partners = OurPeople::partners()
             ->active()
             ->with('expertise', 'categories')
-            // ->ordered()
+            ->ordered()
             ->get();
 
         return view('our-people.partners', compact('partners'));
@@ -41,13 +41,13 @@ class OurPeopleController extends Controller
     /**
      * Display individual profile
      */
-    public function show($id)
+    public function show($slug)
     {
-        $person = OurPeople::where('id', $id)
+        $person = OurPeople::where('slug', $slug)
             ->where('status', 'active')
             ->with(['expertise', 'categories', 'articles'])
             ->firstOrFail();
-        // dd($person);
+        // dd($person); 
 
         return view('our-people.partner', compact('person'));
     }
@@ -57,7 +57,11 @@ class OurPeopleController extends Controller
  */
 public function findLawyer(Request $request)
 {
-    $query = OurPeople::where('status', 'active');
+    $query = OurPeople::where('status', 'active')
+        ->whereHas('employeeType', function($q) {
+            $q->where('name', 'like', '%partner%')
+            ->orWhere('name', 'like', '%associate%');
+        });
 
     // Search by name
     if ($request->filled('name')) {
@@ -81,7 +85,7 @@ public function findLawyer(Request $request)
     $people = $query->with(['expertise', 'categories'])
         // ->orderBy('order', 'asc')
         ->orderBy('name', 'asc')
-        ->paginate(12);
+        ->paginate(9);
 
     // Get all expertise and sectors for the filter form
     $allExpertise = Expertise::active()->get();

@@ -14,6 +14,8 @@ return new class extends Migration
     {
         Schema::table('our_people', function (Blueprint $table) {
             $table->foreignIdFor(EmployeeType::class, 'employee_type_id')->nullable()->onDelete('set null')->after('name');
+            $table->integer('order')->default(0)->after('status');
+            $table->softDeletes()->after('updated_at');
         });
     }
 
@@ -23,7 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('our_people', function (Blueprint $table) {
-            $table->dropForeignIdFor('employee_type_id');
+            $table->dropColumn('employee_type_id');
+            $table->dropColumn('deleted_at');
         });
     }
 };

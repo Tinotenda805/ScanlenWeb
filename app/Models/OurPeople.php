@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OurPeople extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'our_people';
 
     protected $fillable = [
+        'uuid',
         'name',
         'employee_type_id',
         'designation',
@@ -33,9 +34,8 @@ class OurPeople extends Model
         'professional_experience',
         'qualifications',
         'specializations',
-        'type', // 'partner' or 'associate'
+        'type', 
         'role',
-        // 'category_id',
         'order',
         'status',
     ];
@@ -54,6 +54,10 @@ class OurPeople extends Model
         parent::boot();
 
         static::creating(function ($person) {
+            if (empty($person->uuid)) {
+                $person->uuid = Str::uuid();
+            }
+
             if (empty($person->slug)) {
                 $person->slug = Str::slug($person->name);
             }
@@ -65,12 +69,6 @@ class OurPeople extends Model
             }
         });
     }
-
-    // Relationship: Category (Sector)
-    // public function category()
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
 
     public function categories()
     {
@@ -115,12 +113,16 @@ class OurPeople extends Model
     // Scopes
     public function scopePartners($query)
     {
-        return $query->where('type', 'partner');
+        return $query->whereHas('employeeType', function($q) {
+            $q->where('name', 'like', '%partner%');
+        });
     }
 
     public function scopeAssociates($query)
     {
-        return $query->where('type', 'associate');
+        return $query->whereHas('employeeType', function($q) {
+            $q->where('name', 'like', '%associate%');
+        });
     }
 
     public function scopeActive($query)
@@ -128,10 +130,10 @@ class OurPeople extends Model
         return $query->where('status', 'active');
     }
 
-    // public function scopeOrdered($query)
-    // {
-    //     return $query->orderBy('order', 'asc')->orderBy('name', 'asc');
-    // }
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order', 'asc');
+    }
 
     // Helper: Get avatar URL
     public function getAvatarUrlAttribute()
@@ -170,5 +172,13 @@ class OurPeople extends Model
         
         // return $articles->merge($blogs)->sortByDesc('created_at')->take(5);
         return $articles->sortByDesc('created_at')->take(5);
+    }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid'; 
     }
 }

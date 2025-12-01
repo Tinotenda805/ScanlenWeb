@@ -45,6 +45,9 @@ class Blog extends Model
         parent::boot();
 
         static::creating(function ($blog) {
+            if (empty($blog->uuid)) {
+                $blog->uuid = Str::uuid();
+            }
             if (empty($blog->slug)) {
                 $blog->slug = Str::slug($blog->title);
             }

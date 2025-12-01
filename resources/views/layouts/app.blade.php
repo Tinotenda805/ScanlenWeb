@@ -98,6 +98,16 @@
 
 
     <main>
+        {{-- TOASTS --}}
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            @foreach(['success','error'] as $msg)
+                @if(session($msg))
+                    <div class="toast show text-bg-{{ $msg == 'success' ? 'success' : 'danger' }}">
+                        <div class="toast-body">{{ session($msg) }}</div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
         @yield('content')
     </main>
 
@@ -114,7 +124,7 @@
                 </div>
 
                 <div class="our-location col-lg-3 col-md-3 ">
-                    <h5 class="footer-heading border-start border-5 border-danger-subtle ps-2 bold">WHERE TO FIND US</h5>
+                    <h5 class="footer-heading border-start border-5 border-danger-subtle ps-2">WHERE TO FIND US</h5>
                     
                     <p class="">
                         Address: 13th Floor, CABS Centre,
@@ -159,7 +169,7 @@
                     </p>
                 </div>
                 <div class="col-lg-3 col-md-3">
-                    <h5 class="footer-heading border-start border-5 border-danger-subtle ps-2 bold">USEFUL LINKS</h5>
+                    <h5 class="footer-heading border-start border-5 border-danger-subtle ps-2">USEFUL LINKS</h5>
                     <div class="useful-links">
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -170,6 +180,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('our-people.partners')}}">Our Partners</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('our-people.associates')}}">Our Associates</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('expertise.index')}}">Expertise</a>
@@ -194,7 +207,18 @@
     <!-- Bootstrap & JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('js/script.js')}}"></script>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            toastElList.map(function (toastEl) {
+                var toast = new bootstrap.Toast(toastEl, {
+                    autohide: true,
+                    delay: 3000 // 3 seconds
+                })
+                toast.show()
+            })
+        });
+    </script>
     
     @yield('scripts')
     

@@ -82,6 +82,11 @@
             gap:10px;
         }
 
+        .nav-link .badge {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    
         .admin-sidebar .nav-link:hover{
             background:rgba(255,255,255,0.08);
             color:#fff;
@@ -149,7 +154,7 @@
 
             <ul class="dropdown-menu dropdown-menu-end shadow">
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{route('admin.profile')}}">
                         <i class="fas fa-id-badge me-2"></i> Profile
                     </a>
                 </li>
@@ -180,15 +185,24 @@
         <a class="nav-link {{ Route::is('admin.articles.*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}"><i class="fas fa-newspaper"></i> Articles</a>
         <a class="nav-link {{ Route::is('admin.blogs.*') ? 'active' : '' }}" href="{{ route('admin.blogs.index') }}"><i class="fas fa-blog"></i> Blogs</a>
         <a class="nav-link {{ Route::is('admin.judgements.*') ? 'active' : '' }}" href="{{ route('admin.judgements.index') }}"><i class="fas fa-scale-balanced"></i> Judgements</a>
+        <a class="nav-link {{ Route::is('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}"><i class="fas fa-clock"></i> History</a>
         <a class="nav-link {{ Route::is('admin.gallery.*') ? 'active' : '' }}" href="{{ route('admin.gallery.index') }}"><i class="fas fa-image"></i> Gallery</a>
-        <a class="nav-link {{ Route::is('admin.contact-messages.*') ? 'active' : '' }}" href="{{ route('admin.contact-messages.index') }}"><i class="fas fa-envelope"></i> Messages</a>
+        <a class="nav-link {{ Route::is('admin.awards.*') ? 'active' : '' }}" href="{{ route('admin.awards.index') }}"><i class="fas fa-trophy"></i> Awards</a>
+        <a class="nav-link {{ Route::is('admin.contact-messages.*') ? 'active' : '' }}" href="{{ route('admin.contact-messages.index') }}">
+            <i class="fas fa-envelope"></i> Messages 
+            @if(!empty($counts['unread']))
+                <span class="badge rounded-pill bg-warning text-dark">
+                    {{ $counts['unread'] }}
+                </span>
+            @endif
+        </a>
     </nav>
 
     <h6 class="mt-4">MANAGEMENT</h6>
     <nav class="nav flex-column mb-4">
         <a class="nav-link {{ Route::is('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}"><i class="fas fa-folder"></i> Categories</a>
         <a class="nav-link {{ Route::is('admin.tags.*') ? 'active' : '' }}" href="{{ route('admin.tags.index') }}"><i class="fas fa-tags"></i> Tags</a>
-        <a class="nav-link {{ Route::is('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}"><i class="fas fa-clock"></i> History</a>
+        <a class="nav-link {{ Route::is('admin.employee-types.*') ? 'active' : '' }}" href="{{ route('admin.employee-types.index') }}"><i class="fas fa-user-md"></i> Employee Types</a>
         <a class="nav-link {{ Route::is('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}"><i class="fas fa-user-shield"></i> Users</a>
     </nav>
 </aside>
@@ -206,6 +220,7 @@
             @endif
         @endforeach
     </div>
+    
 
     @yield('header')
     @yield('page_actions')

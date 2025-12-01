@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMessageNotification;
 use App\Models\Award;
 use App\Models\Category;
 use App\Models\ContactMessage;
@@ -11,6 +12,8 @@ use App\Models\Gallery;
 use App\Models\OurPeople;
 use App\Models\Statistic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
 {
@@ -62,15 +65,21 @@ class MainController extends Controller
             'message' => 'required|string',
         ]);
 
-        // Add IP address
         $validated['ip_address'] = $request->ip();
         $validated['status'] = 'unread';
 
         // Create message
         ContactMessage::create($validated);
 
-        // Optional: Send email notification to admin
-        // Mail::to('admin@scanlen.co.zw')->send(new ContactMessageReceived($validated));
+        // Send email notification to admin
+        try {
+            Mail::to(config('mail.from.address')) 
+                ->queue(new ContactMessageNotification($validated));
+        } catch (\Exception $e) {
+            // Log the error but don't show it to the user
+            Log::error('Failed to send contact email: ' . $e->getMessage());
+            // return $e->getMessage();
+        }
 
         return back()->with('success', 'Your message has been sent successfully!');
     }

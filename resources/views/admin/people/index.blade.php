@@ -25,6 +25,7 @@
                             <th>Email</th>
                             <th>Articles</th>
                             <th>Social</th>
+                            <th>Status</th>
                             <th style="width: 150px;">Actions</th>
                         </tr>
                     </thead>
@@ -50,11 +51,7 @@
                                 </div>
                             </td>
                             <td>
-                                @if($person->type === 'partner')
-                                <span class="badge bg-primary">Partner</span>
-                                @else
-                                <span class="badge bg-info">Associate</span>
-                                @endif
+                                {{$person->employeeType->name ?? ''}}
                             </td>
                             <td><small>{{ $person->email }}</small></td>
                             <td>
@@ -72,6 +69,7 @@
                                 </a>
                                 @endif
                             </td>
+                            <td class="text-capitalize">{{$person->status ?? ''}}</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <a href="{{ route('admin.people.edit', $person) }}" 

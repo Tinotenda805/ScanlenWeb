@@ -77,10 +77,13 @@
                         {{-- Overview --}}
                         <div class="mb-3">
                             <label for="overview" class="form-label">Overview / Detailed Description</label>
-                            <textarea class="form-control @error('overview') is-invalid @enderror" 
+                            {{-- <textarea class="form-control @error('overview') is-invalid @enderror" 
                                       id="overview" 
                                       name="overview" 
-                                      rows="10">{{ old('overview', $expertise->overview ?? '') }}</textarea>
+                                      rows="10">{{ old('overview', $expertise->overview ?? '') }}</textarea> --}}
+                            <input type="hidden" name="overview" id="overview" value="{{ old('overview', $expertise->overview ?? '') }}">
+                            <div id="editor" data-quill data-target="overview" style="height:600px"></div>
+
                             <small class="text-muted">Detailed information about this expertise</small>
                             @error('overview')
                                 <div class="invalid-feedback">{{ $message }}</div>

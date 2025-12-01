@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployeeType;
 use App\Models\Expertise;
 use App\Models\OurPeople;
 use App\Models\OurPeopleExpertise;
@@ -18,9 +19,9 @@ class OurPeopleAdminController extends Controller
 
     public function index()
     {
-        $people = OurPeople::withCount('articles')
+        $people = OurPeople::withCount('articles', 'employeeType')
             ->latest()
-            ->paginate(20);
+            ->paginate(15);
 
         return view('admin.people.index', compact('people'));
     }
@@ -28,34 +29,12 @@ class OurPeopleAdminController extends Controller
     public function create()
     {
         $expertise = Expertise::all();
+        $types = EmployeeType::all();
 
-        return view('admin.people.create', compact('expertise'));
+        return view('admin.people.create', compact('expertise', 'types'));
     }
 
-    public function storeOld(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:our_people,email',
-            'bio' => 'nullable|string',
-            'avatar' => 'nullable|image|max:2048',
-            'type' => 'required|in:partner,associate',
-            'twitter' => 'nullable|url',
-            'linkedin' => 'nullable|url',
-        ]);
-
-        $validated['slug'] = Str::slug($validated['name']);
-
-        // Handle avatar upload
-        if ($request->hasFile('avatar')) {
-            $validated['avatar'] = $request->file('avatar')->store('people', 'public');
-        }
-
-        OurPeople::create($validated);
-
-        return redirect()->route('admin.people.index')
-            ->with('success', 'Person added successfully!');
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -77,7 +56,7 @@ class OurPeopleAdminController extends Controller
             // Create the person record
             $person = OurPeople::create([
                 'name' => $validated['name'],
-                // 'slug' => $slug,
+                'employee_type_id' => $validated['employee_type_id'],
                 'designation' => $validated['designation'],
                 'email' => $validated['email'] ?? null,
                 'phone' => $validated['phone'] ?? null,
@@ -89,21 +68,14 @@ class OurPeopleAdminController extends Controller
                 'profile_overview' => $validated['profile_overview'] ?? null,
                 'years_of_experience' => $validated['years_of_experience'] ?? null,
                 'deals_completed' => $validated['deals_completed'] ?? null,
-                'type' => $validated['type'],
                 'status' => $validated['status'],
-                // 'order' => $validated['order'] ?? 0,
+                'order' => $validated['order'] ?? 0,
                 'avatar' => $avatarPath,
                 'banner_image' => $bannerPath,
                 // 'areas_of_expertise' => $this->formatArrayData($validated['areas_of_expertise'] ?? []),
                 'professional_experience' => $this->formatArrayData($validated['professional_experience'] ?? []),
                 'qualifications' => $this->formatArrayData($validated['qualifications'] ?? []),
             ]);
-
-            // $expertiseValidation =  $this->formatArrayData($validated['areas_of_expertise'] ?? []);
-            // // Attach expertise
-            // if (!empty($expertiseValidation)) {
-            //     $person->expertise()->attach($expertiseValidation);
-            // }
 
             DB::commit();
 
@@ -124,7 +96,8 @@ class OurPeopleAdminController extends Controller
 
     public function edit(OurPeople $person)
     {
-        return view('admin.people.edit', compact('person'));
+        $types = EmployeeType::all();
+        return view('admin.people.edit', compact('person', 'types'));
     }
 
     public function updateOld(Request $request, OurPeople $person)
@@ -181,6 +154,7 @@ class OurPeopleAdminController extends Controller
             // Update the person record
             $updateData = [
                 'name' => $validated['name'],
+                'employee_type_id' => $validated['employee_type_id'],
                 'designation' => $validated['designation'],
                 'email' => $validated['email'] ?? null,
                 'phone' => $validated['phone'] ?? null,
@@ -192,10 +166,9 @@ class OurPeopleAdminController extends Controller
                 'profile_overview' => $validated['profile_overview'] ?? null,
                 'years_of_experience' => $validated['years_of_experience'] ?? null,
                 'deals_completed' => $validated['deals_completed'] ?? null,
-                'type' => $validated['type'],
                 'status' => $validated['status'],
-                // 'order' => $validated['order'] ?? 0,
-                'areas_of_expertise' => $this->formatArrayData($validated['areas_of_expertise'] ?? []),
+                'order' => $validated['order'] ?? 0,
+                // 'areas_of_expertise' => $this->formatArrayData($validated['areas_of_expertise'] ?? []),
                 'professional_experience' => $this->formatArrayData($validated['professional_experience'] ?? []),
                 'qualifications' => $this->formatArrayData($validated['qualifications'] ?? []),
             ];
@@ -247,7 +220,7 @@ class OurPeopleAdminController extends Controller
     {
         $rules = [
             'name' => 'required|string|max:255',
-            // 'slug' => 'nullable|string|max:255|unique:our_people,slug' . ($person ? ',' . $person->id : ''),
+            'employee_type_id' => 'required|int|exists:employee_types,id',
             'designation' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:255',
@@ -259,7 +232,7 @@ class OurPeopleAdminController extends Controller
             'profile_overview' => 'nullable|string',
             'years_of_experience' => 'nullable|integer|min:0',
             'deals_completed' => 'nullable|integer|min:0',
-            'type' => 'required|in:partner,associate',
+            // 'type' => 'required|in:partner,associate',
             'status' => 'required|in:active,inactive',
             'order' => 'nullable|integer|min:0',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -284,8 +257,17 @@ class OurPeopleAdminController extends Controller
             $rules['avatar'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
         }
 
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            dd($validator->errors()->first());
+            // throw new \Illuminate\Validation\ValidationException($validator);
+        }
+        
+        return $validator->validated();
+
         // return Validator::make($request->all(), $rules);
-        return $request->validate($rules);
+        // return $request->validate($rules);
     }
 
 

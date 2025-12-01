@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class ContactMessage extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table='contact_messages';
 
 
     protected $fillable = [
+        'uuid',
         'name',
         'email',
         'subject',
@@ -26,6 +28,17 @@ class ContactMessage extends Model
     protected $casts = [
         'read_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($contact_message) {
+            if (empty($contact_message->uuid)) {
+                $contact_message->uuid = Str::uuid();
+            }
+        });
+    }
 
     // Scopes
     public function scopeUnread($query)
@@ -58,5 +71,13 @@ class ContactMessage extends Model
         $this->update([
             'status' => 'replied',
         ]);
+    }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid'; // Optional: Use UUID for route model binding
     }
 }

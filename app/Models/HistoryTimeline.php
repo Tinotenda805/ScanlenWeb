@@ -16,6 +16,7 @@ class HistoryTimeline extends Model
 
 
     protected $fillable = [
+        'uuid',
         'decade',
         'title',
         'description',
@@ -29,6 +30,17 @@ class HistoryTimeline extends Model
         'highlights' => 'array',
         'order' => 'integer',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($history_timeline) {
+            if (empty($history_timeline->uuid)) {
+                $history_timeline->uuid = Str::uuid();
+            }
+        });
+    }
 
     // Scope: Active only
     public function scopeActive($query)
@@ -49,5 +61,13 @@ class HistoryTimeline extends Model
             return asset('storage/' . $this->image);
         }
         return asset('images/default-history.jpg');
+    }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid'; // Optional: Use UUID for route model binding
     }
 }

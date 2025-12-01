@@ -220,7 +220,7 @@
                 </div>
 
                 {{-- Areas of Expertise --}}
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mb-4" style="display: none">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Areas of Expertise</h5>
                         <button type="button" class="btn btn-sm btn-primary" onclick="addExpertiseArea()">
@@ -392,15 +392,18 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="type" class="form-label">Type <span class="text-danger">*</span></label>
-                            <select class="form-select @error('type') is-invalid @enderror" 
-                                    id="type" 
-                                    name="type" 
+                            <label for="employee_type_id" class="form-label">Type <span class="text-danger">*</span> &nbsp;&nbsp; <a href="{{route('admin.employee-types.index')}}" class="btn btn-sm btn-outline-info"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></label>
+                            <select class="form-select @error('employee_type_id') is-invalid @enderror" 
+                                    id="employee_type_id" 
+                                    name="employee_type_id" 
                                     required>
-                                <option value="partner" {{ old('type', $person->type ?? '') === 'partner' ? 'selected' : '' }}>Partner</option>
-                                <option value="associate" {{ old('type', $person->type ?? '') === 'associate' ? 'selected' : '' }}>Associate</option>
+                                @if ($types)
+                                    @foreach ($types as $item)
+                                        <option value="{{$item->id}}" {{$person->employee_type_id == $item->id ? 'selected':''}}>{{$item->name}}</option>
+                                    @endforeach
+                                @endif
                             </select>
-                            @error('type')
+                            @error('employee_type_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -419,7 +422,7 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="order" class="form-label">Display Order</label>
                             <input type="number" 
                                    class="form-control @error('order') is-invalid @enderror" 
@@ -431,7 +434,7 @@
                             @error('order')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary w-100">

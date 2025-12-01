@@ -81,9 +81,9 @@ class ExpertiseAdminController extends Controller
             ->with('success', 'Expertise created successfully.');
     }
 
-    public function edit($id)
+    public function edit(Expertise $expertise)
     {
-        $expertise = Expertise::find($id);
+        // $expertise = Expertise::find($id);
         $allExpertise = Expertise::where('id', '!=', $expertise->id)
             ->active()
             ->ordered()
@@ -96,9 +96,9 @@ class ExpertiseAdminController extends Controller
         return view('admin.expertise.edit', compact('expertise', 'allExpertise', 'people'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Expertise $expertise)
     {
-        $expertise = Expertise::find($id);
+        // $expertise = Expertise::find($id);
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -157,9 +157,9 @@ class ExpertiseAdminController extends Controller
             ->with('success', 'Expertise updated successfully.');
     }
 
-    public function destroy($id)
+    public function destroy(Expertise $expertise)
     {
-        $expertise = Expertise::find($id);
+        // $expertise = Expertise::find($id);
         // Delete images
         if ($expertise->image) {
             Storage::disk('public')->delete($expertise->image);

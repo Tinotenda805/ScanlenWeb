@@ -13,6 +13,7 @@ class Judgement extends Model
 
 
     protected $fillable = [
+        'uuid',
         'title',
         'case_number',
         'description',
@@ -37,6 +38,17 @@ class Judgement extends Model
         'download_count' => 'integer',
         'file_size' => 'integer',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($judgement) {
+            if (empty($judgement->uuid)) {
+                $judgement->uuid = Str::uuid();
+            }
+        });
+    }
 
     // Relationship: Category
     public function category()
@@ -109,5 +121,13 @@ class Judgement extends Model
             'user_agent' => request()->userAgent(),
             'downloaded_at' => now(),
         ]);
+    }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid'; // Optional: Use UUID for route model binding
     }
 }

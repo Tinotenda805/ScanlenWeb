@@ -19,6 +19,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Count</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -27,7 +28,10 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $type->name }}</td>
-                            <td>{{ $type->description }}</td>
+                            <td>{{ Str::limit($type->description, 50) }}</td>
+                            <td>
+                                <span class="badge bg-primary">{{ $type->our_people_count ?? '' }}</span>
+                            </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <button class="btn btn-sm btn-outline-warning"
@@ -49,8 +53,6 @@
                             </td>
                         </tr>
 
-                        @include('admin.employeetypes.partials.edit-modal', ['type' => $type])
-
                         @empty
                         <tr>
                             <td colspan="4" class="text-center text-muted">No employee types found</td>
@@ -61,6 +63,9 @@
             </div>
 
             @include('admin.employeetypes.partials.create-modal')
+            @foreach($employeeTypes as $type)
+                @include('admin.employeetypes.partials.edit-modal', ['type' => $type])
+            @endforeach
         </div>
     </div>
 

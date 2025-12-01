@@ -88,13 +88,13 @@
                             </td> --}}
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('expertise.show', $item->slug) }}" 
+                                    <a href="{{ route('expertise.show', $item) }}" 
                                        class="btn btn-outline-info" 
                                        target="_blank" 
                                        title="View">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.expertise.edit', $item->id) }}" 
+                                    <a href="{{ route('admin.expertise.edit', $item) }}" 
                                        class="btn btn-outline-primary" 
                                        title="Edit">
                                         <i class="fa fa-pencil"></i>
@@ -108,7 +108,7 @@
                                 </div>
 
                                 <form id="delete-form-{{ $item->id }}" 
-                                      action="{{ route('admin.expertise.destroy', $item->id) }}" 
+                                      action="{{ route('admin.expertise.destroy', $item) }}" 
                                       method="POST" 
                                       class="d-none">
                                     @csrf

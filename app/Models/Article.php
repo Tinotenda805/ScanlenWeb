@@ -11,6 +11,7 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
+        'uuid',
         'title',
         'slug',
         'excerpt',
@@ -43,6 +44,9 @@ class Article extends Model
         parent::boot();
 
         static::creating(function ($article) {
+            if (empty($article->uuid)) {
+                $article->uuid = Str::uuid();
+            }
             if (empty($article->slug)) {
                 $article->slug = Str::slug($article->title);
             }

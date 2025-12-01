@@ -46,7 +46,7 @@
                         </td>
                         <td><strong>{{ $item->decade }}</strong></td>
                         <td>{{ $item->title }}</td>
-                        <td>{{ Str::limit($item->description, 80) }}</td>
+                        <td>{!! Str::limit($item->description, 80) !!}</td>
                         <td class="text-center">
                             <span class="badge bg-info">{{ count($item->highlights ?? []) }}</span>
                         </td>

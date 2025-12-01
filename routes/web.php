@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ContactMessageAdminController;
 use App\Http\Controllers\Admin\ExpertiseAdminController;
 use App\Http\Controllers\Admin\GalleryAdminController;
 use App\Http\Controllers\Admin\OurPeopleAdminController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TagAdminController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BlogCommentController;
@@ -29,14 +30,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'home'])->name('homePage');
 Route::get('/contact-us', [MainController::class, 'contactUs'])->name('contactUs');
 Route::post('/contact-us/send', [MainController::class, 'storeMessage'])->name('storeMessage');
-
-// Route::get('/our-history', [MainController::class, 'ourHistory'])->name('ourHistory');
-// Route::get('/our-partners', [MainController::class, 'ourPartners'])->name('ourPartners');
-// Route::get('/our-associates', [MainController::class, 'ourAssociates'])->name('ourAssociates');
-// Route::get('/articles', [MainController::class, 'articles'])->name('articles');
-// Route::get('/article', [MainController::class, 'article'])->name('article');
-// Route::get('/partner', [MainController::class, 'partner'])->name('partner');
-// Route::get('/gallery', [MainController::class, 'gallery'])->name('gallery');
 
 // HISTORY
 Route::prefix('history')->name('history.')->group(function () {
@@ -59,7 +52,7 @@ Route::prefix('expertise')->name('expertise.')->group(function () {
 // OUR PEOPLE
 Route::prefix('our-people')->name('our-people.')->group(function () {
     Route::get('/partners', [OurPeopleController::class, 'partners'])->name('partners');
-    Route::get('/profile/{id}', [OurPeopleController::class, 'show'])->name('partner');
+    Route::get('/profile/{slug}', [OurPeopleController::class, 'show'])->name('partner');
     Route::get('/associates', [OurPeopleController::class, 'associates'])->name('associates');
     Route::get('/find-lawyer', [OurPeopleController::class, 'findLawyer'])->name('find-lawyer');
     Route::get('/gallery', [MainController::class, 'gallery'])->name('gallery');
@@ -118,8 +111,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         // FAQs
         Route::get('/faqs', [AdminController::class, 'faqs'])->name('faqs');
         Route::post('/faqs/store', [AdminController::class, 'storeFaq'])->name('storeFaq');
-        Route::post('/faqs/{id}/update', [AdminController::class, 'updateFaq'])->name('updateFaq');
-        Route::post('/faqs/{id}/delete', [AdminController::class, 'deleteFaq'])->name('deleteFaq');
+        Route::post('/faqs/{faq}/update', [AdminController::class, 'updateFaq'])->name('updateFaq');
+        Route::post('/faqs/{faq}/delete', [AdminController::class, 'deleteFaq'])->name('deleteFaq');
 
 
         // EXPERTISE
@@ -173,6 +166,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
         // Employee Types
         Route::resource('employee-types', AdminEmployeeTypeController::class)->except(['show', 'create', 'edit']);
+
+        // Profile
+        Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+        Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
 
         // user management
         Route::middleware('can:manage-users')->group(function () {

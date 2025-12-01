@@ -31,7 +31,7 @@
             color: white;
             padding: 60px 5px;
             position: sticky;
-            top: 0;
+            top: 60px;
             height: 100vh;
             overflow-y: auto;
         }
@@ -93,7 +93,8 @@
         }
 
         .timeline-header h2 {
-            font-size: 3rem;
+            /* font-size: 3rem; */
+            font-size: clamp(2rem, 4vw, 3rem);
             color: #000;
             margin-bottom: 20px;
             font-weight: 300;
@@ -180,7 +181,8 @@
         }
 
         .decade-year {
-            font-size: 2.5rem;
+            /* font-size: 2.5rem; */
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
             color: var(--maroon);
             font-weight: bold;
             margin-bottom: 20px;
@@ -189,6 +191,7 @@
 
         .decade-title {
             font-size: 1.8rem;
+            /* font-size: clamp(1.3rem, 2.5vw, 1.8rem); */
             color: var(--light-maroon);
             margin-bottom: 20px;
             font-weight: 600;
@@ -207,7 +210,8 @@
         }
 
         .decade-description {
-            font-size: 1.1rem;
+            /* font-size: 1.1rem; */
+            font-size: 1rem;
             color: #5a6c7d;
             line-height: 1.8;
             margin-bottom: 25px;
@@ -320,20 +324,32 @@
         }
 
         @media (max-width: 768px) {
+            .timeline-header p {
+                text-align: justify;
+            }
+            .timeline-section{
+                margin-top: 60px;
+            }
             .header h1 {
                 font-size: 2.5rem;
             }
             
             .timeline::before {
-                left: 30px;
+                /* display: none; */
+                left: 10px;
             }
             
             .decade {
-                padding-left: 80px;
+                padding-left: 20px;
             }
             
             .decade-marker {
-                left: 30px;
+                left: 10px;
+                /* top: 30px; */
+                width: 15px;
+                height: 15px;
+                border: 3px solid var(--maroon);
+                background: var(--white);
             }
             
             .decade-year {
@@ -342,6 +358,9 @@
             
             .decade-title {
                 font-size: 1.5rem;
+            }
+            .decade-content::after {
+                display: none;
             }
         }
 
@@ -365,12 +384,10 @@
             <div class="values-section">
                 <h3>Our Values</h3>
                 <ul class="values-list">
-                    <li>Client-Centered Excellence</li>
-                    <li>Ethical Leadership</li>
-                    <li>Innovation & Adaptability</li>
-                    <li>Community Partnership</li>
-                    <li>Diversity & Inclusion</li>
-                    <li>Professional Integrity</li>
+                    <li>Integrity</li>
+                    <li>Excellence</li>
+                    <li>Respect</li>
+                    <li>Innovation</li>
                 </ul>
             </div>
             
@@ -379,8 +396,8 @@
 
         <!-- History Timeline Section -->
         <main class="timeline-section">
-            <div class="timeline-header">
-                <h2>Our History</h2>
+            <div class="timeline-header ">
+                <h2 class="fw-bolder">Our Journey</h2>
                 <p>A journey of growth, innovation, and unwavering commitment to legal excellence</p>
             </div>
 

@@ -15,6 +15,7 @@ class Gallery extends Model
 
 
     protected $fillable = [
+        'uuid',
         'title',
         'description',
         'image',
@@ -28,6 +29,17 @@ class Gallery extends Model
     protected $casts = [
         'order' => 'integer',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($gallery) {
+            if (empty($gallery->uuid)) {
+                $gallery->uuid = Str::uuid();
+            }
+        });
+    }
 
     // Scopes
     public function scopeActive($query)
@@ -58,5 +70,14 @@ class Gallery extends Model
     public function getFilterClassAttribute()
     {
         return 'filter-' . $this->category;
+    }
+
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid'; // Optional: Use UUID for route model binding
     }
 }

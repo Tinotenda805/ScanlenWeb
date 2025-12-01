@@ -1,7 +1,7 @@
 <div class="modal fade" id="editModal{{ $type->id }}" tabindex="-1">
     <div class="modal-dialog">
         <form class="modal-content" method="POST"
-              action="{{ route('admin.employee-types.update', $type) }}">
+              action="{{ route('admin.employee-types.update', $type->id) }}">
             @csrf
             @method('PUT')
 
