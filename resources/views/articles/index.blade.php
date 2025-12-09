@@ -5,12 +5,14 @@
 @if(isset($category))
     @include('layouts.page-hero', [
         // 'title' => $category->name, 
-        'title' => 'Articles for: ' . $category->name
+        'title' => 'Articles for: ' . $category->name,
+        
     ])
 @else
     @include('layouts.page-hero', [
         'title' => 'Articles & Insights', 
-        'breadcrumb' => 'Articles'
+        'breadcrumb' => 'Articles',
+        'subtitle' => 'In-depth analysis of key legal issues and trends'
     ])
 @endif
 

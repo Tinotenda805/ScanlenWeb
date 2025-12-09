@@ -270,7 +270,7 @@
 
     .decade-content:has(.no-image) .decade-marker {
         border: 5px solid var(--light-maroon);
-        background: var(--white);
+        background: var(--white); 
     }
 
     .main-content-area.no-image {

@@ -156,17 +156,12 @@
         line-height: 1.2;
         display: none;
     }
-
-    .carousel-title .firm-name {
-        color: var(--gold);
-        display: block;
-        font-size: clamp(1.5rem, 2.5vw, 2rem);
-    }
+    
 
     /* 3D Carousel Below Heading */
     .c-partners-container {
-        width: 600px; 
-        height: 600px; 
+        /* width: 600px;  */
+        /* height: 600px;  */
         display: flex; 
         align-items: center; 
         justify-content: center;
@@ -186,8 +181,8 @@
     }
 
     .founder-center .founder-img {
-        width: 380px;  /* Can be changed independently */
-        height: 380px; /* Can be changed independently */
+        width: 380px;  
+        height: 380px; 
         border-radius: 50%;
         border: 5px solid white;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
@@ -212,8 +207,8 @@
 
     /* Carousel Circle - MUST MATCH .c-partners-container size */
     #circular-carousel {
-        width: 600px;  /* SAME as .c-partners-container */
-        height: 600px; /* SAME as .c-partners-container */
+        /* width: 600px;   */
+        /* height: 600px;  */
         position: relative;
         margin: auto;
         border: none;
@@ -233,19 +228,10 @@
         z-index: 10;
     }
 
-    #circular-carousel img {
-        width: 85px;
-        height: 85px;
-        border-radius: 50%;
-        border: 3px solid white;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-        transition: all 0.3s ease;
-        object-fit: cover;
-    }
 
     #circular-carousel img {
-        width: 85px;
-        height: 85px;
+        width: 125px;
+        height: 125px;
         border-radius: 50%;
         border: 3px solid white;
         box-shadow: 0 5px 20px rgba(0,0,0,0.4);
@@ -1009,7 +995,7 @@
     }
 
     .dark-content-area {
-        background: linear-gradient(135deg, #861043 0%, #3c0008 100%);
+        background: linear-gradient(135deg, rgba(84, 42, 48, 0.783) 0%, rgba(60, 0, 8, 0.5) 100%);
         position: relative;
         padding: 80px 60px;
         width: 65%;
@@ -1103,82 +1089,36 @@
     }
 
     /* Mission/Vision Container - Below Video */
-    .mission-vision-container{
-        position: absolute;
-        right: 5%;
-        top: 550px;
-        width: 45%;
-        max-width: 800px;
-        z-index: 10;
+    .mission-vision {
+        
     }
 
-    .mv-card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        border: 3px solid rgba(248, 249, 250, 0.3);
-        transition: all 0.3s ease;
-    }
-
-    .mv-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .mv-card-header {
+    .mv-title {
         display: flex;
         align-items: center;
-        gap: 15px;
-        margin-bottom: 15px;
+        gap: 8px;
+        margin-bottom: 4px;
+        text-decoration: underline;
     }
 
-    .mv-icon {
-        width: 45px;
-        height: 45px;
-        background: var(--primary-maroon);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
 
-    .mv-card h5 {
-        color: var(--primary-maroon);
-        font-weight: 700;
+    .mv-title h5 {
         margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
     }
 
-    .mv-card p,
-    .mv-card li {
-        color: var(--dark-gray);
-        font-size: 0.9rem;
-        line-height: 1;
+    .mission-vision p,
+    .mission-vision li {
         margin: 0;
+        /* font-size: 0.85rem; */
+        line-height: 1.4;
     }
 
-    .mv-card ul {
+    .mission-vision ul li {
         padding-left: 0;
-        list-style: none;
     }
 
-    .mv-card li {
-        display: flex;
-        align-items: start;
-    }
-
-    .mv-card li:last-child {
-        margin-bottom: 0;
-    }
-
-    .mv-card li i {
-        color: var(--primary-maroon);
-        margin-top: 3px;
-        flex-shrink: 0;
-    }
 
     /* Core Values - Inside Dark Area */
     .core-values-section {
@@ -1293,10 +1233,85 @@
         }
     }
 
+    /* ------------------------------
+    AWARDS DIV - ABOUT SECTION
+    --------------------------------- */
+    .awards {
+        position: absolute;
+        right: 5%;
+        top: 550px;
+        width: 45%;
+        max-width: 800px;
+        z-index: 10;
+        background: white;
+        border-radius: 15px;
+        padding: 5px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 3px solid rgba(248, 249, 250, 0.3);
+    }
+
+    .awards .row {
+        margin: 0;
+    }
+
+    .awards img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .awards .bg-light {
+        width: 60px;
+        height: 60px;
+    }
+
+    .awards .bi-trophy {
+        font-size: 2rem;
+    }
+
+    .awards h5 {
+        font-size: 0.9rem;
+        color: var(--primary-maroon);
+    }
+
+    .awards p {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .awards .col-md-3,
+    .awards .col-6 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* Responsive for Awards */
+    @media (max-width: 991px) {
+        .awards {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            right: auto;
+            top: auto;
+            padding: 10px 20px;
+            margin: 30px 30px 30px 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .awards {
+            padding: 15px 20px;
+            margin: 30px 20px;
+        }
+    }
+
+    
+
     /* INSIGHTS SECTION */
     .insights-section {
         padding: 80px 0;
         background: linear-gradient(135deg, #faf8f9 0%, #f5f0f2 50%, #faf8f9 100%);
+        overflow: visible;
     }
 
     .insights-header {
@@ -1320,8 +1335,8 @@
 
     .category-card {
         position: relative;
-        height: 400px;
-        border-radius: 15px;
+        height: 350px;
+        /* border-radius: 15px; */
         overflow: hidden;
         cursor: pointer;
         transition: all 0.4s ease;
@@ -1414,10 +1429,97 @@
         transition: all 0.4s ease;
     }
 
-    .category-card:hover .category-arrow {
+    /* .category-card:hover .category-arrow {
         transform: translateX(0);
         opacity: 1;
+    } */
+
+    /* Edge arrows positioning */
+    .insights-section .carousel-control-prev,
+    .insights-section .carousel-control-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+        background: var(--maroon);
+        border-radius: 50%;
+        opacity: 0.9;
+        z-index: 10;
+        transition: all 0.3s ease;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+
+    .insights-section .carousel-control-prev {
+        left: 20px;
+    }
+
+    .insights-section .carousel-control-next {
+        right: 20px;
+    }
+
+    /* Arrow icon styling */
+    .insights-section .carousel-control-prev-icon,
+    .insights-section .carousel-control-next-icon {
+        background-image: none !important;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .insights-section .carousel-control-prev-icon:before,
+    .insights-section .carousel-control-next-icon:before {
+        font-family: "bootstrap-icons";
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    .insights-section .carousel-control-prev-icon:before {
+        content: "\f12f"; 
+    }
+
+    .insights-section .carousel-control-next-icon:before {
+        content: "\f138"; 
+    }
+
+    /* Hover effects */
+    .insights-section .carousel-control-prev:hover,
+    .insights-section .carousel-control-next:hover {
+        opacity: 1;
+        background: var(--new-maroon);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .insights-section .carousel-control-prev,
+        .insights-section .carousel-control-next {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .insights-section .carousel-control-prev {
+            left: 10px;
+        }
+        
+        .insights-section .carousel-control-next {
+            right: 10px;
+        }
+        
+        .insights-section .carousel-control-prev-icon:before,
+        .insights-section .carousel-control-next-icon:before {
+            font-size: 1.2rem;
+        }
+    }
+
 
     @media (max-width: 768px) {
         .category-card {
@@ -2066,10 +2168,6 @@
                     <!-- Heading Above Carousel -->
                     <div class="carousel-heading">
                         <div class="carousel-badge">Since 1894</div>
-                        {{-- <h2 class="carousel-title">
-                            Legal Excellence
-                            <span class="firm-name">Scanlen & Holderness</span>
-                        </h2> --}}
                     </div>
                     <div class="content-tagline">Heritage • Excellence • Trust</div>
                     
@@ -2087,7 +2185,7 @@
                     <!-- CTA Buttons -->
                     <div class="content-buttons">
                         <a href="{{route('contactUs')}}" class="btn-hero btn-primary">Schedule Consultation</a>
-                        <a href="#about" class="btn-hero btn-outline">Learn More</a>
+                        <a href="{{route('expertise.index')}}" class="btn-hero btn-outline">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -2151,7 +2249,7 @@
     </div>
 
     <!-- 2. UPDATED ABOUT SECTION WITH MISSION/VISION CAROUSEL -->
-    <section class="about-overlap-section" id="about" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
+    <section class="about-overlap-section border border-secondary-subtle" id="about" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
         <div class="about-overlap-wrapper">
             <!-- Dark Content Area -->
             <div class="dark-content-area">
@@ -2192,6 +2290,35 @@
                                         <span>Global Recognition</span>
                                     </div>
                                 </div>
+
+                                <div class="mission-vision mt-2">
+                                    <div class="mv-title">
+                                        {{-- <i class="bi bi-bullseye"></i> --}}
+                                        <h5>Our Mission</h5>
+                                    </div>
+                                    <p>
+                                        To continue to be the leading firm at all times offering the finest legal services
+                                        timeously and efficiently in a friendly atmosphere.
+                                    </p>
+                                </div>
+
+                                <div class="mission-vision mt-2">
+                                    <div class="mv-title">
+                                        {{-- <i class="bi bi-eye"></i> --}}
+                                        <h5>Our Vision</h5>
+                                    </div>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="bi bi-check-round-fill"></i>
+                                            One stop firm for all corporate legal matters
+                                        </li>
+                                        <li><i class="bi bi-check-round-fill"></i>
+                                            Clear choice with excellence and global recognition
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                
                             </div>
                         </div>
                     </div>
@@ -2200,25 +2327,25 @@
                         <h3 class="text-center fw-bold mb-4 text-white">Our Core Values</h3>
                         <div class="row g-4 justify-content-center">
                             <div class="col-6 col-md-3">
-                                <div class="text-center p-4 bg-light rounded-3 h-100">
+                                <div class="text-center p-2 bg-light rounded-3 h-100">
                                     <i class="bi bi-shield-check text-maroon fs-1 mb-3"></i>
                                     <h5 class="fw-bold">Integrity</h5>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="text-center p-4 bg-light rounded-3 h-100">
+                                <div class="text-center p-2 bg-light rounded-3 h-100">
                                     <i class="bi bi-gem text-maroon fs-1 mb-3"></i>
                                     <h5 class="fw-bold">Excellence</h5>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="text-center p-4 bg-light rounded-3 h-100">
+                                <div class="text-center p-2 bg-light rounded-3 h-100">
                                     <i class="bi bi-people text-maroon fs-1 mb-3"></i>
                                     <h5 class="fw-bold">Respect</h5>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="text-center p-4 bg-light rounded-3 h-100">
+                                <div class="text-center p-2 bg-light rounded-3 h-100">
                                     <i class="bi bi-lightbulb text-maroon fs-1 mb-3"></i>
                                     <h5 class="fw-bold">Innovation</h5>
                                 </div>
@@ -2242,76 +2369,130 @@
                 </div>
             </div>
 
-            <!-- Mission/Vision Carousel -->
-            <div class="mission-vision-container bg-light rounded p-1 text-center mv-card">
-                <div class="mission-vision-slide" id="mvSlide1">
-                    <div class="slide-icon">
-                        <i class="bi bi-bullseye fs-4"></i>
+            <div class="awards">
+                @if($awards->count() > 0)
+                    <div class="text-center">
+                        <span class="badge bg-maroon text-white">RECOGNITION</span>
+                        {{-- <h2 class="display-6 fw-bold mb-3">Awards & Achievements</h2> --}}
                     </div>
-                    <h5>Our Mission</h5>
-                    <p>
-                        To continue to be the leading firm at all times offering the finest legal services timeously 
-                        and efficiently in a friendly atmosphere to the corporate and business world.
-                    </p>
-                </div>
-                
-                <div class="mission-vision-slide" id="mvSlide2" style="display: none;">
-                    <div class="slide-icon">
-                        <i class="bi bi-eye fs-4"></i>
+                    <div class="row justify-content-between">
+                        @foreach($awards as $award)
+                        <div class="col-6 col-md-3">
+                            @if($award->image_url)
+                                <img src="{{ $award->image_url }}" alt="{{ $award->title }}" 
+                                    class="img-fluid rounded-circle mb-2">
+                            @else
+                                <div class="bg-light rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" 
+                                    style="width: 60px; height: 60px;">
+                                    <i class="bi bi-trophy text-maroon"></i>
+                                </div>
+                            @endif
+                            <h5 class="fw-bold mb-1">{{ $award->title }}</h5>
+                            <p class="small text-muted mb-0">{{ $award->issuing_organization }}</p>
+                            <p class="small text-maroon fw-semibold">{{ $award->year }}</p>
+                        </div>
+                        @endforeach
                     </div>
-                    <h5>Our Vision</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex mb-2">
-                            <i class="bi bi-check-circle-fill text-maroon me-2 mt-1"></i>
-                            <span>To become a one stop firm for all corporate legal matters</span>
-                        </li>
-                        <li class="d-flex">
-                            <i class="bi bi-check-circle-fill text-maroon me-2 mt-1"></i>
-                            <span>To be the clear choice for clients providing excellence with global recognition</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Carousel Indicators -->
-                <div class="mv-carousel-indicators">
-                    <button class="mv-indicator active" data-slide="1"></button>
-                    <button class="mv-indicator" data-slide="2"></button>
-                </div>
+                @else
+                    <div class="text-center py-3">
+                        <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" 
+                            style="width: 80px; height: 80px;">
+                            <i class="bi bi-trophy text-muted fs-1"></i>
+                        </div>
+                        <p class="text-muted mb-0">Our achievements will be showcased here soon.</p>
+                    </div>
+                @endif
             </div>
+
+            
+        </div>
+    </section>
+
+    {{-- FIND A LAWYER SECTION - Updated Background --}}
+    <section class="find-lawyer text-center" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
+        <div class="p-5 rounded" >
+            <h3 class="fw-bold text-maroon mb-4">Find A Lawyer</h3>
+            <form action="{{ route('our-people.find-lawyer') }}" method="GET">
+                <div class="row g-3 justify-content-center">
+                    <div class="col-lg-3 col-md-6">
+                        <input type="text" name="name" class="form-control" placeholder="Search By Name" value="{{ request('name') }}">
+                    </div>
+                    <div class="col-lg-1 col-12 d-flex align-items-center justify-content-center">
+                        <span class="fw-bold">OR</span>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <select name="expertise" class="form-select">
+                            <option value="">EXPERTISE</option>
+                            @if(isset($allExpertise))
+                                @foreach($allExpertise as $expertise)
+                                    <option value="{{ $expertise->id }}" {{ request('expertise') == $expertise->id ? 'selected' : '' }}>
+                                        {{ $expertise->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <select name="category" class="form-select">
+                            <option value="">CATEGORIES</option>
+                            @if(isset($sectors))
+                                @foreach($sectors as $sector)
+                                    <option value="{{ $sector->id }}" {{ request('category') == $sector->id ? 'selected' : '' }}>
+                                        {{ $sector->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <button type="submit" class="btn btn-danger w-100">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <a href="{{route('our-people.find-lawyer')}}" class="btn btn-outline-danger mt-5">View All <i class="bi bi-arrow-up-right-circle-fill ms-2"></i></a>
         </div>
     </section>
 
     <!-- 3. INSIGHTS BY CATEGORY SECTION (Bowmans Style) -->
-    <section class="insights-section" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
+    <section class="insights-section position-relative" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
         <div class="container">
             <div class="insights-header">
                 <h2>Insights By Practice Area</h2>
                 <p>Explore our latest legal insights, articles, and commentary organized by practice area</p>
             </div>
 
-            <div class="row g-4">
-                @foreach($categories->take(6) as $category)
-                <div class="col-md-6 col-lg-4">
-                    <a href="{{ route('articles.category', $category->slug) }}" class="text-decoration-none">
-                        <div class="category-card">
-                            <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/law.jpg') }}" 
-                                alt="{{ $category->name }}" 
-                                class="category-card-img">
-                            
-                            <div class="category-overlay">
-                                <h3 class="category-title">{{ $category->name }}</h3>
-                                <p class="category-count">{{ $category->articles_count }} Articles</p>
-                                <p class="category-description">
-                                    {{ Str::limit($category->description ?? 'Explore our insights and expertise in ' . $category->name, 100) }}
-                                </p>
-                                <div class="category-arrow">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
+            <div id="insightsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach($categories->chunk(4) as $chunk)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <div class="row g-4">
+                            @foreach($chunk as $category)
+                            <div class="col-md-6 col-lg-6">
+                                <a href="{{ route('articles.category', $category->slug) }}" class="text-decoration-none">
+                                    <div class="category-card">
+                                        <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/law.jpg') }}" 
+                                            alt="{{ $category->name }}" 
+                                            class="category-card-img">
+                                        
+                                        <div class="category-overlay">
+                                            <h3 class="category-title">{{ $category->name }}</h3>
+                                            <p class="category-count">{{ $category->articles_count }} Articles</p>
+                                            <p class="category-description">
+                                                {{ Str::limit($category->description ?? 'Explore our insights and expertise in ' . $category->name, 100) }}
+                                            </p>
+                                            <div class="category-arrow">
+                                                <i class="bi bi-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
+                            @endforeach
                         </div>
-                    </a>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
 
             <div class="text-center mt-5">
@@ -2321,6 +2502,16 @@
                 </a>
             </div>
         </div>
+        
+        <!-- Move arrows outside container but inside section -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#insightsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#insightsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </section>
 
     <!-- OUR PEOPLE CAROUSEL SECTION -->
@@ -2432,7 +2623,7 @@
 
 
     <!-- EXPERTISE SECTION -->
-    <section class="expertise-section" style="background: linear-gradient(135deg, #dec6d4 0%, #fff 50%);">
+    <section class="expertise-section" style="background: linear-gradient(135deg, #dec6d4 0%, #fff 50%); display:none;">
         <div class="container">
             <div class="expertise-header">
                 <h2>Our Areas of Expertise</h2>
@@ -2544,51 +2735,7 @@
     </section>
 
     
-    {{-- FIND A LAWYER SECTION - Updated Background --}}
-    <section class="find-lawyer text-center" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
-        <div class="p-5 rounded" style="background: rgba(255, 255, 255, 0.85) !important; backdrop-filter: blur(10px); border: 1px solid rgba(134, 16, 67, 0.1);">
-            <h3 class="fw-bold text-maroon mb-4">Find A Lawyer</h3>
-            <form action="{{ route('our-people.find-lawyer') }}" method="GET">
-                <div class="row g-3 justify-content-center">
-                    <div class="col-lg-3 col-md-6">
-                        <input type="text" name="name" class="form-control" placeholder="Search By Name" value="{{ request('name') }}">
-                    </div>
-                    <div class="col-lg-1 col-12 d-flex align-items-center justify-content-center">
-                        <span class="fw-bold">OR</span>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <select name="expertise" class="form-select">
-                            <option value="">EXPERTISE</option>
-                            @if(isset($allExpertise))
-                                @foreach($allExpertise as $expertise)
-                                    <option value="{{ $expertise->id }}" {{ request('expertise') == $expertise->id ? 'selected' : '' }}>
-                                        {{ $expertise->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <select name="category" class="form-select">
-                            <option value="">CATEGORIES</option>
-                            @if(isset($sectors))
-                                @foreach($sectors as $sector)
-                                    <option value="{{ $sector->id }}" {{ request('category') == $sector->id ? 'selected' : '' }}>
-                                        {{ $sector->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <button type="submit" class="btn btn-danger w-100">Search</button>
-                    </div>
-                </div>
-            </form>
-
-            <a href="{{route('our-people.find-lawyer')}}" class="btn btn-outline-danger mt-5">View All <i class="bi bi-arrow-up-right-circle-fill ms-2"></i></a>
-        </div>
-    </section>
+    
 
 
     

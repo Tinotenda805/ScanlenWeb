@@ -3,6 +3,7 @@
 @section('content')
 @include('layouts.page-hero', [
     'title' => 'Our Expertise',
+    'subtitle' => 'Practical legal expertise across diverse practice areas'
 ])
 
 

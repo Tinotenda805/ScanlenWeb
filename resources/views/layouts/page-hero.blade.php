@@ -1,7 +1,7 @@
 <header class="page-hero" id="pageHero">
     <div class="overlay"></div>
 
-    <div class="container text-center hero-content">
+    <div class="container text-start hero-content">
         <h1>{{ $title }}</h1>
 
         @isset($subtitle)
@@ -22,6 +22,9 @@
     background:
         linear-gradient(rgba(91, 0, 35, 0.5), rgba(38, 0, 15, 0.5)),
         url("/images/page-hero/scale-justice.jpg") center/cover no-repeat;
+    height: 60vh; 
+    min-height: 500px; 
+    max-height: 900px;
 }
 
 /* Optional collage on desktop only */
@@ -52,7 +55,7 @@
 .page-hero .subtitle {
     margin-top: 15px;
     font-size: 1.2rem;
-    opacity: .85;
+    opacity: 1;
 }
 
 @keyframes fadeUp {
