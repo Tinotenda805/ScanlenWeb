@@ -47,8 +47,33 @@ class MainController extends Controller
             ->ordered()
             ->take(4)
             ->get();
+
+        $categories = Category::withCount(['articles' => function($query) {
+                $query->published();
+            }])
+            ->has('articles')
+            ->orderBy('name')
+            ->take(6)
+            ->get();
+
+        $featuredPeople = OurPeople::active()
+            ->with('expertise')
+            ->inRandomOrder()
+            ->take(5) 
+            ->get();
+
+        $featuredExpertise = Expertise::withCount('people')
+            ->inRandomOrder()
+            ->take(3) 
+            ->get();
             
-        return view('test1', compact('faqs', 'partners', 'allExpertise', 'sectors', 'statistics', 'awards'));
+        return view('test1', compact(
+            'faqs', 'partners', 
+            'allExpertise', 'sectors', 
+            'statistics', 'awards', 
+            'categories', 'featuredPeople',
+            'featuredExpertise'
+        ));
     }
 
     public function contactUs()

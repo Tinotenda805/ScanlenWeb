@@ -40,7 +40,16 @@ Route::prefix('history')->name('history.')->group(function () {
 Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('/', [ArticlesController::class, 'index'])->name('index');
     Route::get('/{slug}', [ArticlesController::class, 'show'])->name('show');
+    Route::get('/category/{category:slug}', [ArticlesController::class, 'category'])->name('category');
 });
+
+// Route::prefix('articles')->name('insights.')->group(function () {
+//     Route::get('/', [ArticlesController::class, 'index'])->name('index');
+//     Route::get('/{article:slug}', [ArticlesController::class, 'show'])->name('show');
+//     Route::get('/category/{category:slug}', [ArticlesController::class, 'category'])->name('category');
+
+// });
+
 
 // EXPERTISE
 Route::prefix('expertise')->name('expertise.')->group(function () {

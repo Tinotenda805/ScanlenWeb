@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-Currentheader', ['title'=>'Contact Us'])
+@include('layouts.page-hero', ['title'=>'Contact Us'])
 {{-- <div class="col-md-6">
     @if(session('success'))
         <div class="toast align-items-center text-bg-success border-0 show float-md-end" role="alert">

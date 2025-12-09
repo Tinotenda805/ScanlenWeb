@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-Currentheader', [
+@include('layouts.page-hero', [
     'title' => 'Our Expertise',
 ])
 

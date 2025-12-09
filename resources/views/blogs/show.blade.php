@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-Currentheader', ['title' => $blog->title, 'breadcrumb' => 'Blog Post'])
+@include('layouts.page-hero', ['title' => $blog->title, 'breadcrumb' => 'Blog Post'])
 
 <section class="py-5">
     <div class="container">

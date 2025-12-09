@@ -14,65 +14,81 @@ class ArticlesController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Article::with(['authors', 'category', 'tags'])
-            ->published()
-            ->latest('published_at');
+        $query = Article::with(['category', 'authors', 'tags'])
+            ->where('is_published', true)
+            ->where('published_at', '<=', now());
 
-        // Filter by category
+        // Filter by category slug from query string
         if ($request->has('category')) {
-            $query->whereHas('category', function ($q) use ($request) {
+            $query->whereHas('category', function($q) use ($request) {
                 $q->where('slug', $request->category);
             });
         }
 
         // Filter by tag
         if ($request->has('tag')) {
-            $query->whereHas('tags', function ($q) use ($request) {
+            $query->whereHas('tags', function($q) use ($request) {
                 $q->where('slug', $request->tag);
             });
         }
 
         // Search functionality
-        if ($request->has('search') && !empty($request->search)) {
+        if ($request->has('search') && $request->search) {
             $search = $request->search;
-            $query->where(function ($q) use ($search) {
+            $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                    ->orWhere('excerpt', 'like', "%{$search}%")
-                    ->orWhere('content', 'like', "%{$search}%");
+                  ->orWhere('excerpt', 'like', "%{$search}%")
+                  ->orWhere('content', 'like', "%{$search}%");
             });
         }
 
-        // Paginate articles (9 per page)
-        $articles = $query->paginate(8);
+        $articles = $query->latest('published_at')->paginate(12);
 
-        // Get featured articles for the top section
-        $featuredArticles = Article::with(['authors', 'category'])
-            ->published()
-            ->featured()
-            ->latest('published_at')
-            ->take(3)
-            ->get();
+        // Get featured articles (only for main page, not search/filter)
+        $featuredArticles = collect();
+        if (!$request->has('category') && !$request->has('tag') && !$request->has('search')) {
+            $featuredArticles = Article::with(['category', 'authors'])
+                ->where('is_published', true)
+                ->where('is_featured', true)
+                ->where('published_at', '<=', now())
+                ->latest('published_at')
+                ->take(3)
+                ->get();
+        }
 
-        // Get all categories with article count
-        $categories = Category::withCount('articles')
+        // Categories with article counts
+        $categories = Category::withCount(['articles' => function($query) {
+                $query->where('is_published', true)
+                      ->where('published_at', '<=', now());
+            }])
             ->has('articles')
             ->orderBy('name')
-            ->get(); 
+            ->get();
 
-        // Get popular tags
-        $popularTags = Tag::withCount('articles')
+        // Popular tags
+        $popularTags = Tag::withCount(['articles' => function($query) {
+                $query->where('is_published', true)
+                      ->where('published_at', '<=', now());
+            }])
             ->has('articles')
             ->orderBy('articles_count', 'desc')
             ->take(10)
             ->get();
 
+        // Total articles count for "All" badge
+        $totalArticlesCount = Article::where('is_published', true)
+            ->where('published_at', '<=', now())
+            ->count();
+
         return view('articles.index', compact(
-            'articles',
-            'featuredArticles',
-            'categories',
-            'popularTags'
+            'articles', 
+            'featuredArticles', 
+            'categories', 
+            'popularTags',
+            'totalArticlesCount'
         ));
     }
+
 
     /**
      * Display a single article.
@@ -98,5 +114,54 @@ class ArticlesController extends Controller
             ->get();
 
         return view('articles.show', compact('article', 'relatedArticles'));
+    }
+
+
+    public function category(Category $category)
+    {
+        $articles = $category->articles()
+            ->with(['authors', 'tags', 'category'])
+            ->where('is_published', true)
+            ->where('published_at', '<=', now())
+            ->latest('published_at')
+            ->paginate(12);
+
+        // Categories with article counts
+        $categories = Category::withCount(['articles' => function($query) {
+                $query->where('is_published', true)
+                      ->where('published_at', '<=', now());
+            }])
+            ->has('articles')
+            ->orderBy('name')
+            ->get();
+
+        // Related categories (exclude current)
+        $relatedCategories = Category::where('id', '!=', $category->id)
+            ->withCount(['articles' => function($query) {
+                $query->where('is_published', true)
+                      ->where('published_at', '<=', now());
+            }])
+            ->has('articles')
+            ->orderBy('articles_count', 'desc')
+            ->take(5)
+            ->get();
+
+        // Popular tags
+        $popularTags = Tag::withCount(['articles' => function($query) {
+                $query->where('is_published', true)
+                      ->where('published_at', '<=', now());
+            }])
+            ->has('articles')
+            ->orderBy('articles_count', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('articles.index', compact(
+            'articles', 
+            'category', 
+            'categories', 
+            'relatedCategories',
+            'popularTags'
+        ));
     }
 }

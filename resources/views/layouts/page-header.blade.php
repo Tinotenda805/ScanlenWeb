@@ -25,11 +25,12 @@
             background: 
                 linear-gradient(135deg, #848484 0%, #848484 100%),
                 url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/300px 350px no-repeat,
-                url("{{ asset('images/oldpartners/op1.jpeg') }}") 15% 40%/180px 220px no-repeat,
-                url("{{ asset('images/oldpartners/op2.jpeg') }}") 95% 20%/200px 240px no-repeat,
-                url("{{ asset('images/oldpartners/op3.jpeg') }}") 30% 80%/190px 230px no-repeat,
-                url("{{ asset('images/oldpartners/op4.jpeg') }}") 70% 75%/170px 210px no-repeat,
-                url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10%/160px 200px no-repeat;
+                url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40% / 185px 170px no-repeat,
+                url("{{ asset('images/oldpartners/op2.jpeg') }}") 99% 10% / 185px 170px no-repeat,
+                url("{{ asset('images/oldpartners/op3.jpeg') }}") 31% 80% / 185px 170px no-repeat,
+                url("{{ asset('images/oldpartners/op4.jpeg') }}") 69% 80% / 185px 170px no-repeat,
+                url("{{ asset('images/oldpartners/op6.jpeg') }}") 84% 40% / 185px 170px no-repeat,
+                url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10% / 185px 170px no-repeat;
             background-blend-mode: multiply;
             padding: 140px 0 60px 0;
         }
@@ -46,21 +47,6 @@
             /* min-height: 250px; */
         }
     }
-    /* .bg-breadcrumb {
-        position: relative;
-        overflow: hidden;
-        background: 
-            linear-gradient(135deg, #848484 0%, #848484 100%), 
-            url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/300px 350px no-repeat,
-            url("{{ asset('images/oldpartners/op1.jpeg') }}") 15% 40%/180px 220px no-repeat,
-            url("{{ asset('images/oldpartners/op2.jpeg') }}") 95% 20%/200px 240px no-repeat,
-            url("{{ asset('images/oldpartners/op3.jpeg') }}") 30% 80%/190px 230px no-repeat,
-            url("{{ asset('images/oldpartners/op4.jpeg') }}") 70% 75%/170px 210px no-repeat,
-            url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10%/160px 200px no-repeat,
-            url("../img/carousel-1.jpg") center/cover no-repeat; 
-        background-blend-mode: multiply;
-        transition: 0.5s;
-    } */
 
 
     .bg-breadcrumb .breadcrumb {
