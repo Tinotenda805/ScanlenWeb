@@ -39,6 +39,23 @@
     
 }
 
+@media (min-width: 576px) {
+    .page-hero{
+        background: 
+            linear-gradient(135deg, rgba(91, 0, 35, 0.877), rgba(98, 94, 96, 0.324)),
+            url("{{asset('images/page-hero/books2.jpg')}}") center/cover no-repeat;
+        padding: 140px 0 60px 0;
+        justify-content: center;
+    }
+
+    .page-hero .hero-content{
+        position: absolute;
+        text-align: center;
+        justify-content: center;
+    }
+    
+}
+
 .page-hero .hero-content {
     position: relative;
     z-index: 2;

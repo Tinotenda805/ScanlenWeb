@@ -13,16 +13,16 @@
             url("{{ asset('images/newpartners/br.png') }}") center/280px no-repeat,
 
             /* Left Side Images */
-            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/140px no-repeat,
             url("{{ asset('images/newpartners/gg.png') }}") 33% 80%/140px no-repeat,
             url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/150px no-repeat,
+            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/140px no-repeat,
 
             /* Right Side Images */
             url("{{ asset('images/newpartners/ftm.png') }}") 100% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/140px no-repeat,
             url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px no-repeat,
-            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/150px no-repeat;
+            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/140px no-repeat;
     background-color: rgba(128, 1, 50, 0.578);
     background-blend-mode: multiply;
     padding: 140px 0 60px 0;
@@ -37,16 +37,16 @@
             url("{{ asset('images/newpartners/br.png') }}") center/280px no-repeat,
 
             /* Left Side Images */
-            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/140px no-repeat,
             url("{{ asset('images/newpartners/gg.png') }}") 33% 80%/140px no-repeat,
             url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/150px no-repeat,
+            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/140px no-repeat,
 
             /* Right Side Images */
             url("{{ asset('images/newpartners/ftm.png') }}") 100% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/140px no-repeat,
             url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px no-repeat,
-            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/150px no-repeat;
+            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/140px no-repeat;
         background-color: rgba(128, 1, 50, 0.578);
         background-blend-mode: multiply;
         padding: 140px 0 60px 0;

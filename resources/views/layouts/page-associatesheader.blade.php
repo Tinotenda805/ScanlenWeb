@@ -14,14 +14,14 @@
 
         /* Left Side Images */
         url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
-        url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/150px no-repeat,
+        url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/140px no-repeat,
         url("{{ asset('images/associates/km.jpg') }}") 24% 60%/140px no-repeat,
-        url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/160px no-repeat,
+        url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/140px no-repeat,
         
         /* Right Side Images */
         url("{{ asset('images/associates/tk.png') }}") 35% 80%/140px no-repeat,
         url("{{ asset('images/associates/tpw.jpeg') }}") 65% 80%/140px no-repeat,
-        url("{{ asset('images/associates/ppm.png') }}") 88% 35%/160px no-repeat,
+        url("{{ asset('images/associates/ppm.png') }}") 88% 35%/140px no-repeat,
         url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
     background-color: rgba(128, 1, 50, 0.578);
     background-blend-mode: multiply;
@@ -38,14 +38,14 @@
 
             /* Left Side Images */
             url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
-            url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/150px no-repeat,
+            url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/140px no-repeat,
             url("{{ asset('images/associates/km.jpg') }}") 24% 60%/140px no-repeat,
-            url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/160px no-repeat,
+            url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/140px no-repeat,
             
             /* Right Side Images */
             url("{{ asset('images/associates/tk.png') }}") 35% 80%/140px no-repeat,
             url("{{ asset('images/associates/tpw.jpeg') }}") 65% 80%/140px no-repeat,
-            url("{{ asset('images/associates/ppm.png') }}") 88% 35%/160px no-repeat,
+            url("{{ asset('images/associates/ppm.png') }}") 88% 35%/140px no-repeat,
             url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
         background-color: rgba(128, 1, 49, 0.737);
         background-blend-mode: multiply;
