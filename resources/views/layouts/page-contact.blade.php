@@ -20,8 +20,8 @@
     padding: 100px 0 100px;
     color: #fff;
     background:
-        linear-gradient(rgba(91, 0, 35, 0.5), rgba(38, 0, 15, 0.5)),
-        url("{{asset('images/page-hero/phone.jpg')}}") center/cover no-repeat;
+        linear-gradient(135deg, rgba(91, 0, 35, 0.877), rgba(98, 94, 96, 0.324)),
+        url("{{asset('images/page-hero/call2.jpg')}}") center/cover no-repeat;
     height: 60vh; 
     min-height: 500px; 
     max-height: 900px;
@@ -31,8 +31,8 @@
 @media (min-width: 992px) {
     .page-hero{
         background: 
-            linear-gradient(rgba(91, 0, 35, 0.78), rgba(38, 0, 15, 0.78)),
-            url("{{asset('images/page-hero/phone.jpg')}}") center/cover no-repeat;
+            linear-gradient(135deg, rgba(91, 0, 35, 0.877), rgba(98, 94, 96, 0.324)),
+            url("{{asset('images/page-hero/call2.jpg')}}") center/cover no-repeat;
             padding: 140px 0 60px 0;
         max-height: 500px;
     }
@@ -41,8 +41,8 @@
 @media (min-width: 576px) {
     .page-hero{
         background: 
-            linear-gradient(rgba(91, 0, 35, 0.78), rgba(38, 0, 15, 0.78)),
-            url("{{asset('images/page-hero/phone.jpg')}}") center/cover no-repeat;
+            linear-gradient(135deg, rgba(91, 0, 35, 0.877), rgba(98, 94, 96, 0.324)),
+            url("{{asset('images/page-hero/call2.jpg')}}") center/cover no-repeat;
         padding: 140px 0 60px 0;
         justify-content: center;
     }
