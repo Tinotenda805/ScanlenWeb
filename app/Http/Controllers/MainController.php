@@ -57,9 +57,9 @@ class MainController extends Controller
             ->get();
 
         $featuredPeople = OurPeople::active()
-            ->with('expertise')
+            // ->with('expertise')
             ->inRandomOrder()
-            ->take(5) 
+            // ->take(5) 
             ->get();
 
         $featuredExpertise = Expertise::withCount('people')

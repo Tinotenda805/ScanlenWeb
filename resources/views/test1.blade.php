@@ -1551,7 +1551,7 @@
     
 }
 
-.carousel-item {
+.our-people-section .carousel-item {
     padding: 30px 0;
     height: 600px;
     /* overflow-y: auto; */
