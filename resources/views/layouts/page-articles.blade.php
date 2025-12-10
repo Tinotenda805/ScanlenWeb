@@ -21,7 +21,7 @@
     color: #fff;
     background:
         linear-gradient(135deg, rgba(91, 0, 35, 0.877), rgba(98, 94, 96, 0.324)),
-        url("/images/page-hero/scale-justice.jpg") center/cover no-repeat;
+        url("/images/page-hero/books2.jpg") center/cover no-repeat;
     height: 60vh; 
     min-height: 500px; 
     max-height: 900px;
@@ -32,7 +32,7 @@
     .page-hero{
         background: 
             linear-gradient(135deg, rgba(91, 0, 35, 0.877), rgba(98, 94, 96, 0.324)),
-            url("{{asset('images/page-hero/scale-justice.jpg')}}") no-repeat;
+            url("{{asset('images/page-hero/books2.jpg')}}") no-repeat;
             padding: 140px 0 60px 0;
         max-height: 500px;
     }

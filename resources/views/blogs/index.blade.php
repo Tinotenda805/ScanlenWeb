@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-hero', ['title' => 'Blogs', 'subtitle' => 'Insights and commentary on current legal developments'])
+@include('layouts.page-blog', ['title' => 'Blogs', 'subtitle' => 'Insights and commentary on current legal developments'])
 
 <!-- Featured Blogs Section -->
 @if($featuredBlogs->count() > 0)

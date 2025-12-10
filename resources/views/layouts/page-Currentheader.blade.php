@@ -7,33 +7,47 @@
 <style>
 /*** Hero Section ***/
 .bg-breadcrumb {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #848484 0%, #848484 100%);
-    transition: all 0.8s ease-in-out;
-    opacity: 0.8;
+    background:
+            /* linear-gradient(135deg, #848484 0%, #848484 100%), */
+            /* Center Image */
+            url("{{ asset('images/newpartners/br.png') }}") center/280px no-repeat,
+
+            /* Left Side Images */
+            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/gg.png') }}") 33% 80%/140px no-repeat,
+            url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,
+            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/150px no-repeat,
+
+            /* Right Side Images */
+            url("{{ asset('images/newpartners/ftm.png') }}") 100% 10%/140px no-repeat,
+            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px no-repeat,
+            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/150px no-repeat;
+    background-color: rgba(128, 1, 50, 0.578);
+    background-blend-mode: multiply;
+    padding: 140px 0 60px 0;
 }
 
 /* Desktop: All 9 images layered */
 @media (min-width: 768px) {
     .bg-breadcrumb {
         background:
-            linear-gradient(135deg, #848484 0%, #848484 100%),
+            /* linear-gradient(135deg, #848484 0%, #848484 100%), */
             /* Center Image */
-            url("{{ asset('images/newpartners/br.png') }}") center/280px 330px no-repeat,
+            url("{{ asset('images/newpartners/br.png') }}") center/280px no-repeat,
 
             /* Left Side Images */
-            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/160px 200px no-repeat,
-            url("{{ asset('images/newpartners/gg.png') }}") 33% 80%/140px 180px no-repeat,
-            url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px 180px no-repeat,
-            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/150px 180px no-repeat,
+            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/gg.png') }}") 33% 80%/140px no-repeat,
+            url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,
+            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/150px no-repeat,
 
             /* Right Side Images */
-            url("{{ asset('images/newpartners/ftm.png') }}") 100% 10%/140px 180px no-repeat,
-            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/160px 200px no-repeat,
-            url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px 180px no-repeat,
-            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/150px 180px no-repeat;
-
+            url("{{ asset('images/newpartners/ftm.png') }}") 100% 10%/140px no-repeat,
+            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/160px no-repeat,
+            url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px no-repeat,
+            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/150px no-repeat;
+        background-color: rgba(128, 1, 50, 0.578);
         background-blend-mode: multiply;
         padding: 140px 0 60px 0;
     }

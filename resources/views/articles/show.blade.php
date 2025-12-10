@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-hero', ['title' => $article->title, 'breadcrumb' => 'Article'])
+@include('layouts.page-articles', ['title' => $article->title, 'breadcrumb' => 'Article'])
 
 <section class="py-5">
     <div class="container">

@@ -100,6 +100,7 @@
         color: #5a6c7d;
         max-width: 600px;
         margin: 0 auto;
+        /* text-align: justify; */
     }
 
     .timeline {
@@ -271,29 +272,29 @@
         /* background: var(--new-maroon); */
         border-radius: 12px !important;
         border: 1px solid #e0e6ed !important;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     /* Force override for no-image content */
     .main-content-area.no-image .decade-year {
         color: var(--maroon) !important;
         font-size: clamp(1.8rem, 3vw, 2.5rem) !important;
-        margin-bottom: 15px !important;
+        margin-bottom: 10px !important;
     }
 
     .main-content-area.no-image .decade-title {
         color: var(--white) !important;
         font-size: 1.8rem !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 10px !important;
         border-bottom: 2px solid var(--light-gray) !important;
-        padding-bottom: 10px !important;
+        padding-bottom: 5px !important;
     }
 
     .main-content-area.no-image .decade-description {
         color: var(--light-gray) !important;
         font-size: 1rem !important;
         line-height: 1.8 !important;
-        margin-bottom: 25px !important;
+        margin-bottom: 5px !important;
     }
 
     /* ===== SHORT CONTENT STYLES ===== */
@@ -340,7 +341,7 @@
         font-size: 1rem;
         color: var(--light-gray);
         line-height: 1.8;
-        margin-bottom: 25px;
+        /* margin-bottom: 25px; */
         position: relative;
         z-index: 1;
     }
@@ -348,10 +349,9 @@
     .highlights {
         list-style: none;
         padding: 0;
-        margin-top: 20px;
+        /* margin-top: 20px; */
         position: relative;
         z-index: 1;
-        col
     }
 
     .highlights li {
@@ -770,9 +770,9 @@
                             </div>
                             
                             {{-- Long content WITH image --}}
-                            @if(!$isShortContent)
+                            {{-- @if(!$isShortContent)
                             <div class="main-content-area">
-                                <div class="decade-description fs-5 lh-base justify-info">
+                                <div class="decade-description fs-5 justify-info">
                                     {!! $timeline->description !!}
                                 </div>
 
@@ -784,14 +784,14 @@
                                 </ul>
                                 @endif
                             </div>
-                            @endif
+                            @endif --}}
                         @else
                             {{-- WITHOUT IMAGE --}}
                             <div class="main-content-area no-image">
                                 <div class="decade-year">{{ $timeline->decade }}</div>
                                 <h3 class="decade-title">{{ $timeline->title }}</h3>
                                 
-                                <div class="decade-description fs-5 lh-base justify-info">
+                                <div class="decade-description fs-5 justify-info">
                                     {!! $timeline->description !!}
                                 </div>
 

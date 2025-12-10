@@ -7,33 +7,47 @@
 <style>
 /*** Hero Section ***/
 .bg-breadcrumb {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #848484 0%, #848484 100%);
-    transition: all 0.8s ease-in-out;
-    opacity: 0.8;
+    background:
+        /* linear-gradient(135deg, #848484 0%, #848484 100%), */
+        /* Center Image */
+        url("{{ asset('images/gavel3.png') }}") center/300px no-repeat,
+
+        /* Left Side Images */
+        url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
+        url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/150px no-repeat,
+        url("{{ asset('images/associates/km.jpg') }}") 24% 60%/140px no-repeat,
+        url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/160px no-repeat,
+        
+        /* Right Side Images */
+        url("{{ asset('images/associates/tk.png') }}") 35% 80%/140px no-repeat,
+        url("{{ asset('images/associates/tpw.jpeg') }}") 65% 80%/140px no-repeat,
+        url("{{ asset('images/associates/ppm.png') }}") 88% 35%/160px no-repeat,
+        url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
+    background-color: rgba(128, 1, 50, 0.578);
+    background-blend-mode: multiply;
+    padding: 140px 0 60px 0;
 }
 
 /* Desktop: All 9 images layered */
 @media (min-width: 768px) {
     .bg-breadcrumb {
         background:
-            linear-gradient(135deg, #848484 0%, #848484 100%),
+            /* linear-gradient(135deg, #848484 0%, #848484 100%), */
             /* Center Image */
-            url("{{ asset('images/gavel3.png') }}") center/300px 200px no-repeat,
+            url("{{ asset('images/gavel3.png') }}") center/300px no-repeat,
 
             /* Left Side Images */
-            url("{{ asset('images/associates/fs.jpg') }}") 11% 35%/160px 200px no-repeat,
-            url("{{ asset('images/associates/in.png') }}") 33% 80%/140px 180px no-repeat,
-            url("{{ asset('images/associates/km.jpg') }}") 1% 10%/140px 180px no-repeat,
-            url("{{ asset('images/associates/mvm.jpg') }}") 22% 60%/150px 180px no-repeat,
-
+            url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
+            url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/150px no-repeat,
+            url("{{ asset('images/associates/km.jpg') }}") 24% 60%/140px no-repeat,
+            url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/160px no-repeat,
+            
             /* Right Side Images */
-            url("{{ asset('images/associates/oc.png') }}") 98% 10%/140px 180px no-repeat,
-            url("{{ asset('images/associates/ppm.png') }}") 83% 50%/160px 200px no-repeat,
-            url("{{ asset('images/associates/tk.png') }}") 67% 80%/140px 180px no-repeat;
-            /* url("{{ asset('images/associates/r.png') }}") 78% 60%/150px 180px no-repeat; */
-
+            url("{{ asset('images/associates/tk.png') }}") 35% 80%/140px no-repeat,
+            url("{{ asset('images/associates/tpw.jpeg') }}") 65% 80%/140px no-repeat,
+            url("{{ asset('images/associates/ppm.png') }}") 88% 35%/160px no-repeat,
+            url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
+        background-color: rgba(128, 1, 49, 0.737);
         background-blend-mode: multiply;
         padding: 140px 0 60px 0;
     }
@@ -44,7 +58,7 @@
     .bg-breadcrumb {
         background:
             linear-gradient(135deg, #848484 0%, #848484 100%),
-            url("{{ asset('images/newpartners/br.png') }}") center/220px 220px no-repeat;
+            url("{{ asset('images/gavel3.png') }}") center/220px no-repeat;
         background-blend-mode: multiply;
         padding: 120px 0 60px 0;
     }

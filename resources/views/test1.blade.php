@@ -6,7 +6,7 @@
     .hero-landing {
         min-height: 100vh;
         background: linear-gradient(135deg, rgba(60, 0, 8, 0.5) 0%, rgba(60, 0, 8, 0.5) 100%),
-                    url('../images/scales.jpg') center/cover;
+                    url('../images/scale.jpg') center/cover;
         position: relative;
         display: flex;
         align-items: center;
@@ -102,21 +102,26 @@
         padding: 0 2rem;
         position: relative;
         z-index: 2;
+        width: 100%;
     }
 
     .hero-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 5rem;
+        gap: 4rem;
         align-items: center;
     }
 
     /* LEFT SIDE - Carousel & Heading */
     .carousel-content-section {
         animation: fadeInLeft 1s ease-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
     }
 
-    @keyframes fadeInLeft {
+    /* @keyframes fadeInLeft {
         from {
             opacity: 0;
             transform: translateX(-30px);
@@ -125,7 +130,7 @@
             opacity: 1;
             transform: translateX(0);
         }
-    }
+    } */
 
     /* Heading Above Carousel */
     .carousel-heading {
@@ -160,14 +165,15 @@
 
     /* 3D Carousel Below Heading */
     .c-partners-container {
-        /* width: 600px;  */
-        /* height: 600px;  */
-        display: flex; 
-        align-items: center; 
+        width: 100%;
+        max-width: 720px; /* Match carousel size */
+        height: 500px; /* Fixed height for consistency */
+        display: flex;
+        align-items: center;
         justify-content: center;
         margin: 0 auto;
         position: relative;
-        perspective: 1200px;
+        perspective: 1400px;
     }
 
     /* Founder Center Image - Independent of carousel size */
@@ -177,18 +183,19 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        z-index: 0;
+        z-index: 5; /* Between carousel images */
     }
 
     .founder-center .founder-img {
-        width: 380px;  
-        height: 380px; 
+        width: 380px;  /* Reduced for better proportion */
+        height: 380px;
         border-radius: 50%;
         border: 5px solid white;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
         object-fit: cover;
         background: var(--light-maroon);
         padding: 5px;
+        transition: transform 0.3s ease;
     }
 
     .founder-center .founder-label {
@@ -203,16 +210,20 @@
         box-shadow: 0 4px 15px rgba(255, 255, 255, 0.6);
         display: inline-block;
         text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+    .founder-center:hover .founder-label {
+        background: var(--maroon);
+        color: white;
+        transform: translateY(-2px);
     }
 
     /* Carousel Circle - MUST MATCH .c-partners-container size */
     #circular-carousel {
-        /* width: 600px;   */
-        /* height: 600px;  */
+        width: 100%;
+        height: 400px;
         position: relative;
         margin: auto;
-        border: none;
-        background: transparent;
         transform-style: preserve-3d;
         z-index: 10;
     }
@@ -223,9 +234,14 @@
         left: 50%;
         top: 50%;
         transform-style: preserve-3d;
-        transition: all 0.3s ease;
+        transition:
+            transform 0.5s ease,
+            opacity 0.3s ease,
+            filter 0.3s ease,
+            z-index 0.3s ease;
         text-decoration: none;
         z-index: 10;
+        display: block;
     }
 
 
@@ -237,6 +253,7 @@
         box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         transition: all 0.3s ease;
         object-fit: cover;
+        background: var(--light-gray);
     }
 
     #circular-carousel .carousel-img:hover img {
@@ -2177,28 +2194,7 @@
                                         </div>
                                     </a>
                                 @endforeach
-                            @else
-                                <!-- Fallback -->
-                                <a href="#" class="carousel-img">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Partner">
-                                    <div class="partner-info">Current Partner</div>
-                                </a>
-                                <a href="#" class="carousel-img">
-                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Partner">
-                                    <div class="partner-info">Current Partner</div>
-                                </a>
-                                <a href="#" class="carousel-img">
-                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Partner">
-                                    <div class="partner-info">Current Partner</div>
-                                </a>
-                                <a href="#" class="carousel-img">
-                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Partner">
-                                    <div class="partner-info">Current Partner</div>
-                                </a>
-                                <a href="#" class="carousel-img">
-                                    <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="Partner">
-                                    <div class="partner-info">Current Partner</div>
-                                </a>
+                            
                             @endif
                         </div>
                     </div>
@@ -2878,87 +2874,81 @@
             
             // ===== 3D CAROUSEL =====
             const carousel = document.getElementById('circular-carousel');
-            if (!carousel) return;
-            
-            const images = carousel.querySelectorAll('.carousel-img');
-            const total = images.length;
-            
-            if (total === 0) return;
-            
-            let radius = 180;
-            let angle = 0;
-            let animationId;
-            const rotationSpeed = 0.25;
-
-            function getResponsiveValues() {
-                const width = window.innerWidth;
+            if (carousel) {
+                const images = carousel.querySelectorAll('.carousel-img');
+                const total = images.length;
                 
-                if (width <= 576) {
-                    radius = 115;
-                } else if (width <= 768) {
-                    radius = 135;
-                } else if (width <= 991) {
-                    radius = 155;
-                } else if (width <= 1200) {
-                    radius = 170;
-                } else {
-                    radius = 180;
-                }
-            }
+                if (total > 0) {
+                    let angle = 0;
+                    let animationId;
+                    const rotationSpeed = 0.25;
 
-            function positionImages() {
-                const angleStep = (2 * Math.PI) / total;
-                
-                for (let i = 0; i < total; i++) {
-                    const currentAngle = (angle * Math.PI / 180) + (angleStep * i);
-                    const x = Math.sin(currentAngle) * radius;
-                    const z = Math.cos(currentAngle) * radius;
-                    const scale = (z + radius) / (radius * 2) * 0.4 + 0.6;
-                    
-                    images[i].style.transform = `
-                        translate(-50%, -50%)
-                        translateX(${x}px)
-                        translateZ(${z}px)
-                        scale(${scale})
-                    `;
-                    
-                    if (z < 0) {
-                        images[i].classList.add('behind');
-                        images[i].style.zIndex = 1;
-                    } else {
-                        images[i].classList.remove('behind');
-                        images[i].style.zIndex = 10;
+                    // ✅ ADJUST THIS VALUE TO CONTROL SPACING (higher = more space from center)
+                    const BASE_ORBIT_RADIUS = 250;  // Change this: try 250, 280, 300, 350, etc.
+
+                    function positionImages() {
+                        const angleStep = (2 * Math.PI) / total;
+
+                        for (let i = 0; i < total; i++) {
+                            const currentAngle = (angle * Math.PI / 180) + (angleStep * i);
+
+                            // Use the BASE_ORBIT_RADIUS directly
+                            const x = Math.sin(currentAngle) * BASE_ORBIT_RADIUS;
+                            const z = Math.cos(currentAngle) * BASE_ORBIT_RADIUS;
+
+                            // Scale for depth effect
+                            const scale = (z + BASE_ORBIT_RADIUS) / (BASE_ORBIT_RADIUS * 2) * 0.4 + 0.6;
+
+                            images[i].style.transform = `
+                                translate(-50%, -50%)
+                                translateX(${x}px)
+                                translateZ(${z}px)
+                                scale(${scale})
+                            `;
+
+                            // Hide images behind the founder (when z is negative and far back)
+                            if (z < -100) {
+                                images[i].classList.add('behind');
+                                images[i].style.zIndex = 1;
+                            } else {
+                                images[i].classList.remove('behind');
+                                images[i].style.zIndex = Math.round(z + BASE_ORBIT_RADIUS + 100);
+                            }
+                        }
                     }
+
+                    function animate() {
+                        angle = (angle + rotationSpeed) % 360;
+                        positionImages();
+                        animationId = requestAnimationFrame(animate);
+                    }
+
+                    // Initialize
+                    positionImages();
+                    animate();
+
+                    // Pause on hover
+                    carousel.addEventListener('mouseenter', () => {
+                        cancelAnimationFrame(animationId);
+                    });
+
+                    carousel.addEventListener('mouseleave', () => {
+                        animationId = requestAnimationFrame(animate);
+                    });
+
+                    // Resize handling
+                    let resizeTimeout;
+                    window.addEventListener('resize', () => {
+                        clearTimeout(resizeTimeout);
+                        resizeTimeout = setTimeout(() => {
+                            cancelAnimationFrame(animationId);
+                            positionImages();
+                            animationId = requestAnimationFrame(animate);
+                        }, 200);
+                    });
                 }
             }
 
-            function animate() {
-                angle += rotationSpeed;
-                if (angle >= 360) angle = 0;
-                positionImages();
-                animationId = requestAnimationFrame(animate);
-            }
-
-            function initialize() {
-                getResponsiveValues();
-                positionImages();
-            }
-
-            initialize();
-            animate();
-            
-            carousel.addEventListener('mouseenter', () => cancelAnimationFrame(animationId));
-            carousel.addEventListener('mouseleave', () => animationId = requestAnimationFrame(animate));
-            
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    cancelAnimationFrame(animationId);
-                    initialize();
-                    animationId = requestAnimationFrame(animate);
-                }, 250);
-            });
 
             // Animate statistics on scroll
             const statsObserver = new IntersectionObserver((entries) => {

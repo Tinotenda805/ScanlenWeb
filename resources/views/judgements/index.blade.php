@@ -4,7 +4,7 @@
 
 @include('layouts.page-judge', [
     'title' => 'Judgements',
-    'subtitle' => 'Authoritative court decisions and legal precedents'
+    'subtitle' => 'Authoritative court decisions and legal precedents.'
 ])
 
 <section class="judgements-section py-5">

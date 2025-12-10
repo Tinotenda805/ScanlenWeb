@@ -3,13 +3,13 @@
 @section('content')
 {{-- Dynamic Page Hero based on view type --}}
 @if(isset($category))
-    @include('layouts.page-hero', [
+    @include('layouts.page-articles', [
         // 'title' => $category->name, 
         'title' => 'Articles for: ' . $category->name,
         
     ])
 @else
-    @include('layouts.page-hero', [
+    @include('layouts.page-articles', [
         'title' => 'Articles & Insights', 
         'breadcrumb' => 'Articles',
         'subtitle' => 'In-depth analysis of key legal issues and trends'
