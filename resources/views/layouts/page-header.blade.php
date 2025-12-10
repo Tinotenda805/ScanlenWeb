@@ -1,21 +1,38 @@
-
 <header class="header bg-breadcrumb" id="heroHeader">
+    <!-- Background pattern images (still in CSS) -->
+    
+    <!-- Center image as HTML element -->
+    <div class="center-founder-frame">
+        <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" 
+             alt="Founder" 
+             class="founder-portrait"
+             loading="lazy">
+        <div class="gold-frame"></div>
+    </div>
+    
+    <!-- Header content -->
     <div class="header-content">
         <h1>{{$title ?? 'Scanlen & Holderness'}}</h1>
-        {{-- <h1>{{$subtitle ?? '-'}}</h1> --}}
-        
     </div>
 </header>
 
 <style>
-    /*** Single Page Hero Header Start ***/
+/*** Single Page Hero Header Start ***/
+.bg-breadcrumb {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(128, 1, 50, 0.578);
+    padding: 140px 0 60px 0;
+    transition: all 0.8s ease-in-out;
+    opacity: 0.7;
+    min-height: 380px;
+}
+
+/* Remove scanlen from background CSS */
+/* Desktop: Multiple background images */
+@media (min-width: 768px) {
     .bg-breadcrumb {
-        position: relative;
-        overflow: hidden;
-        /* Initially show a solid background or loading state */
         background: 
-            /* linear-gradient(135deg, #fff 0%, #dec6d4 50%), */
-            url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/300px 350px no-repeat,
             url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40% / 185px 170px no-repeat,
             url("{{ asset('images/oldpartners/op2.jpeg') }}") 99% 10% / 185px 170px no-repeat,
             url("{{ asset('images/oldpartners/op3.jpeg') }}") 31% 80% / 185px 170px no-repeat,
@@ -24,239 +41,293 @@
             url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10% / 185px 170px no-repeat;
         background-color: rgba(128, 1, 50, 0.578);
         background-blend-mode: multiply;
-        padding: 140px 0 60px 0;
-        transition: all 0.8s ease-in-out;
-        opacity: 0.7; /* Start slightly faded */
     }
+}
 
-    /* This class will be added when all images are loaded */
-    /* Desktop: Multiple background images */
-    @media (min-width: 768px) {
-        .bg-breadcrumb {
-            background: 
-               /* linear-gradient(135deg, #fff 0%, #cf94b6 50%), */
-                url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/300px 350px no-repeat,
-                url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40% / 185px 170px no-repeat,
-                url("{{ asset('images/oldpartners/op2.jpeg') }}") 99% 10% / 185px 170px no-repeat,
-                url("{{ asset('images/oldpartners/op3.jpeg') }}") 31% 80% / 185px 170px no-repeat,
-                url("{{ asset('images/oldpartners/op4.jpeg') }}") 69% 80% / 185px 170px no-repeat,
-                url("{{ asset('images/oldpartners/op6.jpeg') }}") 84% 40% / 185px 170px no-repeat,
-                url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10% / 185px 170px no-repeat;
-            background-color: rgba(128, 1, 50, 0.578);
-            background-blend-mode: multiply;
-            padding: 140px 0 60px 0;
-        }
+/* Mobile: No background images except color */
+@media (max-width: 567px) {
+    .bg-breadcrumb {
+        background: none;
+        background-color: rgba(128, 1, 50, 0.578);
     }
+}
 
-    /* Mobile: Only founder image */
-    @media (max-width: 567px) {
-        .bg-breadcrumb {
-            background: 
-                /* linear-gradient(135deg, #848484 0%, #848484 100%), */
-                url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/220px 220px no-repeat;
-            background-color: rgba(128, 1, 50, 0.578);
-            background-blend-mode: multiply;
-            padding: 140px 0 60px 0;
-            /* min-height: 250px; */
-        }
+/* Center founder image container */
+.center-founder-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 310px;
+    height: 350px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.header.loaded .center-founder-frame {
+    opacity: 1;
+}
+
+/* The actual portrait image */
+.founder-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-radius: 4px; */
+    display: block;
+    position: relative;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+/* Gold frame overlay */
+.gold-frame {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 8px solid #D4AF37;
+    /* border-radius: 8px; */
+    z-index: 2;
+    pointer-events: none;
+    /* box-shadow: 
+        0 0 25px rgba(212, 175, 55, 0.8),
+        inset 0 0 25px rgba(212, 175, 55, 0.4),
+        0 0 50px rgba(0, 0, 0, 0.3); */
+}
+
+/* Optional: Add corner decorations */
+.gold-frame::before,
+.gold-frame::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #D4AF37;
+    z-index: 3;
+}
+
+.gold-frame::before {
+    top: -5px;
+    left: -5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.gold-frame::after {
+    bottom: -5px;
+    right: -5px;
+    border-left: none;
+    border-top: none;
+}
+
+/* Header Section */
+.header {
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Header content - on top of everything */
+.header-content {
+    position: relative;
+    z-index: 10; /* Higher than center image */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* Content animation when loaded */
+.header.loaded .header-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-shadow: 
+        2px 2px 8px rgba(0,0,0,0.9),
+        0 0 30px rgba(0,0,0,0.7);
+    position: relative;
+    z-index: 11;
+}
+
+/* Add a subtle vignette effect to improve text readability */
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(128, 1, 50, 0.4) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Responsive adjustments for center image */
+@media (max-width: 992px) {
+    .center-founder-frame {
+        width: 280px;
+        height: 320px;
     }
+}
 
-
-    .bg-breadcrumb .breadcrumb {
-        position: relative;
+@media (max-width: 768px) {
+    .center-founder-frame {
+        width: 250px;
+        height: 280px;
     }
-
-    .bg-breadcrumb .breadcrumb .breadcrumb-item a {
-        color: white;
-    }
-
-    /* Header Section */
-    .header {
-        color: white;
-        padding: 100px 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* Loading spinner */
-    .header::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 40px;
-        height: 40px;
-        margin: -20px 0 0 -20px;
-        border: 3px solid rgba(255,255,255,0.3);
-        border-top: 3px solid white;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 1;
-        opacity: 1;
-        transition: opacity 0.3s ease;
-    }
-
-    /* Hide spinner when loaded */
-    .header.loaded::before {
-        opacity: 0;
-    }
-
-    /* Animated background effect when loaded */
-    .header.loaded::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(52, 0, 25, 0.1) 0%, transparent 70%);
-        animation: rotate 20s linear infinite;
-        z-index: 1;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .header-content {
-        position: relative;
-        z-index: 2;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease-out;
-    }
-
-    /* Content animation when loaded */
-    .header.loaded .header-content {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    
     .header h1 {
-        font-size: 4rem;
-        margin-bottom: 20px;
-        font-weight: 300;
-        letter-spacing: 3px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        font-size: 3rem;
     }
+}
 
-    .header .subtitle {
-        font-size: 1.4rem;
-        opacity: 0.9;
-        max-width: 600px;
-        margin: 0 auto;
-        font-weight: 300;
+@media (max-width: 567px) {
+    .center-founder-frame {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%; /* Optional: Make it circular on mobile */
     }
+    
+    .founder-portrait {
+        border-radius: 50%;
+    }
+    
+    .gold-frame {
+        border-radius: 50%;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+    }
+    
+    /* Hide corner decorations on mobile if circular */
+    .gold-frame::before,
+    .gold-frame::after {
+        display: none;
+    }
+    
+    .header h1 {
+        font-size: 2.2rem;
+    }
+}
 
-    /* Responsive Typography */
-        @media (max-width: 1200px) {
-            .header h1 {
-                font-size: 3.5rem;
-            }
-        }
+/* Loading spinner (keep your existing) */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 5;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
 
-        @media (max-width: 992px) {
-            .header h1 {
-                font-size: 3rem;
-                letter-spacing: 2px;
-            }
-        }
+.header.loaded::before {
+    opacity: 0;
+}
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-                letter-spacing: 1.5px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header h1 {
-                font-size: 2rem;
-                letter-spacing: 1px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .header h1 {
-                font-size: 1.75rem;
-            }
-        }
-
-    /*** Single Page Hero Header End ***/
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/*** Single Page Hero Header End ***/
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const header = document.getElementById('heroHeader');
-        
-        // Check screen size and load appropriate images
-        const isMobile = window.innerWidth < 768;
-        
-        // Image URLs
-        const imageUrls = isMobile 
-            ? ["{{ asset('images/oldpartners/scanlen.jpeg') }}"]  // Only founder on mobile
-            : [
-                "{{ asset('images/oldpartners/scanlen.jpeg') }}",
-                "{{ asset('images/oldpartners/op1.jpeg') }}",
-                "{{ asset('images/oldpartners/op2.jpeg') }}",
-                "{{ asset('images/oldpartners/op3.jpeg') }}",
-                "{{ asset('images/oldpartners/op4.jpeg') }}",
-                "{{ asset('images/oldpartners/op5.jpeg') }}"
-            ];
-        
-        // Preload images
-        let loadedImages = 0;
-        const totalImages = imageUrls.length;
-        
-        function imageLoaded() {
-            loadedImages++;
-            if (loadedImages === totalImages) {
-                setTimeout(() => {
-                    header.classList.add('loaded');
-                }, 100);
-            }
-        }
-        
-        // Preload each image
-        imageUrls.forEach(url => {
-            const img = new Image();
-            img.onload = imageLoaded;
-            img.onerror = imageLoaded;
-            img.src = url;
-        });
-        
-        // Fallback timeout
-        setTimeout(() => {
-            if (!header.classList.contains('loaded')) {
-                header.classList.add('loaded');
-            }
-        }, 3000);
-        
-        // Handle window resize
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                // Reload if crossing mobile/desktop threshold
-                const nowMobile = window.innerWidth < 768;
-                if (nowMobile !== isMobile) {
-                    location.reload();
-                }
-            }, 250);
-        });
-    });
-
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('heroHeader');
+    const founderImage = document.querySelector('.founder-portrait');
     
+    // Check screen size
+    const isMobile = window.innerWidth < 768;
+    
+    // Background image URLs only
+    const bgImageUrls = isMobile 
+        ? []  // No background images on mobile
+        : [
+            "{{ asset('images/oldpartners/op1.jpeg') }}",
+            "{{ asset('images/oldpartners/op2.jpeg') }}",
+            "{{ asset('images/oldpartners/op3.jpeg') }}",
+            "{{ asset('images/oldpartners/op4.jpeg') }}",
+            "{{ asset('images/oldpartners/op5.jpeg') }}",
+            "{{ asset('images/oldpartners/op6.jpeg') }}"
+        ];
+    
+    let loadedImages = 0;
+    const totalImages = bgImageUrls.length + 1; // +1 for founder image
+    
+    function imageLoaded() {
+        loadedImages++;
+        console.log(`Image loaded: ${loadedImages}/${totalImages}`);
+        
+        if (loadedImages === totalImages) {
+            setTimeout(() => {
+                header.classList.add('loaded');
+                console.log('All images loaded, showing content');
+            }, 200);
+        }
+    }
+    
+    // Preload founder image
+    founderImage.onload = imageLoaded;
+    founderImage.onerror = imageLoaded;
+    
+    // Preload background images
+    bgImageUrls.forEach(url => {
+        const img = new Image();
+        img.onload = imageLoaded;
+        img.onerror = imageLoaded;
+        img.src = url;
+    });
+    
+    // If no background images (mobile), check if founder image already loaded
+    if (founderImage.complete && bgImageUrls.length === 0) {
+        imageLoaded();
+    }
+    
+    // Fallback timeout
+    setTimeout(() => {
+        if (!header.classList.contains('loaded')) {
+            console.log('Fallback: Showing content after timeout');
+            header.classList.add('loaded');
+        }
+    }, 3000);
+    
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            const nowMobile = window.innerWidth < 768;
+            if (nowMobile !== isMobile) {
+                location.reload();
+            }
+        }, 250);
+    });
+});
 </script>
-
-

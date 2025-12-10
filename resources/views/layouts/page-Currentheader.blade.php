@@ -94,7 +94,7 @@
 }
 
 .header h1 {
-    font-size: 4rem;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 300;
     letter-spacing: 3px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
