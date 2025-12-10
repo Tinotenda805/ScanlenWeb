@@ -39,14 +39,14 @@
                         <a class="nav-link {{ Request::is('history') ? 'active' : '' }}" href="{{route('history.index')}}">Our History</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Request::is('our-partners*') || Request::is('our-associates*') || Request::is('gallery*') ? 'active' : '' }}" 
+                        <a class="nav-link dropdown-toggle {{ Route::is('our-people*') ? 'active' : '' }}" 
                         href="#" id="ourPeopleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Our People
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ourPeopleDropdown">
-                            <li><a class="dropdown-item {{ Request::is('partners') ? 'active' : '' }}" href="{{ route('our-people.partners') }}">Partners</a></li>
-                            <li><a class="dropdown-item {{ Request::is('associates') ? 'active' : '' }}" href="{{ route('our-people.associates') }}">Associates</a></li>
-                            <li><a class="dropdown-item {{ Request::is('gallery') ? 'active' : '' }}" href="{{ route('our-people.gallery') }}">Gallery</a></li>
+                            <li><a class="dropdown-item {{ Route::is('our-people.partners*') ? 'active' : '' }}" href="{{ route('our-people.partners') }}">Partners</a></li>
+                            <li><a class="dropdown-item {{ Route::is('our-people.associates*') ? 'active' : '' }}" href="{{ route('our-people.associates') }}">Associates</a></li>
+                            <li><a class="dropdown-item {{ Route::is('our-people.gallery*') ? 'active' : '' }}" href="{{ route('our-people.gallery') }}">Gallery</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

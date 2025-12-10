@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('layouts.page-hero', [
+@include('layouts.page-judge', [
     'title' => 'Judgements',
 ])
 

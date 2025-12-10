@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-hero', [
+@include('layouts.page-expertise', [
     'title' => 'Our Expertise',
     'subtitle' => 'Practical legal expertise across diverse practice areas'
 ])

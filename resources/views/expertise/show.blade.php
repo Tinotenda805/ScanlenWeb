@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.page-Currentheader', [
+@include('layouts.page-expertise', [
     'title' => $expertise->name ,
     'subtitle'=> $expertise->short_description ?? ''
 ])

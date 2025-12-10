@@ -24,7 +24,7 @@
     /* Who We Are Sidebar */
     .sidebar {
         max-width: 500px;
-        background: linear-gradient(180deg, #3c0008 0%, #50010b 100%);
+        background: linear-gradient(135deg, rgba(84, 42, 48, 0.783) 0%, rgba(60, 0, 8, 0.5) 100%);
         color: white;
         padding: 60px 5px;
         position: sticky;
@@ -186,14 +186,6 @@
         z-index: 1;
     }
 
-    .decade-title {
-        font-size: 1.8rem;
-        color: var(--light-maroon);
-        margin-bottom: 20px;
-        font-weight: 600;
-        position: relative;
-        z-index: 1;
-    }
 
     /* ===== IMAGE-BASED CONTENT ===== */
     /* Background Image Container */
@@ -275,7 +267,8 @@
 
     .main-content-area.no-image {
         padding: 40px !important;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+        background: linear-gradient(135deg, rgba(84, 42, 48, 0.783) 0%, rgba(60, 0, 8, 0.5) 100%) !important;
+        /* background: var(--new-maroon); */
         border-radius: 12px !important;
         border: 1px solid #e0e6ed !important;
         margin-top: 10px;
@@ -289,15 +282,15 @@
     }
 
     .main-content-area.no-image .decade-title {
-        color: var(--light-maroon) !important;
+        color: var(--white) !important;
         font-size: 1.8rem !important;
         margin-bottom: 20px !important;
-        border-bottom: 2px solid var(--gold) !important;
+        border-bottom: 2px solid var(--light-gray) !important;
         padding-bottom: 10px !important;
     }
 
     .main-content-area.no-image .decade-description {
-        color: #4a5568 !important;
+        color: var(--light-gray) !important;
         font-size: 1rem !important;
         line-height: 1.8 !important;
         margin-bottom: 25px !important;
@@ -345,7 +338,7 @@
     /* ===== COMMON STYLES ===== */
     .decade-description {
         font-size: 1rem;
-        color: #5a6c7d;
+        color: var(--light-gray);
         line-height: 1.8;
         margin-bottom: 25px;
         position: relative;
@@ -358,13 +351,14 @@
         margin-top: 20px;
         position: relative;
         z-index: 1;
+        col
     }
 
     .highlights li {
         position: relative;
         padding-left: 25px;
         margin-bottom: 12px;
-        color: #4a5568;
+        color: var(--light-gray);
         font-size: 1rem;
     }
 
@@ -381,13 +375,13 @@
     }
 
     .decade-content.short-content .highlights li::before {
-        content: '✓';
+        content: '⚖️';
         color: var(--gold);
     }
 
     /* Highlights for no-image content */
     .main-content-area.no-image .highlights li {
-        color: #5a6c7d;
+        color: var(--light-gray);
     }
 
     .main-content-area.no-image .highlights li::before {
@@ -694,7 +688,7 @@
 
 @include('layouts.page-header')
 
-<div class="maincontent">
+<div class="maincontent" >
     <!-- Who We Are Sidebar -->
     <aside class="sidebar px-5">
         <h2>Who We Are</h2>
@@ -715,7 +709,7 @@
     </aside>
 
     <!-- History Timeline Section -->
-    <main class="timeline-section">
+    <main class="timeline-section" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
         <div class="timeline-header">
             <h2 class="fw-bolder">Our Journey</h2>
             <p>A journey of growth, innovation, and unwavering commitment to legal excellence</p>

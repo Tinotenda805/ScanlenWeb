@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoryAdminController extends Controller
@@ -27,8 +28,14 @@ class CategoryAdminController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('categories', 'public');
+            $validated['avatar'] = $avatarPath;
+        }
 
         $validated['slug'] = Str::slug($validated['name']);
 
@@ -47,8 +54,19 @@ class CategoryAdminController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('avatar')) {
+            // Delete old avatar
+            if ($category->avatar) {
+                Storage::disk('public')->delete($category->avatar);
+            }
+            
+            $avatarPath = $request->file('avatar')->store('categories', 'public');
+            $validated['avatar'] = $avatarPath;
+        }
 
         $validated['slug'] = Str::slug($validated['name']);
 

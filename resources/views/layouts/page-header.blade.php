@@ -1,7 +1,7 @@
 
 <header class="header bg-breadcrumb" id="heroHeader">
     <div class="header-content">
-        <h1>{{$title ?? 'Title Goes Here'}}</h1>
+        <h1>{{$title ?? 'Scanlen & Holderness'}}</h1>
         {{-- <h1>{{$subtitle ?? '-'}}</h1> --}}
         
     </div>
@@ -13,7 +13,16 @@
         position: relative;
         overflow: hidden;
         /* Initially show a solid background or loading state */
-        background: linear-gradient(135deg, #848484 0%, #848484 100%);
+        background: linear-gradient(135deg, #fff 0%, #dec6d4 50%),
+            url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/300px 350px no-repeat,
+            url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40% / 185px 170px no-repeat,
+            url("{{ asset('images/oldpartners/op2.jpeg') }}") 99% 10% / 185px 170px no-repeat,
+            url("{{ asset('images/oldpartners/op3.jpeg') }}") 31% 80% / 185px 170px no-repeat,
+            url("{{ asset('images/oldpartners/op4.jpeg') }}") 69% 80% / 185px 170px no-repeat,
+            url("{{ asset('images/oldpartners/op6.jpeg') }}") 84% 40% / 185px 170px no-repeat,
+            url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10% / 185px 170px no-repeat;
+            background-blend-mode: multiply;
+            padding: 140px 0 60px 0;
         transition: all 0.8s ease-in-out;
         opacity: 0.7; /* Start slightly faded */
     }
@@ -23,7 +32,7 @@
     @media (min-width: 768px) {
         .bg-breadcrumb {
             background: 
-                linear-gradient(135deg, #848484 0%, #848484 100%),
+               linear-gradient(135deg, #fff 0%, #cf94b6 50%),
                 url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center/300px 350px no-repeat,
                 url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40% / 185px 170px no-repeat,
                 url("{{ asset('images/oldpartners/op2.jpeg') }}") 99% 10% / 185px 170px no-repeat,
@@ -37,7 +46,7 @@
     }
 
     /* Mobile: Only founder image */
-    @media (max-width: 767px) {
+    @media (max-width: 567px) {
         .bg-breadcrumb {
             background: 
                 linear-gradient(135deg, #848484 0%, #848484 100%),

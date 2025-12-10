@@ -17,7 +17,7 @@
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+                    <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         
@@ -45,6 +45,20 @@
                             @enderror
                         </div>
 
+                        <div class="card border-0 shadow-sm mb-4 p-1">
+                            <label for="avatar" class="form-label">Category Image</label>
+                            <input type="file" class="form-control @error('avatar') is-invalid @enderror" 
+                                    id="avatar" name="avatar" accept="image/*">
+                            @error('avatar')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Recommended: 300x300px, PNG or JPG</small>
+                            
+                            <div id="avatarPreview" class="mt-2 text-center" style="display: none;">
+                                <img id="preview" class="img-thumbnail" style="max-height: 200px;">
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label">Current Slug</label>
                             <input type="text" class="form-control" value="{{ $category->slug }}" disabled>
@@ -65,4 +79,24 @@
         </div>
     </div>
 </div>
+<script>
+    // Image preview
+    document.getElementById('avatar').addEventListener('change', function(e) {
+        const preview = document.getElementById('preview');
+        const previewContainer = document.getElementById('avatarPreview');
+        
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                previewContainer.style.display = 'block';
+            }
+            
+            reader.readAsDataURL(this.files[0]);
+        } else {
+            previewContainer.style.display = 'none';
+        }
+    });
+</script>
 @endsection

@@ -11,7 +11,7 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['uuid', 'name', 'slug', 'description'];
+    protected $fillable = ['uuid', 'name', 'slug', 'description', 'avatar'];
 
     protected static function boot()
     {

@@ -69,21 +69,6 @@
     transform: translateY(0);
 }
 
-/* Spinner while loading */
-.header::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    margin: -20px 0 0 -20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    z-index: 1;
-}
 
 .header.loaded::before {
     opacity: 0;

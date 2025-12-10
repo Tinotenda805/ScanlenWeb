@@ -1534,7 +1534,6 @@
     /* ========================================
    OUR PEOPLE CAROUSEL SECTION STYLES
    ======================================== */
-   /* Our People Carousel - Bowman's Law Style */
 .our-people-section {
     /* padding: 100px 0; */
     background: white;
@@ -1549,10 +1548,13 @@
 
 .carousel-inner {
     overflow: visible;
+    
 }
 
 .carousel-item {
-    padding: 40px 0;
+    padding: 30px 0;
+    height: 600px;
+    /* overflow-y: auto; */
 }
 
 /* Person content layout */
@@ -1694,38 +1696,76 @@
     transform: scale(1.02);
 }
 
+/* Edge arrows positioning */
+    .our-people-section .carousel-control-prev,
+    .our-people-section .carousel-control-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+        background: var(--maroon);
+        border-radius: 50%;
+        opacity: 0.9;
+        z-index: 10;
+        transition: all 0.3s ease;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .our-people-section .carousel-control-prev {
+        left: 20px;
+    }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 30px;
-    height: 30px;
-    background-size: 30px 30px;
-    background-color: transparent;
-}
+    .our-people-section .carousel-control-next {
+        right: 20px;
+    }
 
-.carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233c0008'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
-}
+    /* Arrow icon styling */
+    .our-people-section .carousel-control-prev-icon,
+    .our-people-section .carousel-control-next-icon {
+        background-image: none !important;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
 
-.carousel-control-next-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233c0008'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
+    .our-people-section .carousel-control-prev-icon:before,
+    .our-people-section .carousel-control-next-icon:before {
+        font-family: "bootstrap-icons";
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+        line-height: 1;
+    }
 
-.carousel-control-prev:hover .carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
-}
+    .our-people-section .carousel-control-prev-icon:before {
+        content: "\f12f"; 
+    }
 
-.carousel-control-next:hover .carousel-control-next-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
+    .our-people-section .carousel-control-next-icon:before {
+        content: "\f138"; 
+    }
+
+    /* Hover effects */
+    .our-people-section .carousel-control-prev:hover,
+    .our-people-section .carousel-control-next:hover {
+        opacity: 1;
+        background: var(--new-maroon);
+        transform: translateY(-50%) scale(1.1);
+    }
 
 /* View All Button */
 .btn-hero.btn-outline {
     display: inline-flex;
     align-items: center;
     padding: 12px 35px;
-    border: 2px solid var(--maroon);
+    border: 2px solid var(--white);
     color: var(--maroon);
     border-radius: 25px;
     font-weight: 600;
@@ -1735,6 +1775,7 @@
 
 .btn-hero.btn-outline:hover {
     background: var(--maroon);
+    border: none;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(60, 0, 8, 0.2);
@@ -2471,7 +2512,7 @@
                             <div class="col-md-6 col-lg-6">
                                 <a href="{{ route('articles.category', $category->slug) }}" class="text-decoration-none">
                                     <div class="category-card">
-                                        <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/law.jpg') }}" 
+                                        <img src="{{ $category->avatar ? asset('storage/' . $category->avatar) : asset('images/law.jpg') }}" 
                                             alt="{{ $category->name }}" 
                                             class="category-card-img">
                                         
@@ -2523,7 +2564,7 @@
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <div class="container">
                             <div class="text-start mb-5">
-                                <h2 class="person-name mb-0">Meet Our Legal Experts</h2>
+                                <h2 class="person-name mb-0">MEET OUR TEAM</h2>
                             </div>
                             <div class="row">
                                 <div class="col-md-9">

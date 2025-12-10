@@ -13,7 +13,7 @@
     }
 
     .header {
-        background: linear-gradient(135deg, #f8f9fa 0%, #343434 100%);
+        background: linear-gradient(135deg, rgba(148, 89, 112, 0.425), rgba(141, 47, 83, 0.822));
         color: black;
         position: relative;
         overflow: hidden;
