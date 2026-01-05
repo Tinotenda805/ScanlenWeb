@@ -1,12 +1,13 @@
 <header class="header bg-breadcrumb" id="heroHeader">
-    <!-- Background pattern images (still in CSS) -->
+    <!-- Background pattern overlay -->
+    <div class="pattern-overlay"></div>
     
-    <!-- Center image as HTML element -->
+    <!-- Center founder image -->
     <div class="center-founder-frame">
         <img src="{{ asset('images/oldpartners/scanlen.jpeg') }}" 
              alt="Founder" 
              class="founder-portrait"
-             loading="lazy">
+             loading="eager">
         <div class="gold-frame"></div>
     </div>
     
@@ -17,154 +18,175 @@
 </header>
 
 <style>
-/*** Single Page Hero Header Start ***/
+/*** Responsive Page Header ***/
+:root {
+    --maroon: #861043;
+    --dark-maroon: #3c0008;
+    --gold: #D4AF37;
+}
+
 .bg-breadcrumb {
     position: relative;
     overflow: hidden;
-    background-color: rgba(128, 1, 50, 0.578);
-    padding: 140px 0 60px 0;
-    transition: all 0.8s ease-in-out;
-    opacity: 0.7;
-    min-height: 380px;
+    background: 
+        url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40%/160px no-repeat,
+        url("{{ asset('images/oldpartners/op2.jpeg') }}") 32% 80%/160px no-repeat,
+        url("{{ asset('images/oldpartners/op3.jpeg') }}") 1% 10%/160px no-repeat,
+
+        url("{{ asset('images/oldpartners/op4.jpeg') }}") 99% 10%/160px no-repeat,
+        url("{{ asset('images/oldpartners/op5.jpeg') }}") 84% 40%/160px no-repeat,
+        url("{{ asset('images/oldpartners/op6.jpeg') }}") 68% 80%/160px no-repeat;
+    background-color: rgba(128, 1, 50, 0.692);
+    background-blend-mode: multiply;
+    padding: 140px 0 80px 0;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Remove scanlen from background CSS */
-/* Desktop: Multiple background images */
+/* Pattern overlay for texture */
+.pattern-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.02) 10px,
+            rgba(255, 255, 255, 0.02) 20px
+        );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Desktop: Background portrait images */
 @media (min-width: 768px) {
-    .bg-breadcrumb {
-        background: 
-            url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40% / 185px 170px no-repeat,
-            url("{{ asset('images/oldpartners/op2.jpeg') }}") 99% 10% / 185px 170px no-repeat,
-            url("{{ asset('images/oldpartners/op3.jpeg') }}") 31% 80% / 185px 170px no-repeat,
-            url("{{ asset('images/oldpartners/op4.jpeg') }}") 69% 80% / 185px 170px no-repeat,
-            url("{{ asset('images/oldpartners/op6.jpeg') }}") 84% 40% / 185px 170px no-repeat,
-            url("{{ asset('images/oldpartners/op5.jpeg') }}") 1% 10% / 185px 170px no-repeat;
-        background-color: rgba(128, 1, 50, 0.578);
-        background-blend-mode: multiply;
+    .bg-breadcrumb::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.15;
+        z-index: 1;
     }
 }
 
-/* Mobile: No background images except color */
-@media (max-width: 567px) {
-    .bg-breadcrumb {
-        background: none;
-        background-color: rgba(128, 1, 50, 0.578);
-    }
-}
-
-/* Center founder image container */
+/* Center founder frame */
 .center-founder-frame {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 310px;
-    height: 350px;
-    z-index: 2;
+    width: 280px;
+    height: 320px;
+    z-index: 3;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.center-founder-frame img{
+    opacity: 0.8;
 }
 
 .header.loaded .center-founder-frame {
     opacity: 1;
 }
 
-/* The actual portrait image */
+/* Founder portrait */
 .founder-portrait {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* border-radius: 4px; */
     display: block;
     position: relative;
     z-index: 1;
-    opacity: 0.6;
+    filter: grayscale(20%);
+    border-radius: 8px;
 }
 
-/* Gold frame overlay */
+/* Gold frame */
 .gold-frame {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 8px solid #D4AF37;
-    /* border-radius: 8px; */
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border: 6px solid var(--gold);
+    border-radius: 12px;
     z-index: 2;
     pointer-events: none;
-    /* box-shadow: 
-        0 0 25px rgba(212, 175, 55, 0.8),
-        inset 0 0 25px rgba(212, 175, 55, 0.4),
-        0 0 50px rgba(0, 0, 0, 0.3); */
+    box-shadow: 
+        0 0 30px rgba(212, 175, 55, 0.4),
+        inset 0 0 20px rgba(212, 175, 55, 0.1);
 }
 
-/* Optional: Add corner decorations */
+/* Corner decorations */
 .gold-frame::before,
 .gold-frame::after {
     content: '';
     position: absolute;
-    width: 30px;
-    height: 30px;
-    border: 2px solid #D4AF37;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gold);
     z-index: 3;
 }
 
 .gold-frame::before {
-    top: -5px;
-    left: -5px;
+    top: -8px;
+    left: -8px;
     border-right: none;
     border-bottom: none;
+    border-radius: 4px 0 0 0;
 }
 
 .gold-frame::after {
-    bottom: -5px;
-    right: -5px;
+    bottom: -8px;
+    right: -8px;
     border-left: none;
     border-top: none;
+    border-radius: 0 0 4px 0;
 }
 
-/* Header Section */
-.header {
-    color: white;
-    padding: 100px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-/* Header content - on top of everything */
+/* Header content - Desktop centered */
 .header-content {
     position: relative;
-    z-index: 10; /* Higher than center image */
+    z-index: 10;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transition: all 0.8s ease-out 0.3s;
 }
 
-/* Content animation when loaded */
 .header.loaded .header-content {
     opacity: 1;
     transform: translateY(0);
 }
 
-.header h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
+.header-content h1 {
+    font-size: 3.5rem;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    margin: 0;
     text-shadow: 
-        2px 2px 8px rgba(0,0,0,0.9),
-        0 0 30px rgba(0,0,0,0.7);
-    position: relative;
-    z-index: 11;
+        3px 3px 12px rgba(0,0,0,0.8),
+        0 0 40px rgba(0,0,0,0.6);
+    font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Add a subtle vignette effect to improve text readability */
-.header::after {
+/* Vignette effect */
+.bg-breadcrumb::after {
     content: '';
     position: absolute;
     top: 0;
@@ -173,76 +195,27 @@
     bottom: 0;
     background: radial-gradient(
         ellipse at center,
-        transparent 30%,
-        rgba(128, 1, 50, 0.4) 100%
+        transparent 40%,
+        rgba(60, 0, 8, 0.5) 100%
     );
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
 }
 
-/* Responsive adjustments for center image */
-@media (max-width: 992px) {
-    .center-founder-frame {
-        width: 280px;
-        height: 320px;
-    }
-}
-
-@media (max-width: 768px) {
-    .center-founder-frame {
-        width: 250px;
-        height: 280px;
-    }
-    
-    .header h1 {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 567px) {
-    .center-founder-frame {
-        width: 220px;
-        height: 220px;
-        border-radius: 50%; /* Optional: Make it circular on mobile */
-    }
-    
-    .founder-portrait {
-        border-radius: 50%;
-    }
-    
-    .gold-frame {
-        border-radius: 50%;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-    }
-    
-    /* Hide corner decorations on mobile if circular */
-    .gold-frame::before,
-    .gold-frame::after {
-        display: none;
-    }
-    
-    .header h1 {
-        font-size: 2.2rem;
-    }
-}
-
-/* Loading spinner (keep your existing) */
-.header::before {
+/* Loading spinner */
+.bg-breadcrumb::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 40px;
-    height: 40px;
-    margin: -20px 0 0 -20px;
-    border: 3px solid rgba(255,255,255,0.3);
-    border-top: 3px solid white;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 4px solid rgba(212, 175, 55, 0.2);
+    border-top: 4px solid var(--gold);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    z-index: 5;
+    z-index: 11;
     opacity: 1;
     transition: opacity 0.3s ease;
 }
@@ -255,7 +228,137 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-/*** Single Page Hero Header End ***/
+
+/* ===== TABLET RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .bg-breadcrumb {
+        min-height: 400px;
+        padding: 120px 0 70px 0;
+    }
+
+    .center-founder-frame {
+        width: 240px;
+        height: 280px;
+    }
+
+    .header-content h1 {
+        font-size: 3rem;
+        letter-spacing: 3px;
+    }
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .bg-breadcrumb {
+        min-height: 400px;
+        padding: 100px 20px 40px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: none;
+    }
+
+    /* Hide background patterns on mobile */
+    .bg-breadcrumb::before {
+        display: none;
+    }
+
+    /* Center founder - make it circular on mobile */
+    .center-founder-frame {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 200px;
+        height: 200px;
+        /* border-radius: 50%; */
+        margin: 0 auto 30px auto;
+        opacity: 1; /* Show immediately on mobile */
+    }
+
+    .founder-portrait {
+        border-radius: 50%;
+    }
+
+    .gold-frame {
+        border-radius: 50%;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border-width: 5px;
+    }
+
+    /* Hide corner decorations */
+    .gold-frame::before,
+    .gold-frame::after {
+        /* display: none; */
+    }
+
+    /* Title on bottom left */
+    .header-content {
+        position: relative;
+        text-align: left;
+        padding: 0 20px;
+        margin: 0;
+        transform: translateY(0);
+        opacity: 1; /* Show immediately on mobile */
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    /* Adjust vignette for mobile */
+    .bg-breadcrumb::after {
+        background-color: rgba(174, 97, 126, 0.692);
+        /* background-blend-mode: multiply; */
+    }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px) {
+    .bg-breadcrumb {
+        min-height: 350px;
+        padding: 80px 15px 30px 15px;
+    }
+
+    .center-founder-frame {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 25px;
+    }
+
+    .gold-frame {
+        border-width: 4px;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+    }
+
+    .header-content {
+        padding: 0 15px;
+    }
+
+    .header-content h1 {
+        font-size: 1.6rem;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* Smooth page load */
+.header {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
 </style>
 
 <script>
@@ -263,39 +366,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('heroHeader');
     const founderImage = document.querySelector('.founder-portrait');
     
-    // Check screen size
-    const isMobile = window.innerWidth < 768;
+    // For mobile, show immediately
+    if (window.innerWidth < 768) {
+        header.classList.add('loaded');
+        return;
+    }
     
-    // Background image URLs only
-    const bgImageUrls = isMobile 
-        ? []  // No background images on mobile
-        : [
-            "{{ asset('images/oldpartners/op1.jpeg') }}",
-            "{{ asset('images/oldpartners/op2.jpeg') }}",
-            "{{ asset('images/oldpartners/op3.jpeg') }}",
-            "{{ asset('images/oldpartners/op4.jpeg') }}",
-            "{{ asset('images/oldpartners/op5.jpeg') }}",
-            "{{ asset('images/oldpartners/op6.jpeg') }}"
-        ];
+    // Desktop: Wait for images to load
+    const bgImageUrls = [
+        "{{ asset('images/oldpartners/op1.jpeg') }}",
+        "{{ asset('images/oldpartners/op2.jpeg') }}",
+        "{{ asset('images/oldpartners/op3.jpeg') }}",
+        "{{ asset('images/oldpartners/op4.jpeg') }}",
+        "{{ asset('images/oldpartners/op5.jpeg') }}",
+        "{{ asset('images/oldpartners/op6.jpeg') }}"
+    ];
     
     let loadedImages = 0;
-    const totalImages = bgImageUrls.length + 1; // +1 for founder image
+    const totalImages = bgImageUrls.length + 1;
     
     function imageLoaded() {
         loadedImages++;
-        console.log(`Image loaded: ${loadedImages}/${totalImages}`);
-        
         if (loadedImages === totalImages) {
             setTimeout(() => {
                 header.classList.add('loaded');
-                console.log('All images loaded, showing content');
             }, 200);
         }
     }
     
     // Preload founder image
-    founderImage.onload = imageLoaded;
-    founderImage.onerror = imageLoaded;
+    if (founderImage.complete) {
+        imageLoaded();
+    } else {
+        founderImage.onload = imageLoaded;
+        founderImage.onerror = imageLoaded;
+    }
     
     // Preload background images
     bgImageUrls.forEach(url => {
@@ -305,29 +410,11 @@ document.addEventListener('DOMContentLoaded', function() {
         img.src = url;
     });
     
-    // If no background images (mobile), check if founder image already loaded
-    if (founderImage.complete && bgImageUrls.length === 0) {
-        imageLoaded();
-    }
-    
     // Fallback timeout
     setTimeout(() => {
         if (!header.classList.contains('loaded')) {
-            console.log('Fallback: Showing content after timeout');
             header.classList.add('loaded');
         }
     }, 3000);
-    
-    // Handle window resize
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            const nowMobile = window.innerWidth < 768;
-            if (nowMobile !== isMobile) {
-                location.reload();
-            }
-        }, 250);
-    });
 });
 </script>

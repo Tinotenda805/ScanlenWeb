@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expertise;
+use App\Models\PopularContent;
 use Illuminate\Http\Request;
 
 class ExpertiseController extends Controller
@@ -40,6 +41,17 @@ class ExpertiseController extends Controller
                 $query->where('status', 'active');
             }])
             ->firstOrFail();
+
+        PopularContent::updateOrCreate(
+            [
+                'content_type' => 'expertise',
+                'content_id' => $expertise->id,
+                'date' => now()->toDateString(),
+            ],
+            [
+                'content_title' => $expertise->name,
+            ]
+        )->increment('view_count');
 
         return view('expertise.show', compact('expertise'));
     }

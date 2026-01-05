@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\PopularContent;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -103,6 +104,17 @@ class ArticlesController extends Controller
 
         // Increment view count 
         $article->incrementViews();
+
+        PopularContent::updateOrCreate(
+            [
+                'content_type' => 'article',
+                'content_id' => $article->id,
+                'date' => now()->toDateString(),
+            ],
+            [
+                'content_title' => $article->title,
+            ]
+        )->increment('view_count');
 
         // Get related articles from same category
         $relatedArticles = Article::with(['authors', 'category'])

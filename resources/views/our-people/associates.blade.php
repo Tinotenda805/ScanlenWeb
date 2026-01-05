@@ -7,8 +7,8 @@
 ])
 
 <!-- Team Start -->
-<div class="container-fluid team py-5">
-    <div class="container py-5">
+<div class="container-fluid team py-5 bg-secondary-subtle">
+    <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="pb-5 wow fadeInUp" data-wow-delay="0.1s">

@@ -362,14 +362,18 @@
     }
 
     @media (max-width: 768px) {
+        .header{
+            padding-top: 20px;
+        }
+
         .header-content {
             flex-direction: column;
             text-align: center;
         }
 
         .profile-image {
-            margin: 0 auto 20px;
-            /* transform: translateY(0); */
+            margin: 0 auto 10px;
+            width: 100%;
         }
 
         .overview-grid {
@@ -393,6 +397,7 @@
             flex-direction: column;
             gap: 0.5rem;
         }
+        
     }
 </style>
 

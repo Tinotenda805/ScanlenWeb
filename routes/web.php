@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\GalleryAdminController;
 use App\Http\Controllers\Admin\OurPeopleAdminController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TagAdminController;
+use App\Http\Controllers\AnalyticsDashboardController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\BlogController;
@@ -180,6 +181,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
+        // Analytics
+        Route::get('/analytics', [AnalyticsDashboardController::class, 'index'])->name('analytics');
+        Route::get('/analytics/export', [AnalyticsDashboardController::class, 'export'])->name('analytics.export');
 
 
         // user management

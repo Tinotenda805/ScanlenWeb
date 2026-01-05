@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Expertise;
 use App\Models\Gallery;
 use App\Models\OurPeople;
+use App\Models\PopularContent;
 use Illuminate\Http\Request;
 
 class OurPeopleController extends Controller
@@ -47,8 +48,18 @@ class OurPeopleController extends Controller
             ->where('status', 'active')
             ->with(['expertise', 'categories', 'articles'])
             ->firstOrFail();
-        // dd($person); 
 
+        PopularContent::updateOrCreate(
+            [
+                'content_type' => 'lawyer',
+                'content_id' => $person->id,
+                'date' => now()->toDateString(),
+            ],
+            [
+                'content_title' => $person->name,
+            ]
+        )->increment('view_count');
+        
         return view('our-people.partner', compact('person'));
     }
 

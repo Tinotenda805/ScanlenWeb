@@ -390,11 +390,12 @@
 
     /* ===== STATISTICS SECTION ===== */
     .stats-section {
-        background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
+        /* background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%); */
         padding: 60px;
         margin-top: 60px;
         border-radius: 15px;
         text-align: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
 
     .stats-container {
@@ -511,6 +512,9 @@
     }
 
     @media (max-width: 768px) {
+        .sidebar{
+            top: 0;
+        }
         .timeline-header p {
             text-align: justify;
         }
@@ -611,6 +615,7 @@
     @media (max-width: 576px) {
         .sidebar {
             padding: 30px 15px;
+            top: 0;
         }
         
         .sidebar h2 {
@@ -709,7 +714,7 @@
     </aside>
 
     <!-- History Timeline Section -->
-    <main class="timeline-section" style="background: linear-gradient(135deg, #fff 0%, #dec6d4 50%);">
+    <main class="timeline-section bg-secondary-subtle">
         <div class="timeline-header">
             <h2 class="fw-bolder">Our Journey</h2>
             <p>A journey of growth, innovation, and unwavering commitment to legal excellence</p>

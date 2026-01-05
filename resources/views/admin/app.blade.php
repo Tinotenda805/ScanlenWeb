@@ -124,6 +124,7 @@
     </style>
 
     @yield('head')
+    @stack('styles')
 </head>
 <body>
 
@@ -205,6 +206,11 @@
         <a class="nav-link {{ Route::is('admin.employee-types.*') ? 'active' : '' }}" href="{{ route('admin.employee-types.index') }}"><i class="fas fa-user-md"></i> Employee Types</a>
         <a class="nav-link {{ Route::is('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}"><i class="fas fa-user-shield"></i> Users</a>
     </nav>
+
+    <h6 class="mt-4">ANALYTICS</h6>
+    <nav class="nav flex-column mb-4">
+        <a href="{{ route('admin.analytics') }}" class="nav-link"><i class="fa-solid fa-chart-column"></i> Analytics</a>
+    </nav>
 </aside>
 
 <!-- CONTENT -->
@@ -248,5 +254,6 @@
 </script>
 
 @yield('scripts')
+@stack('scripts')
 </body>
 </html>

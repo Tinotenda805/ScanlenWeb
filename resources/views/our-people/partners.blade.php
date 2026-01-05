@@ -8,8 +8,8 @@
 ])
 
 <!-- Team Start -->
-<div class="container-fluid team py-5 bg-light">
-    <div class="container py-5">
+<div class="container-fluid team py-5 bg-secondary-subtle">
+    <div class="container">
         <!-- Header Section -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
