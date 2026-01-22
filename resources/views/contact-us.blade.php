@@ -21,7 +21,7 @@
     display: flex;
     gap: 15px;
     padding: 15px;
-    background: #f8f9fa;
+    background: #b9bdc1ff;
     border-radius: 6px;
     margin-bottom: 15px;
 }

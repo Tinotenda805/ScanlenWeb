@@ -34,7 +34,7 @@
             url("{{ asset('images/associates/tpw.jpeg') }}") 65% 80%/140px no-repeat,
             url("{{ asset('images/associates/ppm.png') }}") 88% 35%/140px no-repeat,
             url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
-        background-color: rgba(128, 1, 49, 0.737);
+        background-color: rgba(61, 61, 61, 0.74);
         background-blend-mode: multiply;
         min-height: auto;
     }

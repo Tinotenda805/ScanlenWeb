@@ -38,7 +38,7 @@
             url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/140px no-repeat,
             url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px no-repeat,
             url("{{ asset('images/newpartners/r.png') }}") 78% 60%/140px no-repeat;
-        background-color: rgba(128, 1, 50, 0.578);
+        background-color: rgba(71, 71, 71, 0.58);
         background-blend-mode: multiply;
         min-height: auto;
     }
