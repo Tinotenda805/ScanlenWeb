@@ -1241,17 +1241,18 @@ body {
 AWARDS DIV - ABOUT SECTION
 --------------------------------- */
 .awards {
-    position: absolute;
-    right: 5%;
-    top: 550px;
-    width: 45%;
-    max-width: 800px;
-    z-index: 10;
-    background: white;
-    border-radius: 15px;
-    padding: 5px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute; 
+    right: 5%; 
+    top: 550px; 
+    width: 45%; 
+    max-width: 800px; 
+    z-index: 10; 
+    background: white; 
+    border-radius: 15px; 
+    padding: 5px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
     border: 3px solid rgba(248, 249, 250, 0.3);
+    
 }
 
 .awards .row {
@@ -1304,8 +1305,20 @@ AWARDS DIV - ABOUT SECTION
 
 @media (max-width: 768px) {
     .awards {
-        padding: 15px 20px;
-        margin: 30px 20px;
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .awards {
+        width: 95%;
+        padding: 15px;
+        margin: 10px auto;
     }
 }
 
@@ -1543,8 +1556,6 @@ AWARDS DIV - ABOUT SECTION
 OUR PEOPLE CAROUSEL SECTION STYLES
 ======================================== */
 .our-people-section {
-    /* padding: 100px 0; */
-    /* background: white; */
     position: relative;
     overflow: hidden;
 }
@@ -1556,38 +1567,38 @@ OUR PEOPLE CAROUSEL SECTION STYLES
 
 .carousel-inner {
     overflow: visible;
-    
 }
 
+/* Make carousel item height responsive */
 .our-people-section .carousel-item {
-    padding: 30px 0;
-    height: 600px;
-    /* overflow-y: auto; */
+    padding: 20px 0;
+    height: auto; /* Changed from fixed 600px */
+    min-height: 500px; /* Minimum height */
 }
 
 /* Person content layout */
 .person-content {
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
-/* Badge */
+/* Badge - responsive */
 .person-badge {
     display: inline-block;
     background: var(--maroon);
     color: white;
-    padding: 8px 20px;
+    padding: 6px 15px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-/* Name */
+/* Name - responsive */
 .person-name {
     color: var(--maroon);
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font size */
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.2;
@@ -1595,91 +1606,70 @@ OUR PEOPLE CAROUSEL SECTION STYLES
 
 /* Main title above carousel */
 .our-people-section .text-start .person-name {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
     color: #000;
     font-weight: 300;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 /* Person title */
 .person-title {
     color: #666;
-    font-size: 1.3rem;
-    margin-bottom: 25px;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    margin-bottom: 20px;
     font-weight: 500;
 }
 
 /* Bio */
 .person-bio {
     color: #555;
-    line-height: 1.7;
-    margin-bottom: 25px;
-    font-size: 1.1rem;
-    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    max-width: 100%; /* Changed from 800px */
 }
 
 /* Expertise */
 .person-expertise {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .person-expertise h4 {
     color: var(--light-maroon);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .expertise-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
 .expertise-tag {
     background: #f8f9fa;
     color: var(--maroon);
-    padding: 6px 15px;
+    padding: 5px 12px;
     border-radius: 15px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border: 1px solid #e0e6ed;
     transition: all 0.3s ease;
 }
 
-.expertise-tag:hover {
-    background: var(--maroon);
-    color: white;
-}
-
-/* CTA Button */
+/* CTA Button - responsive */
 .person-cta {
     display: inline-flex;
     align-items: center;
-    /* background: var(--maroon); */
     color: var(--new-maroon);
-    padding: 12px 25px;
+    padding: 10px 20px;
     border: 1px var(--new-maroon) solid;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     margin-top: 20px;
-}
-
-.person-cta:hover {
-    background: var(--new-maroon);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(60, 0, 8, 0.2);
-    color: white;
-}
-
-.person-cta i {
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-}
-
-.person-cta:hover i {
-    transform: translateX(5px);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 /* Image container */
@@ -1688,86 +1678,218 @@ OUR PEOPLE CAROUSEL SECTION STYLES
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin-top: 30px; /* Add space on mobile */
 }
 
 .person-main-image {
-    /* width: 100%;
-    max-width: 400px; */
-    height: 400px;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
     object-fit: cover;
-    /* object-position: center; */
     border-radius: 8px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    transition: transform 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.carousel-item:hover .person-main-image {
-    transform: scale(1.02);
+/* Edge arrows positioning - mobile responsive */
+.our-people-section .carousel-control-prev,
+.our-people-section .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--maroon);
+    border-radius: 50%;
+    opacity: 0.9;
+    z-index: 10;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Edge arrows positioning */
+.our-people-section .carousel-control-prev {
+    left: 10px;
+}
+
+.our-people-section .carousel-control-next {
+    right: 10px;
+}
+
+/* ========================================
+RESPONSIVE BREAKPOINTS
+======================================== */
+
+/* Tablet screens (768px and below) */
+@media (max-width: 768px) {
+    .our-people-section .carousel-item {
+        padding: 15px 0;
+        min-height: auto;
+    }
+    
+    .person-content {
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+    
+    .person-main-image {
+        max-width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+    
+    /* Stack expertise tags vertically on mobile */
+    .expertise-tags {
+        gap: 6px;
+    }
+    
+    .expertise-tag {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+    
+    /* Make arrow controls smaller on mobile */
     .our-people-section .carousel-control-prev,
     .our-people-section .carousel-control-next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 60px;
-        height: 60px;
-        background: var(--maroon);
-        border-radius: 50%;
-        opacity: 0.9;
-        z-index: 10;
-        transition: all 0.3s ease;
-        border: none;
-        display: flex;
-        align-items: center;
+        width: 40px;
+        height: 40px;
+        top: auto;
+        bottom: 20px;
+        transform: none;
+    }
+    
+    .our-people-section .carousel-control-prev {
+        left: 40%;
+        transform: translateX(-50%);
+    }
+    
+    .our-people-section .carousel-control-next {
+        right: 40%;
+        transform: translateX(50%);
+    }
+}
+
+/* Mobile screens (480px and below) */
+@media (max-width: 480px) {
+    .our-people-section .carousel-item {
+        padding: 10px 0;
+    }
+    
+    .person-badge {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+    }
+    
+    .person-name {
+        font-size: 1.5rem;
+    }
+    
+    .our-people-section .text-start .person-name {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    
+    .person-main-image {
+        max-width: 200px;
+        height: 200px;
+    }
+    
+    .person-bio {
+        font-size: 1rem;
+        line-height: 1.5;
+        text-align: justify;
+        hyphens: auto;
+    }
+    
+    .expertise-tags {
         justify-content: center;
     }
-
-    .our-people-section .carousel-control-prev {
-        left: 20px;
+    
+    .person-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
     }
-
+    
+    /* Position arrows at bottom for mobile */
+    .our-people-section .carousel-control-prev,
     .our-people-section .carousel-control-next {
-        right: 20px;
+        width: 35px;
+        height: 35px;
+        bottom: 10px;
     }
+    
+    .our-people-section .carousel-control-prev {
+        left: 35%;
+    }
+    
+    .our-people-section .carousel-control-next {
+        right: 35%;
+    }
+}
 
-    /* Arrow icon styling */
-    .our-people-section .carousel-control-prev-icon,
-    .our-people-section .carousel-control-next-icon {
-        background-image: none !important;
+/* Extra small screens (360px and below) */
+@media (max-width: 360px) {
+    .person-main-image {
+        max-width: 180px;
+        height: 180px;
+    }
+    
+    .person-name {
+        font-size: 1.3rem;
+    }
+    
+    .person-bio {
+        font-size: 0.85rem;
+    }
+    
+    .our-people-section .carousel-control-prev,
+    .our-people-section .carousel-control-next {
         width: 30px;
         height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+        bottom: 5px;
     }
-
+    
     .our-people-section .carousel-control-prev-icon:before,
     .our-people-section .carousel-control-next-icon:before {
-        font-family: "bootstrap-icons";
-        font-size: 1.5rem;
-        color: white;
-        font-weight: bold;
-        line-height: 1;
+        font-size: 1rem;
     }
+}
 
-    .our-people-section .carousel-control-prev-icon:before {
-        content: "\f12f"; 
+/* Landscape orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+    .our-people-section .carousel-item {
+        min-height: 400px;
     }
+    
+    .person-main-image {
+        max-width: 200px;
+        height: 200px;
+    }
+    
+    .person-content {
+        padding-right: 15px;
+    }
+}
 
-    .our-people-section .carousel-control-next-icon:before {
-        content: "\f138"; 
+/* Bootstrap grid adjustments */
+@media (max-width: 768px) {
+    .our-people-section .row {
+        flex-direction: column;
     }
-
-    /* Hover effects */
-    .our-people-section .carousel-control-prev:hover,
-    .our-people-section .carousel-control-next:hover {
-        opacity: 1;
-        background: var(--new-maroon);
-        transform: translateY(-50%) scale(1.1);
+    
+    .our-people-section .col-md-8,
+    .our-people-section .col-md-4 {
+        width: 100%;
+        max-width: 100%;
     }
+    
+    .person-image-container {
+        order: -1; /* Move image above text on mobile if desired */
+        margin-bottom: 20px;
+    }
+}
 
 /* View All Button */
 .btn-hero.btn-outline {

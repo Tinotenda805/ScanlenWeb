@@ -1,5 +1,5 @@
 <header class="header bg-breadcrumb" id="heroHeader">
-    <div class="header-content text-center">
+    <div class="header-content">
         <h1>{{ $title ?? 'Title Goes Here' }}</h1>
     </div>
 </header>
@@ -16,28 +16,38 @@
     padding: 140px 0 60px 0;
 }
 
-.header-content h1{
-    font-weight: bold;
+.header {
+    color: white;
+    position: relative;
 }
+
+.header-content h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+}
+
 
 /* Desktop: All 9 images layered */
 @media (min-width: 768px) {
     .bg-breadcrumb {
         background:
             /* Center Image */
-            url("{{ asset('images/newpartners/br.png') }}") center/280px no-repeat,
+            url("{{ asset('images/newpartners/r.png') }}") center 80%/160px no-repeat,
             
             /* Left Side Images */
-            url("{{ asset('images/newpartners/bm.png') }}") 12% 35%/140px no-repeat,
-            url("{{ asset('images/newpartners/gg.png') }}") 33% 80%/140px no-repeat,
             url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/pm.png') }}") 22% 60%/140px no-repeat,
+            url("{{ asset('images/newpartners/bm.png') }}") 13% 35%/140px no-repeat,
+            url("{{ asset('images/newpartners/pm.png') }}") 25% 60%/140px no-repeat,
+            url("{{ asset('images/newpartners/gg.png') }}") 37% 80%/140px no-repeat,
             
             /* Right Side Images */
-            url("{{ asset('images/newpartners/ftm.png') }}") 100% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/ar.png') }}") 89% 35%/140px no-repeat,
-            url("{{ asset('images/newpartners/nt.jpg') }}") 67% 80%/140px no-repeat,
-            url("{{ asset('images/newpartners/r.png') }}") 78% 60%/140px no-repeat;
+            url("{{ asset('images/newpartners/ftm.png') }}") 99% 10%/140px no-repeat,
+            url("{{ asset('images/newpartners/ar.png') }}") 87% 35%/140px no-repeat,
+            url("{{ asset('images/newpartners/r.png') }}") 75% 60%/140px no-repeat,
+            url("{{ asset('images/newpartners/nt.jpg') }}") 63% 80%/140px no-repeat;
         background-color: rgba(71, 71, 71, 0.58);
         background-blend-mode: multiply;
         min-height: auto;
@@ -60,10 +70,6 @@
 
 
 
-.header {
-    color: white;
-    position: relative;
-}
 
 /* Mobile: Ensure content is below the image */
 @media (max-width: 767px) {
@@ -95,13 +101,7 @@
     }
 }
 
-.header-content h1 {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin: 0;
-}
+
 
 /* Mobile font size adjustments */
 @media (max-width: 767px) {

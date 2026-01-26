@@ -71,7 +71,7 @@
                     <!-- CTA Buttons -->
                     <div class="content-buttons">
                         <a href="{{route('contactUs')}}" class="btn-hero btn-primary">Schedule Consultation</a>
-                        <a href="{{route('expertise.index')}}" class="btn-hero btn-outline">Learn More</a>
+                        <a href="{{route('expertise.index')}}" class="btn-hero btn-outline text-white">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
     </div>
 
     <!-- 2. UPDATED ABOUT SECTION WITH MISSION/VISION CAROUSEL -->
-    <section class="about-overlap-section bg-secondary-subtle" id="about" >
+    <section class="about-overlap-section bg-secondary-subtle " id="about" >
         <div class="about-overlap-wrapper">
             <!-- Dark Content Area -->
             <div class="dark-content-area">
@@ -261,7 +261,7 @@
                         <span class="badge bg-maroon text-white">RECOGNITION</span>
                         {{-- <h2 class="display-6 fw-bold mb-3">Awards & Achievements</h2> --}}
                     </div>
-                    <div class="row justify-content-between">
+                    <div class="row justify-content-between ">
                         @foreach($awards as $award)
                         <div class="col-6 col-md-3">
                             @if($award->image_url)
@@ -274,7 +274,7 @@
                                 </div>
                             @endif
                             <h5 class="fw-bold mb-1">{{ $award->title }}</h5>
-                            <p class="small text-muted mb-0">{{ $award->issuing_organization }}</p>
+                            {{-- <p class="small text-muted mb-0">{{ $award->issuing_organization }}</p> --}}
                             <p class="small text-maroon fw-semibold">{{ $award->year }}</p>
                         </div>
                         @endforeach

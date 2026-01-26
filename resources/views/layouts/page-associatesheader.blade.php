@@ -13,26 +13,42 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 140px 0 60px 0;
+    padding: 140px 0 110px 0;
 }
+
+.header {
+    color: white;
+    position: relative;
+}
+
+.header h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+}
+
 
 /* Desktop: All 9 images layered */
 @media (min-width: 768px) {
     .bg-breadcrumb {
         background:
             /* Center Image */
-            url("{{ asset('images/gavel3.png') }}") center/290px no-repeat,
+            url("{{ asset('images/gavel3.png') }}") center 90%/190px no-repeat,
             
             /* Left Side Images */
-            url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
+            url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/140px no-repeat,
             url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/140px no-repeat,
             url("{{ asset('images/associates/km.jpg') }}") 24% 60%/140px no-repeat,
-            url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/140px no-repeat,
+            url("{{ asset('images/associates/tk.png') }}") 35% 90%/140px no-repeat,
+            url("{{ asset('images/associates/chishaka.jpeg') }}") 35% 10%/ 140px 140px no-repeat,
             
             /* Right Side Images */
-            url("{{ asset('images/associates/tk.png') }}") 35% 80%/140px no-repeat,
-            url("{{ asset('images/associates/tpw.jpeg') }}") 65% 80%/140px no-repeat,
+            url("{{ asset('images/associates/tanya.jpeg') }}") 65% 10%/140px 140px no-repeat,
+            url("{{ asset('images/associates/tpw.jpeg') }}") 65% 90%/140px no-repeat,
             url("{{ asset('images/associates/ppm.png') }}") 88% 35%/140px no-repeat,
+            url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
             url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
         background-color: rgba(61, 61, 61, 0.74);
         background-blend-mode: multiply;
@@ -55,10 +71,6 @@
     }
 }
 
-.header {
-    color: white;
-    position: relative;
-}
 
 /* Mobile: Ensure content is below the image */
 @media (max-width: 767px) {
@@ -92,13 +104,7 @@
     }
 }
 
-.header h1 {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin: 0;
-}
+
 
 /* Mobile font size adjustments */
 @media (max-width: 767px) {
