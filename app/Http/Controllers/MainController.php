@@ -68,7 +68,7 @@ class MainController extends Controller
             ->take(3) 
             ->get();
             
-        return view('test1', compact(
+        return view('home', compact(
             'faqs', 'partners', 
             'allExpertise', 'sectors', 
             'statistics', 'awards', 

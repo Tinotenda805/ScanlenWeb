@@ -35,7 +35,7 @@
     .bg-breadcrumb {
         background:
             /* Center Image */
-            url("{{ asset('images/newpartners/r.png') }}") center 80%/160px no-repeat,
+            url("{{ asset('images/newpartners/nt.jpg') }}") center 80%/160px no-repeat,
             
             /* Left Side Images */
             url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,
@@ -44,10 +44,10 @@
             url("{{ asset('images/newpartners/gg.png') }}") 37% 80%/140px no-repeat,
             
             /* Right Side Images */
-            url("{{ asset('images/newpartners/ftm.png') }}") 99% 10%/140px no-repeat,
-            url("{{ asset('images/newpartners/ar.png') }}") 87% 35%/140px no-repeat,
-            url("{{ asset('images/newpartners/r.png') }}") 75% 60%/140px no-repeat,
-            url("{{ asset('images/newpartners/nt.jpg') }}") 63% 80%/140px no-repeat;
+            /* url("{{ asset('images/newpartners/nt.jpg') }}") 63% 80%/140px no-repeat, */
+            url("{{ asset('images/newpartners/ar.png') }}") 63% 80%/140px no-repeat,
+            url("{{ asset('images/newpartners/r.png') }}") 81% 50%/140px no-repeat,
+            url("{{ asset('images/newpartners/ftm.png') }}") 99% 10%/140px no-repeat;
         background-color: rgba(71, 71, 71, 0.58);
         background-blend-mode: multiply;
         min-height: auto;

@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 140px 0 110px 0;
+    padding: 140px 0 140px 0;
 }
 
 .header {
@@ -31,25 +31,41 @@
 
 
 /* Desktop: All 9 images layered */
-@media (min-width: 768px) {
+@media (min-width: 993px) {
     .bg-breadcrumb {
         background:
             /* Center Image */
-            url("{{ asset('images/gavel3.png') }}") center 90%/190px no-repeat,
+            /* url("{{ asset('images/gavel3.png') }}") center 90%/190px no-repeat, */
             
             /* Left Side Images */
-            url("{{ asset('images/associates/fs.jpg') }}") 1% 10%/140px no-repeat,
-            url("{{ asset('images/associates/mvm.jpg') }}") 12% 35%/140px no-repeat,
-            url("{{ asset('images/associates/km.jpg') }}") 24% 60%/140px no-repeat,
-            url("{{ asset('images/associates/tk.png') }}") 35% 90%/140px no-repeat,
-            url("{{ asset('images/associates/chishaka.jpeg') }}") 35% 10%/ 140px 140px no-repeat,
+            url("{{ asset('images/associates/chishaka.jpeg') }}") 0.2% 10%/ 140px 140px no-repeat,
+            url("{{ asset('images/associates/fs.jpg') }}") 11% 30%/140px no-repeat,
+            url("{{ asset('images/associates/mvm.jpg') }}") 22% 50%/140px no-repeat,
+            url("{{ asset('images/associates/km.jpg') }}") 33% 70%/140px no-repeat,
+            url("{{ asset('images/associates/tk.png') }}") 44% 90%/140px no-repeat,
             
             /* Right Side Images */
-            url("{{ asset('images/associates/tanya.jpeg') }}") 65% 10%/140px 140px no-repeat,
-            url("{{ asset('images/associates/tpw.jpeg') }}") 65% 90%/140px no-repeat,
-            url("{{ asset('images/associates/ppm.png') }}") 88% 35%/140px no-repeat,
-            url("{{ asset('images/associates/in.png') }}") 76% 60%/140px no-repeat,
-            url("{{ asset('images/associates/oc.png') }}") 99% 10%/140px no-repeat;
+            url("{{ asset('images/associates/tpw.jpeg') }}") 55% 90%/140px no-repeat,
+            url("{{ asset('images/associates/in.png') }}") 66% 70%/140px no-repeat,
+            url("{{ asset('images/associates/ppm.png') }}") 77% 50%/140px no-repeat,
+            url("{{ asset('images/associates/oc.png') }}") 88% 30%/140px no-repeat,
+            url("{{ asset('images/associates/tanya.jpeg') }}") 99% 10%/140px 140px no-repeat;
+        background-color: rgba(61, 61, 61, 0.74);
+        background-blend-mode: multiply;
+        min-height: auto;
+    }
+}
+@media (max-width: 992px) {
+    .bg-breadcrumb {
+        background:
+            
+            /* Left Side Images */
+            url("{{ asset('images/associates/km.jpg') }}") 1% 50%/140px no-repeat,
+            url("{{ asset('images/associates/tk.png') }}") 33% 10%/140px no-repeat,
+            
+            /* Right Side Images */
+            url("{{ asset('images/associates/tpw.jpeg') }}") 66% 10%/140px no-repeat,
+            url("{{ asset('images/associates/in.png') }}") 99% 50%/140px no-repeat;
         background-color: rgba(61, 61, 61, 0.74);
         background-blend-mode: multiply;
         min-height: auto;
@@ -69,16 +85,11 @@
         text-align: center;
         min-height: 400px; /* Increased height to ensure content is below image */
     }
-}
 
-
-/* Mobile: Ensure content is below the image */
-@media (max-width: 767px) {
     .header-content {
         position: relative;
-        margin-top: 280px; /* Push content below the center image */
+        margin-top: 280px; 
         padding: 20px 15px;
-        /* background-color: rgba(128, 1, 50, 0.8); */
         border-radius: 10px;
         margin-left: 15px;
         margin-right: 15px;
@@ -90,6 +101,8 @@
         padding-bottom: 40px;
     }
 }
+
+
 
 /* Desktop: Normal positioning */
 @media (min-width: 768px) {
