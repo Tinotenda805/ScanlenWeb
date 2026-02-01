@@ -326,7 +326,7 @@ body {
 
 /* ===== IMPROVED FOOTER ===== */
 .footer {
-    background: linear-gradient(145deg, var(--maroon), var(--new-maroon)) border-box;
+    background: linear-gradient(145deg, var(--maroon), var(--light-maroon)) border-box;
     color: #fff;
     margin-top: auto;
     position: relative;
@@ -427,6 +427,7 @@ body {
     padding: 1rem 0;
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
     /* border-top: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
@@ -801,7 +802,7 @@ body {
     position: relative;
     padding: 30px 20px 30px;
     border-radius: 15px;
-    background: #f1f1f1;
+    background: #f4ffff;
     transition: background 0.4s ease, transform 0.3s ease;
     overflow: hidden;
     text-align: center;

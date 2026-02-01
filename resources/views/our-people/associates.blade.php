@@ -9,7 +9,7 @@
 <!-- Team Start -->
 <div class="container-fluid team py-5 bg-secondary-subtle">
     <div class="container">
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="pb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="display-5 fw-bold mb-4 text-dark">Meet Our Associates</h1>

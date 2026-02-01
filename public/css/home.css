@@ -999,7 +999,7 @@ body {
 }
 
 .dark-content-area {
-    background: linear-gradient(135deg, rgba(84, 42, 48, 0.783) 0%, rgba(60, 0, 8, 0.5) 100%);
+    background: linear-gradient(135deg, var(--light-maroon) 0%, var(--new-maroon) 100%) !important;
     position: relative;
     padding: 80px 60px;
     width: 65%;
@@ -1243,13 +1243,13 @@ AWARDS DIV - ABOUT SECTION
 .awards {
     position: absolute; 
     right: 5%; 
-    top: 550px; 
+    top: 650px; 
     width: 45%; 
     max-width: 800px; 
     z-index: 10; 
     background: white; 
     border-radius: 15px; 
-    padding: 5px; 
+    /* padding: 5px;  */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
     border: 3px solid rgba(248, 249, 250, 0.3);
 }
@@ -1286,7 +1286,7 @@ AWARDS DIV - ABOUT SECTION
 .awards .col-md-3,
 .awards .col-6 {
     text-align: center;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
 /* Responsive for Awards */

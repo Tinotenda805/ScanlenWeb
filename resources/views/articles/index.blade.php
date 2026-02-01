@@ -79,7 +79,7 @@
                                 @endforeach
                                 <small class="text-muted">{{ $featured->authors->first()->name }}</small>
                             </div>
-                            <a href="{{ route('articles.show', $featured->slug) }}" class="btn btn-sm btn-maroon-outline">Read More</a>
+                            <a href="{{ route('articles.show', $featured->slug) }}" class="btn btn-sm btn-maroon-outline">Read More <i class="bi bi-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                                         <i class="bi bi-clock me-1"></i>{{ $article->reading_time }} min
                                     </small>
                                 </div>
-                                <h5 class="card-title fw-bold">{{ Str::limit($article->title, 70) }}</h5>
+                                <h5 class="card-title fw-bold"><a class="" href="{{ route('articles.show', $article->slug) }}">{{ Str::limit($article->title, 70) }}</a></h5>
                                 <p class="card-text text-muted small">{{ Str::limit($article->excerpt, 120) }}</p>
                                 
                                 @if($article->tags->count() > 0)
@@ -180,7 +180,7 @@
                                     </div>
                                     <a href="{{ route('articles.show', $article->slug) }}" 
                                        class="btn btn-sm btn-maroon-new">
-                                        Read More
+                                        Read More <i class="bi bi-arrow-right ms-2"></i>
                                     </a>
                                 </div>
                             </div>
@@ -316,6 +316,15 @@
 
 .hover-lift:hover .card-img-top {
     transform: scale(1.05);
+}
+
+.card-title a{
+    color: #1e1e1e;
+    text-decoration: none;
+}
+.card-title a:hover{
+    color: #3d5aeb;
+    text-decoration: underline;
 }
 </style>
 @endsection

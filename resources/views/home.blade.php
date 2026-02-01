@@ -255,7 +255,7 @@
                 </div>
             </div>
 
-            <div class="awards">
+            <div class="awards bg-secondary-subtle">
                 @if($awards->count() > 0)
                     <div class="text-center">
                         <span class="badge bg-maroon text-white">RECOGNITION</span>
@@ -266,9 +266,9 @@
                         <div class="col-6 col-md-3">
                             @if($award->image_url)
                                 <img src="{{ $award->image_url }}" alt="{{ $award->title }}" 
-                                    class="img-fluid rounded-circle mb-2">
+                                    class="img-fluid rounded-circle">
                             @else
-                                <div class="bg-light rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" 
+                                <div class="bg-light rounded-circle mx-auto d-flex align-items-center justify-content-center" 
                                     style="width: 60px; height: 60px;">
                                     <i class="bi bi-trophy text-maroon"></i>
                                 </div>
@@ -296,15 +296,15 @@
 
     {{-- FIND A LAWYER SECTION - Updated Background --}}
     <section class="find-lawyer text-center p-5 bg-secondary-subtle">
-        <div class="rounded p-3 shadow-lg bg-secondary" >
-            <h3 class="fw-bold text-maroon mb-4">Find A Lawyer</h3>
+        <div class="rounded p-3 shadow-lg" style="background: linear-gradient(135deg, #50010b 0%, #861043 100%) !important;">
+            <h3 class="fw-bold text-white mb-4">Find A Lawyer</h3>
             <form action="{{ route('our-people.find-lawyer') }}" method="GET">
                 <div class="row g-3 justify-content-center">
                     <div class="col-lg-3 col-md-6">
                         <input type="text" name="name" class="form-control" placeholder="Search By Name" value="{{ request('name') }}">
                     </div>
                     <div class="col-lg-1 col-12 d-flex align-items-center justify-content-center">
-                        <span class="fw-bold">OR</span>
+                        <span class="fw-bold text-white">OR</span>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <select name="expertise" class="form-select">
@@ -331,7 +331,7 @@
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-6">
-                        <button type="submit" class="btn btn-maroon w-100">Search</button>
+                        <button type="submit" class="btn btn-maroon-outline w-100">Search <i class="bi bi-search ms-2"></i></button>
                     </div>
                 </div>
             </form>

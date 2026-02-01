@@ -53,7 +53,7 @@ class MainController extends Controller
             }])
             ->has('articles')
             ->orderBy('name')
-            ->take(6)
+            // ->take(6)
             ->get();
 
         $featuredPeople = OurPeople::active()

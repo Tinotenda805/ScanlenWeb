@@ -5,15 +5,21 @@
 </header>
 
 <style>
-/*** Hero Section ***/
+/* =============================
+   Hero Section - Mobile First
+============================= */
 .bg-breadcrumb {
-    background-color: rgba(128, 1, 49, 0.737);
-    position: relative;
-    min-height: 300px;
+    background:
+        linear-gradient(rgba(58, 1, 23, 0.636), rgba(58, 1, 23, 0.636)),
+        url("{{ asset('images/justice-potrait.jpg') }}") center / cover no-repeat;
+    background-color: rgba(58,1,23,0.636);
+    min-height: 400px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 140px 0 140px 0;
+    text-align: center;
 }
 
 .header {
@@ -21,180 +27,119 @@
     position: relative;
 }
 
-.header h1 {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+.header-content {
     margin: 0;
+    transform: none;
 }
 
+.header-content h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 1.4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+    /* color: #000; */
+}
 
-/* Desktop: All 9 images layered */
-@media (min-width: 993px) {
+/* Optional subtle mobile animation */
+.header.loaded .header-content {
+    animation: fadeInUpMobile 0.6s ease-out;
+}
+
+@keyframes fadeInUpMobile {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =============================
+   Tablet / Mid-size screens
+   (768px - 992px)
+============================= */
+@media (min-width: 768px) and (max-width: 1199px) {
     .bg-breadcrumb {
+        justify-content: center;
+        align-items: center; 
         background:
-            /* Center Image */
-            /* url("{{ asset('images/gavel3.png') }}") center 90%/190px no-repeat, */
-            
-            /* Left Side Images */
-            url("{{ asset('images/associates/chishaka.jpeg') }}") 0.2% 10%/ 140px 140px no-repeat,
+            url("{{ asset('images/justice.png') }}") center 90%/160px no-repeat,
+            url("{{ asset('images/associates/km.jpg') }}") 1% 10%/140px no-repeat,
+            url("{{ asset('images/associates/tk.png') }}") 25% 70%/140px no-repeat,
+            url("{{ asset('images/associates/tpw.jpeg') }}") 75% 70%/140px no-repeat,
+            url("{{ asset('images/associates/in.png') }}") 99% 10%/140px no-repeat;
+        background-color: rgba(71, 71, 71, 0.58);
+        background-blend-mode: multiply;
+        min-height: auto;
+        padding: 140px 0 140px 0;
+    }
+
+    .header-content {
+        margin: 60px; 
+        transform: none;
+    }
+
+    .header-content h1 {
+        font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+        letter-spacing: 2.5px;
+        /* color: #000; */
+    }
+}
+
+/* =============================
+   Desktop
+   (≥ 993px)
+============================= */
+@media (min-width: 1200px) {
+    .bg-breadcrumb {
+        justify-content: center;
+        align-items: center;
+        background:
+            url("{{ asset('images/associates/chishaka.jpeg') }}") 0.2% 10%/140px no-repeat,
             url("{{ asset('images/associates/fs.jpg') }}") 11% 30%/140px no-repeat,
             url("{{ asset('images/associates/mvm.jpg') }}") 22% 50%/140px no-repeat,
             url("{{ asset('images/associates/km.jpg') }}") 33% 70%/140px no-repeat,
             url("{{ asset('images/associates/tk.png') }}") 44% 90%/140px no-repeat,
-            
-            /* Right Side Images */
             url("{{ asset('images/associates/tpw.jpeg') }}") 55% 90%/140px no-repeat,
             url("{{ asset('images/associates/in.png') }}") 66% 70%/140px no-repeat,
             url("{{ asset('images/associates/ppm.png') }}") 77% 50%/140px no-repeat,
             url("{{ asset('images/associates/oc.png') }}") 88% 30%/140px no-repeat,
-            url("{{ asset('images/associates/tanya.jpeg') }}") 99% 10%/140px 140px no-repeat;
-        background-color: rgba(61, 61, 61, 0.74);
+            url("{{ asset('images/associates/tanya.jpeg') }}") 99% 10%/140px no-repeat;
+        background-color: rgba(71, 71, 71, 0.58);
         background-blend-mode: multiply;
         min-height: auto;
-    }
-}
-@media (max-width: 992px) {
-    .bg-breadcrumb {
-        background:
-            
-            /* Left Side Images */
-            url("{{ asset('images/associates/km.jpg') }}") 1% 50%/140px no-repeat,
-            url("{{ asset('images/associates/tk.png') }}") 33% 10%/140px no-repeat,
-            
-            /* Right Side Images */
-            url("{{ asset('images/associates/tpw.jpeg') }}") 66% 10%/140px no-repeat,
-            url("{{ asset('images/associates/in.png') }}") 99% 50%/140px no-repeat;
-        background-color: rgba(61, 61, 61, 0.74);
-        background-blend-mode: multiply;
-        min-height: auto;
-    }
-}
-
-/* Mobile: Only center image */
-@media (max-width: 767px) {
-    .bg-breadcrumb {
-        background:
-            /* rgba(128, 1, 50, 0.578), */
-            url("{{ asset('images/justice.png') }}") center/280px no-repeat;
-        background-color: rgba(58, 1, 23, 0.636);
-        background-blend-mode: multiply;
-        padding: 120px 0 60px 0;
-        display: block;
-        text-align: center;
-        min-height: 400px; /* Increased height to ensure content is below image */
+        padding: 140px 0 140px 0;
     }
 
     .header-content {
-        position: relative;
-        margin-top: 280px; 
-        padding: 20px 15px;
-        border-radius: 10px;
-        margin-left: 15px;
-        margin-right: 15px;
-        text-align: center;
+        margin: 40px;
+        transform: none;
     }
-    
-    /* Adjust header spacing for mobile */
-    .header {
-        padding-bottom: 40px;
+
+    .header-content h1 {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        letter-spacing: 3px;
+        color: #000;
     }
 }
 
-
-
-/* Desktop: Normal positioning */
-@media (min-width: 768px) {
-    .header-content {
-        position: relative;
-        z-index: 2;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease-out;
-        margin-top: 100px;
-        text-align: center;
-    }
-}
-
-
-
-/* Mobile font size adjustments */
-@media (max-width: 767px) {
-    .header h1 {
-        font-size: 1.8rem;
-        letter-spacing: 2px;
-        line-height: 1.4;
-    }
-}
-
-/* Spinner while loading - desktop only */
-@media (min-width: 768px) {
-    .header::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 40px;
-        height: 40px;
-        margin: -20px 0 0 -20px;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        border-top: 3px solid white;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 1;
-    }
-    
-    .header.loaded::before {
-        opacity: 0;
-    }
-    
-    /* Animation for desktop only */
-    .header.loaded .header-content {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .header-content {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-}
-
-/* Mobile: Show content immediately without animation */
-@media (max-width: 767px) {
-    .header-content {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-    
-    .header::before {
-        display: none; /* Hide spinner on mobile */
-    }
-}
-
-/* Optional: Add a subtle mobile animation */
-@media (max-width: 767px) {
-    .header.loaded .header-content {
-        animation: fadeInUpMobile 0.6s ease-out;
-    }
-    
-    @keyframes fadeInUpMobile {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-}
-
+/* =============================
+   Keyframes
+============================= */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+@keyframes fadeInUpMobile {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 
 <script>

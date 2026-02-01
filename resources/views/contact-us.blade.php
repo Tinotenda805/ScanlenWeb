@@ -49,8 +49,8 @@
 
         <!-- Heading + Toast -->
         <div class="row mb-4 align-items-center">
-            <div class="col-md-6">
-                <h1 class="page-heading mb-2">Contact Us</h1>
+            <div class="">
+                <h1 class="page-heading mb-2">Let's Talk!!!</h1>
                 <p class="text-muted">
                     We're always open to new engagements. Reach out using the details below or send us a message.
                 </p>

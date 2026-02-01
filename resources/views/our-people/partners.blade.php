@@ -11,7 +11,7 @@
 <div class="container-fluid team py-5 bg-secondary-subtle">
     <div class="container">
         <!-- Header Section -->
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="pb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="display-5 fw-bold mb-4 text-dark">Meet Our Partners</h1>
@@ -59,7 +59,7 @@
         <!-- Partners Grid -->
         <div class="row g-4 justify-content-center">
             @forelse($partners as $partner)
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="{{ 0.1 * ($loop->iteration) }}s">
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="{{ 0.1 * ($loop->iteration) }}s" >
                 <div class="team-item h-100">
                     <div class="team-img">
                         <img src="{{ $partner->avatar_url ?? '/images/default-avatar.png' }}" class="img-fluid" alt="{{ $partner->name }}" loading="lazy">

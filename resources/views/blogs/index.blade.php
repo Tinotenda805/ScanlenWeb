@@ -40,7 +40,7 @@
                                 <small class="text-muted">{{ $featured->author_name }}</small>
                                 @endif
                             </div>
-                            <a href="{{ route('blogs.show', $featured->slug) }}" class="btn btn-sm btn-maroon-outline">Read More</a>
+                            <a href="{{ route('blogs.show', $featured->slug) }}" class="btn btn-sm btn-maroon-outline">Read More <i class="bi bi-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h3 class="fw-bold mb-0">Latest Posts</h3>
                     <form action="{{ route('blogs.index') }}" method="GET" class="d-flex">
-                        <input type="search" name="search" class="form-control me-2" placeholder="Search blog posts..." value="{{ request('search') }}" style="max-width: 300px;">
-                        <button type="submit" class="btn btn-maroon-new">Search</button>
+                        <input type="search" name="search" class="form-control me-1" placeholder="Search blog posts..." value="{{ request('search') }}" style="max-width: 300px;">
+                        <button type="submit" class="btn btn-maroon-new">Search </button>
                     </form>
                 </div>
 
@@ -113,7 +113,7 @@
                                                 <small class="fw-semibold">{{ $blog->author_name }}</small>
                                                 @endif
                                             </div>
-                                            <a href="{{ route('blogs.show', $blog->slug) }}" class="btn btn-maroon-new">Read More</a>
+                                            <a href="{{ route('blogs.show', $blog->slug) }}" class="btn btn-maroon-new">Read More <i class="bi bi-arrow-right ms-2"></i></a>
                                         </div>
                                     </div>
                                 </div>
