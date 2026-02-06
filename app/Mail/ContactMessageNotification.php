@@ -2,61 +2,27 @@
 
 namespace App\Mail;
 
+use App\Models\ContactMessage;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ContactMessageNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public $contactData;
+    public $contactMessage;
 
-    public function __construct($contactData)
+    public function __construct(ContactMessage $contactMessage)
     {
-        $this->contactData = $contactData;
+        $this->contactMessage = $contactMessage;
     }
 
     public function build()
     {
-        return $this->subject('New Contact Message: ' . $this->contactData['subject'])
-            ->view('emails.contact-notification')
-            ->replyTo($this->contactData['email']);
-    }
-
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Contact Message Notification',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->subject('New Inquiry from ' . $this->contactMessage->name . ' - ' . $this->contactMessage->subject)
+            ->view('emails.contact-message-notification')
+            ->replyTo($this->contactMessage->email, $this->contactMessage->name)
+            ->from(config('mail.from.address'), $this->contactMessage->name . ' via Website');
     }
 }

@@ -95,16 +95,22 @@ class MainController extends Controller
         $validated['status'] = 'unread';
 
         // Create message
-        ContactMessage::create($validated);
+        $contactMessage = ContactMessage::create($validated);
 
-        // Send email notification to admin
+        // Send email notification to admin - using send() instead of queue()
         try {
-            Mail::to(config('mail.from.address')) 
-                ->queue(new ContactMessageNotification($validated));
+            Mail::to(config('mail.admin_email', 'dlomo0308@gmail.com')) 
+                ->send(new ContactMessageNotification($contactMessage));
+            
+            Log::info('Contact form email sent successfully to: ' . config('mail.admin_email'));
+            
         } catch (\Exception $e) {
-            // Log the error but don't show it to the user
+            // Log the error but don't fail the request
             Log::error('Failed to send contact email: ' . $e->getMessage());
-            // return $e->getMessage();
+            Log::error('Stack trace: ' . $e->getTraceAsString());
+            
+            // Optionally, you can still show success to user since message was saved
+            // Or you can notify them there was an issue
         }
 
         return back()->with('success', 'Your message has been sent successfully!');

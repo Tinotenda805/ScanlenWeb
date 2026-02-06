@@ -58,9 +58,10 @@
                     <div class="content-tagline">Heritage • Excellence • Trust</div>
                     
                     <h1 class="content-title">
-                        Building On<br>
-                        A Legacy Of Trust
+                        Scanlen & Holderness
                     </h1>
+
+                    <h4>Building On A Legacy Of Trust</h4>
 
                     <p class="content-description">
                         For over a century, we've been delivering exceptional legal counsel 
@@ -296,7 +297,7 @@
 
     {{-- FIND A LAWYER SECTION - Updated Background --}}
     <section class="find-lawyer text-center p-5 bg-secondary-subtle">
-        <div class="rounded p-3 shadow-lg" style="background: linear-gradient(135deg, #50010b 0%, #861043 100%) !important;">
+        <div class="rounded p-3 shadow-lg" style="background: linear-gradient(135deg, #50010b 0%, #50010b 100%) !important;">
             <h3 class="fw-bold text-white mb-4">Find A Lawyer</h3>
             <form action="{{ route('our-people.find-lawyer') }}" method="GET">
                 <div class="row g-3 justify-content-center">

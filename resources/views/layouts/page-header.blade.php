@@ -100,13 +100,13 @@
         justify-content: center;
         align-items: center;
         background:
-            url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center 90%/160px no-repeat,
-            url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40%/160px no-repeat,
-            url("{{ asset('images/oldpartners/op2.jpeg') }}") 32% 80%/160px no-repeat,
-            url("{{ asset('images/oldpartners/op3.jpeg') }}") 1% 10%/160px no-repeat,
-            url("{{ asset('images/oldpartners/op4.jpeg') }}") 99% 10%/160px no-repeat,
-            url("{{ asset('images/oldpartners/op5.jpeg') }}") 84% 40%/160px no-repeat,
-            url("{{ asset('images/oldpartners/op6.jpeg') }}") 68% 80%/160px no-repeat;
+            url("{{ asset('images/oldpartners/scanlen.jpeg') }}") center 90%/160px 180px no-repeat,
+            url("{{ asset('images/oldpartners/op1.jpeg') }}") 16% 40%/160px 180px no-repeat,
+            url("{{ asset('images/oldpartners/op2.jpeg') }}") 32% 80%/160px 180px no-repeat,
+            url("{{ asset('images/oldpartners/op3.jpeg') }}") 1% 10%/160px 180px no-repeat,
+            url("{{ asset('images/oldpartners/op4.jpeg') }}") 99% 10%/160px 180px no-repeat,
+            url("{{ asset('images/oldpartners/op5.jpeg') }}") 84% 40%/160px 180px no-repeat,
+            url("{{ asset('images/oldpartners/op6.jpeg') }}") 68% 80%/160px 180px no-repeat;
         background-color: rgba(71, 71, 71, 0.58);
         background-blend-mode: multiply;
         min-height: auto;
