@@ -119,7 +119,7 @@
         @if($partners->count() > 0)
         <div class="row mt-5">
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.3s">
-                <div class="cta-section p-5 rounded-4 bg-maroon text-white">
+                <div class="cta-section p-5 rounded-4 text-white">
                     <h3 class="mb-3">Ready to Work With Our Legal Experts?</h3>
                     <p class="mb-4">Contact us today to schedule a consultation with one of our partners.</p>
                     <a href="{{ route('contactUs') }}" class="btn btn-light btn-lg px-4">
@@ -159,7 +159,7 @@
     }
 
     .cta-section {
-        background: linear-gradient(135deg, var(--new-maroon), var(--maroon)) !important;
+        background: linear-gradient(135deg, var(--light-maroon), var(--light-maroon)) !important;
     }
 
     .specialization {

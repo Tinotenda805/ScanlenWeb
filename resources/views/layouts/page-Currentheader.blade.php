@@ -101,7 +101,7 @@
         align-items: center;
         background:
             /* Center Image */
-            url("{{ asset('images/justice.png') }}") center 90%/160px no-repeat,
+            url("{{ asset('images/newpartners/sc.jpg') }}") center 95%/160px 150px no-repeat,
             
             /* Left Side Images */
             url("{{ asset('images/newpartners/rmb.jpg') }}") 1% 10%/140px no-repeat,

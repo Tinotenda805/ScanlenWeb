@@ -25,7 +25,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="{{ url('/') }}" style="letter-spacing:2px;">
                 <img src="{{ asset('images/logo.png') }}" class="rounded" alt="Logo" style="height:55px; width:auto; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff;">
